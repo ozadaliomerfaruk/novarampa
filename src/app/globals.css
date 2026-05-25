@@ -163,3 +163,32 @@
     mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
   }
 }
+
+/* Yasal sayfa içerik stili */
+.legal-prose h2 {
+  @apply mt-10 mb-3 text-2xl font-heading font-bold tracking-tight text-foreground;
+}
+.legal-prose h3 {
+  @apply mt-7 mb-2 text-lg font-heading font-semibold text-foreground;
+}
+.legal-prose p {
+  @apply my-3;
+}
+.legal-prose ul {
+  @apply my-4 space-y-2 pl-5 list-disc;
+}
+.legal-prose ol {
+  @apply my-4 space-y-2 pl-5 list-decimal;
+}
+.legal-prose li {
+  @apply text-foreground/85;
+}
+.legal-prose strong {
+  @apply text-foreground font-semibold;
+}
+.legal-prose a {
+  @apply text-[var(--brand-orange)] underline-offset-2 hover:underline;
+}
+.legal-prose hr {
+  @apply my-8 border-border;
+}

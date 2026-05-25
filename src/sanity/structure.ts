@@ -34,7 +34,7 @@ export const structure: StructureResolver = (S) =>
       S.listItem()
         .title("Referanslar")
         .icon(StarIcon)
-        .child(S.documentTypeList("reference").title("Referanslar")),
+        .child(S.documentTypeList("referenceCompany").title("Referanslar")),
       S.divider(),
       S.listItem()
         .title("Blog Yazıları")

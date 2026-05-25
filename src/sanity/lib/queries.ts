@@ -64,7 +64,7 @@ export const blogPostBySlugQuery = groq`*[_type == "blogPost" && slug.current ==
   seo
 }`;
 
-export const allReferencesQuery = groq`*[_type == "reference"] | order(featured desc, name asc) {
+export const allReferencesQuery = groq`*[_type == "referenceCompany"] | order(featured desc, name asc) {
   _id,
   name,
   logo,

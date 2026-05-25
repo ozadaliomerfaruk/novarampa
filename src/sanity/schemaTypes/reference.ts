@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 import { StarIcon } from "@sanity/icons";
 
 export const referenceType = defineType({
-  name: "reference",
+  name: "referenceCompany",
   title: "Referans / Proje",
   type: "document",
   icon: StarIcon,

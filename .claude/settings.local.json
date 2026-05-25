@@ -43,7 +43,12 @@
       "Bash(rm -f novarampa-studio-*.png)",
       "Bash(rm -f sanity-hero-test.png)",
       "mcp__plugin_playwright_playwright__browser_hover",
-      "Bash(rm -f header-*.png sanity-*.png novarampa-*.png)"
+      "Bash(rm -f header-*.png sanity-*.png novarampa-*.png)",
+      "WebFetch(domain:www.iskefeholding.com.tr)",
+      "WebFetch(domain:gunoziplik.com)",
+      "Bash(rm -f audit-*.png)",
+      "mcp__plugin_playwright_playwright__browser_evaluate",
+      "Bash(rm -f tier1-*.png)"
     ]
   }
 }

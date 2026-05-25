@@ -1,20 +1,30 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Geist, Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
-const fontSans = Inter({
+// Body — Geist (Vercel'in distinctive sans, Inter'den karakterli)
+const fontSans = Geist({
   variable: "--font-sans",
   subsets: ["latin", "latin-ext"],
   display: "swap",
 });
 
-const fontHeading = Space_Grotesk({
+// Display — Bricolage Grotesque variable (industrial + warm karakter)
+const fontHeading = Bricolage_Grotesque({
   variable: "--font-heading",
   subsets: ["latin", "latin-ext"],
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+// Mono — teknik annotation için
+const fontMono = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
   display: "swap",
 });
 
@@ -94,10 +104,12 @@ export default function RootLayout({
   return (
     <html
       lang="tr"
-      className={`${fontSans.variable} ${fontHeading.variable} h-full antialiased`}
+      className={`${fontSans.variable} ${fontHeading.variable} ${fontMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body className="min-h-full flex flex-col bg-background text-foreground relative">
+        {/* Atmosfer: animated film grain, tüm sitede sabit */}
+        <div className="grain-overlay" aria-hidden="true" />
         {children}
         <Toaster richColors position="top-center" />
         <Analytics />

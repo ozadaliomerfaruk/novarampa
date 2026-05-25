@@ -1,6 +1,7 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/home/hero";
+import { StatStrip } from "@/components/home/stat-strip";
 import { ProductGrid } from "@/components/home/product-grid";
 import { ReferencesStrip } from "@/components/home/references-strip";
 import { WhyUs } from "@/components/home/why-us";
@@ -51,6 +52,7 @@ export default async function HomePage() {
           subtitle={settings?.heroSubtitle}
           ctaLabel={settings?.heroCtaLabel}
         />
+        <StatStrip />
         <ProductGrid sanityProducts={products} />
         <ReferencesStrip sanityReferences={sanityRefs} />
         <WhyUs />

@@ -2,10 +2,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 /**
- * Nova Rampa wordmark.
- *
- * Reusable text-based logo: NOVA (foreground) + RAMPA (orange).
- * `inverted` koyu (dark) surface üzerinde beyaz NOVA göstermek için.
+ * Nova Rampa wordmark + minimal mark (3-çizgi bauhaus geometric).
  */
 export function Logo({
   className,
@@ -28,8 +25,8 @@ export function Logo({
 
   const symbolSizes = {
     small: "size-5",
-    default: "size-6",
-    large: "size-9 md:size-11",
+    default: "size-7",
+    large: "size-10 md:size-12",
   } as const;
 
   const content = (
@@ -45,7 +42,7 @@ export function Logo({
           aria-hidden="true"
           className={cn("inline-block shrink-0", symbolSizes[size])}
         >
-          <RampSymbol />
+          <MinimalRampMark />
         </span>
       )}
       <span
@@ -70,32 +67,47 @@ export function Logo({
   return content;
 }
 
-function RampSymbol() {
+/**
+ * Minimal 3-line ramp profile:
+ *  ────         (short top platform)
+ *     ╲        (orange diagonal ramp)
+ *  ──────      (long ground line, faint)
+ */
+function MinimalRampMark() {
   return (
     <svg
-      viewBox="0 0 144 144"
+      viewBox="0 0 48 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="size-full"
     >
-      <path d="M 14 120 L 126 120 L 126 36 L 60 36 Z" fill="var(--brand-orange)" />
       <line
-        x1="60"
-        y1="26"
-        x2="126"
-        y2="26"
+        x1="26"
+        y1="14"
+        x2="46"
+        y2="14"
         stroke="currentColor"
-        strokeWidth="3"
-        opacity="0.95"
+        strokeWidth="3.5"
+        strokeLinecap="round"
       />
       <line
-        x1="76"
-        y1="16"
-        x2="126"
-        y2="16"
+        x1="6"
+        y1="38"
+        x2="26"
+        y2="14"
+        stroke="var(--brand-orange)"
+        strokeWidth="3.5"
+        strokeLinecap="round"
+      />
+      <line
+        x1="2"
+        y1="42"
+        x2="46"
+        y2="42"
         stroke="currentColor"
-        strokeWidth="2.5"
-        opacity="0.55"
+        strokeWidth="2"
+        strokeOpacity="0.4"
+        strokeLinecap="round"
       />
     </svg>
   );

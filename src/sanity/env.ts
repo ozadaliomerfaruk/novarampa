@@ -1,0 +1,25 @@
+export const apiVersion =
+  process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2025-01-01";
+
+export const dataset = assertValue(
+  process.env.NEXT_PUBLIC_SANITY_DATASET,
+  "Missing environment variable: NEXT_PUBLIC_SANITY_DATASET"
+);
+
+export const projectId = assertValue(
+  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  "Missing environment variable: NEXT_PUBLIC_SANITY_PROJECT_ID"
+);
+
+export const studioUrl = "/studio";
+
+function assertValue<T>(v: T | undefined, errorMessage: string): T {
+  if (v === undefined) {
+    // Build sırasında env yoksa placeholder döndür, runtime'da kullanıcı uyarısı
+    if (process.env.NODE_ENV === "production") {
+      console.warn(errorMessage);
+    }
+    return "" as unknown as T;
+  }
+  return v;
+}

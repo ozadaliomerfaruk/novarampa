@@ -30,8 +30,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files (gizli, asla commit etme)
 .env*
+!.env.local.example
 
 # vercel
 .vercel
@@ -39,3 +40,27 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Sanity
+.sanity/
+sanity-typegen.ts
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+
+# Geçici dosyalar (rapor analizi vb.)
+/_*.docx
+/_*.zip
+/_*.txt
+/_*_unpacked/
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# AGENTS.md ve CLAUDE.md commit edilecek (proje dokümantasyonu)

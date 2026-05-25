@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nova Rampa — Web Sitesi
 
-## Getting Started
+Nova Rampa (novarampa.com) için modern, SEO/GEO uyumlu kurumsal web sitesi.
 
-First, run the development server:
+## Stack
+
+- **Framework**: Next.js 16 (App Router) + TypeScript + React 19
+- **Styling**: Tailwind CSS v4 + shadcn/ui (neutral base)
+- **Animasyon**: Framer Motion + Lenis (smooth scroll)
+- **CMS / Admin Panel**: Sanity Studio (gömülü, `/studio` yolunda)
+- **Form**: React Hook Form + Zod
+- **Mail**: Resend
+- **Analytics**: Vercel Analytics + Speed Insights
+- **Hosting**: Vercel (frontend) + Hostinger (domain & mail)
+
+## Kurulum
 
 ```bash
+npm install
+cp .env.local.example .env.local
+# .env.local içine Sanity projectId ve Resend API key gir
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Sanity projesi oluşturmak için:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npx sanity@latest init --bare
+# Çıktıdaki projectId'yi .env.local dosyasındaki NEXT_PUBLIC_SANITY_PROJECT_ID'ye yapıştır
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Klasör Yapısı
 
-## Learn More
+```
+src/
+├── app/                    # Next.js App Router sayfaları
+│   ├── (site)/             # Public site sayfaları
+│   ├── studio/             # Sanity Studio (admin panel)
+│   ├── api/                # Form API endpointleri
+│   ├── sitemap.ts
+│   ├── robots.ts
+│   ├── manifest.ts
+│   └── layout.tsx          # Root layout (font, metadata)
+├── components/
+│   ├── ui/                 # shadcn/ui ham bileşenler
+│   ├── layout/             # Header, Footer
+│   ├── home/               # Anasayfa bölümleri
+│   ├── brand/              # Logo, marka öğeleri
+│   └── seo/                # Structured data (JSON-LD)
+├── lib/
+│   ├── site-config.ts      # Şirket bilgileri, marka kimliği
+│   ├── products.ts         # Ürün kategorileri (statik)
+│   ├── services.ts         # Hizmet bölgeleri + müşteri segmentleri
+│   ├── references.ts       # Referans firma listesi
+│   └── utils.ts            # cn(), formatPhone() vb.
+└── sanity/
+    ├── env.ts              # Sanity environment değişkenleri
+    ├── lib/                # Sanity client + image URL builder + queries
+    ├── schemaTypes/        # İçerik şemaları (ürün, blog, referans, vb.)
+    └── structure.ts        # Sanity Studio sol menü düzeni
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Eren'in Yöneteceği Yer: `/studio`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Site canlıya alındıktan sonra Eren `novarampa.com/studio` adresine girip:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- 🆕 Ürün ekler/çıkarır, kapasite ve özellikleri günceller
+- 📝 Blog yazılar
+- 🏆 Referans firmaları (logo ile) yükler
+- 🔧 Yedek parça kataloğunu yönetir
+- 📨 Teklif ve servis taleplerini takip eder
 
-## Deploy on Vercel
+## Komutlar
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Komut | İşlev |
+|---|---|
+| `npm run dev` | Geliştirme sunucusunu başlatır (`http://localhost:3000`) |
+| `npm run build` | Production build üretir |
+| `npm run start` | Production build'i çalıştırır |
+| `npm run lint` | ESLint kontrolü |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+1. **GitHub'a push** edilen her commit Vercel'de otomatik deploy edilir.
+2. Vercel dashboard'da environment değişkenlerini (Sanity, Resend) ayarlayın.
+3. `novarampa.com` Hostinger DNS panelinden Vercel'in IP/CNAME'ine yönlendirilir.
+4. Mail (info@novarampa.com) Hostinger'da kalmaya devam eder — DNS MX kayıtlarına dokunulmaz.
+
+## Tasarım Kuralları
+
+- **Renkler**: Siyah arka plan (`--brand-black`), turuncu vurgu (`--brand-orange`), beyaz yazı.
+- **Font**: Inter (body) + Space Grotesk (heading).
+- **Animasyon**: Yumuşak ve performansa öncelik. Mobilde reduced-motion'a saygı.
+- **Fiyat görünmez**: Hiçbir sayfada ürün fiyatı gösterilmez (Eren'in tercihi).
+
+## Lisans
+
+Özel proje. Tüm hakları Nova Rampa'ya aittir.

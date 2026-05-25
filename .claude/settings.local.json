@@ -27,7 +27,14 @@
       "mcp__plugin_playwright_playwright__browser_take_screenshot",
       "Bash(git reset *)",
       "Bash(git restore *)",
-      "Bash(gh repo *)"
+      "Bash(gh repo *)",
+      "Bash(git push *)",
+      "Bash(mv novarampa-identity-final.png design/novarampa-identity-vol-01.png)",
+      "Bash(rm -f novarampa-identity-vol-01.png novarampa-homepage-*.png novarampa-mobile.png novarampa-product-detail.png novarampa-teklif-al.png)",
+      "Bash(mkdir -p public/logos)",
+      "mcp__plugin_playwright_playwright__browser_close",
+      "Bash(rm -f novarampa-with-symbol.png)",
+      "Bash(rm -rf .playwright-mcp)"
     ]
   }
 }

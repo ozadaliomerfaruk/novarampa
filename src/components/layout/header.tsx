@@ -50,7 +50,7 @@ export function Header() {
       )}
     >
       <div className="container-wide flex h-16 md:h-20 items-center justify-between gap-4">
-        <Logo size="default" />
+        <Logo size="default" withSymbol />
 
         <nav className="hidden lg:flex items-center gap-1">
           <button
@@ -112,7 +112,7 @@ export function Header() {
             <SheetContent side="right" className="w-[88vw] sm:max-w-md bg-background">
               <SheetHeader>
                 <SheetTitle>
-                  <Logo size="default" />
+                  <Logo size="default" withSymbol />
                 </SheetTitle>
               </SheetHeader>
               <div className="flex flex-col gap-1 mt-6 px-4">

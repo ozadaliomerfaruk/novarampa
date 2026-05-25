@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 110" role="img" aria-labelledby="title desc">
+  <title id="title">Nova Rampa — Primary Wordmark</title>
+  <desc id="desc">NOVA (beyaz) + RAMPA (turuncu). Geometric sans-serif lockup.</desc>
+  <style>
+    .nova { font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif; font-weight: 700; font-size: 96px; letter-spacing: -0.06em; }
+    .nova-white { fill: #fafafa; }
+    .nova-orange { fill: #f97316; }
+  </style>
+  <text x="0" y="86" class="nova">
+    <tspan class="nova-white">NOVA</tspan><tspan class="nova-orange">RAMPA</tspan>
+  </text>
+</svg>

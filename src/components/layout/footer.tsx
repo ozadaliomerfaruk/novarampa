@@ -14,7 +14,7 @@ export function Footer() {
     <footer className="border-t border-border bg-[var(--brand-charcoal)] mt-24">
       <div className="container-wide py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         <div>
-          <Logo size="default" asLink={false} />
+          <Logo size="default" asLink={false} withSymbol />
           <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xs">
             {company.shortPitch}
           </p>

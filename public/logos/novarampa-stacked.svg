@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-labelledby="title desc">
+  <title id="title">Nova Rampa — Stacked Wordmark</title>
+  <desc id="desc">NOVA (üst, beyaz) ve RAMPA (alt, turuncu) iki satırlı lockup.</desc>
+  <style>
+    .stack { font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif; font-weight: 700; font-size: 92px; letter-spacing: -0.05em; }
+    .stack-white { fill: #fafafa; }
+    .stack-orange { fill: #f97316; }
+  </style>
+  <text x="0" y="78" class="stack stack-white">NOVA</text>
+  <text x="0" y="160" class="stack stack-orange">RAMPA</text>
+</svg>

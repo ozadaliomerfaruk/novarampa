@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-labelledby="title desc">
+  <title id="title">Nova Rampa — NR Monogram</title>
+  <desc id="desc">N ve R harflerinin geometrik ligatürü.</desc>
+  <!-- N (white) -->
+  <rect x="14" y="18" width="14" height="84" fill="#fafafa"/>
+  <polygon points="28,18 28,46 60,102 60,74" fill="#fafafa"/>
+  <rect x="60" y="18" width="14" height="84" fill="#fafafa"/>
+  <!-- R (orange) -->
+  <rect x="78" y="18" width="14" height="84" fill="#f97316"/>
+  <rect x="78" y="18" width="46" height="14" fill="#f97316"/>
+  <rect x="110" y="18" width="14" height="36" fill="#f97316"/>
+  <rect x="78" y="50" width="46" height="14" fill="#f97316"/>
+  <polygon points="106,58 122,58 142,102 126,102" fill="#f97316"/>
+</svg>

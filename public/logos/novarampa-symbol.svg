@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144" role="img" aria-labelledby="title desc">
+  <title id="title">Nova Rampa — Symbol Mark</title>
+  <desc id="desc">Yükselen rampa profili — 13° kanonik eğim.</desc>
+  <!-- Baseline -->
+  <line x1="4" y1="122" x2="140" y2="122" stroke="#fafafa" stroke-width="1" stroke-opacity="0.3"/>
+  <!-- Ramp body (sloped left edge = 13° canonical incline) -->
+  <path d="M 14 120 L 126 120 L 126 36 L 60 36 Z" fill="#f97316"/>
+  <!-- Platform load lines above -->
+  <line x1="60" y1="26" x2="126" y2="26" stroke="#fafafa" stroke-width="2.5"/>
+  <line x1="76" y1="16" x2="126" y2="16" stroke="#fafafa" stroke-width="2" stroke-opacity="0.7"/>
+  <!-- Right vertical reference -->
+  <line x1="132" y1="36" x2="132" y2="120" stroke="#fafafa" stroke-width="0.6" stroke-opacity="0.35" stroke-dasharray="2,3"/>
+  <!-- Angle arc -->
+  <path d="M 38 120 A 24 24 0 0 0 60 96" fill="none" stroke="#fafafa" stroke-width="0.8" stroke-opacity="0.55"/>
+</svg>

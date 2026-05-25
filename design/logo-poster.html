@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>NOVA RAMPA · Identity Vol. 01 — INDUSTRIAL NOVA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --charcoal: #131313;
+    --jet: #1c1c1c;
+    --orange: #f97316;
+    --orange-hot: #ff6b00;
+    --white: #fafafa;
+    --gray-1: #8a8a8a;
+    --gray-2: #5a5a5a;
+    --gray-3: #2a2a2a;
+    --steel: #2c4a6e;
+    --hairline: rgba(255, 255, 255, 0.08);
+    --hairline-strong: rgba(255, 255, 255, 0.18);
+    --grid-line: rgba(255, 255, 255, 0.035);
+  }
+
+  html, body { background: var(--black); }
+  body {
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    width: 1600px;
+    padding: 72px;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  /* Surveyor grid */
+  body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  /* Corner tick marks for the whole page (surveyor / specimen card feel) */
+  body::after {
+    content: '';
+    position: absolute;
+    top: 32px; left: 32px; right: 32px; bottom: 32px;
+    border: 1px solid var(--hairline-strong);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .corner-tick {
+    position: absolute;
+    width: 14px; height: 14px;
+    border: 1px solid var(--white);
+    z-index: 2;
+  }
+  .corner-tick.tl { top: 25px; left: 25px; border-right: 0; border-bottom: 0; }
+  .corner-tick.tr { top: 25px; right: 25px; border-left: 0; border-bottom: 0; }
+  .corner-tick.bl { bottom: 25px; left: 25px; border-right: 0; border-top: 0; }
+  .corner-tick.br { bottom: 25px; right: 25px; border-left: 0; border-top: 0; }
+
+  .page { position: relative; z-index: 1; }
+
+  /* ───────── META BAR ───────── */
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 500;
+    color: var(--gray-1);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .meta .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--orange);
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  /* ───────── HERO ───────── */
+  .hero {
+    padding: 92px 0 100px;
+    border-bottom: 1px solid var(--hairline);
+    position: relative;
+  }
+  .hero .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 168px;
+    line-height: 0.88;
+    letter-spacing: -0.055em;
+  }
+  .hero h1 .accent { color: var(--orange); }
+  .hero h1 .dot {
+    color: var(--orange);
+    display: inline-block;
+    margin-left: 4px;
+    transform: translateY(-0.04em);
+  }
+  .hero .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 19px;
+    color: rgba(255, 255, 255, 0.62);
+    margin-top: 44px;
+    max-width: 720px;
+    line-height: 1.55;
+  }
+  .hero .side-meta {
+    position: absolute;
+    top: 92px;
+    right: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gray-2);
+    text-align: right;
+    line-height: 2;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .hero .side-meta strong { color: var(--white); font-weight: 500; }
+
+  /* ───────── SECTION ───────── */
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .section-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray-1);
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    margin-bottom: 56px;
+  }
+  .section-label .left { color: var(--white); }
+  .section-label .right { color: var(--gray-2); }
+
+  /* ───────── PRIMARY LOGO STAGE ───────── */
+  .stage {
+    background: var(--charcoal);
+    border: 1px solid var(--hairline);
+    padding: 120px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .stage .stage-corner {
+    position: absolute;
+    width: 18px; height: 18px;
+    border: 1px solid var(--gray-2);
+  }
+  .stage .stage-corner.tl { top: 14px; left: 14px; border-right: 0; border-bottom: 0; }
+  .stage .stage-corner.tr { top: 14px; right: 14px; border-left: 0; border-bottom: 0; }
+  .stage .stage-corner.bl { bottom: 14px; left: 14px; border-right: 0; border-top: 0; }
+  .stage .stage-corner.br { bottom: 14px; right: 14px; border-left: 0; border-top: 0; }
+  .stage .stage-tag {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gray-2);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: var(--charcoal);
+    padding: 0 12px;
+  }
+  .stage .stage-axis-y {
+    position: absolute;
+    top: 14px; bottom: 14px;
+    left: 50%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .stage .stage-axis-x {
+    position: absolute;
+    left: 14px; right: 14px;
+    top: 50%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .wordmark-primary {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 132px;
+    letter-spacing: -0.06em;
+    line-height: 1;
+    display: inline-flex;
+    align-items: baseline;
+    z-index: 2;
+  }
+  .wordmark-primary .nova { color: var(--white); }
+  .wordmark-primary .rampa { color: var(--orange); }
+
+  /* ───────── VARIATIONS ───────── */
+  .variations {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  .cell {
+    background: var(--charcoal);
+    border: 1px solid var(--hairline);
+    aspect-ratio: 1 / 1.18;
+    display: flex;
+    flex-direction: column;
+    padding: 22px;
+    position: relative;
+  }
+  .cell .num {
+    position: absolute;
+    top: 18px; left: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--gray-2);
+    letter-spacing: 0.18em;
+  }
+  .cell .tag {
+    position: absolute;
+    top: 18px; right: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--orange);
+    letter-spacing: 0.18em;
+  }
+  .cell .label {
+    position: absolute;
+    bottom: 18px;
+    left: 18px;
+    right: 18px;
+    border-top: 1px solid var(--hairline);
+    padding-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--gray-1);
+  }
+  .cell .label strong {
+    color: var(--white);
+    font-weight: 500;
+    letter-spacing: 0.22em;
+  }
+  .cell .canvas {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 8px;
+  }
+
+  .cell.reversed { background: var(--white); border-color: rgba(0,0,0,0.1); }
+  .cell.reversed .num { color: rgba(0,0,0,0.4); }
+  .cell.reversed .tag { color: var(--orange); }
+  .cell.reversed .label { border-top-color: rgba(0,0,0,0.1); color: rgba(0,0,0,0.5); }
+  .cell.reversed .label strong { color: var(--black); }
+
+  /* Wordmark Stacked */
+  .mark-stacked {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    line-height: 0.86;
+    letter-spacing: -0.05em;
+    text-align: left;
+    font-size: 64px;
+  }
+  .mark-stacked .nova { color: var(--white); display: block; }
+  .mark-stacked .rampa { color: var(--orange); display: block; }
+
+  /* Wordmark reversed */
+  .mark-reversed {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    display: inline-flex;
+    align-items: baseline;
+  }
+  .mark-reversed .nova { color: var(--black); }
+  .mark-reversed .rampa { color: var(--orange); }
+
+  /* ───────── PALETTE ───────── */
+  .palette {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  .swatch {
+    aspect-ratio: 1.5 / 1;
+    border: 1px solid var(--hairline);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .swatch .swatch-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .swatch .swatch-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  .swatch .swatch-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 6px;
+    letter-spacing: 0.06em;
+  }
+  .swatch-foundation { background: var(--black); color: var(--white); border-color: var(--hairline-strong); }
+  .swatch-signal     { background: var(--orange); color: var(--black); border-color: rgba(0,0,0,0.15); }
+  .swatch-breath     { background: var(--white); color: var(--black); border-color: rgba(0,0,0,0.1); }
+  .swatch-steel      { background: var(--steel); color: var(--white); border-color: var(--hairline); }
+
+  .swatch-foundation .swatch-meta { color: var(--gray-1); }
+  .swatch-foundation .swatch-meta strong { color: var(--white); font-weight: 500; }
+  .swatch-signal .swatch-meta { color: rgba(0,0,0,0.5); }
+  .swatch-signal .swatch-meta strong { color: var(--black); font-weight: 500; }
+  .swatch-breath .swatch-meta { color: rgba(0,0,0,0.45); }
+  .swatch-breath .swatch-meta strong { color: var(--black); font-weight: 500; }
+  .swatch-steel .swatch-meta { color: rgba(255,255,255,0.6); }
+  .swatch-steel .swatch-meta strong { color: var(--white); font-weight: 500; }
+
+  /* ───────── TYPE ───────── */
+  .type-row {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--hairline);
+    align-items: center;
+  }
+  .type-row:last-child { border-bottom: 0; }
+  .type-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gray-1);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+  }
+  .type-name strong {
+    display: block;
+    margin-top: 6px;
+    color: var(--white);
+    font-weight: 500;
+    letter-spacing: 0.22em;
+  }
+  .sample-display {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 96px;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    color: var(--white);
+  }
+  .sample-display .accent { color: var(--orange); }
+  .sample-body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.86);
+    max-width: 880px;
+  }
+  .sample-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.78);
+    letter-spacing: 0.04em;
+  }
+  .sample-mono .accent { color: var(--orange); }
+
+  /* ───────── FOOTER ───────── */
+  .foot {
+    padding-top: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--gray-1);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+  }
+  .foot .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    text-transform: none;
+  }
+  .foot .brand .accent { color: var(--orange); }
+  .foot .brand-sub {
+    margin-top: 8px;
+    color: var(--gray-2);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    text-transform: none;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .foot .right { text-align: right; line-height: 1.7; }
+</style>
+</head>
+<body>
+<span class="corner-tick tl"></span>
+<span class="corner-tick tr"></span>
+<span class="corner-tick bl"></span>
+<span class="corner-tick br"></span>
+
+<div class="page">
+
+  <!-- META BAR -->
+  <header class="meta">
+    <span><span class="dot"></span>NOVA RAMPA · IDENTITY SYSTEM · 001 / 001</span>
+    <span>VOL. 01 — MAYIS 2026 · ÇORLU / İSTANBUL</span>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="eyebrow">— Volume 01 / Identity Manifesto</div>
+    <h1>INDUSTRIAL<br><span class="accent">NOVA</span><span class="dot">.</span></h1>
+    <p class="subtitle">A visual system for a brand born from twenty years of steel, hydraulic precision, and disciplined craft — drafted, weighed, and rendered for the next twenty.</p>
+    <div class="side-meta">
+      <div>Lat <strong>41.156 N</strong></div>
+      <div>Lon <strong>27.804 E</strong></div>
+      <div>Inc. <strong>13°</strong></div>
+      <div>Heritage <strong>2003</strong></div>
+      <div>Mark <strong>2022</strong></div>
+    </div>
+  </div>
+
+  <!-- 01 — PRIMARY LOCKUP -->
+  <section>
+    <div class="section-label">
+      <span class="left">— 01 / Primary Lockup</span>
+      <span class="right">Color on black · Default application</span>
+    </div>
+    <div class="stage">
+      <span class="stage-corner tl"></span>
+      <span class="stage-corner tr"></span>
+      <span class="stage-corner bl"></span>
+      <span class="stage-corner br"></span>
+      <span class="stage-axis-y"></span>
+      <span class="stage-axis-x"></span>
+      <div class="wordmark-primary">
+        <span class="nova">NOVA</span><span class="rampa">RAMPA</span>
+      </div>
+      <span class="stage-tag">— PRIMARY · BLACK · 132 pt —</span>
+    </div>
+  </section>
+
+  <!-- 02 — VARIATIONS -->
+  <section>
+    <div class="section-label">
+      <span class="left">— 02 / System Variations</span>
+      <span class="right">Four marks · One voice</span>
+    </div>
+    <div class="variations">
+
+      <!-- Variation 1: Stacked -->
+      <div class="cell">
+        <span class="num">001</span>
+        <span class="tag">SQR</span>
+        <div class="canvas">
+          <div class="mark-stacked">
+            <span class="nova">NOVA</span>
+            <span class="rampa">RAMPA</span>
+          </div>
+        </div>
+        <div class="label"><strong>STACKED</strong><span>2 × LINE</span></div>
+      </div>
+
+      <!-- Variation 2: Symbol mark (ramp profile geometry) -->
+      <div class="cell">
+        <span class="num">002</span>
+        <span class="tag">13°</span>
+        <div class="canvas">
+          <svg viewBox="0 0 144 144" width="178" height="178" xmlns="http://www.w3.org/2000/svg">
+            <!-- baseline -->
+            <line x1="4" y1="122" x2="140" y2="122" stroke="#fafafa" stroke-width="1" stroke-opacity="0.3"/>
+            <!-- ramp body: trapezoid (sloped left edge = 13° canonical incline) -->
+            <path d="M 14 120 L 126 120 L 126 36 L 60 36 Z" fill="#f97316"/>
+            <!-- two thin platform lines above (load levels) -->
+            <line x1="60" y1="26" x2="126" y2="26" stroke="#fafafa" stroke-width="2.5"/>
+            <line x1="76" y1="16" x2="126" y2="16" stroke="#fafafa" stroke-width="2" stroke-opacity="0.7"/>
+            <!-- right vertical reference -->
+            <line x1="132" y1="36" x2="132" y2="120" stroke="#fafafa" stroke-width="0.6" stroke-opacity="0.35" stroke-dasharray="2,3"/>
+            <!-- angle arc -->
+            <path d="M 38 120 A 24 24 0 0 0 60 96" fill="none" stroke="#fafafa" stroke-width="0.8" stroke-opacity="0.55"/>
+            <!-- angle label -->
+            <text x="30" y="110" font-family="JetBrains Mono, monospace" font-size="9" font-weight="500" fill="#fafafa" opacity="0.75">13°</text>
+          </svg>
+        </div>
+        <div class="label"><strong>SYMBOL</strong><span>RAMP</span></div>
+      </div>
+
+      <!-- Variation 3: Monogram NR — geometric ligature -->
+      <div class="cell">
+        <span class="num">003</span>
+        <span class="tag">NR</span>
+        <div class="canvas">
+          <svg viewBox="0 0 160 120" width="200" height="150" xmlns="http://www.w3.org/2000/svg">
+            <!-- N (white): two verticals + diagonal -->
+            <rect x="14"  y="18" width="14" height="84" fill="#fafafa"/>
+            <polygon points="28,18 28,46 60,102 60,74" fill="#fafafa"/>
+            <rect x="60"  y="18" width="14" height="84" fill="#fafafa"/>
+            <!-- R (orange) sharing the right spine of N as visual ligature -->
+            <rect x="78"  y="18" width="14" height="84" fill="#f97316"/>
+            <rect x="78"  y="18" width="46" height="14" fill="#f97316"/>
+            <rect x="110" y="18" width="14" height="36" fill="#f97316"/>
+            <rect x="78"  y="50" width="46" height="14" fill="#f97316"/>
+            <polygon points="106,58 122,58 142,102 126,102" fill="#f97316"/>
+            <!-- crossbar tick (precision detail) -->
+            <line x1="14" y1="106" x2="142" y2="106" stroke="#fafafa" stroke-width="0.6" stroke-opacity="0.18"/>
+            <line x1="14" y1="14"  x2="142" y2="14"  stroke="#fafafa" stroke-width="0.6" stroke-opacity="0.18"/>
+          </svg>
+        </div>
+        <div class="label"><strong>MONOGRAM</strong><span>LIGATURE</span></div>
+      </div>
+
+      <!-- Variation 4: Reversed (on white) -->
+      <div class="cell reversed">
+        <span class="num">004</span>
+        <span class="tag">WH</span>
+        <div class="canvas">
+          <div class="mark-reversed">
+            <span class="nova">NOVA</span><span class="rampa">RAMPA</span>
+          </div>
+        </div>
+        <div class="label"><strong>REVERSED</strong><span>ON WHITE</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 03 — PALETTE -->
+  <section>
+    <div class="section-label">
+      <span class="left">— 03 / Material Palette</span>
+      <span class="right">Industrial restraint · 4 surfaces only</span>
+    </div>
+    <div class="palette">
+      <div class="swatch swatch-foundation">
+        <div class="swatch-meta"><span>01 · Foundation</span><strong>F</strong></div>
+        <div>
+          <div class="swatch-name">Machined Black</div>
+          <div class="swatch-value">#0A0A0A · OKLCH 0.09 0 0</div>
+        </div>
+      </div>
+      <div class="swatch swatch-signal">
+        <div class="swatch-meta"><span>02 · Signal</span><strong>S</strong></div>
+        <div>
+          <div class="swatch-name">Supernova Orange</div>
+          <div class="swatch-value">#F97316 · OKLCH 0.72 0.21 47</div>
+        </div>
+      </div>
+      <div class="swatch swatch-breath">
+        <div class="swatch-meta"><span>03 · Breath</span><strong>B</strong></div>
+        <div>
+          <div class="swatch-name">Engineering White</div>
+          <div class="swatch-value">#FAFAFA · OKLCH 0.985 0 0</div>
+        </div>
+      </div>
+      <div class="swatch swatch-steel">
+        <div class="swatch-meta"><span>04 · Accent</span><strong>A</strong></div>
+        <div>
+          <div class="swatch-name">Steel Cold</div>
+          <div class="swatch-value">#2C4A6E · OKLCH 0.42 0.08 250</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 — TYPE -->
+  <section style="border-bottom: 0;">
+    <div class="section-label">
+      <span class="left">— 04 / Typographic System</span>
+      <span class="right">Geometric · Humanist · Monospace</span>
+    </div>
+
+    <div class="type-row">
+      <div class="type-name">Display<br><strong>SPACE GROTESK 700</strong></div>
+      <div class="sample-display">Yükünüzü <span class="accent">hafifletiyoruz<span style="color: var(--orange);">.</span></span></div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-name">Body<br><strong>INTER 400 / 500</strong></div>
+      <div class="sample-body">Marmara'dan Türkiye geneline; menteşeli, teleskopik, dikey, mobil rampa ve makaslı platform imalatı. CE &amp; TSE belgeli, EN 1398 uyumlu çözümler. Yirmi yıllık miras, yeni nesil bakış.</div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-name">Annotation<br><strong>JETBRAINS MONO 500</strong></div>
+      <div class="sample-mono">REF <span class="accent">·</span> 13° <span class="accent">·</span> 2000×2500 MM <span class="accent">·</span> 6 / 9 / 12 T <span class="accent">·</span> EN 1398</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div>
+      <div class="brand"><span>NOVA</span><span class="accent">RAMPA</span></div>
+      <div class="brand-sub">est. 2022 · heritage since 2003 · çorlu / istanbul</div>
+    </div>
+    <div class="right">
+      <div>IDENTITY · VOL. 01 / 04</div>
+      <div>© 2026 NOVA RAMPA</div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

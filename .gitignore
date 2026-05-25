@@ -57,6 +57,11 @@ sanity-typegen.ts
 /_*.txt
 /_*_unpacked/
 
+# Playwright test artifacts (Claude'un screenshot aldığı klasör)
+/.playwright-mcp/
+/novarampa-*.png
+/page-*.png
+
 # OS
 Thumbs.db
 ehthumbs.db

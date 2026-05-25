@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Award, Clock, Truck, Wrench } from "lucide-react";
 
 const items = [
@@ -31,6 +31,7 @@ const items = [
 ];
 
 export function WhyUs() {
+  const reduce = useReducedMotion();
   return (
     <section className="py-24">
       <div className="container-wide">
@@ -47,9 +48,9 @@ export function WhyUs() {
           {items.map((item, i) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              initial={reduce ? false : { y: 12 }}
+              whileInView={{ y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.5, delay: i * 0.06 }}
               className="p-6 rounded-2xl border border-border bg-card hover:border-[var(--brand-orange)]/30 transition-colors"
             >

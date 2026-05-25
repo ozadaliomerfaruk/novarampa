@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 import { productCategories } from "@/lib/products";
 
 export function ProductGrid() {
+  const reduce = useReducedMotion();
   return (
     <section className="relative py-24 sm:py-32">
       <div className="container-wide">
@@ -39,10 +40,10 @@ export function ProductGrid() {
           {productCategories.map((p, i) => (
             <motion.div
               key={p.slug}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
+              initial={reduce ? false : { y: 16 }}
+              whileInView={{ y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5, delay: i * 0.04 }}
             >
               <Link
                 href={`/urunler/${p.slug}`}

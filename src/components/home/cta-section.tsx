@@ -1,19 +1,20 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
 
 import { LinkButton, ExternalLinkButton } from "@/components/ui/link-button";
 import { company } from "@/lib/site-config";
 
 export function CtaSection() {
+  const reduce = useReducedMotion();
   return (
     <section className="py-24">
       <div className="container-wide">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          initial={reduce ? false : { y: 12 }}
+          whileInView={{ y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6 }}
           className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-[var(--brand-charcoal)] to-background p-12 sm:p-16 text-center"
         >

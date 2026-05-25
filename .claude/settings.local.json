@@ -18,7 +18,15 @@
       "Bash(npx shadcn@latest add input textarea label card dialog sheet form select accordion sonner separator badge skeleton tabs navigation-menu dropdown-menu --yes)",
       "Bash(npm run *)",
       "Bash(node -e \"const i = require\\('@sanity/icons'\\); console.log\\(Object.keys\\(i\\).filter\\(k => /Trop|Wren|Comm|Tool|Pack|Cog|Star|Tag/i.test\\(k\\)\\).sort\\(\\).join\\('\\\\n'\\)\\)\")",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(curl -sf http://localhost:3000 -o /dev/null)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code} in %{time_total}s\\\\n\" http://localhost:3000)",
+      "mcp__plugin_playwright_playwright__browser_resize",
+      "mcp__plugin_playwright_playwright__browser_navigate",
+      "mcp__plugin_playwright_playwright__browser_take_screenshot",
+      "Bash(git reset *)",
+      "Bash(git restore *)"
     ]
   }
 }

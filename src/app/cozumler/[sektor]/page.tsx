@@ -78,7 +78,7 @@ export default async function SektorelCozumPage({ params }: Props) {
               <LinkButton
                 href={`/teklif-al?sektor=${segment.slug}`}
                 size="lg"
-                className="h-14 px-8 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-[var(--brand-black)] font-semibold group"
+                className="h-14 px-8 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold group"
               >
                 {segment.name} Teklifi Al
                 <ArrowRight className="ml-1 transition-transform group-hover:translate-x-1" />
@@ -189,7 +189,7 @@ export default async function SektorelCozumPage({ params }: Props) {
               <LinkButton
                 href={`/teklif-al?sektor=${segment.slug}`}
                 size="default"
-                className="mt-5 w-full bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-[var(--brand-black)] font-semibold h-11"
+                className="mt-5 w-full bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold h-11"
               >
                 Teklif Al
               </LinkButton>

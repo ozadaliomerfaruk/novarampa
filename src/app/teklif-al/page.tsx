@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { CheckCircle2, Clock, MessageCircle, Phone } from "lucide-react";
 
 import { Header } from "@/components/layout/header";
@@ -101,7 +101,7 @@ export default async function TeklifAlPage({
                     href={company.contact.whatsappLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-5 w-full bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-[var(--brand-black)] font-semibold h-12"
+                    className="mt-5 w-full bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold h-12"
                   >
                     <MessageCircle className="mr-1" />
                     WhatsApp&apos;tan Yaz

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -398,7 +398,7 @@ function MobileNav({
 
       <LinkButton
         href="/teklif-al"
-        className="mt-4 bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-[var(--brand-black)] font-semibold h-12"
+        className="mt-4 bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold h-12"
       >
         Teklif Al
       </LinkButton>

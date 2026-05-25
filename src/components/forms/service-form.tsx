@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -163,7 +163,7 @@ export function ServiceForm() {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="h-12 px-8 bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-[var(--brand-black)] font-semibold"
+          className="h-12 px-8 bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold"
         >
           {isSubmitting ? (
             <>

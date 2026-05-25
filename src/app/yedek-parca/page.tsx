@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { ArrowRight, MessageCircle, Wrench } from "lucide-react";
 
 import { Header } from "@/components/layout/header";
@@ -179,7 +179,7 @@ export default async function YedekParcaPage() {
                 <LinkButton
                   href="/servis"
                   size="lg"
-                  className="h-14 px-8 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-[var(--brand-black)] font-semibold group"
+                  className="h-14 px-8 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold group"
                 >
                   Parça Talep Formu
                   <ArrowRight className="ml-1 transition-transform group-hover:translate-x-1" />

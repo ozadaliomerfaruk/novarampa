@@ -80,7 +80,7 @@ export default async function IlLandingPage({ params }: Props) {
               <LinkButton
                 href={`/teklif-al?sehir=${city.slug}`}
                 size="lg"
-                className="h-14 px-8 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-[var(--brand-black)] font-semibold group"
+                className="h-14 px-8 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold group"
               >
                 {city.name} İçin Teklif Al
                 <ArrowRight className="ml-1 transition-transform group-hover:translate-x-1" />
@@ -172,7 +172,7 @@ export default async function IlLandingPage({ params }: Props) {
               </a>
               <LinkButton
                 href={`/teklif-al?sehir=${city.slug}`}
-                className="h-12 px-6 bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-[var(--brand-black)] font-semibold"
+                className="h-12 px-6 bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold"
               >
                 Teklif Formu
               </LinkButton>

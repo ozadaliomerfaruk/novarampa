@@ -202,7 +202,7 @@ export default async function ProductDetailPage({ params }: Props) {
                 <LinkButton
                   href={`/teklif-al?urun=${product.slug}`}
                   size="lg"
-                  className="h-14 px-8 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-[var(--brand-black)] font-semibold group"
+                  className="h-14 px-8 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold group"
                 >
                   Bu ürün için teklif al
                   <ArrowRight className="ml-1 transition-transform group-hover:translate-x-1" />

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import { Header } from "@/components/layout/header";
@@ -177,7 +177,7 @@ export default function IletisimPage() {
               <LinkButton
                 href="/teklif-al"
                 size="lg"
-                className="h-14 px-8 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-[var(--brand-black)] font-semibold"
+                className="h-14 px-8 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold"
               >
                 Teklif Formu
               </LinkButton>

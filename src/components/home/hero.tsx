@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle, ChevronDown } from "lucide-react";
 
 import { LinkButton, ExternalLinkButton } from "@/components/ui/link-button";
+import { Magnetic } from "@/components/ui/magnetic";
 import { company } from "@/lib/site-config";
 import { InteractiveRamp } from "./interactive-ramp";
 
@@ -94,14 +95,16 @@ export function Hero({ title, subtitle, ctaLabel }: HeroProps = {}) {
           variants={itemVariants}
           className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3"
         >
-          <LinkButton
-            href="/teklif-al"
-            size="lg"
-            className="h-14 px-8 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-[var(--brand-black)] font-semibold shadow-[0_0_0_0_var(--brand-orange)] hover:shadow-[0_12px_36px_-8px_var(--brand-orange)] transition-all group"
-          >
-            {cta}
-            <ArrowRight className="ml-1 transition-transform group-hover:translate-x-1" />
-          </LinkButton>
+          <Magnetic strength={0.22}>
+            <LinkButton
+              href="/teklif-al"
+              size="lg"
+              className="h-14 px-8 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold shadow-[0_0_0_0_var(--brand-orange)] hover:shadow-[0_12px_36px_-8px_var(--brand-orange)] transition-all group"
+            >
+              {cta}
+              <ArrowRight className="ml-1 transition-transform group-hover:translate-x-1" />
+            </LinkButton>
+          </Magnetic>
           <ExternalLinkButton
             href={company.contact.whatsappLink}
             target="_blank"

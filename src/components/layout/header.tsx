@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Logo } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
 import { LinkButton } from "@/components/ui/link-button";
+import { Magnetic } from "@/components/ui/magnetic";
 import {
   Sheet,
   SheetContent,
@@ -96,13 +97,15 @@ export function Header() {
             <Phone size={14} />
             <span>{company.contact.phoneDisplay}</span>
           </a>
-          <LinkButton
-            href="/teklif-al"
-            size="default"
-            className="hidden md:inline-flex bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-[var(--brand-black)] font-semibold shadow-[0_0_0_0_var(--brand-orange)] hover:shadow-[0_8px_24px_-6px_var(--brand-orange)] transition-all"
-          >
-            Teklif Al
-          </LinkButton>
+          <Magnetic strength={0.2}>
+            <LinkButton
+              href="/teklif-al"
+              size="default"
+              className="hidden md:inline-flex bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold shadow-[0_0_0_0_var(--brand-orange)] hover:shadow-[0_8px_24px_-6px_var(--brand-orange)] transition-all"
+            >
+              Teklif Al
+            </LinkButton>
+          </Magnetic>
 
           <Sheet>
             <SheetTrigger

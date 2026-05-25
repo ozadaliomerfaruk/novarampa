@@ -3,6 +3,7 @@ import { Geist, Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
+import { ScrollProgress } from "@/components/layout/scroll-progress";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
@@ -110,6 +111,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground relative">
         {/* Atmosfer: animated film grain, tüm sitede sabit */}
         <div className="grain-overlay" aria-hidden="true" />
+        <ScrollProgress />
         {children}
         <Toaster richColors position="top-center" />
         <Analytics />

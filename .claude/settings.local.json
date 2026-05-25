@@ -52,7 +52,8 @@
       "Bash(rm -f roni-*.png)",
       "Bash(rm -f light-theme-*.png)",
       "Bash(rm -f tier2-*.png)",
-      "Bash(rm -f tier3-*.png)"
+      "Bash(rm -f tier3-*.png)",
+      "Bash(rm -f tier4-*.png)"
     ]
   }
 }

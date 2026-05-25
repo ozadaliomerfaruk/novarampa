@@ -8,6 +8,7 @@ import { BrandTimeline } from "@/components/home/brand-timeline";
 import { ReferencesStrip } from "@/components/home/references-strip";
 import { WhyUs } from "@/components/home/why-us";
 import { CtaSection } from "@/components/home/cta-section";
+import { SectionDivider } from "@/components/layout/section-divider";
 import {
   LocalBusinessJsonLd,
   OrganizationJsonLd,
@@ -56,9 +57,11 @@ export default async function HomePage() {
         />
         <StatStrip />
         <ProductGrid sanityProducts={products} />
+        <SectionDivider variant="measure" label="01 — ATÖLYE / SAHA" />
         <WorkshopSection />
         <ReferencesStrip sanityReferences={sanityRefs} />
         <BrandTimeline />
+        <SectionDivider variant="measure" label="02 — NEDEN NOVA" />
         <WhyUs />
         <CtaSection />
       </main>

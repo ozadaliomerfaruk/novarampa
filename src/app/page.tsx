@@ -3,6 +3,8 @@ import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/home/hero";
 import { StatStrip } from "@/components/home/stat-strip";
 import { ProductGrid } from "@/components/home/product-grid";
+import { WorkshopSection } from "@/components/home/workshop-section";
+import { BrandTimeline } from "@/components/home/brand-timeline";
 import { ReferencesStrip } from "@/components/home/references-strip";
 import { WhyUs } from "@/components/home/why-us";
 import { CtaSection } from "@/components/home/cta-section";
@@ -54,7 +56,9 @@ export default async function HomePage() {
         />
         <StatStrip />
         <ProductGrid sanityProducts={products} />
+        <WorkshopSection />
         <ReferencesStrip sanityReferences={sanityRefs} />
+        <BrandTimeline />
         <WhyUs />
         <CtaSection />
       </main>

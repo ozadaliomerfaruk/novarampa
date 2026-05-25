@@ -41,7 +41,9 @@
       "Bash(curl -s -o /dev/null -w \"Root HTTP %{http_code}\\\\n\" http://localhost:3000)",
       "Bash(curl -s -o /dev/null -w \"Studio HTTP %{http_code}\\\\n\" http://localhost:3000/studio)",
       "Bash(rm -f novarampa-studio-*.png)",
-      "Bash(rm -f sanity-hero-test.png)"
+      "Bash(rm -f sanity-hero-test.png)",
+      "mcp__plugin_playwright_playwright__browser_hover",
+      "Bash(rm -f header-*.png sanity-*.png novarampa-*.png)"
     ]
   }
 }

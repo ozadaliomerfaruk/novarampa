@@ -55,7 +55,8 @@
       "Bash(rm -f tier3-*.png)",
       "Bash(rm -f tier4-*.png)",
       "Bash(rm -f new-fonts-logo.png)",
-      "Bash(rm -f new-logo-header.png header-*.png)"
+      "Bash(rm -f new-logo-header.png header-*.png)",
+      "mcp__plugin_small-business_canva__generate-design"
     ]
   }
 }

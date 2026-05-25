@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 140" role="img" aria-label="Nova Rampa Konsept 3 - NR Platform">
+  <!--
+    Stylized NR monogram + rampa altyapısı.
+    Harfler büyük geometric, altta diagonal rampa,
+    üstte mini platform — kompozisyon tek bakışta rampa profili.
+  -->
+
+  <!-- Üst mini platform — turuncu (yükleme seviyesi göstergesi) -->
+  <line x1="110" y1="20" x2="200" y2="20" stroke="#F97316" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- NR ligature — geometric, navy -->
+  <g fill="#14233A">
+    <!-- N -->
+    <rect x="20"  y="34" width="14" height="70"/>
+    <polygon points="34,34 34,54 64,104 64,84"/>
+    <rect x="64"  y="34" width="14" height="70"/>
+    <!-- R -->
+    <rect x="84"  y="34" width="14" height="70"/>
+    <rect x="84"  y="34" width="42" height="14"/>
+    <rect x="112" y="34" width="14" height="28"/>
+    <rect x="84"  y="60" width="42" height="12"/>
+    <polygon points="108,66 124,66 142,104 126,104"/>
+  </g>
+
+  <!-- Diagonal rampa — sol alttan üst sağa, 13° eğimli, TURUNCU -->
+  <line x1="10" y1="124" x2="200" y2="20" stroke="#F97316" stroke-width="3" stroke-opacity="0.0"/>
+
+  <!-- Yer çizgisi -->
+  <line x1="10" y1="126" x2="210" y2="126" stroke="#14233A" stroke-width="2" stroke-opacity="0.35" stroke-linecap="round"/>
+
+  <!-- Diagonal aksesory (rampa formu) — sol alttan harflerin üzerinden geçen ince çizgi -->
+  <line x1="10" y1="124" x2="110" y2="22" stroke="#F97316" stroke-width="2.5" stroke-opacity="0.85" stroke-linecap="round"/>
+</svg>

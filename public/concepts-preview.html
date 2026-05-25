@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<title>Nova Rampa — Logo Konseptleri</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #faf8f4;
+    --ink: #14233a;
+    --orange: #f97316;
+    --line: rgba(20,36,58,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Work Sans", system-ui, sans-serif;
+    padding: 64px 48px;
+  }
+  header {
+    max-width: 900px;
+    margin: 0 auto 56px;
+  }
+  header .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  header h1 {
+    margin-top: 16px;
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+  }
+  header p {
+    margin-top: 16px;
+    color: rgba(20,36,58,0.65);
+    font-size: 16px;
+    max-width: 580px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .card .stage {
+    aspect-ratio: 16 / 11;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    position: relative;
+    padding: 48px;
+  }
+  .card .stage svg {
+    max-width: 75%;
+    height: auto;
+  }
+  .card .corner {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 1px solid rgba(20,36,58,0.4);
+  }
+  .card .corner.tl { top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
+  .card .corner.tr { top: 10px; right: 10px; border-left: 0; border-bottom: 0; }
+  .card .corner.bl { bottom: 10px; left: 10px; border-right: 0; border-top: 0; }
+  .card .corner.br { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
+
+  .card .meta {
+    padding: 24px 28px;
+    border-top: 1px solid var(--line);
+  }
+  .card .meta .code {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    color: var(--orange);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .card .meta h3 {
+    margin-top: 6px;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .card .meta p {
+    margin-top: 6px;
+    color: rgba(20,36,58,0.65);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* Dark variant — koyu fon üzerinde nasıl durur */
+  .card.dark .stage { background: #14233a; }
+
+  /* small variants */
+  .small-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 18px 24px;
+    border-top: 1px solid var(--line);
+    background: rgba(20,36,58,0.02);
+  }
+  .small-row .mini {
+    aspect-ratio: 1;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+  }
+  .small-row .mini.dark { background: #14233a; }
+  .small-row .mini svg { max-width: 70%; height: auto; }
+  .small-row .mini-label {
+    grid-column: span 3;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: rgba(20,36,58,0.4);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">NOVA RAMPA · LOGO KONSEPTLERİ · ZIRAAT-STYLE DUAL MEANING</div>
+  <h1>Rampa formu + NR harfleri füzyonu</h1>
+  <p>Aynı anda hem yükleme rampası profilini hem de NOVA RAMPA'nın N ve R harflerini okuyabileceğin 4 farklı yaklaşım. Hepsinde 13° rampa eğimi geometrik DNA olarak korundu.</p>
+</header>
+
+<div class="grid">
+
+  <!-- Konsept 1 -->
+  <article class="card">
+    <div class="stage">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <object data="/concepts/concept-1.svg" type="image/svg+xml" style="width:100%;height:100%;max-width:75%;"></object>
+    </div>
+    <div class="meta">
+      <div class="code">01 / RAMP-N HYBRID</div>
+      <h3>N harfinin diagonal'i = 13° rampa</h3>
+      <p>NR harfleri tipografik ama N'in çapraz çizgisi turuncu rampa eğimini temsil ediyor. Yan yana okunur: rampa kalkış + harf kompozisyonu.</p>
+    </div>
+  </article>
+
+  <!-- Konsept 2 -->
+  <article class="card">
+    <div class="stage">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <object data="/concepts/concept-2.svg" type="image/svg+xml" style="width:100%;height:100%;max-width:75%;"></object>
+    </div>
+    <div class="meta">
+      <div class="code">02 / TRAPEZOID CUTOUT — ZIRAAT-STYLE</div>
+      <h3>Rampa profili içinden NR harfleri kesilmiş</h3>
+      <p>Ziraat'in başak+ZB klasik yöntemi. Trapezoid solid form (rampa profili), içinde negative space NR harfleri. Üstte turuncu yükleme platform çizgileri.</p>
+    </div>
+  </article>
+
+  <!-- Konsept 3 -->
+  <article class="card">
+    <div class="stage">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <object data="/concepts/concept-3.svg" type="image/svg+xml" style="width:100%;height:100%;max-width:75%;"></object>
+    </div>
+    <div class="meta">
+      <div class="code">03 / NR + DIAGONAL UPLIFT</div>
+      <h3>NR ligature üzerinde 13° turuncu rampa</h3>
+      <p>NR harfleri kalın geometric. Üzerine sol alttan sağ üste turuncu rampa çizgisi geçiyor. Üst sağda kısa platform line. Hareket + harfler.</p>
+    </div>
+  </article>
+
+  <!-- Konsept 4 -->
+  <article class="card dark">
+    <div class="stage">
+      <span class="corner tl" style="border-color:rgba(255,255,255,0.4)"></span>
+      <span class="corner tr" style="border-color:rgba(255,255,255,0.4)"></span>
+      <span class="corner bl" style="border-color:rgba(255,255,255,0.4)"></span>
+      <span class="corner br" style="border-color:rgba(255,255,255,0.4)"></span>
+      <object data="/concepts/concept-4.svg" type="image/svg+xml" style="width:100%;height:100%;max-width:75%;"></object>
+    </div>
+    <div class="meta">
+      <div class="code">04 / MONOLITH MARK</div>
+      <h3>Rampa profili monolith + ortada NR</h3>
+      <p>Solid trapezoid (navy), içinde beyaz NR harfleri merkezlenmiş, üstte beyaz platform load lines, sağ alt köşede ince turuncu vurgu çizgisi. Mühür/işaretleme karakteri.</p>
+    </div>
+  </article>
+
+</div>
+
+<!-- Small size test -->
+<div style="max-width:1400px;margin:48px auto 0;background:white;border:1px solid var(--line);border-radius:18px;overflow:hidden;">
+  <div style="padding:24px 28px;border-bottom:1px solid var(--line);">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.22em;color:var(--orange);text-transform:uppercase;">SCALE TEST · KÜÇÜK BOYUT (FAVICON)</div>
+    <h3 style="margin-top:6px;font-size:18px;font-weight:600;letter-spacing:-0.02em;">Her konsept küçük boyutta nasıl duruyor (32–64 px)?</h3>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;">
+    <div style="padding:32px;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:14px;background:white;">
+      <object data="/concepts/concept-1.svg" type="image/svg+xml" style="width:48px;height:auto;"></object>
+      <object data="/concepts/concept-1.svg" type="image/svg+xml" style="width:32px;height:auto;"></object>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(20,36,58,0.5);letter-spacing:0.18em;">01 RAMP-N</div>
+    </div>
+    <div style="padding:32px;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:14px;background:white;">
+      <object data="/concepts/concept-2.svg" type="image/svg+xml" style="width:48px;height:auto;"></object>
+      <object data="/concepts/concept-2.svg" type="image/svg+xml" style="width:32px;height:auto;"></object>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(20,36,58,0.5);letter-spacing:0.18em;">02 CUTOUT</div>
+    </div>
+    <div style="padding:32px;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:14px;background:white;">
+      <object data="/concepts/concept-3.svg" type="image/svg+xml" style="width:48px;height:auto;"></object>
+      <object data="/concepts/concept-3.svg" type="image/svg+xml" style="width:32px;height:auto;"></object>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(20,36,58,0.5);letter-spacing:0.18em;">03 UPLIFT</div>
+    </div>
+    <div style="padding:32px;display:flex;flex-direction:column;align-items:center;gap:14px;background:#14233a;">
+      <object data="/concepts/concept-4.svg" type="image/svg+xml" style="width:48px;height:auto;"></object>
+      <object data="/concepts/concept-4.svg" type="image/svg+xml" style="width:32px;height:auto;"></object>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:0.18em;">04 MONOLITH</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" role="img" aria-label="Nova Rampa Konsept 4 - NR Monolith">
+  <!--
+    Sade taş gibi: NR harfleri trapezoid içine yazılmış.
+    Rampa profili formu + içinde merkezlenmiş NR tipografisi.
+    Daha "kurumsal mühür" karakteri.
+  -->
+
+  <!-- Yer çizgisi -->
+  <line x1="10" y1="148" x2="190" y2="148" stroke="#14233A" stroke-width="1.5" stroke-opacity="0.3"/>
+
+  <!-- Trapezoid (rampa profili) outline + içi navy -->
+  <path d="M 14 140 L 186 140 L 186 32 L 76 32 Z" fill="#14233A"/>
+
+  <!-- Üst platform load lines (BEYAZ, trapezoid üstünde) -->
+  <line x1="86"  y1="48" x2="178" y2="48" stroke="#FFFFFF" stroke-width="2.5" stroke-opacity="0.55" stroke-linecap="round"/>
+  <line x1="100" y1="60" x2="178" y2="60" stroke="#FFFFFF" stroke-width="2"   stroke-opacity="0.35" stroke-linecap="round"/>
+
+  <!-- NR harfleri — beyaz, ortalanmış -->
+  <g fill="#FFFFFF">
+    <!-- N -->
+    <rect x="60"  y="80" width="8" height="48"/>
+    <polygon points="68,80 68,96 96,128 96,112"/>
+    <rect x="96"  y="80" width="8" height="48"/>
+    <!-- R -->
+    <rect x="112" y="80" width="8" height="48"/>
+    <rect x="112" y="80" width="26" height="8"/>
+    <rect x="130" y="80" width="8" height="22"/>
+    <rect x="112" y="98" width="26" height="8"/>
+    <polygon points="126,104 138,104 152,128 140,128"/>
+  </g>
+
+  <!-- Turuncu vurgu — sağ alt köşe ramp accent line -->
+  <line x1="176" y1="138" x2="186" y2="118" stroke="#F97316" stroke-width="3" stroke-linecap="round"/>
+</svg>

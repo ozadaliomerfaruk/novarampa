@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { PortableText } from "@portabletext/react";
 import { ArrowRight, Check, ChevronRight, MessageCircle, ShieldCheck } from "lucide-react";
 
 import { Header } from "@/components/layout/header";
@@ -8,6 +9,7 @@ import { Footer } from "@/components/layout/footer";
 import { Breadcrumb } from "@/components/layout/breadcrumb";
 import { LinkButton, ExternalLinkButton } from "@/components/ui/link-button";
 import { CtaSection } from "@/components/home/cta-section";
+import { SanityImage } from "@/components/sanity/sanity-image";
 import {
   BreadcrumbJsonLd,
   ProductJsonLd,
@@ -18,38 +20,134 @@ import {
   capacityNote,
 } from "@/lib/products";
 import { company, siteConfig } from "@/lib/site-config";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import {
+  productBySlugQuery,
+  productSlugsQuery,
+  allProductsQuery,
+} from "@/sanity/lib/queries";
+import type { Product, ProductSummary } from "@/sanity/lib/types";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
+export const revalidate = 30;
+
 export async function generateStaticParams() {
-  return productCategories.map((p) => ({ slug: p.slug }));
+  // Sanity'deki slug'ları + statik slug'ları birleştir
+  const sanitySlugs = await sanityFetch<{ slug: string }[]>(
+    productSlugsQuery,
+    {},
+    { revalidate: 60 }
+  );
+  const sanityList = (sanitySlugs ?? []).map((s) => ({ slug: s.slug }));
+  const staticList = productCategories.map((p) => ({ slug: p.slug }));
+  const seen = new Set<string>();
+  return [...sanityList, ...staticList].filter((p) => {
+    if (seen.has(p.slug)) return false;
+    seen.add(p.slug);
+    return true;
+  });
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
-  if (!product) return { title: "Ürün Bulunamadı" };
+  const sanity = await sanityFetch<Product>(productBySlugQuery, { slug });
+  const fallback = getProductBySlug(slug);
+
+  const name = sanity?.name ?? fallback?.name ?? "Ürün";
+  const desc =
+    sanity?.shortDescription ?? fallback?.description ?? siteConfig.description;
 
   return {
-    title: product.name,
-    description: product.description,
-    alternates: { canonical: `${siteConfig.url}/urunler/${product.slug}` },
+    title: name,
+    description: desc,
+    alternates: { canonical: `${siteConfig.url}/urunler/${slug}` },
     openGraph: {
-      title: product.name,
-      description: product.description,
+      title: name,
+      description: desc,
       type: "website",
     },
   };
 }
 
+type DisplayProduct = {
+  name: string;
+  shortName: string;
+  tagline: string;
+  description: string;
+  capacities: string[];
+  dimensions: string;
+  features: string[];
+  bestFor: string[];
+  order: number;
+  slug: string;
+  mainImage?: Product["mainImage"];
+  gallery?: Product["gallery"];
+  body?: Product["description"];
+  faqs?: Product["faqs"];
+  technicalSpecs?: Product["technicalSpecs"];
+};
+
 export default async function ProductDetailPage({ params }: Props) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
-  if (!product) notFound();
+  const [sanity, related] = await Promise.all([
+    sanityFetch<Product>(productBySlugQuery, { slug }, { revalidate: 30 }),
+    sanityFetch<ProductSummary[]>(allProductsQuery, {}, { revalidate: 60 }),
+  ]);
 
-  const related = productCategories.filter((p) => p.slug !== slug).slice(0, 3);
+  const fallback = getProductBySlug(slug);
+
+  if (!sanity && !fallback) notFound();
+
+  const product: DisplayProduct = sanity
+    ? {
+        name: sanity.name,
+        shortName: sanity.shortName ?? sanity.name,
+        tagline: sanity.tagline ?? "",
+        description: sanity.shortDescription ?? "",
+        capacities: sanity.capacities ?? [],
+        dimensions: sanity.dimensions ?? "",
+        features: sanity.features ?? [],
+        bestFor: sanity.bestFor ?? [],
+        order: 0,
+        slug,
+        mainImage: sanity.mainImage,
+        gallery: sanity.gallery,
+        body: sanity.description,
+        faqs: sanity.faqs,
+        technicalSpecs: sanity.technicalSpecs,
+      }
+    : {
+        name: fallback!.name,
+        shortName: fallback!.shortName,
+        tagline: fallback!.tagline,
+        description: fallback!.description,
+        capacities: fallback!.capacities,
+        dimensions: fallback!.dimensions,
+        features: fallback!.features,
+        bestFor: fallback!.bestFor,
+        order: fallback!.order,
+        slug: fallback!.slug,
+      };
+
+  // İlgili ürünler — Sanity'den varsa orayı kullan, yoksa statik
+  const relatedItems = (related && related.length > 0
+    ? related
+        .filter((r) => (r.slug?.current ?? "") !== slug)
+        .slice(0, 3)
+        .map((r) => ({
+          slug: r.slug?.current ?? "",
+          shortName: r.shortName ?? r.name,
+          tagline: r.tagline ?? r.shortDescription ?? "",
+          order: 0,
+        }))
+    : productCategories
+        .filter((p) => p.slug !== slug)
+        .slice(0, 3)
+        .map((p) => ({ slug: p.slug, shortName: p.shortName, tagline: p.tagline, order: p.order }))
+  );
 
   return (
     <>
@@ -65,7 +163,7 @@ export default async function ProductDetailPage({ params }: Props) {
       />
       <ProductJsonLd
         name={product.name}
-        description={product.description}
+        description={product.description || product.tagline}
         slug={product.slug}
       />
       <Header />
@@ -81,18 +179,24 @@ export default async function ProductDetailPage({ params }: Props) {
         <section className="container-wide pt-8 pb-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             <div className="lg:col-span-7">
-              <div className="text-xs font-mono text-muted-foreground uppercase tracking-widest">
-                Ürün 0{product.order}
-              </div>
+              {product.order > 0 && (
+                <div className="text-xs font-mono text-muted-foreground uppercase tracking-widest">
+                  Ürün 0{product.order}
+                </div>
+              )}
               <h1 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-heading font-bold tracking-tight leading-[1.05]">
                 {product.name}
               </h1>
-              <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-2xl">
-                {product.tagline}
-              </p>
-              <p className="mt-4 text-base text-muted-foreground leading-relaxed max-w-2xl">
-                {product.description}
-              </p>
+              {product.tagline && (
+                <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                  {product.tagline}
+                </p>
+              )}
+              {product.description && (
+                <p className="mt-4 text-base text-muted-foreground leading-relaxed max-w-2xl">
+                  {product.description}
+                </p>
+              )}
 
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
                 <LinkButton
@@ -117,60 +221,74 @@ export default async function ProductDetailPage({ params }: Props) {
               </div>
             </div>
 
-            {/* Görsel placeholder (Sanity'den gelecek) */}
             <div className="lg:col-span-5">
               <div className="relative aspect-[4/5] rounded-3xl border border-border bg-gradient-to-br from-[var(--brand-charcoal)] to-background overflow-hidden">
-                <div className="absolute inset-0 grid-bg opacity-50" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-[var(--brand-orange)] rounded-full opacity-[0.12] blur-[80px]" />
-                <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/40 font-mono text-xs uppercase tracking-widest">
-                  Görsel — yakında
-                </div>
-                <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
-                  <div className="text-xs text-muted-foreground">
-                    <div className="font-mono">{product.shortName.toUpperCase()}</div>
-                    <div className="mt-1 text-foreground/60">{product.dimensions}</div>
-                  </div>
-                  <ShieldCheck size={20} className="text-[var(--brand-orange)]" />
-                </div>
+                {product.mainImage ? (
+                  <SanityImage
+                    image={product.mainImage}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover"
+                    priority
+                  />
+                ) : (
+                  <>
+                    <div className="absolute inset-0 grid-bg opacity-50" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-[var(--brand-orange)] rounded-full opacity-[0.12] blur-[80px]" />
+                    <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/40 font-mono text-xs uppercase tracking-widest">
+                      Görsel — yakında
+                    </div>
+                    <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+                      <div className="text-xs text-muted-foreground">
+                        <div className="font-mono">{product.shortName.toUpperCase()}</div>
+                        {product.dimensions && (
+                          <div className="mt-1 text-foreground/60">{product.dimensions}</div>
+                        )}
+                      </div>
+                      <ShieldCheck size={20} className="text-[var(--brand-orange)]" />
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
         </section>
 
-        {/* Teknik Detaylar */}
+        {/* Teknik kartlar */}
         <section className="container-wide pb-16">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            <div className="rounded-2xl border border-border bg-card p-6">
-              <div className="text-xs font-medium text-[var(--brand-orange)] uppercase tracking-widest">
-                Kapasite (Taşıma)
+            {product.capacities.length > 0 && (
+              <div className="rounded-2xl border border-border bg-card p-6">
+                <div className="text-xs font-medium text-[var(--brand-orange)] uppercase tracking-widest">
+                  Kapasite (Taşıma)
+                </div>
+                <div className="mt-4 space-y-2">
+                  {product.capacities.map((c) => (
+                    <div key={c} className="flex items-center gap-2 text-foreground">
+                      <ChevronRight size={14} className="text-[var(--brand-orange)]" />
+                      <span className="font-mono">{c}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-4 text-xs text-muted-foreground italic">
+                  {capacityNote}
+                </p>
               </div>
-              <div className="mt-4 space-y-2">
-                {product.capacities.map((c) => (
-                  <div key={c} className="flex items-center gap-2 text-foreground">
-                    <ChevronRight
-                      size={14}
-                      className="text-[var(--brand-orange)]"
-                    />
-                    <span className="font-mono">{c}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-4 text-xs text-muted-foreground italic">
-                {capacityNote}
-              </p>
-            </div>
+            )}
 
-            <div className="rounded-2xl border border-border bg-card p-6">
-              <div className="text-xs font-medium text-[var(--brand-orange)] uppercase tracking-widest">
-                Standart Ölçü
+            {product.dimensions && (
+              <div className="rounded-2xl border border-border bg-card p-6">
+                <div className="text-xs font-medium text-[var(--brand-orange)] uppercase tracking-widest">
+                  Standart Ölçü
+                </div>
+                <div className="mt-4 text-foreground font-mono text-sm leading-relaxed">
+                  {product.dimensions}
+                </div>
+                <p className="mt-4 text-xs text-muted-foreground">
+                  Özel ölçü üretim için iletişime geçin.
+                </p>
               </div>
-              <div className="mt-4 text-foreground font-mono text-sm leading-relaxed">
-                {product.dimensions}
-              </div>
-              <p className="mt-4 text-xs text-muted-foreground">
-                Özel ölçü üretim için iletişime geçin.
-              </p>
-            </div>
+            )}
 
             <div className="rounded-2xl border border-border bg-card p-6">
               <div className="text-xs font-medium text-[var(--brand-orange)] uppercase tracking-widest">
@@ -193,51 +311,66 @@ export default async function ProductDetailPage({ params }: Props) {
           </div>
         </section>
 
-        {/* Özellikler */}
-        <section className="container-wide pb-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-              <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
-                Öne Çıkan Özellikler
-              </div>
-              <h2 className="mt-3 text-3xl font-heading font-bold tracking-tight">
-                Sahanın istediği şekilde.
-              </h2>
-              <ul className="mt-8 space-y-4">
-                {product.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3">
-                    <div className="mt-0.5 inline-flex items-center justify-center size-6 rounded-full bg-[var(--brand-orange)]/15 text-[var(--brand-orange)] shrink-0">
-                      <Check size={14} />
-                    </div>
-                    <span className="text-foreground/90 leading-relaxed">
-                      {f}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
-                Uygun Sektörler
-              </div>
-              <h2 className="mt-3 text-3xl font-heading font-bold tracking-tight">
-                Kimler tercih ediyor?
-              </h2>
-              <ul className="mt-8 space-y-3">
-                {product.bestFor.map((b) => (
-                  <li
-                    key={b}
-                    className="p-4 rounded-xl border border-border bg-card text-sm text-foreground/90"
-                  >
-                    {b}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
+        {/* Sanity'den rich text gövde */}
+        {product.body && (
+          <section className="container-wide pb-16">
+            <article className="prose prose-invert max-w-3xl">
+              <PortableText value={product.body} />
+            </article>
+          </section>
+        )}
 
-        {/* İlgili Ürünler */}
+        {/* Özellikler & Sektörler */}
+        {(product.features.length > 0 || product.bestFor.length > 0) && (
+          <section className="container-wide pb-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              {product.features.length > 0 && (
+                <div>
+                  <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
+                    Öne Çıkan Özellikler
+                  </div>
+                  <h2 className="mt-3 text-3xl font-heading font-bold tracking-tight">
+                    Sahanın istediği şekilde.
+                  </h2>
+                  <ul className="mt-8 space-y-4">
+                    {product.features.map((f) => (
+                      <li key={f} className="flex items-start gap-3">
+                        <div className="mt-0.5 inline-flex items-center justify-center size-6 rounded-full bg-[var(--brand-orange)]/15 text-[var(--brand-orange)] shrink-0">
+                          <Check size={14} />
+                        </div>
+                        <span className="text-foreground/90 leading-relaxed">
+                          {f}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {product.bestFor.length > 0 && (
+                <div>
+                  <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
+                    Uygun Sektörler
+                  </div>
+                  <h2 className="mt-3 text-3xl font-heading font-bold tracking-tight">
+                    Kimler tercih ediyor?
+                  </h2>
+                  <ul className="mt-8 space-y-3">
+                    {product.bestFor.map((b) => (
+                      <li
+                        key={b}
+                        className="p-4 rounded-xl border border-border bg-card text-sm text-foreground/90"
+                      >
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+
+        {/* İlgili ürünler */}
         <section className="container-wide pb-20">
           <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
             Benzer Ürünler
@@ -246,15 +379,17 @@ export default async function ProductDetailPage({ params }: Props) {
             Diğer rampa çözümlerimiz
           </h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-            {related.map((r) => (
+            {relatedItems.map((r) => (
               <Link
                 key={r.slug}
                 href={`/urunler/${r.slug}`}
                 className="group block p-6 rounded-2xl border border-border bg-card hover:border-[var(--brand-orange)]/40 transition-colors"
               >
-                <div className="text-xs font-mono text-muted-foreground">
-                  0{r.order}.
-                </div>
+                {r.order > 0 && (
+                  <div className="text-xs font-mono text-muted-foreground">
+                    0{r.order}.
+                  </div>
+                )}
                 <h3 className="mt-2 text-lg font-heading font-semibold group-hover:text-[var(--brand-orange)] transition-colors">
                   {r.shortName}
                 </h3>

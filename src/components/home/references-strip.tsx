@@ -2,11 +2,21 @@
 
 import { motion } from "framer-motion";
 import { referenceCompanies } from "@/lib/references";
+import { SanityImage } from "@/components/sanity/sanity-image";
+import type { ReferenceCompany } from "@/sanity/lib/types";
 
-export function ReferencesStrip() {
-  const featured = referenceCompanies.filter((c) => c.featured).slice(0, 12);
-  // Sonsuz akış için listeyi 2x tekrar et
-  const items = [...featured, ...featured];
+type Props = {
+  sanityReferences?: ReferenceCompany[] | null;
+};
+
+export function ReferencesStrip({ sanityReferences }: Props = {}) {
+  const useSanity = (sanityReferences?.length ?? 0) > 0;
+  const items = useSanity
+    ? [...(sanityReferences as ReferenceCompany[]), ...(sanityReferences as ReferenceCompany[])]
+    : (() => {
+        const list = referenceCompanies.filter((c) => c.featured).slice(0, 12);
+        return [...list, ...list];
+      })();
 
   return (
     <section className="py-20 border-y border-border bg-[var(--brand-charcoal)]/40">
@@ -24,21 +34,45 @@ export function ReferencesStrip() {
           <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10" />
           <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10" />
           <motion.div
-            className="flex gap-12 whitespace-nowrap py-4"
+            className="flex items-center gap-12 whitespace-nowrap py-4"
             animate={{ x: ["0%", "-50%"] }}
             transition={{ duration: 40, ease: "linear", repeat: Infinity }}
           >
-            {items.map((c, i) => (
-              <div
-                key={`${c.name}-${i}`}
-                className="text-lg sm:text-xl font-heading font-medium text-foreground/50 hover:text-foreground/90 transition-colors"
-              >
-                {c.name.replace(/\(.*\)/, "").trim()}
-              </div>
-            ))}
+            {items.map((c, i) =>
+              useSanity ? (
+                <SanityRefLogo key={`${(c as ReferenceCompany)._id}-${i}`} c={c as ReferenceCompany} />
+              ) : (
+                <div
+                  key={`${(c as { name: string }).name}-${i}`}
+                  className="text-lg sm:text-xl font-heading font-medium text-foreground/50 hover:text-foreground/90 transition-colors"
+                >
+                  {(c as { name: string }).name.replace(/\(.*\)/, "").trim()}
+                </div>
+              )
+            )}
           </motion.div>
         </div>
       </div>
     </section>
+  );
+}
+
+function SanityRefLogo({ c }: { c: ReferenceCompany }) {
+  if (c.logo) {
+    return (
+      <div className="relative h-12 w-32 shrink-0">
+        <SanityImage
+          image={c.logo}
+          fill
+          sizes="160px"
+          className="object-contain opacity-60 hover:opacity-100 transition-opacity"
+        />
+      </div>
+    );
+  }
+  return (
+    <div className="text-lg sm:text-xl font-heading font-medium text-foreground/50 hover:text-foreground/90 transition-colors shrink-0">
+      {c.name.replace(/\(.*\)/, "").trim()}
+    </div>
   );
 }

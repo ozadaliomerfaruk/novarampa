@@ -4,9 +4,18 @@ export const settingsQuery = groq`*[_type == "settings"][0]{
   heroTitle,
   heroSubtitle,
   heroCtaLabel,
-  featuredProducts[]->{ _id, slug, name, shortDescription, mainImage },
+  "featuredProducts": featuredProducts[]->{
+    _id,
+    name,
+    "slug": slug,
+    shortName,
+    tagline,
+    shortDescription,
+    capacities,
+    mainImage
+  },
   highlights,
-  contactInfo
+  announcement
 }`;
 
 export const allProductsQuery = groq`*[_type == "product"] | order(orderRank asc) {
@@ -18,10 +27,7 @@ export const allProductsQuery = groq`*[_type == "product"] | order(orderRank asc
   shortDescription,
   capacities,
   dimensions,
-  mainImage,
-  gallery,
-  features,
-  bestFor
+  mainImage
 }`;
 
 export const productBySlugQuery = groq`*[_type == "product" && slug.current == $slug][0]{
@@ -30,6 +36,7 @@ export const productBySlugQuery = groq`*[_type == "product" && slug.current == $
   slug,
   shortName,
   tagline,
+  shortDescription,
   description,
   capacities,
   dimensions,
@@ -38,10 +45,12 @@ export const productBySlugQuery = groq`*[_type == "product" && slug.current == $
   mainImage,
   gallery,
   technicalSpecs,
-  faqs[]{ question, answer }
+  faqs
 }`;
 
-export const allBlogPostsQuery = groq`*[_type == "blogPost" && publishedAt < now()] | order(publishedAt desc) {
+export const productSlugsQuery = groq`*[_type == "product" && defined(slug.current)]{ "slug": slug.current }`;
+
+export const allBlogPostsQuery = groq`*[_type == "blogPost" && defined(publishedAt) && publishedAt < now()] | order(publishedAt desc) {
   _id,
   title,
   slug,
@@ -49,7 +58,8 @@ export const allBlogPostsQuery = groq`*[_type == "blogPost" && publishedAt < now
   mainImage,
   publishedAt,
   author,
-  readTime
+  readTime,
+  tags
 }`;
 
 export const blogPostBySlugQuery = groq`*[_type == "blogPost" && slug.current == $slug][0]{
@@ -61,8 +71,12 @@ export const blogPostBySlugQuery = groq`*[_type == "blogPost" && slug.current ==
   mainImage,
   publishedAt,
   author,
+  readTime,
+  tags,
   seo
 }`;
+
+export const blogPostSlugsQuery = groq`*[_type == "blogPost" && defined(slug.current)]{ "slug": slug.current }`;
 
 export const allReferencesQuery = groq`*[_type == "referenceCompany"] | order(featured desc, name asc) {
   _id,
@@ -73,11 +87,19 @@ export const allReferencesQuery = groq`*[_type == "referenceCompany"] | order(fe
   caseStudy
 }`;
 
-export const sparePartsQuery = groq`*[_type == "sparePart"] | order(orderRank asc) {
+export const featuredReferencesQuery = groq`*[_type == "referenceCompany" && featured == true] | order(name asc) {
+  _id,
+  name,
+  logo,
+  sector
+}`;
+
+export const sparePartsQuery = groq`*[_type == "sparePart"] | order(orderRank asc, name asc) {
   _id,
   name,
   slug,
   description,
-  compatibleWith,
-  image
+  image,
+  available,
+  "compatibleWith": compatibleWith[]->{ _id, name, slug }
 }`;

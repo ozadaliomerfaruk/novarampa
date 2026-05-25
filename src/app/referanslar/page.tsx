@@ -4,9 +4,13 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Breadcrumb } from "@/components/layout/breadcrumb";
 import { CtaSection } from "@/components/home/cta-section";
+import { SanityImage } from "@/components/sanity/sanity-image";
 import { BreadcrumbJsonLd } from "@/components/seo/structured-data";
 import { referenceCompanies, totalProjectsApprox } from "@/lib/references";
 import { siteConfig } from "@/lib/site-config";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { allReferencesQuery } from "@/sanity/lib/queries";
+import type { ReferenceCompany } from "@/sanity/lib/types";
 
 export const metadata: Metadata = {
   title: "Referanslar — Türkiye'nin Önde Gelen Markaları",
@@ -14,9 +18,23 @@ export const metadata: Metadata = {
   alternates: { canonical: `${siteConfig.url}/referanslar` },
 };
 
-export default function ReferanslarPage() {
-  const featured = referenceCompanies.filter((c) => c.featured);
-  const others = referenceCompanies.filter((c) => !c.featured);
+export const revalidate = 60;
+
+export default async function ReferanslarPage() {
+  const sanity = await sanityFetch<ReferenceCompany[]>(
+    allReferencesQuery,
+    {},
+    { revalidate: 60 }
+  );
+
+  const hasSanity = (sanity?.length ?? 0) > 0;
+
+  const featured = hasSanity
+    ? sanity!.filter((r) => r.featured)
+    : referenceCompanies.filter((c) => c.featured);
+  const others = hasSanity
+    ? sanity!.filter((r) => !r.featured)
+    : referenceCompanies.filter((c) => !c.featured);
 
   return (
     <>
@@ -52,39 +70,70 @@ export default function ReferanslarPage() {
             Öne Çıkan Referanslarımız
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {featured.map((c) => (
-              <div
-                key={c.name}
-                className="p-6 rounded-2xl border border-border bg-card hover:border-[var(--brand-orange)]/30 transition-colors text-center"
-              >
-                <div className="text-base font-heading font-semibold">
-                  {c.name.replace(/\(.*\)/, "").trim()}
-                </div>
-                {c.sector && (
-                  <div className="mt-2 text-xs text-muted-foreground">
-                    {c.sector}
+            {featured.map((c, i) => {
+              const isSanity = hasSanity;
+              const name = isSanity
+                ? (c as ReferenceCompany).name
+                : (c as { name: string }).name;
+              const sector = isSanity
+                ? (c as ReferenceCompany).sector
+                : (c as { sector?: string }).sector;
+              const logo = isSanity ? (c as ReferenceCompany).logo : undefined;
+
+              return (
+                <div
+                  key={isSanity ? (c as ReferenceCompany)._id : `${name}-${i}`}
+                  className="p-6 rounded-2xl border border-border bg-card hover:border-[var(--brand-orange)]/30 transition-colors text-center"
+                >
+                  {logo ? (
+                    <div className="relative h-16 mb-3">
+                      <SanityImage
+                        image={logo}
+                        fill
+                        sizes="160px"
+                        className="object-contain"
+                      />
+                    </div>
+                  ) : null}
+                  <div className="text-base font-heading font-semibold">
+                    {name.replace(/\(.*\)/, "").trim()}
                   </div>
-                )}
-              </div>
-            ))}
+                  {sector && (
+                    <div className="mt-2 text-xs text-muted-foreground">
+                      {sector}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </section>
 
-        <section className="container-wide pb-20">
-          <h2 className="text-2xl font-heading font-semibold mb-6">
-            Diğer Referanslar
-          </h2>
-          <div className="flex flex-wrap gap-2">
-            {others.map((c) => (
-              <span
-                key={c.name}
-                className="text-sm font-medium px-3 py-1.5 rounded-full border border-border bg-card text-foreground/80 hover:border-[var(--brand-orange)]/30 hover:text-foreground transition-colors"
-              >
-                {c.name.replace(/\(.*\)/, "").trim()}
-              </span>
-            ))}
-          </div>
-        </section>
+        {others.length > 0 && (
+          <section className="container-wide pb-20">
+            <h2 className="text-2xl font-heading font-semibold mb-6">
+              Diğer Referanslar
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {others.map((c, i) => {
+                const name = hasSanity
+                  ? (c as ReferenceCompany).name
+                  : (c as { name: string }).name;
+                const key = hasSanity
+                  ? (c as ReferenceCompany)._id
+                  : `${name}-${i}`;
+                return (
+                  <span
+                    key={key}
+                    className="text-sm font-medium px-3 py-1.5 rounded-full border border-border bg-card text-foreground/80 hover:border-[var(--brand-orange)]/30 hover:text-foreground transition-colors"
+                  >
+                    {name.replace(/\(.*\)/, "").trim()}
+                  </span>
+                );
+              })}
+            </div>
+          </section>
+        )}
 
         <CtaSection />
       </main>

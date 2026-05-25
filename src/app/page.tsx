@@ -11,19 +11,33 @@ import {
   WebSiteJsonLd,
 } from "@/components/seo/structured-data";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { settingsQuery } from "@/sanity/lib/queries";
-
-type Settings = {
-  heroTitle?: string;
-  heroSubtitle?: string;
-  heroCtaLabel?: string;
-};
+import {
+  settingsQuery,
+  allProductsQuery,
+  featuredReferencesQuery,
+} from "@/sanity/lib/queries";
+import type {
+  ProductSummary,
+  ReferenceCompany,
+  SiteSettings,
+} from "@/sanity/lib/types";
 
 // ISR: 30 sn'de bir yenile (Eren admin'de değiştirdiğinde yarım dakikada canlıya çıkar)
 export const revalidate = 30;
 
 export default async function HomePage() {
-  const settings = await sanityFetch<Settings>(settingsQuery, {}, { revalidate: 30 });
+  // Sanity'den verileri paralel çek
+  const [settings, sanityProducts, sanityRefs] = await Promise.all([
+    sanityFetch<SiteSettings>(settingsQuery, {}, { revalidate: 30 }),
+    sanityFetch<ProductSummary[]>(allProductsQuery, {}, { revalidate: 30 }),
+    sanityFetch<ReferenceCompany[]>(featuredReferencesQuery, {}, { revalidate: 60 }),
+  ]);
+
+  // Featured products varsa onları, yoksa tüm ürünleri göster
+  const products =
+    (settings?.featuredProducts?.length ?? 0) > 0
+      ? settings?.featuredProducts
+      : sanityProducts;
 
   return (
     <>
@@ -37,8 +51,8 @@ export default async function HomePage() {
           subtitle={settings?.heroSubtitle}
           ctaLabel={settings?.heroCtaLabel}
         />
-        <ProductGrid />
-        <ReferencesStrip />
+        <ProductGrid sanityProducts={products} />
+        <ReferencesStrip sanityReferences={sanityRefs} />
         <WhyUs />
         <CtaSection />
       </main>

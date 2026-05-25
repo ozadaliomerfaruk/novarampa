@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(extract-text \"C:/Users/ozada/OneDrive/Masaüstü/Nova-Rampa-Web-Sitesi-Hazirlik-Raporu.docx\")",
+      "Bash(pandoc --version)",
+      "Bash(find \"C:/Users/ozada/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin\" -name \"unpack.py\" 2>/dev/null | head -3)",
+      "Bash(python -c \"import docx; print\\(docx.__version__\\)\")",
+      "Bash(pip list *)",
+      "Bash(npm --version)",
+      "Bash(git --version)",
+      "Bash(gh --version)",
+      "Bash(cd \"C:/Users/ozada/novarampa\" && rm -rf _original.zip _filled.zip _original_unpacked _filled_unpacked _original.docx _filled.docx _original.txt _filled.txt && ls -la)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --app --src-dir --eslint --no-git --import-alias \"@/*\" --use-npm --yes)"
+    ]
+  }
+}

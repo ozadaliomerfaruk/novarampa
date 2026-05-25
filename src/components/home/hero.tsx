@@ -19,7 +19,18 @@ const itemVariants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
-export function Hero() {
+type HeroProps = {
+  /** Sanity'den gelen override başlık. Tanımsızsa default stilize başlık gösterilir. */
+  title?: string | null;
+  subtitle?: string | null;
+  ctaLabel?: string | null;
+};
+
+export function Hero({ title, subtitle, ctaLabel }: HeroProps = {}) {
+  const defaultSubtitle =
+    "Marmara'dan Türkiye geneline; menteşeli, teleskopik, dikey, mobil rampa ve makaslı platform imalatı. CE & TSE belgeli, EN 1398 uyumlu çözümler.";
+  const cta = ctaLabel ?? "Hemen Teklif Al";
+
   return (
     <section className="relative min-h-[100svh] flex items-center overflow-hidden pt-20">
       <div className="absolute inset-0 -z-10 grid-bg mask-fade-bottom" />
@@ -45,18 +56,24 @@ export function Hero() {
           variants={itemVariants}
           className="mt-6 text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-bold tracking-tight leading-[1.02] max-w-5xl"
         >
-          Yükünüzü{" "}
-          <span className="text-gradient-orange">hafifletiyoruz</span>,
-          <br className="hidden sm:block" />
-          geçmişin gücüyle.
+          {title ? (
+            // Sanity'den gelen ham başlık — düz metin
+            <span>{title}</span>
+          ) : (
+            <>
+              Yükünüzü{" "}
+              <span className="text-gradient-orange">hafifletiyoruz</span>,
+              <br className="hidden sm:block" />
+              geçmişin gücüyle.
+            </>
+          )}
         </motion.h1>
 
         <motion.p
           variants={itemVariants}
           className="mt-6 max-w-2xl text-lg sm:text-xl text-muted-foreground leading-relaxed"
         >
-          Marmara'dan Türkiye geneline; menteşeli, teleskopik, dikey, mobil rampa ve
-          makaslı platform imalatı. CE & TSE belgeli, EN 1398 uyumlu çözümler.
+          {subtitle ?? defaultSubtitle}
         </motion.p>
 
         <motion.div
@@ -68,7 +85,7 @@ export function Hero() {
             size="lg"
             className="h-14 px-8 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-[var(--brand-black)] font-semibold shadow-[0_0_0_0_var(--brand-orange)] hover:shadow-[0_12px_36px_-8px_var(--brand-orange)] transition-all group"
           >
-            Hemen Teklif Al
+            {cta}
             <ArrowRight className="ml-1 transition-transform group-hover:translate-x-1" />
           </LinkButton>
           <ExternalLinkButton

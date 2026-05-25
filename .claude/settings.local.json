@@ -34,7 +34,14 @@
       "Bash(mkdir -p public/logos)",
       "mcp__plugin_playwright_playwright__browser_close",
       "Bash(rm -f novarampa-with-symbol.png)",
-      "Bash(rm -rf .playwright-mcp)"
+      "Bash(rm -rf .playwright-mcp)",
+      "Bash(taskkill /PID 9400 /F)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code} in %{time_total}s\\\\n\" http://localhost:3000/studio)",
+      "PowerShell(try { Stop-Process -Id 9400 -Force -ErrorAction Stop; \"Killed 9400\" } catch { \"Already gone or denied: $_\" }; Start-Sleep -Seconds 2; Get-NetTCPConnection -LocalPort 3000,3001 -State Listen -ErrorAction SilentlyContinue | Select-Object LocalPort,OwningProcess)",
+      "Bash(curl -s -o /dev/null -w \"Root HTTP %{http_code}\\\\n\" http://localhost:3000)",
+      "Bash(curl -s -o /dev/null -w \"Studio HTTP %{http_code}\\\\n\" http://localhost:3000/studio)",
+      "Bash(rm -f novarampa-studio-*.png)",
+      "Bash(rm -f sanity-hero-test.png)"
     ]
   }
 }

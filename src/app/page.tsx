@@ -10,8 +10,21 @@ import {
   OrganizationJsonLd,
   WebSiteJsonLd,
 } from "@/components/seo/structured-data";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { settingsQuery } from "@/sanity/lib/queries";
 
-export default function HomePage() {
+type Settings = {
+  heroTitle?: string;
+  heroSubtitle?: string;
+  heroCtaLabel?: string;
+};
+
+// ISR: 30 sn'de bir yenile (Eren admin'de değiştirdiğinde yarım dakikada canlıya çıkar)
+export const revalidate = 30;
+
+export default async function HomePage() {
+  const settings = await sanityFetch<Settings>(settingsQuery, {}, { revalidate: 30 });
+
   return (
     <>
       <OrganizationJsonLd />
@@ -19,7 +32,11 @@ export default function HomePage() {
       <WebSiteJsonLd />
       <Header />
       <main className="flex-1">
-        <Hero />
+        <Hero
+          title={settings?.heroTitle}
+          subtitle={settings?.heroSubtitle}
+          ctaLabel={settings?.heroCtaLabel}
+        />
         <ProductGrid />
         <ReferencesStrip />
         <WhyUs />

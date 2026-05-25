@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
+import { Open_Sans, Work_Sans, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
@@ -8,19 +8,20 @@ import { CustomCursor } from "@/components/layout/custom-cursor";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
-// Body — Geist (Vercel'in distinctive sans, Inter'den karakterli)
-const fontSans = Geist({
+// Body — Open Sans (RonI/Lift-O-Flex DNA'sı; humanist, okunaklı)
+const fontSans = Open_Sans({
   variable: "--font-sans",
   subsets: ["latin", "latin-ext"],
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
-// Display — Bricolage Grotesque variable (industrial + warm karakter)
-const fontHeading = Bricolage_Grotesque({
+// Display — Work Sans (RonI DNA; geometric ama warm, kurumsal modern)
+const fontHeading = Work_Sans({
   variable: "--font-heading",
   subsets: ["latin", "latin-ext"],
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 // Mono — teknik annotation için

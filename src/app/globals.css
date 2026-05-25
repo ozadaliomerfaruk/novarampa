@@ -117,8 +117,8 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1, "ss02" 1, "cv11" 1;
-    letter-spacing: -0.005em;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    letter-spacing: 0;
   }
   button:not(:disabled), [role="button"]:not(:disabled) {
     cursor: pointer;
@@ -143,8 +143,7 @@
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading tracking-tight;
-    font-feature-settings: "ss01" 1, "ss03" 1;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
     color: var(--brand-ink);
   }
 }

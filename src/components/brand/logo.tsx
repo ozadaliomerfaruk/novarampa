@@ -5,19 +5,20 @@ import { cn } from "@/lib/utils";
  * Nova Rampa wordmark.
  *
  * Reusable text-based logo: NOVA (foreground) + RAMPA (orange).
- * For pure-symbol uses (favicon, OG image, social), see
- * /public/logos/novarampa-symbol.svg.
+ * `inverted` koyu (dark) surface üzerinde beyaz NOVA göstermek için.
  */
 export function Logo({
   className,
   asLink = true,
   size = "default",
   withSymbol = false,
+  inverted = false,
 }: {
   className?: string;
   asLink?: boolean;
   size?: "default" | "small" | "large";
   withSymbol?: boolean;
+  inverted?: boolean;
 }) {
   const sizes = {
     small: "text-xl",
@@ -35,16 +36,14 @@ export function Logo({
     <span
       className={cn(
         "inline-flex items-center gap-2.5",
+        inverted ? "text-white" : "text-foreground",
         className
       )}
     >
       {withSymbol && (
         <span
           aria-hidden="true"
-          className={cn(
-            "inline-block shrink-0",
-            symbolSizes[size]
-          )}
+          className={cn("inline-block shrink-0", symbolSizes[size])}
         >
           <RampSymbol />
         </span>
@@ -55,7 +54,7 @@ export function Logo({
           sizes[size]
         )}
       >
-        <span className="text-foreground">NOVA</span>
+        <span>NOVA</span>
         <span className="text-[var(--brand-orange)]">RAMPA</span>
       </span>
     </span>
@@ -71,10 +70,6 @@ export function Logo({
   return content;
 }
 
-/**
- * Inline ramp-profile symbol — the 13° canonical incline,
- * extracted from the Industrial Nova identity system.
- */
 function RampSymbol() {
   return (
     <svg

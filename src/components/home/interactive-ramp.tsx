@@ -104,24 +104,25 @@ export function InteractiveRamp() {
 
         {/* Surveyor coords */}
         <g
-          stroke="rgba(255,255,255,0.18)"
+          stroke="rgba(20,36,51,0.35)"
           strokeWidth="0.6"
           fill="none"
           strokeDasharray="2 4"
         >
           <line x1="60" y1="480" x2="540" y2="480" />
           <line x1="540" y1="60" x2="540" y2="480" />
-          <circle cx="540" cy="60" r="4" fill="rgba(255,255,255,0.4)" />
-          <circle cx="60" cy="480" r="4" fill="rgba(255,255,255,0.4)" />
+          <circle cx="540" cy="60" r="4" fill="rgba(20,36,51,0.55)" />
+          <circle cx="60" cy="480" r="4" fill="rgba(20,36,51,0.55)" />
         </g>
 
         {/* Angle marker */}
         <text
           x="100"
           y="450"
-          fill="rgba(255,255,255,0.55)"
+          fill="rgba(20,36,51,0.7)"
           fontFamily="JetBrains Mono, monospace"
           fontSize="14"
+          fontWeight="500"
         >
           13°
         </text>
@@ -169,7 +170,7 @@ export function InteractiveRamp() {
           y1="140"
           x2="552"
           y2="470"
-          stroke="rgba(255,255,255,0.35)"
+          stroke="rgba(20,36,51,0.45)"
           strokeWidth="1"
           strokeDasharray="3 4"
         />
@@ -234,8 +235,9 @@ export function InteractiveRamp() {
         <g
           fontFamily="JetBrains Mono, monospace"
           fontSize="11"
-          fill="rgba(255,255,255,0.55)"
+          fill="rgba(20,36,51,0.65)"
           letterSpacing="0.18em"
+          fontWeight="500"
         >
           <text x="80" y="500">REF · TRAPEZOID 13°</text>
           <text x="430" y="500">2000×2500 MM</text>

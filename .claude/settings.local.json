@@ -48,7 +48,9 @@
       "WebFetch(domain:gunoziplik.com)",
       "Bash(rm -f audit-*.png)",
       "mcp__plugin_playwright_playwright__browser_evaluate",
-      "Bash(rm -f tier1-*.png)"
+      "Bash(rm -f tier1-*.png)",
+      "Bash(rm -f roni-*.png)",
+      "Bash(rm -f light-theme-*.png)"
     ]
   }
 }

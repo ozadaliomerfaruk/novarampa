@@ -38,14 +38,16 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
 
-  /* Brand renkleri */
+  /* Marka renkleri */
   --color-brand-orange: var(--brand-orange);
   --color-brand-orange-hover: var(--brand-orange-hover);
   --color-brand-orange-soft: var(--brand-orange-soft);
-  --color-brand-black: var(--brand-black);
-  --color-brand-charcoal: var(--brand-charcoal);
-  --color-brand-blue: var(--brand-blue);
-  --color-brand-gray: var(--brand-gray);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-navy-dark: var(--brand-navy-dark);
+  --color-brand-steel: var(--brand-steel);
+  --color-brand-cream: var(--brand-cream);
+  --color-brand-paper: var(--brand-paper);
+  --color-brand-ink: var(--brand-ink);
 
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -56,46 +58,52 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Novarampa tek tema — koyu/kurumsal */
+/* ───── Light theme inspired by RonI / Lift-O-Flex ───── */
 :root {
-  /* Marka palet */
-  --brand-black: oklch(0.0905 0 0);            /* #0A0A0A */
-  --brand-charcoal: oklch(0.16 0 0);           /* #1A1A1A */
-  --brand-orange: oklch(0.72 0.205 47);        /* #F97316 */
-  --brand-orange-hover: oklch(0.78 0.18 50);   /* #FB923C */
-  --brand-orange-soft: oklch(0.72 0.205 47 / 0.12);
-  --brand-blue: oklch(0.55 0.16 240);          /* nötr çelik mavisi */
-  --brand-gray: oklch(0.55 0 0);               /* #8A8A8A */
+  /* Marka renk palet */
+  --brand-cream:      oklch(0.985 0.004 75);    /* #FAF8F4 - sıcak kağıt */
+  --brand-paper:      oklch(0.97  0.004 75);    /* #F4F1EB - hafif krem */
+  /* Backward-compat: eski karanlık-tema kullanımları açık tema karşılığına eşle */
+  --brand-charcoal:   oklch(0.95  0.005 240);   /* slate-100 muted surface */
+  --brand-black:      oklch(0.22  0.025 245);   /* eşittir brand-ink */
+  --brand-ink:        oklch(0.22  0.025 245);   /* #1A2433 - deep ink */
+  --brand-navy:       oklch(0.33  0.06  240);   /* #2C4663 - kurumsal navy */
+  --brand-navy-dark:  oklch(0.20  0.05  240);   /* #14233A - footer için */
+  --brand-steel:      oklch(0.55  0.10  240);   /* #4F7299 - secondary accent */
+  --brand-orange:     oklch(0.72  0.205 47);    /* #F97316 - Eren'in turuncusu (KORUNDU) */
+  --brand-orange-hover: oklch(0.66 0.21  42);   /* #E55C12 - hover, daha koyu */
+  --brand-orange-soft:  oklch(0.72 0.205 47 / 0.12);
 
   /* Sistem tokenleri */
-  --background: oklch(0.0905 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.16 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.72 0.205 47);
-  --primary-foreground: oklch(0.0905 0 0);
-  --secondary: oklch(0.22 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.22 0 0);
-  --muted-foreground: oklch(0.68 0 0);
-  --accent: oklch(0.72 0.205 47 / 0.15);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.62 0.22 27);
-  --border: oklch(1 0 0 / 0.08);
-  --input: oklch(1 0 0 / 0.1);
-  --ring: oklch(0.72 0.205 47 / 0.6);
-  --radius: 0.625rem;
+  --background:      oklch(0.985 0.004 75);     /* cream */
+  --foreground:      oklch(0.22 0.025 245);     /* ink */
+  --card:            oklch(1 0 0);              /* pure white */
+  --card-foreground: oklch(0.22 0.025 245);
+  --popover:         oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.025 245);
+  --primary:         oklch(0.72 0.205 47);      /* orange */
+  --primary-foreground: oklch(1 0 0);
+  --secondary:       oklch(0.94 0.008 240);     /* slate-50 */
+  --secondary-foreground: oklch(0.22 0.025 245);
+  --muted:           oklch(0.94 0.008 240);
+  --muted-foreground: oklch(0.48 0.02 240);     /* slate-500 */
+  --accent:          oklch(0.72 0.205 47 / 0.10);
+  --accent-foreground: oklch(0.22 0.025 245);
+  --destructive:     oklch(0.6  0.22  27);
+  --border:          oklch(0.22 0.025 245 / 0.10);
+  --input:           oklch(0.22 0.025 245 / 0.14);
+  --ring:            oklch(0.72 0.205 47 / 0.45);
+  --radius:          0.625rem;
 
-  --sidebar: oklch(0.12 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.72 0.205 47);
-  --sidebar-primary-foreground: oklch(0.0905 0 0);
-  --sidebar-accent: oklch(0.22 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 0.08);
-  --sidebar-ring: oklch(0.72 0.205 47 / 0.6);
+  /* Sidebar (Studio dışında pek kullanılmıyor) */
+  --sidebar:                  oklch(0.97 0.004 75);
+  --sidebar-foreground:       oklch(0.22 0.025 245);
+  --sidebar-primary:          oklch(0.72 0.205 47);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent:           oklch(0.94 0.008 240);
+  --sidebar-accent-foreground: oklch(0.22 0.025 245);
+  --sidebar-border:           oklch(0.22 0.025 245 / 0.10);
+  --sidebar-ring:             oklch(0.72 0.205 47 / 0.45);
 }
 
 @layer base {
@@ -104,7 +112,7 @@
   }
   html {
     @apply font-sans;
-    color-scheme: dark;
+    color-scheme: light;
     scroll-behavior: smooth;
   }
   body {
@@ -117,18 +125,17 @@
   }
   ::selection {
     background: var(--brand-orange);
-    color: var(--brand-black);
+    color: white;
   }
-  /* Scrollbar */
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--brand-black);
+    background: var(--brand-paper);
   }
   ::-webkit-scrollbar-thumb {
-    background: oklch(0.3 0 0);
+    background: oklch(0.78 0.01 240);
     border-radius: 6px;
   }
   ::-webkit-scrollbar-thumb:hover {
@@ -138,18 +145,19 @@
     @apply font-heading tracking-tight;
     font-feature-settings: "ss01" 1, "ss03" 1;
     letter-spacing: -0.02em;
+    color: var(--brand-ink);
   }
 }
 
-/* ───────── ATMOSFER: film grain ───────── */
+/* ───── ATMOSFER (light theme uyumlu) ───── */
 .grain-overlay {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.045;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.65 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.85 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   background-size: 280px 280px;
   animation: grain-shift 8s steps(6) infinite;
 }
@@ -162,20 +170,19 @@
   80% { transform: translate(3%, 3%); }
 }
 
-/* Blueprint-style faint orthographic lines */
 .blueprint-lines {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(rgba(20, 36, 51, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 36, 51, 0.045) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 90%);
   -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 90%);
 }
 
-/* Yardımcı sınıflar */
+/* Yardımcılar */
 @layer utilities {
   .container-tight {
     @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
@@ -184,29 +191,39 @@
     @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
   .text-gradient-orange {
-    background: linear-gradient(135deg, oklch(0.78 0.18 50), oklch(0.65 0.22 35));
+    background: linear-gradient(135deg, oklch(0.78 0.2 50), oklch(0.6 0.22 35));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
   .grid-bg {
     background-image:
-      linear-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+      linear-gradient(rgba(20, 36, 51, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(20, 36, 51, 0.04) 1px, transparent 1px);
     background-size: 40px 40px;
   }
   .mask-fade-bottom {
     -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
     mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
   }
+  /* Footer için tersine renk düzeni — koyu kontrast */
+  .surface-dark {
+    background: var(--brand-navy-dark);
+    color: oklch(0.94 0.008 240);
+  }
+  .surface-dark h1, .surface-dark h2, .surface-dark h3, .surface-dark h4 {
+    color: white;
+  }
 }
 
 /* Yasal sayfa içerik stili */
 .legal-prose h2 {
-  @apply mt-10 mb-3 text-2xl font-heading font-bold tracking-tight text-foreground;
+  @apply mt-10 mb-3 text-2xl font-heading font-bold tracking-tight;
+  color: var(--brand-ink);
 }
 .legal-prose h3 {
-  @apply mt-7 mb-2 text-lg font-heading font-semibold text-foreground;
+  @apply mt-7 mb-2 text-lg font-heading font-semibold;
+  color: var(--brand-ink);
 }
 .legal-prose p {
   @apply my-3;
@@ -218,14 +235,19 @@
   @apply my-4 space-y-2 pl-5 list-decimal;
 }
 .legal-prose li {
-  @apply text-foreground/85;
+  color: var(--brand-ink);
+  opacity: 0.85;
 }
 .legal-prose strong {
-  @apply text-foreground font-semibold;
+  color: var(--brand-ink);
+  font-weight: 600;
 }
 .legal-prose a {
-  @apply text-[var(--brand-orange)] underline-offset-2 hover:underline;
+  color: var(--brand-orange);
+  text-underline-offset: 2px;
 }
+.legal-prose a:hover { text-decoration: underline; }
 .legal-prose hr {
-  @apply my-8 border-border;
+  @apply my-8;
+  border-color: var(--border);
 }

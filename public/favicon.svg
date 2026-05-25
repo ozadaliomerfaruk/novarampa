@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Nova Rampa">
-  <!-- Black square ground -->
-  <rect width="32" height="32" rx="4" fill="#0a0a0a"/>
-  <!-- Ramp profile in supernova orange -->
-  <path d="M 4 26 L 28 26 L 28 10 L 14 10 Z" fill="#f97316"/>
-  <!-- Top load line -->
-  <line x1="14" y1="7" x2="28" y2="7" stroke="#fafafa" stroke-width="1.5"/>
+  <rect width="32" height="32" rx="4" fill="#14233A"/>
+  <path d="M 4 26 L 28 26 L 28 10 L 14 10 Z" fill="#F97316"/>
+  <line x1="14" y1="7" x2="28" y2="7" stroke="#FAFAFA" stroke-width="1.5"/>
 </svg>

@@ -1,22 +1,26 @@
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 /**
- * Nova Rampa resmi logosu — Eren'in marka çiziminden yeniden vektörleştirilmiş.
+ * Nova Rampa resmi logosu.
  *
- * - Sembol: iki katmanlı geometric rampa profili (önde solid, arkada soluk gri)
- * - Wordmark: NOVARAMPA bold sans-serif uppercase
- * - currentColor inheritance ile inverted dark mode otomatik beyaza döner
+ * Eren'in verdiği yüksek-çözünürlüklü SVG (gri/siyah gradient sembol +
+ * NOVARAMPA wordmark) — /public/logos/logo-novarampa.svg
  *
- * Sembol gerçek SVG path olduğu için her boyutta keskin kalır
- * (retina, 4K, print). Image dosyası yok.
+ * - light bg (header): orijinal renkleriyle
+ * - dark bg (footer): inverted=true → CSS filter ile beyaza dönüşür
+ *
+ * SVG kare aspect ratio'ya sahip (içeride sembol+wordmark ortalanmış).
+ * Display'i height + w-auto ile yapıyoruz; container `overflow-hidden`
+ * gerekmiyor çünkü içerik dosya içinde zaten doğru ortalanmış.
  */
 export function Logo({
   className,
   asLink = true,
   size = "default",
   inverted = false,
-  /** withSymbol backward-compat. Resmi logo zaten sembol+wordmark birlikte. */
+  /** withSymbol backward-compat — logo zaten sembol+wordmark birlikte. */
   withSymbol: _withSymbol = false,
 }: {
   className?: string;
@@ -25,44 +29,32 @@ export function Logo({
   inverted?: boolean;
   withSymbol?: boolean;
 }) {
-  const sizes = {
-    small: {
-      wordmark: "text-lg",
-      symbol: "h-6 w-[28px]",
-      gap: "gap-2",
-    },
-    default: {
-      wordmark: "text-xl md:text-2xl",
-      symbol: "h-8 w-[40px] md:h-9 md:w-[44px]",
-      gap: "gap-2.5",
-    },
-    large: {
-      wordmark: "text-3xl md:text-5xl",
-      symbol: "h-12 w-[60px] md:h-16 md:w-[80px]",
-      gap: "gap-3 md:gap-4",
-    },
+  // Display height per size; SVG kare olduğu için w da bu kadar olur,
+  // ama Next.js next/image src=svg'de width/height intrinsic alır.
+  const heights = {
+    small: "h-10",
+    default: "h-12 md:h-14",
+    large: "h-20 md:h-24",
   } as const;
 
-  const s = sizes[size];
-
+  // SVG'nin doğal oranı 1:1 (1500×1500) ama içerik yatay-ortalanmış,
+  // bu yüzden Image'a tam karelik intrinsic boyut veriyoruz.
   const content = (
-    <span
-      className={cn(
-        "inline-flex items-center select-none",
-        s.gap,
-        inverted ? "text-white" : "text-foreground",
-        className
-      )}
-    >
-      <RampSymbol className={s.symbol} />
-      <span
+    <span className={cn("inline-flex items-center", className)}>
+      <Image
+        src="/logos/logo-novarampa.svg"
+        alt="Nova Rampa"
+        width={1500}
+        height={1500}
+        priority={size === "large"}
         className={cn(
-          "font-heading font-extrabold tracking-[-0.02em] leading-none",
-          s.wordmark
+          heights[size],
+          "w-auto select-none object-contain",
+          // Dark fonda CSS filter ile beyaza dönüştür
+          inverted && "brightness-0 invert"
         )}
-      >
-        NOVA<span className="opacity-100">RAMPA</span>
-      </span>
+        unoptimized
+      />
     </span>
   );
 
@@ -74,36 +66,4 @@ export function Logo({
     );
   }
   return content;
-}
-
-/**
- * Resmi logodan vektörleştirilmiş iki katmanlı sembol.
- *  - Arka katman: soluk gri (currentColor @ %25 opacity), üst sağa offset
- *  - Ön katman: tam currentColor, keskin trapezoid (rampa profili)
- *
- * Path geometrisi:
- *   Sol kenar 26° eğimli (yumuşak ramp incline)
- *   Sağ kenar dikey (platform yüksekliği)
- *   Alt kenar yatay (yer)
- *   Üst kenar yatay (kısa platform üstü)
- */
-function RampSymbol({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 100 70"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      aria-hidden="true"
-    >
-      {/* Arka katman — soluk gri (offset rampa silüeti) */}
-      <path
-        d="M 18 56 L 96 56 L 96 6 L 50 6 Z"
-        fill="currentColor"
-        opacity="0.22"
-      />
-      {/* Ön katman — solid navy/white (ana rampa silüeti) */}
-      <path d="M 4 64 L 82 64 L 82 14 L 36 14 Z" fill="currentColor" />
-    </svg>
-  );
 }

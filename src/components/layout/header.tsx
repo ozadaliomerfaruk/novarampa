@@ -100,8 +100,8 @@ export function Header() {
         </div>
       </div>
 
-      {/* ─── ANA NAV ROW ─── */}
-      <div className="container-wide flex h-16 md:h-[68px] items-center justify-between gap-3">
+      {/* ─── ANA NAV ROW ─── (logo h-16/20 olduğu için satır de büyüdü) */}
+      <div className="container-wide flex h-20 md:h-24 items-center justify-between gap-3">
         <Logo size="default" withSymbol />
 
         <nav className="hidden lg:flex items-center gap-0.5">

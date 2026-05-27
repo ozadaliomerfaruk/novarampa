@@ -9,7 +9,11 @@ import { Footer } from "@/components/layout/footer";
 import { Breadcrumb } from "@/components/layout/breadcrumb";
 import { CtaSection } from "@/components/home/cta-section";
 import { SanityImage } from "@/components/sanity/sanity-image";
-import { BreadcrumbJsonLd } from "@/components/seo/structured-data";
+import {
+  BreadcrumbJsonLd,
+  BlogPostingJsonLd,
+  HowToJsonLd,
+} from "@/components/seo/structured-data";
 import { siteConfig } from "@/lib/site-config";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
@@ -136,6 +140,23 @@ export default async function BlogPostPage({ params }: Props) {
           { name: post.title, url: `${siteConfig.url}/blog/${slug}` },
         ]}
       />
+      <BlogPostingJsonLd
+        title={post.title}
+        description={post.excerpt ?? post.title}
+        slug={slug}
+        publishedAt={post.publishedAt}
+        author={post.author}
+        readTimeMinutes={post.readTime}
+        tags={post.tags}
+      />
+      {post.howToSteps && post.howToSteps.length > 0 && (
+        <HowToJsonLd
+          name={post.title}
+          description={post.excerpt}
+          steps={post.howToSteps}
+          totalTime={post.totalTime}
+        />
+      )}
       <Header />
       <main className="flex-1">
         <Breadcrumb items={[{ label: "Blog", href: "/blog" }, { label: post.title }]} />
@@ -208,6 +229,41 @@ export default async function BlogPostPage({ params }: Props) {
             <p className="text-muted-foreground italic">
               Bu yazının içeriği henüz hazırlanıyor.
             </p>
+          )}
+
+          {/* HowTo adımları — varsa ekstra olarak göster */}
+          {post.howToSteps && post.howToSteps.length > 0 && (
+            <section className="mt-16 pt-10 border-t border-border">
+              <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
+                Adım Adım Rehber
+              </div>
+              <h2 className="mt-3 text-2xl sm:text-3xl font-heading font-bold tracking-tight">
+                Nasıl yapılır?
+              </h2>
+              {post.totalTime && (
+                <div className="mt-3 text-sm text-muted-foreground">
+                  ⏱ Toplam süre: <strong className="text-foreground">{post.totalTime}</strong>
+                </div>
+              )}
+              <ol className="mt-8 space-y-6">
+                {post.howToSteps.map((step, i) => (
+                  <li
+                    key={step.name}
+                    className="relative pl-14 pr-2 py-2"
+                  >
+                    <div className="absolute left-0 top-2 inline-flex items-center justify-center size-10 rounded-full bg-[var(--brand-orange)] text-white text-base font-heading font-bold">
+                      {i + 1}
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-heading font-semibold leading-tight">
+                      {step.name}
+                    </h3>
+                    <p className="mt-2 text-base text-foreground/80 leading-relaxed">
+                      {step.text}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+            </section>
           )}
 
           <div className="mt-16 pt-8 border-t border-border">

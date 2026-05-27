@@ -5,6 +5,9 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
+import { urlFor } from "@/sanity/lib/image";
+import type { WorkshopPhoto } from "@/sanity/lib/types";
+
 type Tile = {
   src: string;
   alt: string;
@@ -44,8 +47,28 @@ const tiles: Tile[] = [
   },
 ];
 
-export function WorkshopSection() {
+export function WorkshopSection({
+  photos,
+}: {
+  photos?: WorkshopPhoto[] | null;
+}) {
   const reduce = useReducedMotion();
+
+  // Sanity'den 4 foto geldiyse onları kullan; yoksa default stok görseller.
+  const sanityTiles: Tile[] | null =
+    photos && photos.length === 4
+      ? photos.map((p, i) => ({
+          src: p.asset?.url
+            ? p.asset.url
+            : urlFor(p as unknown as { _ref?: string }).width(1200).url(),
+          alt: p.alt ?? "Atölye fotoğrafı",
+          caption: `0${i + 1} — ${p.caption ?? "Saha"}`,
+          label: p.caption ?? "Atölyeden",
+          span: i === 0 ? "wide" : i === 3 ? "tall" : undefined,
+        }))
+      : null;
+  const items = sanityTiles ?? tiles;
+  const usingDefaults = sanityTiles === null;
 
   return (
     <section className="relative py-24 sm:py-32">
@@ -80,7 +103,7 @@ export function WorkshopSection() {
 
         {/* Editorial grid: 2x2 with asymmetric spans on lg */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3 md:gap-4">
-          {tiles.map((t, i) => {
+          {items.map((t, i) => {
             const spanCls =
               t.span === "wide"
                 ? "lg:col-span-7"
@@ -125,10 +148,12 @@ export function WorkshopSection() {
           })}
         </div>
 
-        <p className="mt-8 text-xs text-muted-foreground italic max-w-2xl">
-          ℹ️ Yukarıdaki görseller geçici olarak stok foto kullanmaktadır. Nova
-          Rampa atölyesi ve saha fotoğrafları yakın zamanda yüklenecektir.
-        </p>
+        {usingDefaults && (
+          <p className="mt-8 text-xs text-muted-foreground italic max-w-2xl">
+            ℹ️ Yukarıdaki görseller geçici olarak stok foto kullanmaktadır.
+            Sanity → Site Ayarları → Atölye Fotoğrafları üzerinden değiştirilebilir.
+          </p>
+        )}
       </div>
     </section>
   );

@@ -62,7 +62,7 @@ export function InteractiveRamp() {
   return (
     <div
       ref={ref}
-      className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 w-[58%] max-w-[820px] aspect-square hidden lg:block"
+      className="pointer-events-none absolute right-[-2%] top-1/2 -translate-y-1/2 w-[42%] max-w-[540px] aspect-square hidden lg:block opacity-90"
       style={{ perspective: "1200px" }}
       aria-hidden="true"
     >

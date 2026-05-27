@@ -11,6 +11,9 @@ import { CtaSection } from "@/components/home/cta-section";
 import { BreadcrumbJsonLd } from "@/components/seo/structured-data";
 import { customerSegments } from "@/lib/services";
 import { siteConfig } from "@/lib/site-config";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { allSegmentsQuery } from "@/sanity/lib/queries";
+import type { CustomerSegmentDoc } from "@/sanity/lib/types";
 
 export const metadata: Metadata = {
   title: "Sektörel Çözümler — Yükleme Rampası",
@@ -18,6 +21,8 @@ export const metadata: Metadata = {
     "Lojistik, fabrika, soğuk hava deposu, müteahhit, perakende ve küçük işletmeler için sektöre özel rampa çözümleri.",
   alternates: { canonical: `${siteConfig.url}/cozumler` },
 };
+
+export const revalidate = 60;
 
 /**
  * Roni.com /industries DNA: her segment için thematic foto + gradient overlay.
@@ -39,7 +44,25 @@ const segmentMedia: Record<string, string> = {
     "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1200&q=85&auto=format&fit=crop",
 };
 
-export default function CozumlerPage() {
+export default async function CozumlerPage() {
+  // Önce Sanity'den çek, boşsa hardcoded fallback
+  const sanitySegments = await sanityFetch<CustomerSegmentDoc[]>(
+    allSegmentsQuery,
+    {},
+    { revalidate: 60 }
+  );
+  const segments =
+    sanitySegments && sanitySegments.length > 0
+      ? sanitySegments.map((s) => ({
+          slug: s.slug,
+          name: s.name,
+          description: s.description,
+          share: s.share,
+          keywords: s.keywords ?? [],
+          recommendedProducts: (s.recommendedProducts ?? []).map((p) => p.slug),
+        }))
+      : customerSegments;
+
   return (
     <>
       <BreadcrumbJsonLd
@@ -63,7 +86,7 @@ export default function CozumlerPage() {
         {/* Fotolu industries grid — RonI DNA */}
         <section className="container-wide pb-20">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {customerSegments.map((s) => (
+            {segments.map((s) => (
               <Link
                 key={s.slug}
                 href={`/cozumler/${s.slug}`}

@@ -8,7 +8,10 @@ import { Footer } from "@/components/layout/footer";
 import { Breadcrumb } from "@/components/layout/breadcrumb";
 import { LinkButton, ExternalLinkButton } from "@/components/ui/link-button";
 import { CtaSection } from "@/components/home/cta-section";
-import { BreadcrumbJsonLd } from "@/components/seo/structured-data";
+import {
+  BreadcrumbJsonLd,
+  SegmentServiceJsonLd,
+} from "@/components/seo/structured-data";
 import { customerSegments } from "@/lib/services";
 import { productCategories, getProductBySlug } from "@/lib/products";
 import { company, siteConfig } from "@/lib/site-config";
@@ -50,6 +53,12 @@ export default async function SektorelCozumPage({ params }: Props) {
           { name: "Çözümler", url: `${siteConfig.url}/cozumler` },
           { name: segment.name, url: `${siteConfig.url}/cozumler/${sektor}` },
         ]}
+      />
+      <SegmentServiceJsonLd
+        segmentName={segment.name}
+        slug={segment.slug}
+        description={segment.description}
+        keywords={segment.keywords}
       />
       <Header />
       <main className="flex-1">

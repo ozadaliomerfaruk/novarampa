@@ -8,7 +8,10 @@ import { Footer } from "@/components/layout/footer";
 import { Breadcrumb } from "@/components/layout/breadcrumb";
 import { LinkButton, ExternalLinkButton } from "@/components/ui/link-button";
 import { CtaSection } from "@/components/home/cta-section";
-import { BreadcrumbJsonLd } from "@/components/seo/structured-data";
+import {
+  BreadcrumbJsonLd,
+  CityLocalBusinessJsonLd,
+} from "@/components/seo/structured-data";
 import { serviceCities } from "@/lib/services";
 import { productCategories } from "@/lib/products";
 import { company, siteConfig } from "@/lib/site-config";
@@ -49,6 +52,12 @@ export default async function IlLandingPage({ params }: Props) {
           { name: "Hizmet Bölgeleri", url: `${siteConfig.url}/hizmet-bolgeleri` },
           { name: city.name, url: `${siteConfig.url}/hizmet-bolgeleri/${il}` },
         ]}
+      />
+      <CityLocalBusinessJsonLd
+        cityName={city.name}
+        slug={city.slug}
+        industrialZones={city.industrialZones}
+        priority={city.priority}
       />
       <Header />
       <main className="flex-1">

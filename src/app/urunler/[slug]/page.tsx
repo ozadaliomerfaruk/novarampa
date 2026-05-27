@@ -13,6 +13,7 @@ import { SanityImage } from "@/components/sanity/sanity-image";
 import {
   BreadcrumbJsonLd,
   ProductJsonLd,
+  FaqJsonLd,
 } from "@/components/seo/structured-data";
 import {
   productCategories,
@@ -166,6 +167,9 @@ export default async function ProductDetailPage({ params }: Props) {
         description={product.description || product.tagline}
         slug={product.slug}
       />
+      {product.faqs && product.faqs.length > 0 && (
+        <FaqJsonLd faqs={product.faqs} />
+      )}
       <Header />
       <main className="flex-1">
         <Breadcrumb
@@ -366,6 +370,41 @@ export default async function ProductDetailPage({ params }: Props) {
                   </ul>
                 </div>
               )}
+            </div>
+          </section>
+        )}
+
+        {/* SSS — Sanity'den FAQ'lar varsa göster (FaqJsonLd ile birlikte) */}
+        {product.faqs && product.faqs.length > 0 && (
+          <section className="container-wide pb-20">
+            <div className="max-w-3xl">
+              <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
+                Sıkça Sorulan Sorular
+              </div>
+              <h2 className="mt-3 text-3xl font-heading font-bold tracking-tight">
+                {product.shortName} hakkında merak edilenler
+              </h2>
+              <div className="mt-8 divide-y divide-border border-y border-border">
+                {product.faqs.map((faq) => (
+                  <details
+                    key={faq.question}
+                    className="group py-5"
+                  >
+                    <summary className="flex items-start justify-between gap-4 cursor-pointer list-none">
+                      <h3 className="text-base sm:text-lg font-heading font-semibold leading-snug">
+                        {faq.question}
+                      </h3>
+                      <ChevronRight
+                        size={18}
+                        className="mt-1 shrink-0 text-muted-foreground transition-transform group-open:rotate-90"
+                      />
+                    </summary>
+                    <p className="mt-3 text-sm sm:text-base text-foreground/80 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </details>
+                ))}
+              </div>
             </div>
           </section>
         )}

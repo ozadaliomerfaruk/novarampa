@@ -53,20 +53,13 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     siteName: siteConfig.name,
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: siteConfig.name,
-      },
-    ],
+    // images: opengraph-image.tsx convention'ı sayesinde otomatik dahil edilir
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
-    images: ["/og-image.jpg"],
+    // images: opengraph-image.tsx convention'ı otomatik kullanılır
   },
   robots: {
     index: true,
@@ -79,11 +72,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico", sizes: "any" },
-    ],
-    apple: "/apple-touch-icon.png",
+    // /favicon.svg statik + /icon (icon.tsx) programmatic = ikisi de çalışır
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    // apple-icon.tsx convention ile otomatik /apple-icon route'u oluşur
   },
   manifest: "/site.webmanifest",
   alternates: {

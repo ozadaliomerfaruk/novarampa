@@ -69,37 +69,29 @@ export default async function TeklifAlPage({
       />
       <Header />
       <main className="flex-1">
-        {/* ─── HERO ─── (RonI DNA: koyu navy banner + tek satır mesaj) */}
-        <section className="surface-dark relative overflow-hidden pt-28 md:pt-32 pb-16 md:pb-20">
-          {/* Atmosfer */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-[var(--brand-orange)] rounded-full opacity-[0.08] blur-[140px] pointer-events-none" />
-          <div
-            className="absolute inset-0 opacity-[0.05] pointer-events-none"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
-              backgroundSize: "48px 48px",
-            }}
-          />
+        {/* ─── HERO ─── (açık zemin; header kontrast için light tema) */}
+        <section className="relative overflow-hidden pt-28 md:pt-32 pb-12 md:pb-16 bg-[var(--brand-paper)]/40">
+          {/* Soft turuncu glow */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-[var(--brand-orange)] rounded-full opacity-[0.06] blur-[140px] pointer-events-none" />
 
-          <div className="container-wide relative text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 text-xs font-mono uppercase tracking-[0.22em] text-white/70 mb-6">
-              <span className="size-1.5 rounded-full bg-[var(--brand-orange)]" />
-              Teklif Talebi
+          <div className="container-wide relative">
+            <Breadcrumb items={[{ label: "Teklif Al" }]} />
+            <div className="mt-6 max-w-3xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--brand-orange)]/20 bg-[var(--brand-orange)]/5 text-xs font-mono uppercase tracking-[0.22em] text-[var(--brand-orange)] mb-5">
+                <span className="size-1.5 rounded-full bg-[var(--brand-orange)]" />
+                Teklif Talebi
+              </div>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold tracking-tight leading-[1.1]">
+                Projenize özel çözümü{" "}
+                <span className="text-gradient-orange">birlikte tasarlayalım.</span>
+              </h1>
+              <p className="mt-5 text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+                Aşağıdaki kısa formu doldurun — uzun evrak veya taahhüt yok.
+                Sahanızı, yükünüzü ve ihtiyacınızı paylaşın, gerisini biz halledelim.
+              </p>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold tracking-tight leading-[1.1] text-white max-w-3xl mx-auto">
-              Projenize özel çözümü
-              <br />
-              <span className="text-gradient-orange">birlikte tasarlayalım.</span>
-            </h1>
-            <p className="mt-6 text-base sm:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
-              Aşağıdaki kısa formu doldurun — uzun evrak veya taahhüt yok.
-              Sahanızı, yükünüzü ve ihtiyacınızı paylaşın, gerisini biz halledelim.
-            </p>
           </div>
         </section>
-
-        <Breadcrumb items={[{ label: "Teklif Al" }]} />
 
         {/* ─── İKİ-KOLON: WHY + FORM ─── (RonI DNA) */}
         <section className="container-wide py-12 md:py-16">

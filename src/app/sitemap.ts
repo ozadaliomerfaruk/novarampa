@@ -2,11 +2,27 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site-config";
 import { productCategories } from "@/lib/products";
 import { serviceCities, customerSegments } from "@/lib/services";
+import { comparisons } from "@/lib/comparisons";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import {
+  blogPostSlugsQuery,
+  allPublishedPagesQuery,
+} from "@/sanity/lib/queries";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+/**
+ * Sitemap — Google ve diğer crawler'lar için site haritası.
+ *
+ * İçerik:
+ *  - Statik sayfalar (anasayfa, hakkımızda, vb)
+ *  - Hardcoded ürünler + sektörler + iller (eski liste)
+ *  - Sanity'den blog yazıları (revalidate ile dinamik)
+ *  - Sanity'den özel sayfalar (Eren'in oluşturdukları, status: published)
+ */
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteConfig.url;
   const now = new Date();
 
+  // Statik sayfalar
   const staticPages: MetadataRoute.Sitemap = [
     { url: base, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
     { url: `${base}/hakkimizda`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
@@ -19,11 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: `${base}/iletisim`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/teklif-al`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${base}/karsilastir`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/kvkk`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
     { url: `${base}/gizlilik`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
     { url: `${base}/cerez`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
   ];
 
+  // Ürün detayları (kod tabanlı + Sanity sonradan üzerine yazar)
   const productPages: MetadataRoute.Sitemap = productCategories.map((p) => ({
     url: `${base}/urunler/${p.slug}`,
     lastModified: now,
@@ -31,6 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // Çözüm detayları
   const solutionPages: MetadataRoute.Sitemap = customerSegments.map((s) => ({
     url: `${base}/cozumler/${s.slug}`,
     lastModified: now,
@@ -38,6 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // Şehir detayları
   const cityPages: MetadataRoute.Sitemap = serviceCities.map((c) => ({
     url: `${base}/hizmet-bolgeleri/${c.slug}`,
     lastModified: now,
@@ -45,5 +65,57 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: c.priority === "primary" ? 0.8 : 0.6,
   }));
 
-  return [...staticPages, ...productPages, ...solutionPages, ...cityPages];
+  // ─── Sanity'den dinamik içerik ───
+
+  // Blog yazıları — Sanity'de yayında olanlar
+  let blogPages: MetadataRoute.Sitemap = [];
+  try {
+    const blogs = await sanityFetch<{ slug: string; publishedAt?: string }[]>(
+      blogPostSlugsQuery,
+      {},
+      { revalidate: 300 }
+    );
+    blogPages = (blogs ?? []).map((b) => ({
+      url: `${base}/blog/${b.slug}`,
+      lastModified: b.publishedAt ? new Date(b.publishedAt) : now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    }));
+  } catch {
+    // Sanity erişimi başarısız olursa sitemap yine de döner.
+  }
+
+  // Eren'in özel sayfaları — yayında (status: published) olanlar
+  let customPages: MetadataRoute.Sitemap = [];
+  try {
+    const pages = await sanityFetch<
+      { slug: string; _updatedAt?: string }[]
+    >(allPublishedPagesQuery, {}, { revalidate: 300 });
+    customPages = (pages ?? []).map((p) => ({
+      url: `${base}/${p.slug}`,
+      lastModified: p._updatedAt ? new Date(p._updatedAt) : now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    }));
+  } catch {
+    // Sanity erişimi başarısız olursa sitemap yine de döner.
+  }
+
+  // Karşılaştırma sayfaları
+  const comparisonPages: MetadataRoute.Sitemap = comparisons.map((c) => ({
+    url: `${base}/karsilastir/${c.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [
+    ...staticPages,
+    ...productPages,
+    ...solutionPages,
+    ...cityPages,
+    ...blogPages,
+    ...customPages,
+    ...comparisonPages,
+  ];
 }

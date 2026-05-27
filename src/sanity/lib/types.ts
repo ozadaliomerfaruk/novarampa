@@ -24,17 +24,75 @@ export type PortableTextBlock = {
 };
 
 // ─── Settings ───────────────────────────────────────────────────────
+export type StatItem = {
+  value: number;
+  suffix?: string;
+  label: string;
+  caption?: string;
+};
+
+export type WorkshopPhoto = {
+  asset?: { url?: string; _ref?: string };
+  alt?: string;
+  caption?: string;
+};
+
+export type TimelineMilestone = {
+  year: number;
+  title: string;
+  description?: string;
+};
+
+export type ContactInfo = {
+  phone?: string;
+  phoneDisplay?: string;
+  email?: string;
+  whatsapp?: string;
+};
+
+export type SocialLinks = {
+  instagram?: string;
+  linkedin?: string;
+  youtube?: string;
+  facebook?: string;
+  twitter?: string;
+  tiktok?: string;
+};
+
 export type SiteSettings = {
   heroTitle?: string;
   heroSubtitle?: string;
   heroCtaLabel?: string;
-  highlights?: { value: string; label: string }[];
+  heroVideoUrl?: string;
+  logo?: SanityImage;
+  logoUrl?: string;
+  companyName?: string;
+  tagline?: string;
+  stats?: StatItem[];
+  workshopPhotos?: WorkshopPhoto[];
+  certifications?: string[];
+  brandTimeline?: TimelineMilestone[];
   featuredProducts?: ProductSummary[];
+  contact?: ContactInfo;
+  locations?: CompanyLocation[];
+  workingHours?: WorkingHoursRow[];
+  socials?: SocialLinks;
+  homeFaqs?: HomeFaqItem[];
   announcement?: {
     enabled?: boolean;
     text?: string;
     link?: string;
   };
+};
+
+export type HomeFaqItem = {
+  question: string;
+  answer: string;
+};
+
+export type HowToStep = {
+  name: string;
+  text: string;
 };
 
 // ─── Product ────────────────────────────────────────────────────────
@@ -74,6 +132,8 @@ export type BlogPostSummary = {
 
 export type BlogPost = BlogPostSummary & {
   body?: PortableTextBlock[];
+  howToSteps?: HowToStep[];
+  totalTime?: string;
   seo?: { title?: string; description?: string };
 };
 
@@ -102,4 +162,64 @@ export type SparePart = {
   image?: SanityImage;
   available?: boolean;
   compatibleWith?: { _id: string; name: string; slug: SanitySlug }[];
+};
+
+export type CustomerSegmentDoc = {
+  _id: string;
+  name: string;
+  slug: string;
+  description: string;
+  share: number;
+  keywords?: string[];
+  image?: SanityImage;
+  recommendedProducts?: Array<{
+    _id: string;
+    name: string;
+    slug: string;
+    shortName?: string;
+    tagline?: string;
+    mainImage?: SanityImage;
+  }>;
+};
+
+export type ServiceCityDoc = {
+  _id: string;
+  name: string;
+  slug: string;
+  region?: string;
+  priority: "primary" | "secondary" | "national";
+  industrialZones?: string[];
+  description?: string;
+};
+
+export type CustomPage = {
+  _id: string;
+  title: string;
+  slug: string;
+  excerpt?: string;
+  heroImage?: SanityImage;
+  body?: unknown[]; // Portable Text
+  seo?: { title?: string; description?: string };
+  _updatedAt?: string;
+};
+
+export type NavbarPage = {
+  _id: string;
+  slug: string;
+  title: string;
+  navbarLabel?: string;
+};
+
+export type CompanyLocation = {
+  label: string;
+  type?: "workshop" | "office" | "showroom" | "warehouse";
+  addressLine1: string;
+  city: string;
+  district: string;
+  googleMapsUrl?: string;
+};
+
+export type WorkingHoursRow = {
+  day: string;
+  hours: string;
 };

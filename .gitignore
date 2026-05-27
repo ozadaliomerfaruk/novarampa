@@ -69,3 +69,4 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # AGENTS.md ve CLAUDE.md commit edilecek (proje dokümantasyonu)
+/scripts/_*.html

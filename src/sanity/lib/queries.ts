@@ -4,6 +4,11 @@ export const settingsQuery = groq`*[_type == "settings"][0]{
   heroTitle,
   heroSubtitle,
   heroCtaLabel,
+  "heroVideoUrl": heroVideo.asset->url,
+  logo,
+  "logoUrl": logo.asset->url,
+  companyName,
+  tagline,
   "featuredProducts": featuredProducts[]->{
     _id,
     name,
@@ -14,7 +19,15 @@ export const settingsQuery = groq`*[_type == "settings"][0]{
     capacities,
     mainImage
   },
-  highlights,
+  stats[]{ value, suffix, label, caption },
+  workshopPhotos[]{ asset->, alt, caption },
+  certifications,
+  brandTimeline[]{ year, title, description },
+  contact{ phone, phoneDisplay, email, whatsapp },
+  locations[]{ label, type, addressLine1, city, district, googleMapsUrl },
+  workingHours[]{ day, hours },
+  socials{ instagram, linkedin, youtube, facebook, twitter, tiktok },
+  homeFaqs[]{ question, answer },
   announcement
 }`;
 
@@ -73,10 +86,12 @@ export const blogPostBySlugQuery = groq`*[_type == "blogPost" && slug.current ==
   author,
   readTime,
   tags,
+  howToSteps[]{ name, text },
+  totalTime,
   seo
 }`;
 
-export const blogPostSlugsQuery = groq`*[_type == "blogPost" && defined(slug.current)]{ "slug": slug.current }`;
+export const blogPostSlugsQuery = groq`*[_type == "blogPost" && defined(slug.current)]{ "slug": slug.current, publishedAt }`;
 
 export const allReferencesQuery = groq`*[_type == "referenceCompany"] | order(featured desc, name asc) {
   _id,
@@ -102,4 +117,69 @@ export const sparePartsQuery = groq`*[_type == "sparePart"] | order(orderRank as
   image,
   available,
   "compatibleWith": compatibleWith[]->{ _id, name, slug }
+}`;
+
+// ─── Müşteri Sektörleri ───
+export const allSegmentsQuery = groq`*[_type == "customerSegment"] | order(orderRank asc) {
+  _id,
+  name,
+  "slug": slug.current,
+  description,
+  share,
+  keywords,
+  image,
+  "recommendedProducts": recommendedProducts[]->{ _id, name, "slug": slug.current, shortName, mainImage }
+}`;
+
+export const segmentBySlugQuery = groq`*[_type == "customerSegment" && slug.current == $slug][0] {
+  _id, name, "slug": slug.current, description, share, keywords, image,
+  "recommendedProducts": recommendedProducts[]->{ _id, name, "slug": slug.current, shortName, tagline, mainImage }
+}`;
+
+// ─── Hizmet Bölgeleri (İller) ───
+export const allCitiesQuery = groq`*[_type == "serviceCity"] | order(priority asc, orderRank asc) {
+  _id,
+  name,
+  "slug": slug.current,
+  region,
+  priority,
+  industrialZones,
+  description
+}`;
+
+export const cityBySlugQuery = groq`*[_type == "serviceCity" && slug.current == $slug][0] {
+  _id, name, "slug": slug.current, region, priority, industrialZones, description
+}`;
+
+// ─── Özel Sayfalar (Eren CMS) ───
+// Sadece yayında (published) olanlar site'de görünür.
+export const allPublishedPagesQuery = groq`*[_type == "page" && status == "published"] | order(navbarOrder asc, _createdAt desc) {
+  _id,
+  title,
+  "slug": slug.current,
+  excerpt,
+  heroImage,
+  showInNavbar,
+  navbarLabel,
+  navbarOrder
+}`;
+
+// Navbar'a yerleşecek sayfalar — kompakt liste
+export const navbarPagesQuery = groq`*[_type == "page" && status == "published" && showInNavbar == true] | order(navbarOrder asc) {
+  _id,
+  "slug": slug.current,
+  title,
+  navbarLabel
+}`;
+
+// Tek sayfa — slug ile
+export const pageBySlugQuery = groq`*[_type == "page" && slug.current == $slug && status == "published"][0] {
+  _id,
+  title,
+  "slug": slug.current,
+  excerpt,
+  heroImage,
+  body,
+  seo,
+  _updatedAt
 }`;

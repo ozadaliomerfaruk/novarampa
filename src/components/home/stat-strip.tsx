@@ -11,7 +11,8 @@ type Stat = {
   caption?: string;
 };
 
-const stats: Stat[] = [
+// Default — Sanity'de "Site Ayarları → İstatistikler" boşsa bunlar kullanılır.
+const defaultStats: Stat[] = [
   { value: 23, suffix: "+", label: "Yıllık Miras", caption: "2003'ten beri sahada" },
   { value: 150, suffix: "+", label: "Proje Teslimi", caption: "İmalat + montaj" },
   { value: 20, suffix: "T", label: "Kapasiteye Kadar", caption: "Mobil + Makaslı dahil" },
@@ -21,15 +22,12 @@ const stats: Stat[] = [
 function CountUp({ to, duration = 1500 }: { to: number; duration?: number }) {
   const [n, setN] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-10%" });
+  // amount: 0.1 → element'in %10'u görünür olduğunda tetikle, margin yok
+  const inView = useInView(ref, { once: true, amount: 0.1 });
   const reduce = useReducedMotion();
 
   useEffect(() => {
-    if (!inView) return;
-    if (reduce) {
-      setN(to);
-      return;
-    }
+    if (!inView || reduce) return;
     let raf = 0;
     const start = performance.now();
     const tick = (now: number) => {
@@ -43,10 +41,24 @@ function CountUp({ to, duration = 1500 }: { to: number; duration?: number }) {
     return () => cancelAnimationFrame(raf);
   }, [inView, to, duration, reduce]);
 
-  return <span ref={ref}>{n}</span>;
+  // Fallback: mobile'da IntersectionObserver bir sebepten tetiklenmezse,
+  // 2.5sn sonra hedef değere snap et (kullanıcı "0+" görmesin).
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setN((current) => (current === 0 && to !== 0 ? to : current));
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, [to]);
+
+  // Reduced motion: hedef değeri direkt göster (animasyonsuz)
+  return <span ref={ref}>{reduce ? to : n}</span>;
 }
 
-export function StatStrip() {
+export function StatStrip({ stats }: { stats?: Stat[] | null }) {
+  // Sanity'den gelen stat varsa onu kullan, yoksa default
+  const items: Stat[] =
+    stats && stats.length === 4 ? stats : defaultStats;
+
   return (
     <section
       aria-label="Şirket istatistikleri"
@@ -55,12 +67,12 @@ export function StatStrip() {
       <div className="absolute inset-0 grid-bg opacity-50 pointer-events-none" />
       <div className="container-wide relative">
         <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-border/60">
-          {stats.map((s, i) => (
+          {items.map((s, i) => (
             <motion.div
               key={s.label}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.6, delay: i * 0.08 }}
               className="px-6 py-10 lg:py-16 first:pl-0 last:pr-0 lg:px-10 flex flex-col justify-between gap-4 min-h-[180px] group"
             >

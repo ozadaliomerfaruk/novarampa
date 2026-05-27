@@ -4,6 +4,9 @@ import { productType } from "./product";
 import { blogPostType } from "./blogPost";
 import { referenceType } from "./reference";
 import { sparePartType } from "./sparePart";
+import { customerSegmentType } from "./customerSegment";
+import { serviceCityType } from "./serviceCity";
+import { pageType } from "./page";
 import { serviceRequestType } from "./serviceRequest";
 import { quoteRequestType } from "./quoteRequest";
 import { settingsType } from "./settings";
@@ -15,6 +18,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     blogPostType,
     referenceType,
     sparePartType,
+    customerSegmentType,
+    serviceCityType,
+    pageType,
     serviceRequestType,
     quoteRequestType,
   ],

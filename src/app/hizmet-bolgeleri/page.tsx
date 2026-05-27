@@ -10,6 +10,9 @@ import { CtaSection } from "@/components/home/cta-section";
 import { BreadcrumbJsonLd } from "@/components/seo/structured-data";
 import { serviceCities, serviceCoverageNote } from "@/lib/services";
 import { siteConfig } from "@/lib/site-config";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { allCitiesQuery } from "@/sanity/lib/queries";
+import type { ServiceCityDoc } from "@/sanity/lib/types";
 
 export const metadata: Metadata = {
   title: "Hizmet Bölgeleri — Marmara ve Türkiye Geneli",
@@ -18,9 +21,19 @@ export const metadata: Metadata = {
   alternates: { canonical: `${siteConfig.url}/hizmet-bolgeleri` },
 };
 
-export default function HizmetBolgeleriPage() {
-  const primary = serviceCities.filter((c) => c.priority === "primary");
-  const secondary = serviceCities.filter((c) => c.priority === "secondary");
+export const revalidate = 60;
+
+export default async function HizmetBolgeleriPage() {
+  // Sanity'den çek, boşsa hardcoded fallback
+  const sanityCities = await sanityFetch<ServiceCityDoc[]>(
+    allCitiesQuery,
+    {},
+    { revalidate: 60 }
+  );
+  const cities =
+    sanityCities && sanityCities.length > 0 ? sanityCities : serviceCities;
+  const primary = cities.filter((c) => c.priority === "primary");
+  const secondary = cities.filter((c) => c.priority === "secondary");
 
   return (
     <>

@@ -21,12 +21,17 @@ export function Logo({
   inverted = false,
   /** withSymbol backward-compat — logo zaten sembol+wordmark birlikte. */
   withSymbol: _withSymbol = false,
+  src: srcOverride,
+  alt: altOverride,
 }: {
   className?: string;
   asLink?: boolean;
   size?: "default" | "small" | "large";
   inverted?: boolean;
   withSymbol?: boolean;
+  /** Sanity'den gelen logo URL'i. Boş bırakılırsa default SVG kullanılır. */
+  src?: string | null;
+  alt?: string;
 }) {
   const heights = {
     small: "h-10",
@@ -34,11 +39,15 @@ export function Logo({
     large: "h-20 md:h-24",
   } as const;
 
+  // Sanity'den URL varsa onu kullan, yoksa default SVG.
+  const logoSrc = srcOverride?.trim() || "/logos/logo-novarampa.svg";
+  const logoAlt = altOverride?.trim() || "Nova Rampa";
+
   const content = (
     <span className={cn("inline-flex items-center", className)}>
       <Image
-        src="/logos/logo-novarampa.svg"
-        alt="Nova Rampa"
+        src={logoSrc}
+        alt={logoAlt}
         width={1260}
         height={380}
         priority={size === "large"}

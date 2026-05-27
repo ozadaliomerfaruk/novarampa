@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Menu, Phone, ChevronDown, MapPin, Lightbulb } from "lucide-react";
+import { Menu, Phone, Mail, ChevronDown, MapPin, Lightbulb, Cog } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { Logo } from "@/components/brand/logo";
@@ -23,15 +23,18 @@ import { cn } from "@/lib/utils";
 
 type ActiveMenu = "products" | "solutions" | "regions" | null;
 
+// Yedek Parça artık ayrı bir secondary CTA (sağ üstte), navItems'tan çıkarıldı.
 const navItems = [
   { label: "Hakkımızda", href: "/hakkimizda" },
   { label: "Servis", href: "/servis" },
-  { label: "Yedek Parça", href: "/yedek-parca" },
   { label: "Blog", href: "/blog" },
   { label: "İletişim", href: "/iletisim" },
 ];
 
-const mobileExtras = [{ label: "Referanslar", href: "/referanslar" }];
+const mobileExtras = [
+  { label: "Yedek Parça", href: "/yedek-parca" },
+  { label: "Referanslar", href: "/referanslar" },
+];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -52,12 +55,53 @@ export function Header() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-background/85 backdrop-blur-md border-b border-border"
+          ? "bg-background/90 backdrop-blur-md border-b border-border shadow-sm"
           : "bg-transparent"
       )}
       onMouseLeave={() => setActive(null)}
     >
-      <div className="container-wide flex h-16 md:h-20 items-center justify-between gap-3">
+      {/* ─── ÜST HAIRLINE BAR — telefon + email, opaque on scroll ─── */}
+      <div
+        className={cn(
+          "hidden md:block border-b transition-colors",
+          scrolled
+            ? "border-border bg-[var(--brand-paper)]/60"
+            : "border-transparent"
+        )}
+      >
+        <div className="container-wide flex h-9 items-center justify-between text-xs text-muted-foreground">
+          <div className="flex items-center gap-5">
+            <a
+              href={`tel:${company.contact.phone}`}
+              className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"
+            >
+              <Phone size={12} />
+              <span className="tabular-nums">{company.contact.phoneDisplay}</span>
+            </a>
+            <a
+              href={`mailto:${company.contact.email}`}
+              className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"
+            >
+              <Mail size={12} />
+              <span>{company.contact.email}</span>
+            </a>
+          </div>
+          <div className="flex items-center gap-5">
+            <span className="font-mono uppercase tracking-widest text-[10px]">
+              {company.workingHours[0].hours} · Hafta İçi
+            </span>
+            <Link
+              href="/iletisim"
+              className="hover:text-foreground transition-colors uppercase tracking-wider text-[10px] font-medium"
+            >
+              Bize Ulaşın →
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* ─── ANA NAV ROW ─── */}
+      <div className="container-wide flex h-16 md:h-[68px] items-center justify-between gap-3">
         <Logo size="default" withSymbol />
 
         <nav className="hidden lg:flex items-center gap-0.5">
@@ -88,15 +132,17 @@ export function Header() {
           ))}
         </nav>
 
+        {/* ─── İKİ CTA — RonI DNA: Teklif (turuncu primary) + Yedek Parça (outline) ─── */}
         <div className="flex items-center gap-2">
-          <a
-            href={`tel:${company.contact.phone}`}
-            className="hidden xl:inline-flex items-center gap-2 text-sm text-foreground/80 hover:text-foreground transition-colors px-3 py-2"
-            aria-label="Telefon"
+          <LinkButton
+            href="/yedek-parca"
+            size="default"
+            variant="outline"
+            className="hidden md:inline-flex border-foreground/15 hover:border-[var(--brand-orange)]/40 hover:bg-[var(--brand-orange)]/5 font-semibold"
           >
-            <Phone size={14} />
-            <span>{company.contact.phoneDisplay}</span>
-          </a>
+            <Cog size={14} className="mr-1.5" />
+            Yedek Parça
+          </LinkButton>
           <Magnetic strength={0.2}>
             <LinkButton
               href="/teklif-al"

@@ -1,5 +1,12 @@
-﻿import type { Metadata } from "next";
-import { CheckCircle2, Clock, MessageCircle, Phone } from "lucide-react";
+import type { Metadata } from "next";
+import {
+  Award,
+  Clock,
+  MessageCircle,
+  Phone,
+  ShieldCheck,
+  Wrench,
+} from "lucide-react";
 
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -16,12 +23,33 @@ export const metadata: Metadata = {
   alternates: { canonical: `${siteConfig.url}/teklif-al` },
 };
 
-type SearchParams = Promise<{ urun?: string }>;
+type SearchParams = Promise<{ urun?: string; sektor?: string; sehir?: string }>;
 
-const benefits = [
-  { icon: Clock, text: "Aynı gün dönüş" },
-  { icon: CheckCircle2, text: "Ücretsiz keşif" },
-  { icon: MessageCircle, text: "WhatsApp desteği" },
+const whyUs = [
+  {
+    icon: Clock,
+    title: "Aynı gün dönüş",
+    description:
+      "Mesai saatlerinde gelen taleplere genellikle 1 iş günü içinde özel teklifle dönüş yaparız.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Belgeli üretim, 2 yıl garanti",
+    description:
+      "CE, TSE belgeli üretim. EN 1398 uyumlu. İmalat hatalarına karşı iki yıl tam garanti.",
+  },
+  {
+    icon: Award,
+    title: "Sahanıza özel tasarım",
+    description:
+      "Standart ölçü çıkmıyorsa özel imalat. Sahanızı, yüklerinizi, araç tipinizi dinler, ona göre öneririz.",
+  },
+  {
+    icon: Wrench,
+    title: "Teslim sonrası destek",
+    description:
+      "Montaj, eğitim, yedek parça ve servis — projeyi teslim ettikten sonra bırakmıyoruz.",
+  },
 ];
 
 export default async function TeklifAlPage({
@@ -41,67 +69,92 @@ export default async function TeklifAlPage({
       />
       <Header />
       <main className="flex-1">
+        {/* ─── HERO ─── (RonI DNA: koyu navy banner + tek satır mesaj) */}
+        <section className="surface-dark relative overflow-hidden pt-28 md:pt-32 pb-16 md:pb-20">
+          {/* Atmosfer */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-[var(--brand-orange)] rounded-full opacity-[0.08] blur-[140px] pointer-events-none" />
+          <div
+            className="absolute inset-0 opacity-[0.05] pointer-events-none"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+              backgroundSize: "48px 48px",
+            }}
+          />
+
+          <div className="container-wide relative text-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 text-xs font-mono uppercase tracking-[0.22em] text-white/70 mb-6">
+              <span className="size-1.5 rounded-full bg-[var(--brand-orange)]" />
+              Teklif Talebi
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold tracking-tight leading-[1.1] text-white max-w-3xl mx-auto">
+              Projenize özel çözümü
+              <br />
+              <span className="text-gradient-orange">birlikte tasarlayalım.</span>
+            </h1>
+            <p className="mt-6 text-base sm:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+              Aşağıdaki kısa formu doldurun — uzun evrak veya taahhüt yok.
+              Sahanızı, yükünüzü ve ihtiyacınızı paylaşın, gerisini biz halledelim.
+            </p>
+          </div>
+        </section>
+
         <Breadcrumb items={[{ label: "Teklif Al" }]} />
 
-        <section className="container-wide py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            <div className="lg:col-span-7 order-2 lg:order-1">
-              <div className="rounded-3xl border border-border bg-card p-6 sm:p-10">
-                <h2 className="text-2xl font-heading font-semibold mb-2">
-                  Bilgilerinizi paylaşın, size hızla dönelim.
-                </h2>
-                <p className="text-sm text-muted-foreground mb-8">
-                  * işaretli alanlar zorunludur. Diğerlerini sonra konuşabiliriz.
-                </p>
-                <QuoteForm defaultProduct={urun} />
-              </div>
-            </div>
-
-            <aside className="lg:col-span-5 order-1 lg:order-2">
-              <div className="sticky top-32 space-y-6">
+        {/* ─── İKİ-KOLON: WHY + FORM ─── (RonI DNA) */}
+        <section className="container-wide py-12 md:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+            {/* SOL — Why */}
+            <aside className="lg:col-span-5">
+              <div className="lg:sticky lg:top-32 space-y-8">
                 <div>
                   <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
-                    Teklif Al
+                    Neden Nova Rampa
                   </div>
-                  <h1 className="mt-3 text-4xl sm:text-5xl font-heading font-bold tracking-tight">
-                    Projenize özel
-                    <br />
-                    <span className="text-gradient-orange">çözüm hazırlayalım.</span>
-                  </h1>
+                  <h2 className="mt-3 text-3xl sm:text-4xl font-heading font-bold tracking-tight leading-[1.15]">
+                    Neden bizden teklif almalısınız?
+                  </h2>
+                  <p className="mt-4 text-muted-foreground leading-relaxed">
+                    20 yılı aşkın saha tecrübesi, kurumsal müşteri portföyü ve
+                    sahip olduğumuz sertifikalar farkımızı oluşturur.
+                  </p>
                 </div>
 
-                <ul className="space-y-3">
-                  {benefits.map((b) => (
-                    <li
-                      key={b.text}
-                      className="flex items-center gap-3 text-foreground/90"
-                    >
-                      <div className="inline-flex items-center justify-center size-9 rounded-lg bg-[var(--brand-orange)]/10 text-[var(--brand-orange)]">
-                        <b.icon size={16} />
+                <ul className="space-y-5">
+                  {whyUs.map((w) => (
+                    <li key={w.title} className="flex items-start gap-4">
+                      <div className="inline-flex items-center justify-center size-11 rounded-xl bg-[var(--brand-orange)]/10 text-[var(--brand-orange)] shrink-0">
+                        <w.icon size={18} />
                       </div>
-                      <span>{b.text}</span>
+                      <div>
+                        <div className="text-base font-heading font-semibold">
+                          {w.title}
+                        </div>
+                        <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+                          {w.description}
+                        </p>
+                      </div>
                     </li>
                   ))}
                 </ul>
 
                 <div className="p-6 rounded-2xl border border-border bg-card">
                   <div className="text-xs font-medium text-muted-foreground uppercase tracking-widest">
-                    Hızlı İletişim
+                    Telefonla daha hızlı
                   </div>
-                  <div className="mt-4 space-y-3">
-                    <a
-                      href={`tel:${company.contact.phone}`}
-                      className="flex items-center gap-3 text-sm hover:text-[var(--brand-orange)] transition-colors"
-                    >
-                      <Phone size={16} />
-                      {company.contact.phoneDisplay}
-                    </a>
-                  </div>
+                  <a
+                    href={`tel:${company.contact.phone}`}
+                    className="mt-3 inline-flex items-center gap-2 text-2xl font-heading font-bold hover:text-[var(--brand-orange)] transition-colors"
+                  >
+                    <Phone size={20} />
+                    {company.contact.phoneDisplay}
+                  </a>
                   <ExternalLinkButton
                     href={company.contact.whatsappLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-5 w-full bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold h-12"
+                    variant="outline"
+                    className="mt-5 w-full h-11"
                   >
                     <MessageCircle className="mr-1" />
                     WhatsApp&apos;tan Yaz
@@ -109,6 +162,35 @@ export default async function TeklifAlPage({
                 </div>
               </div>
             </aside>
+
+            {/* SAĞ — Form */}
+            <div className="lg:col-span-7">
+              <div className="rounded-3xl border border-border bg-card p-6 sm:p-10 shadow-sm">
+                <div className="mb-8">
+                  <div className="text-xs font-mono uppercase tracking-[0.25em] text-[var(--brand-orange)]">
+                    Teklif Formu · ~ 2 dakika
+                  </div>
+                  <h2 className="mt-2 text-2xl sm:text-3xl font-heading font-bold tracking-tight">
+                    Bilgilerinizi paylaşın
+                  </h2>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    * işaretli alanlar zorunludur. Diğerlerini sonra
+                    konuşabiliriz.
+                  </p>
+                </div>
+
+                <QuoteForm defaultProduct={urun} />
+              </div>
+
+              <p className="mt-6 text-xs text-muted-foreground text-center leading-relaxed">
+                Form gönderildiğinde bilgileriniz yalnızca teklif amacıyla
+                kullanılır. Detaylar için{" "}
+                <a href="/kvkk" className="underline hover:text-foreground">
+                  KVKK
+                </a>{" "}
+                aydınlatma metnimize bakın.
+              </p>
+            </div>
           </div>
         </section>
       </main>

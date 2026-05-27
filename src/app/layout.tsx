@@ -4,7 +4,6 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
 import { ScrollProgress } from "@/components/layout/scroll-progress";
-import { CustomCursor } from "@/components/layout/custom-cursor";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
@@ -118,7 +117,6 @@ export default function RootLayout({
         {/* Atmosfer: animated film grain, tüm sitede sabit */}
         <div className="grain-overlay" aria-hidden="true" />
         <ScrollProgress />
-        <CustomCursor />
         {children}
         <Toaster richColors position="top-center" />
         <Analytics />

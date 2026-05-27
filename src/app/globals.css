@@ -64,45 +64,45 @@
   --brand-cream:      oklch(0.985 0.004 75);    /* #FAF8F4 - sıcak kağıt */
   --brand-paper:      oklch(0.97  0.004 75);    /* #F4F1EB - hafif krem */
   /* Backward-compat: eski karanlık-tema kullanımları açık tema karşılığına eşle */
-  --brand-charcoal:   oklch(0.95  0.005 240);   /* slate-100 muted surface */
-  --brand-black:      oklch(0.22  0.025 245);   /* eşittir brand-ink */
-  --brand-ink:        oklch(0.22  0.025 245);   /* #1A2433 - deep ink */
-  --brand-navy:       oklch(0.33  0.06  240);   /* #2C4663 - kurumsal navy */
-  --brand-navy-dark:  oklch(0.20  0.05  240);   /* #14233A - footer için */
-  --brand-steel:      oklch(0.55  0.10  240);   /* #4F7299 - secondary accent */
+  --brand-charcoal:   oklch(0.95  0.006 255);   /* slate-100 muted surface */
+  --brand-black:      oklch(0.205 0.034 255);   /* eşittir brand-ink */
+  --brand-ink:        oklch(0.205 0.034 255);   /* #142235 - Eren'in resmi logo navy'si */
+  --brand-navy:       oklch(0.205 0.034 255);   /* #142235 - aynı, tek kurumsal navy */
+  --brand-navy-dark:  oklch(0.205 0.034 255);   /* #142235 - footer için */
+  --brand-steel:      oklch(0.45  0.05  255);   /* #44587A - light navy variant */
   --brand-orange:     oklch(0.72  0.205 47);    /* #F97316 - Eren'in turuncusu (KORUNDU) */
   --brand-orange-hover: oklch(0.66 0.21  42);   /* #E55C12 - hover, daha koyu */
   --brand-orange-soft:  oklch(0.72 0.205 47 / 0.12);
 
-  /* Sistem tokenleri */
+  /* Sistem tokenleri — foreground hep #142235 */
   --background:      oklch(0.985 0.004 75);     /* cream */
-  --foreground:      oklch(0.22 0.025 245);     /* ink */
+  --foreground:      oklch(0.205 0.034 255);    /* #142235 - resmi navy */
   --card:            oklch(1 0 0);              /* pure white */
-  --card-foreground: oklch(0.22 0.025 245);
+  --card-foreground: oklch(0.205 0.034 255);
   --popover:         oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.025 245);
+  --popover-foreground: oklch(0.205 0.034 255);
   --primary:         oklch(0.72 0.205 47);      /* orange */
   --primary-foreground: oklch(1 0 0);
-  --secondary:       oklch(0.94 0.008 240);     /* slate-50 */
-  --secondary-foreground: oklch(0.22 0.025 245);
-  --muted:           oklch(0.94 0.008 240);
-  --muted-foreground: oklch(0.48 0.02 240);     /* slate-500 */
+  --secondary:       oklch(0.94 0.009 255);     /* slate-50 cool */
+  --secondary-foreground: oklch(0.205 0.034 255);
+  --muted:           oklch(0.94 0.009 255);
+  --muted-foreground: oklch(0.45 0.03 255);     /* slate-500 */
   --accent:          oklch(0.72 0.205 47 / 0.10);
-  --accent-foreground: oklch(0.22 0.025 245);
+  --accent-foreground: oklch(0.205 0.034 255);
   --destructive:     oklch(0.6  0.22  27);
-  --border:          oklch(0.22 0.025 245 / 0.10);
-  --input:           oklch(0.22 0.025 245 / 0.14);
+  --border:          oklch(0.205 0.034 255 / 0.10);
+  --input:           oklch(0.205 0.034 255 / 0.14);
   --ring:            oklch(0.72 0.205 47 / 0.45);
   --radius:          0.625rem;
 
-  /* Sidebar (Studio dışında pek kullanılmıyor) */
-  --sidebar:                  oklch(0.97 0.004 75);
-  --sidebar-foreground:       oklch(0.22 0.025 245);
+  /* Sidebar */
+  --sidebar:                  oklch(0.97 0.005 255);
+  --sidebar-foreground:       oklch(0.205 0.034 255);
   --sidebar-primary:          oklch(0.72 0.205 47);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent:           oklch(0.94 0.008 240);
-  --sidebar-accent-foreground: oklch(0.22 0.025 245);
-  --sidebar-border:           oklch(0.22 0.025 245 / 0.10);
+  --sidebar-accent:           oklch(0.94 0.009 255);
+  --sidebar-accent-foreground: oklch(0.205 0.034 255);
+  --sidebar-border:           oklch(0.205 0.034 255 / 0.10);
   --sidebar-ring:             oklch(0.72 0.205 47 / 0.45);
 }
 

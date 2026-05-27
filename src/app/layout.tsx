@@ -99,6 +99,10 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
+// Yeni resmi marka navy'si (#142235) — diğer yerlerde brand-ink/--foreground
+// olarak otomatik gelir; bu sabit referans amaçlıdır.
+export const BRAND_NAVY = "#142235";
+
 export default function RootLayout({
   children,
 }: Readonly<{

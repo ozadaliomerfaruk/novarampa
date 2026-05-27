@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
@@ -16,6 +17,26 @@ export const metadata: Metadata = {
   description:
     "Lojistik, fabrika, soğuk hava deposu, müteahhit, perakende ve küçük işletmeler için sektöre özel rampa çözümleri.",
   alternates: { canonical: `${siteConfig.url}/cozumler` },
+};
+
+/**
+ * Roni.com /industries DNA: her segment için thematic foto + gradient overlay.
+ * Unsplash industrial stockları — Eren kendi foto/case studies ekleyince
+ * Sanity'den override edilir (gelecek iyileştirme).
+ */
+const segmentMedia: Record<string, string> = {
+  "lojistik-depo":
+    "https://images.unsplash.com/photo-1553413077-190dd305871c?w=1200&q=85&auto=format&fit=crop",
+  "fabrika-sanayi":
+    "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=1200&q=85&auto=format&fit=crop",
+  "muteahhit-proje":
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=85&auto=format&fit=crop",
+  "soguk-hava-gida":
+    "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1200&q=85&auto=format&fit=crop",
+  "supermarket-perakende":
+    "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=1200&q=85&auto=format&fit=crop",
+  "kucuk-isletme":
+    "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1200&q=85&auto=format&fit=crop",
 };
 
 export default function CozumlerPage() {
@@ -39,41 +60,62 @@ export default function CozumlerPage() {
           />
         </section>
 
+        {/* Fotolu industries grid — RonI DNA */}
         <section className="container-wide pb-20">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {customerSegments.map((s) => (
               <Link
                 key={s.slug}
                 href={`/cozumler/${s.slug}`}
-                className="group block p-8 rounded-2xl border border-border bg-card hover:bg-card/80 hover:border-[var(--brand-orange)]/40 transition-all relative overflow-hidden"
+                className="group relative block aspect-[5/6] rounded-2xl overflow-hidden border border-border bg-card hover:border-[var(--brand-orange)]/40 transition-colors"
               >
-                <div className="absolute -top-16 -right-16 size-56 rounded-full bg-[var(--brand-orange)]/0 group-hover:bg-[var(--brand-orange)]/10 blur-3xl transition-all duration-500" />
-                <div className="relative">
-                  <div className="flex items-center justify-between">
-                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-                      Segment Payı
-                    </div>
-                    <div className="text-xs font-mono text-[var(--brand-orange)]">
-                      ~%{s.share}
-                    </div>
+                {/* Foto */}
+                <Image
+                  src={segmentMedia[s.slug] || segmentMedia["lojistik-depo"]}
+                  alt={s.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-1000 group-hover:scale-[1.05]"
+                />
+
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--brand-navy-dark)] via-[var(--brand-navy-dark)]/40 to-transparent" />
+
+                {/* Üst meta */}
+                <div className="absolute inset-x-0 top-0 p-6 flex items-start justify-between">
+                  <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-white/10 backdrop-blur border border-white/20 text-[10px] font-mono uppercase tracking-widest text-white">
+                    <span className="size-1.5 rounded-full bg-[var(--brand-orange)]" />
+                    ~%{s.share}
                   </div>
-                  <h3 className="mt-4 text-2xl font-heading font-semibold tracking-tight group-hover:text-[var(--brand-orange)] transition-colors">
-                    {s.name}
-                  </h3>
-                  <p className="mt-3 text-sm text-muted-foreground line-clamp-3">
-                    {s.description}
-                  </p>
-                  <div className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-foreground/80 group-hover:text-[var(--brand-orange)] transition-colors">
-                    Çözümü incele
+                  <div className="inline-flex items-center justify-center size-9 rounded-full bg-white/10 backdrop-blur border border-white/20 text-white group-hover:bg-[var(--brand-orange)] group-hover:border-[var(--brand-orange)] transition-all">
                     <ArrowUpRight
                       size={14}
                       className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     />
                   </div>
                 </div>
+
+                {/* Alt içerik */}
+                <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                  <h3 className="text-2xl font-heading font-bold leading-tight tracking-tight">
+                    {s.name}
+                  </h3>
+                  <p className="mt-2 text-sm text-white/80 line-clamp-2 leading-relaxed">
+                    {s.description}
+                  </p>
+                  <div className="mt-4 inline-flex items-center gap-1 text-xs font-mono uppercase tracking-widest text-[var(--brand-orange)] group-hover:gap-2 transition-all">
+                    Çözümü incele
+                    <ArrowUpRight size={12} />
+                  </div>
+                </div>
               </Link>
             ))}
           </div>
+
+          <p className="mt-8 text-xs text-muted-foreground italic max-w-2xl">
+            ℹ️ Yukarıdaki görseller temsili stok görsellerdir. Saha
+            fotoğraflarımız yakın zamanda eklenecektir.
+          </p>
         </section>
 
         <CtaSection />

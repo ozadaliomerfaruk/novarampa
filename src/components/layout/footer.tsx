@@ -13,7 +13,7 @@ import {
 import { Logo } from "@/components/brand/logo";
 import { company } from "@/lib/site-config";
 import { productCategories } from "@/lib/products";
-import { serviceCities } from "@/lib/services";
+import { customerSegments, serviceCities } from "@/lib/services";
 
 const footerCtas = [
   {
@@ -99,10 +99,10 @@ export function Footer() {
         </div>
       </div>
 
-      {/* ─── 4 Column Info ─── */}
+      {/* ─── Site Map: 5 sütun (marka + ürünler + çözümler + bölgeler + iletişim) ─── */}
       <div className="border-t border-white/10">
-        <div className="container-wide py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          <div>
+        <div className="container-wide py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-10">
+          <div className="lg:col-span-3">
             <Logo size="default" asLink={false} withSymbol inverted />
             <p className="mt-4 text-sm text-white/65 leading-relaxed max-w-xs">
               {company.shortPitch}
@@ -119,9 +119,9 @@ export function Footer() {
             </div>
           </div>
 
-          <div>
+          <div className="lg:col-span-2">
             <h4 className="text-sm font-semibold mb-4 text-white">
-              Ürünlerimiz
+              Ürünler
             </h4>
             <ul className="space-y-2.5 text-sm">
               {productCategories.map((p) => (
@@ -137,9 +137,35 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="lg:col-span-2">
+            <h4 className="text-sm font-semibold mb-4 text-white">Çözümler</h4>
+            <ul className="space-y-2.5 text-sm">
+              {customerSegments.map((s) => (
+                <li key={s.slug}>
+                  <Link
+                    href={`/cozumler/${s.slug}`}
+                    className="text-white/60 hover:text-[var(--brand-orange)] transition-colors"
+                  >
+                    {s.name.split(" / ")[0].split(" ")[0]}{" "}
+                    {s.name.includes(" ") &&
+                      s.name.split(" ").slice(1, 2).join(" ")}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link
+                  href="/cozumler"
+                  className="text-[var(--brand-orange)] hover:text-[var(--brand-orange-hover)] transition-colors font-medium"
+                >
+                  Tüm çözümler →
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="lg:col-span-2">
             <h4 className="text-sm font-semibold mb-4 text-white">
-              Hizmet Bölgeleri
+              Bölgeler
             </h4>
             <ul className="space-y-2.5 text-sm">
               {primaryCities.map((c) => (
@@ -148,7 +174,7 @@ export function Footer() {
                     href={`/hizmet-bolgeleri/${c.slug}`}
                     className="text-white/60 hover:text-[var(--brand-orange)] transition-colors"
                   >
-                    {c.name} Yükleme Rampası
+                    {c.name}
                   </Link>
                 </li>
               ))}
@@ -157,13 +183,13 @@ export function Footer() {
                   href="/hizmet-bolgeleri"
                   className="text-[var(--brand-orange)] hover:text-[var(--brand-orange-hover)] transition-colors font-medium"
                 >
-                  Türkiye geneline sevkiyat →
+                  Türkiye geneli →
                 </Link>
               </li>
             </ul>
           </div>
 
-          <div>
+          <div className="lg:col-span-3">
             <h4 className="text-sm font-semibold mb-4 text-white">İletişim</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2 text-white/60">

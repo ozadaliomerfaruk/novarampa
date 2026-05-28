@@ -10,7 +10,7 @@ import type { Product } from "@/sanity/lib/types";
  *
  * Sanity'den ürün adı + tagline + kapasiteleri çeker; yoksa hardcoded fallback.
  */
-export const runtime = "edge";
+// Node runtime — Sanity'den veri çeker; edge env-inlining sorununu önler.
 export const alt = "Nova Rampa Ürünü";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

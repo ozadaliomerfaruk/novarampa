@@ -7,7 +7,7 @@ import type { CustomPage } from "@/sanity/lib/types";
  * Per-custom-page OG image — Eren'in Sanity'de oluşturduğu özel sayfalar için.
  * URL: /<slug>/opengraph-image
  */
-export const runtime = "edge";
+// Node runtime — Sanity'den veri çeker; edge env-inlining sorununu önler.
 export const alt = "Nova Rampa";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

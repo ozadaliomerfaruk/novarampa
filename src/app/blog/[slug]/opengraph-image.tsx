@@ -7,7 +7,7 @@ import type { BlogPost } from "@/sanity/lib/types";
  * Per-blog OG image — her blog yazısının kendine özel sosyal medya görseli.
  * URL: /blog/<slug>/opengraph-image
  */
-export const runtime = "edge";
+// Node runtime — Sanity'den veri çeker; edge env-inlining sorununu önler.
 export const alt = "Nova Rampa Blog Yazısı";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

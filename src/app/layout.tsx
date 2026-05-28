@@ -2,10 +2,16 @@ import type { Metadata, Viewport } from "next";
 import { Open_Sans, Work_Sans, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Toaster } from "@/components/ui/sonner";
 import { ScrollProgress } from "@/components/layout/scroll-progress";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
+
+// Google Analytics 4 + Search Console doğrulama — env'den okunur.
+// Boşsa hiç yüklenmez (dev'de izleme yok). Eren ID alınca Vercel'e env girer.
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 // Body — Open Sans (RonI/Lift-O-Flex DNA'sı; humanist, okunaklı)
 const fontSans = Open_Sans({
@@ -80,6 +86,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteConfig.url,
   },
+  // Google Search Console doğrulama — env'de NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+  // varsa <meta name="google-site-verification"> otomatik basılır.
+  ...(GSC_VERIFICATION
+    ? { verification: { google: GSC_VERIFICATION } }
+    : {}),
 };
 
 export const viewport: Viewport = {
@@ -113,6 +124,8 @@ export default function RootLayout({
         <Analytics />
         <SpeedInsights />
       </body>
+      {/* Google Analytics 4 — sadece NEXT_PUBLIC_GA_ID tanımlıysa yüklenir */}
+      {GA_ID ? <GoogleAnalytics gaId={GA_ID} /> : null}
     </html>
   );
 }

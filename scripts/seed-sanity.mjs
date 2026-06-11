@@ -261,17 +261,9 @@ const spareParts = [
 const settings = {
   _id: "siteSettings",
   _type: "settings",
-  heroTitle: "Yükleme rampası imalatçısı.",
-  heroSubtitle:
-    "Hidrolik yükleme rampası, teleskopik, makaslı platform — fabrika ve depo girişleri için anahtar teslim imalat, montaj ve servis.",
+  heroTitle: "NOVARAMPA",
+  heroSubtitle: "Geçmişin Gücüyle, Yükünüzü Hafifletiyoruz...",
   heroCtaLabel: "Hemen Teklif Al",
-  stats: [
-    { _key: "s1", value: 23, suffix: "+", label: "Yıllık Miras", caption: "2003'ten beri sahada" },
-    { _key: "s2", value: 150, suffix: "+", label: "Proje Teslimi", caption: "İmalat + montaj" },
-    { _key: "s3", value: 20, suffix: "T", label: "Kapasiteye Kadar", caption: "Mobil + Makaslı dahil" },
-    { _key: "s4", value: 11, suffix: " İL", label: "Marmara + Türkiye", caption: "Genelinde sevkiyat" },
-  ],
-  certifications: ["CE & TSE Belgeli", "EN 1398 Uyumlu", "2 Yıl Garanti"],
   brandTimeline: [
     {
       _key: "m1",
@@ -496,7 +488,7 @@ async function seed() {
   📦 ${productCount} ürün
   ⭐ ${refCount} referans (${referenceCompanies.filter((r) => r.featured).length} öne çıkan)
   🔧 ${partCount} yedek parça
-  ⚙️ 1 site ayarları belgesi (stats + sertifikalar + timeline + hero defaults)
+  ⚙️ 1 site ayarları belgesi (timeline + hero defaults)
 
 Studio'yu açın: http://localhost:3000/studio
 `);

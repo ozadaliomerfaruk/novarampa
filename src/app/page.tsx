@@ -1,8 +1,6 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/home/hero";
-import { StatStrip } from "@/components/home/stat-strip";
-import { LoadTypes } from "@/components/home/load-types";
 import { ProductGrid } from "@/components/home/product-grid";
 import { WorkshopSection } from "@/components/home/workshop-section";
 import { BrandTimeline } from "@/components/home/brand-timeline";
@@ -71,10 +69,7 @@ export default async function HomePage() {
           subtitle={settings?.heroSubtitle}
           ctaLabel={settings?.heroCtaLabel}
           videoUrl={settings?.heroVideoUrl}
-          certifications={settings?.certifications}
         />
-        <StatStrip stats={settings?.stats} />
-        <LoadTypes />
         <ProductGrid sanityProducts={products} />
         <SectionDivider variant="measure" label="01 — ATÖLYE / SAHA" />
         <WorkshopSection photos={settings?.workshopPhotos} />

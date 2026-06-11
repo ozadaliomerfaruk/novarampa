@@ -78,11 +78,9 @@ const portableComponents: PortableTextComponents = {
     }) => {
       const tone = value.tone ?? "info";
       const styles: Record<string, string> = {
-        info: "border-blue-500/20 bg-blue-500/5 text-blue-900 dark:text-blue-200",
-        warning:
-          "border-yellow-500/20 bg-yellow-500/5 text-yellow-900 dark:text-yellow-200",
-        success:
-          "border-green-500/20 bg-green-500/5 text-green-900 dark:text-green-200",
+        info: "border-blue-500/20 bg-blue-500/5 text-blue-200",
+        warning: "border-yellow-500/20 bg-yellow-500/5 text-yellow-200",
+        success: "border-green-500/20 bg-green-500/5 text-green-200",
       };
       return (
         <div className={`my-6 p-5 rounded-xl border ${styles[tone]}`}>

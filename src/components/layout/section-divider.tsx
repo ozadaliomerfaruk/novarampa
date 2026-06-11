@@ -22,13 +22,13 @@ export function SectionDivider({
         <div className="container-wide flex items-center gap-4">
           {/* sol tick + line */}
           <div className="flex items-center gap-2 shrink-0">
-            <span className="h-3 w-px bg-[var(--brand-ink)]/30" />
+            <span className="h-3 w-px bg-white/30" />
             <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-muted-foreground">
               {label ?? "—"}
             </span>
           </div>
-          <span className="flex-1 h-px bg-gradient-to-r from-[var(--brand-ink)]/15 via-[var(--brand-orange)]/40 to-[var(--brand-ink)]/15" />
-          <span className="h-3 w-px bg-[var(--brand-ink)]/30 shrink-0" />
+          <span className="flex-1 h-px bg-gradient-to-r from-white/15 via-[var(--brand-orange)]/40 to-white/15" />
+          <span className="h-3 w-px bg-white/30 shrink-0" />
         </div>
       </div>
     );
@@ -60,7 +60,7 @@ export function SectionDivider({
           y1="58"
           x2="1440"
           y2="2"
-          stroke="rgba(20, 36, 51, 0.12)"
+          stroke="rgba(255, 255, 255, 0.12)"
           strokeWidth="1"
         />
         <line

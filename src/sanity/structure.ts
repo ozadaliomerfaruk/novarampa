@@ -8,8 +8,6 @@ import {
   CommentIcon,
   HomeIcon,
   HelpCircleIcon,
-  UsersIcon,
-  PinIcon,
   DocumentIcon,
   EyeOpenIcon,
   EyeClosedIcon,
@@ -21,7 +19,7 @@ import { HelpComponent } from "./help-component";
  * Sanity Studio sol menüsü — Eren'in günlük kullanacağı içerik panelinin yapısı.
  *
  * Grup mantığı:
- *  1) 🏠 Anasayfa İçeriği — site genelinde değişen şeyler (hero, stats, vb)
+ *  1) 🏠 Anasayfa İçeriği — site genelinde değişen şeyler (hero, atölye fotoları, vb)
  *  2) 📦 Katalog — Ürünler, Yedek Parça, Referanslar
  *  3) ✍️ Yazılar — Blog
  *  4) 📨 Gelen Talepler — Form gönderimleri (okunma takibi)
@@ -76,29 +74,6 @@ export const structure: StructureResolver = (S) =>
         .icon(StarIcon)
         .child(
           S.documentTypeList("referenceCompany").title("Referanslar / Projeler")
-        ),
-
-      S.divider(),
-
-      // ─── 2b) Hedef Kitle Taksonomi ───
-      S.listItem()
-        .title("🎯 Müşteri Sektörleri")
-        .icon(UsersIcon)
-        .child(
-          S.documentTypeList("customerSegment")
-            .title("Müşteri Sektörleri")
-            .defaultOrdering([{ field: "orderRank", direction: "asc" }])
-        ),
-      S.listItem()
-        .title("📍 Hizmet Bölgeleri (İller)")
-        .icon(PinIcon)
-        .child(
-          S.documentTypeList("serviceCity")
-            .title("Hizmet Bölgeleri")
-            .defaultOrdering([
-              { field: "priority", direction: "asc" },
-              { field: "orderRank", direction: "asc" },
-            ])
         ),
 
       S.divider(),

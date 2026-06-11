@@ -24,13 +24,6 @@ export type PortableTextBlock = {
 };
 
 // ─── Settings ───────────────────────────────────────────────────────
-export type StatItem = {
-  value: number;
-  suffix?: string;
-  label: string;
-  caption?: string;
-};
-
 export type WorkshopPhoto = {
   asset?: { url?: string; _ref?: string };
   alt?: string;
@@ -68,9 +61,7 @@ export type SiteSettings = {
   logoUrl?: string;
   companyName?: string;
   tagline?: string;
-  stats?: StatItem[];
   workshopPhotos?: WorkshopPhoto[];
-  certifications?: string[];
   brandTimeline?: TimelineMilestone[];
   featuredProducts?: ProductSummary[];
   contact?: ContactInfo;
@@ -162,34 +153,6 @@ export type SparePart = {
   image?: SanityImage;
   available?: boolean;
   compatibleWith?: { _id: string; name: string; slug: SanitySlug }[];
-};
-
-export type CustomerSegmentDoc = {
-  _id: string;
-  name: string;
-  slug: string;
-  description: string;
-  share: number;
-  keywords?: string[];
-  image?: SanityImage;
-  recommendedProducts?: Array<{
-    _id: string;
-    name: string;
-    slug: string;
-    shortName?: string;
-    tagline?: string;
-    mainImage?: SanityImage;
-  }>;
-};
-
-export type ServiceCityDoc = {
-  _id: string;
-  name: string;
-  slug: string;
-  region?: string;
-  priority: "primary" | "secondary" | "national";
-  industrialZones?: string[];
-  description?: string;
 };
 
 export type CustomPage = {

@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site-config";
 import { productCategories } from "@/lib/products";
-import { serviceCities, customerSegments } from "@/lib/services";
 import { comparisons } from "@/lib/comparisons";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
@@ -14,7 +13,7 @@ import {
  *
  * İçerik:
  *  - Statik sayfalar (anasayfa, hakkımızda, vb)
- *  - Hardcoded ürünler + sektörler + iller (eski liste)
+ *  - Hardcoded ürün detayları + karşılaştırma sayfaları
  *  - Sanity'den blog yazıları (revalidate ile dinamik)
  *  - Sanity'den özel sayfalar (Eren'in oluşturdukları, status: published)
  */
@@ -27,8 +26,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: base, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
     { url: `${base}/hakkimizda`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/urunler`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${base}/cozumler`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${base}/hizmet-bolgeleri`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/yedek-parca`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/servis`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/referanslar`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
@@ -47,22 +44,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: now,
     changeFrequency: "monthly",
     priority: 0.8,
-  }));
-
-  // Çözüm detayları
-  const solutionPages: MetadataRoute.Sitemap = customerSegments.map((s) => ({
-    url: `${base}/cozumler/${s.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
-  // Şehir detayları
-  const cityPages: MetadataRoute.Sitemap = serviceCities.map((c) => ({
-    url: `${base}/hizmet-bolgeleri/${c.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: c.priority === "primary" ? 0.8 : 0.6,
   }));
 
   // ─── Sanity'den dinamik içerik ───
@@ -112,8 +93,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...staticPages,
     ...productPages,
-    ...solutionPages,
-    ...cityPages,
     ...blogPages,
     ...customPages,
     ...comparisonPages,

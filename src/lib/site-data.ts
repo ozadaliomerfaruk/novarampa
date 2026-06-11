@@ -6,27 +6,16 @@
  * site-config.ts'deki sabit değerler fallback olarak kullanılır.
  */
 import { sanityFetch } from "@/sanity/lib/fetch";
-import {
-  settingsQuery,
-  allSegmentsQuery,
-  allCitiesQuery,
-  navbarPagesQuery,
-} from "@/sanity/lib/queries";
+import { settingsQuery, navbarPagesQuery } from "@/sanity/lib/queries";
 import type {
   CompanyLocation,
   ContactInfo,
-  CustomerSegmentDoc,
-  ServiceCityDoc,
   SiteSettings,
   SocialLinks,
   WorkingHoursRow,
   NavbarPage,
 } from "@/sanity/lib/types";
 import { company } from "./site-config";
-import {
-  customerSegments as hardcodedSegments,
-  serviceCities as hardcodedCities,
-} from "./services";
 
 export type MergedContact = {
   phone: string;
@@ -36,27 +25,10 @@ export type MergedContact = {
   whatsappLink: string;
 };
 
-// Header/footer dropdown'ları için normalize tip — Sanity ve hardcoded ortak.
-export type NavSegment = {
-  slug: string;
-  name: string;
-  description: string;
-  share: number;
-};
-
-export type NavCity = {
-  slug: string;
-  name: string;
-  priority: "primary" | "secondary" | "national";
-  industrialZones?: string[];
-};
-
 export type SiteData = {
   contact: MergedContact;
   socials: SocialLinks;
   settings: SiteSettings | null;
-  segments: NavSegment[];
-  cities: NavCity[];
   navbarPages: NavbarPage[];
   locations: CompanyLocation[];
   workingHours: WorkingHoursRow[];
@@ -99,23 +71,6 @@ function mergeSocials(input?: SocialLinks | null): SocialLinks {
   };
 }
 
-function mergeSegments(input?: CustomerSegmentDoc[] | null): NavSegment[] {
-  if (input && input.length > 0) {
-    return input.map((s) => ({
-      slug: s.slug,
-      name: s.name,
-      description: s.description,
-      share: s.share,
-    }));
-  }
-  return hardcodedSegments.map((s) => ({
-    slug: s.slug,
-    name: s.name,
-    description: s.description,
-    share: s.share,
-  }));
-}
-
 function mergeLocations(input?: CompanyLocation[] | null): CompanyLocation[] {
   if (input && input.length > 0) return input;
   // Hardcoded fallback'i Sanity formatına çevir
@@ -133,32 +88,13 @@ function mergeHours(input?: WorkingHoursRow[] | null): WorkingHoursRow[] {
   return company.workingHours.map((h) => ({ day: h.day, hours: h.hours }));
 }
 
-function mergeCities(input?: ServiceCityDoc[] | null): NavCity[] {
-  if (input && input.length > 0) {
-    return input.map((c) => ({
-      slug: c.slug,
-      name: c.name,
-      priority: c.priority,
-      industrialZones: c.industrialZones,
-    }));
-  }
-  return hardcodedCities.map((c) => ({
-    slug: c.slug,
-    name: c.name,
-    priority: c.priority,
-    industrialZones: c.industrialZones,
-  }));
-}
-
 /**
  * Server component'lerden çağrılır. Tüm site genelinde paylaşılan veri.
- * Sanity'den paralel çekim yapar (3 query birlikte).
+ * Sanity'den paralel çekim yapar (2 query birlikte).
  */
 export async function getSiteData(): Promise<SiteData> {
-  const [settings, segments, cities, navbarPages] = await Promise.all([
+  const [settings, navbarPages] = await Promise.all([
     sanityFetch<SiteSettings>(settingsQuery, {}, { revalidate: 60 }),
-    sanityFetch<CustomerSegmentDoc[]>(allSegmentsQuery, {}, { revalidate: 60 }),
-    sanityFetch<ServiceCityDoc[]>(allCitiesQuery, {}, { revalidate: 60 }),
     sanityFetch<NavbarPage[]>(navbarPagesQuery, {}, { revalidate: 60 }),
   ]);
 
@@ -166,8 +102,6 @@ export async function getSiteData(): Promise<SiteData> {
     contact: mergeContact(settings?.contact),
     socials: mergeSocials(settings?.socials),
     settings: settings ?? null,
-    segments: mergeSegments(segments),
-    cities: mergeCities(cities),
     navbarPages: navbarPages ?? [],
     locations: mergeLocations(settings?.locations),
     workingHours: mergeHours(settings?.workingHours),

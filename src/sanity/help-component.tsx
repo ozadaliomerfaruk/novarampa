@@ -70,7 +70,7 @@ export function HelpComponent() {
         <Step
           n="•"
           title="🏠 Anasayfa İçeriği → Site Ayarları"
-          detail="Hero başlığı, alt başlık, buton yazısı. İstatistikler (proje sayısı arttıkça güncelle). Atölye fotoları. Sertifika rozetleri."
+          detail="Hero başlığı, alt başlık (slogan), buton yazısı. Atölye fotoları. İletişim bilgileri, çalışma saatleri ve SSS soruları."
         />
         <Step
           n="•"
@@ -111,7 +111,7 @@ export function HelpComponent() {
       <Section title="Sol menü neye yarıyor?">
         <MenuRow
           label="🏠 Anasayfa İçeriği"
-          detail="Hero başlığı, istatistikler, atölye fotoları, sertifikalar — site genelinde değişen tek belge"
+          detail="Hero başlığı, atölye fotoları, iletişim ve SSS — site genelinde değişen tek belge"
         />
         <MenuRow
           label="📦 Ürünler"

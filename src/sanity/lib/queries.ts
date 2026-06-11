@@ -19,9 +19,7 @@ export const settingsQuery = groq`*[_type == "settings"][0]{
     capacities,
     mainImage
   },
-  stats[]{ value, suffix, label, caption },
   workshopPhotos[]{ asset->, alt, caption },
-  certifications,
   brandTimeline[]{ year, title, description },
   contact{ phone, phoneDisplay, email, whatsapp },
   locations[]{ label, type, addressLine1, city, district, googleMapsUrl },
@@ -117,38 +115,6 @@ export const sparePartsQuery = groq`*[_type == "sparePart"] | order(orderRank as
   image,
   available,
   "compatibleWith": compatibleWith[]->{ _id, name, slug }
-}`;
-
-// ─── Müşteri Sektörleri ───
-export const allSegmentsQuery = groq`*[_type == "customerSegment"] | order(orderRank asc) {
-  _id,
-  name,
-  "slug": slug.current,
-  description,
-  share,
-  keywords,
-  image,
-  "recommendedProducts": recommendedProducts[]->{ _id, name, "slug": slug.current, shortName, mainImage }
-}`;
-
-export const segmentBySlugQuery = groq`*[_type == "customerSegment" && slug.current == $slug][0] {
-  _id, name, "slug": slug.current, description, share, keywords, image,
-  "recommendedProducts": recommendedProducts[]->{ _id, name, "slug": slug.current, shortName, tagline, mainImage }
-}`;
-
-// ─── Hizmet Bölgeleri (İller) ───
-export const allCitiesQuery = groq`*[_type == "serviceCity"] | order(priority asc, orderRank asc) {
-  _id,
-  name,
-  "slug": slug.current,
-  region,
-  priority,
-  industrialZones,
-  description
-}`;
-
-export const cityBySlugQuery = groq`*[_type == "serviceCity" && slug.current == $slug][0] {
-  _id, name, "slug": slug.current, region, priority, industrialZones, description
 }`;
 
 // ─── Özel Sayfalar (Eren CMS) ───

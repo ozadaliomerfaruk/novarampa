@@ -14,7 +14,6 @@ import {
 import { Logo } from "@/components/brand/logo";
 import { company } from "@/lib/site-config";
 import { productCategories } from "@/lib/products";
-import { customerSegments, serviceCities } from "@/lib/services";
 import { getSiteData } from "@/lib/site-data";
 
 // ─── Brand ikonları (lucide-react brand logoları yok, inline SVG) ───
@@ -94,10 +93,18 @@ const footerCtas = [
   },
 ];
 
+// Kurumsal sütun — Çözümler/Bölgeler kaldırıldı, sade sayfa linkleri
+const corporateLinks = [
+  { label: "Hakkımızda", href: "/hakkimizda" },
+  { label: "Referanslar", href: "/referanslar" },
+  { label: "Servis", href: "/servis" },
+  { label: "Blog", href: "/blog" },
+  { label: "İletişim", href: "/iletisim" },
+];
+
 export async function Footer() {
   const { contact, socials, locations, workingHours, logoUrl, companyName, tagline } =
     await getSiteData();
-  const primaryCities = serviceCities.filter((c) => c.priority === "primary");
 
   // Sadece dolu olan sosyal medya linklerini topla
   const socialEntries: { key: string; href: string; label: string; Icon: SocialIcon }[] = [];
@@ -163,10 +170,10 @@ export async function Footer() {
         </div>
       </div>
 
-      {/* ─── Site Map: 5 sütun (marka + ürünler + çözümler + bölgeler + iletişim) ─── */}
+      {/* ─── Site Map: 4 sütun (marka + ürünler + kurumsal + iletişim) ─── */}
       <div className="border-t border-white/10">
         <div className="container-wide py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-10">
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-4">
             <Logo size="default" asLink={false} withSymbol inverted src={logoUrl} />
             <p className="mt-4 text-sm text-white/65 leading-relaxed max-w-xs">
               {tagline}
@@ -183,7 +190,7 @@ export async function Footer() {
             </div>
           </div>
 
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <h4 className="text-sm font-semibold mb-4 text-white">
               Ürünler
             </h4>
@@ -202,54 +209,18 @@ export async function Footer() {
           </div>
 
           <div className="lg:col-span-2">
-            <h4 className="text-sm font-semibold mb-4 text-white">Çözümler</h4>
+            <h4 className="text-sm font-semibold mb-4 text-white">Kurumsal</h4>
             <ul className="space-y-2.5 text-sm">
-              {customerSegments.map((s) => (
-                <li key={s.slug}>
+              {corporateLinks.map((l) => (
+                <li key={l.href}>
                   <Link
-                    href={`/cozumler/${s.slug}`}
+                    href={l.href}
                     className="text-white/60 hover:text-[var(--brand-orange)] transition-colors"
                   >
-                    {s.name.split(" / ")[0].split(" ")[0]}{" "}
-                    {s.name.includes(" ") &&
-                      s.name.split(" ").slice(1, 2).join(" ")}
+                    {l.label}
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  href="/cozumler"
-                  className="text-[var(--brand-orange)] hover:text-[var(--brand-orange-hover)] transition-colors font-medium"
-                >
-                  Tüm çözümler →
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div className="lg:col-span-2">
-            <h4 className="text-sm font-semibold mb-4 text-white">
-              Bölgeler
-            </h4>
-            <ul className="space-y-2.5 text-sm">
-              {primaryCities.map((c) => (
-                <li key={c.slug}>
-                  <Link
-                    href={`/hizmet-bolgeleri/${c.slug}`}
-                    className="text-white/60 hover:text-[var(--brand-orange)] transition-colors"
-                  >
-                    {c.name}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link
-                  href="/hizmet-bolgeleri"
-                  className="text-[var(--brand-orange)] hover:text-[var(--brand-orange-hover)] transition-colors font-medium"
-                >
-                  Türkiye geneli →
-                </Link>
-              </li>
             </ul>
           </div>
 

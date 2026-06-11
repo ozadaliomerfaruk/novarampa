@@ -18,9 +18,7 @@ export const settingsType = defineType({
     { name: "locations", title: "📍 Konumlar" },
     { name: "hours", title: "⏰ Çalışma Saatleri" },
     { name: "socials", title: "📱 Sosyal Medya" },
-    { name: "stats", title: "İstatistikler" },
     { name: "workshop", title: "Atölye Fotoları" },
-    { name: "trust", title: "Sertifikalar & Güven" },
     { name: "timeline", title: "Marka Tarihçesi" },
     { name: "featured", title: "Vitrin Ürünleri" },
     { name: "faqs", title: "❓ Sıkça Sorulan Sorular" },
@@ -32,16 +30,16 @@ export const settingsType = defineType({
       name: "heroTitle",
       title: "Anasayfa Başlık (H1)",
       description:
-        "Site açıldığında en büyük yazı. Net ve anlaşılır olsun — ziyaretçi ne sattığımızı 1 saniyede görsün. Örn: 'Yükleme rampası imalatçısı.'",
+        "Site açıldığında en büyük yazı. Örn: 'NOVARAMPA'",
       type: "string",
       group: "hero",
       validation: (r) => r.max(120),
     }),
     defineField({
       name: "heroSubtitle",
-      title: "Anasayfa Alt Başlık",
+      title: "Anasayfa Alt Başlık (Slogan)",
       description:
-        "Başlığın altındaki açıklama. 1-2 cümle, ne ürettiğimizi ve nereye hizmet verdiğimizi anlatır. Örn: 'Hidrolik, teleskopik, makaslı platform — fabrika ve depo girişleri için anahtar teslim imalat.'",
+        "Başlığın altındaki slogan. Örn: 'Geçmişin Gücüyle, Yükünüzü Hafifletiyoruz...'",
       type: "text",
       rows: 3,
       group: "hero",
@@ -65,65 +63,6 @@ export const settingsType = defineType({
       type: "file",
       options: { accept: "video/mp4" },
       group: "hero",
-    }),
-
-    // ─── STATS (İstatistikler) ───
-    defineField({
-      name: "stats",
-      title: "İstatistikler (4 kart)",
-      description:
-        "Hero'nun altındaki 4 sayısal kart. Saha tecrübesi, proje sayısı, kapasite, hizmet verilen il sayısı vb. Tam 4 tane olmalı.",
-      type: "array",
-      group: "stats",
-      of: [
-        {
-          type: "object",
-          name: "stat",
-          fields: [
-            {
-              name: "value",
-              title: "Sayı",
-              description:
-                "Sadece rakam yazın (23, 150, 20, 11 gibi). Animasyonlu sayar.",
-              type: "number",
-              validation: (r) => r.required(),
-            },
-            {
-              name: "suffix",
-              title: "Sayının Sonuna Ek (opsiyonel)",
-              description:
-                "Sayının yanına gelecek ek. Örn: '+' (150+ proje), 'T' (20 Ton), ' İL' (11 İL). Boş bırakılabilir.",
-              type: "string",
-            },
-            {
-              name: "label",
-              title: "Başlık",
-              description: "Sayının altındaki kısa başlık. Örn: 'Yıllık Miras'",
-              type: "string",
-              validation: (r) => r.required(),
-            },
-            {
-              name: "caption",
-              title: "Açıklama (opsiyonel)",
-              description:
-                "Başlığın altındaki tek satır. Örn: '2003'ten beri sahada'",
-              type: "string",
-            },
-          ],
-          preview: {
-            select: { title: "label", subtitle: "value", caption: "caption" },
-            prepare: ({ title, subtitle, caption }) => ({
-              title: `${subtitle ?? "?"} — ${title ?? "Etiket yok"}`,
-              subtitle: caption,
-            }),
-          },
-        },
-      ],
-      validation: (r) =>
-        r
-          .max(4)
-          .min(4)
-          .warning("4 istatistik girilmeli — eksik veya fazlası tasarımı bozar."),
     }),
 
     // ─── WORKSHOP PHOTOS (Atölyeden Fotoğraflar) ───
@@ -158,18 +97,6 @@ export const settingsType = defineType({
         },
       ],
       validation: (r) => r.length(4).warning("Tam 4 fotoğraf önerilir."),
-    }),
-
-    // ─── TRUST CHIPS & CERTIFICATIONS ───
-    defineField({
-      name: "certifications",
-      title: "Sertifika & Güven Rozetleri",
-      description:
-        "Hero'da, footer'da ve diğer yerlerde gözüken küçük rozetler. Örn: 'CE & TSE Belgeli', 'EN 1398 Uyumlu', '2 Yıl Garanti'. 3-5 tane önerilir.",
-      type: "array",
-      group: "trust",
-      of: [{ type: "string" }],
-      options: { layout: "tags" },
     }),
 
     // ─── BRAND TIMELINE ───
@@ -579,7 +506,7 @@ export const settingsType = defineType({
     prepare() {
       return {
         title: "Site Ayarları",
-        subtitle: "Anasayfa, istatistikler, sertifikalar ve duyurular",
+        subtitle: "Anasayfa, iletişim, marka ve duyurular",
       };
     },
   },

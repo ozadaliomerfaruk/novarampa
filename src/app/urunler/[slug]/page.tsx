@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortableText } from "@portabletext/react";
-import { ArrowRight, Check, ChevronRight, MessageCircle, ShieldCheck } from "lucide-react";
+import { ArrowRight, Check, ChevronRight, Info, MessageCircle, ShieldCheck } from "lucide-react";
 
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -131,6 +131,7 @@ export default async function ProductDetailPage({ params }: Props) {
         bestFor: fallback!.bestFor,
         order: fallback!.order,
         slug: fallback!.slug,
+        technicalSpecs: fallback!.technicalSpecs,
       };
 
   // İlgili ürünler — Sanity'den varsa orayı kullan, yoksa statik
@@ -220,7 +221,7 @@ export default async function ProductDetailPage({ params }: Props) {
                   className="h-14 px-8 text-base border-border bg-background/40"
                 >
                   <MessageCircle className="mr-1" />
-                  WhatsApp'tan sor
+                  WhatsApp&apos;tan sor
                 </ExternalLinkButton>
               </div>
             </div>
@@ -374,6 +375,35 @@ export default async function ProductDetailPage({ params }: Props) {
           </section>
         )}
 
+        {/* Teknik Özellikler — etiket + değer tablosu */}
+        {product.technicalSpecs && product.technicalSpecs.length > 0 && (
+          <section className="container-wide pb-20">
+            <div className="max-w-3xl">
+              <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
+                Teknik Detay
+              </div>
+              <h2 className="mt-3 text-3xl font-heading font-bold tracking-tight">
+                Teknik Özellikler
+              </h2>
+              <dl className="mt-8 divide-y divide-border border-y border-border">
+                {product.technicalSpecs.map((spec) => (
+                  <div
+                    key={spec.label}
+                    className="py-5 grid grid-cols-1 sm:grid-cols-3 gap-1.5 sm:gap-6"
+                  >
+                    <dt className="text-sm font-semibold text-[var(--brand-orange)] leading-snug">
+                      {spec.label}
+                    </dt>
+                    <dd className="sm:col-span-2 text-foreground/90 leading-relaxed">
+                      {spec.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </section>
+        )}
+
         {/* SSS — Sanity'den FAQ'lar varsa göster (FaqJsonLd ile birlikte) */}
         {product.faqs && product.faqs.length > 0 && (
           <section className="container-wide pb-20">
@@ -437,6 +467,20 @@ export default async function ProductDetailPage({ params }: Props) {
                 </p>
               </Link>
             ))}
+          </div>
+        </section>
+
+        {/* Tüm ürünlerde ortak bilgi notu */}
+        <section className="container-wide pb-16">
+          <div className="flex items-start gap-3 rounded-2xl border border-[var(--brand-orange)]/30 bg-[var(--brand-orange)]/5 p-5 sm:p-6 max-w-3xl">
+            <Info
+              size={20}
+              className="mt-0.5 shrink-0 text-[var(--brand-orange)]"
+            />
+            <p className="text-sm sm:text-base text-foreground/80 leading-relaxed">
+              Araç tipi, forklift özellikleri, kot farkı vs. gibi faktörler rampa
+              tasarımında belirleyici rol oynar.
+            </p>
           </div>
         </section>
 

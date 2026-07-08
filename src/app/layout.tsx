@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Open_Sans, Work_Sans, JetBrains_Mono } from "next/font/google";
+import { Open_Sans, Work_Sans, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Toaster } from "@/components/ui/sonner";
 import { ScrollProgress } from "@/components/layout/scroll-progress";
+import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
@@ -34,6 +35,14 @@ const fontMono = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
+});
+
+// Display — Space Grotesk (modern geometrik; hero "NOVARAMPA" wordmark için)
+const fontDisplay = Space_Grotesk({
+  variable: "--font-display",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -112,17 +121,24 @@ export default function RootLayout({
   return (
     <html
       lang="tr"
-      className={`${fontSans.variable} ${fontHeading.variable} ${fontMono.variable} h-full antialiased`}
+      className={`${fontSans.variable} ${fontHeading.variable} ${fontMono.variable} ${fontDisplay.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background text-foreground relative">
-        {/* Atmosfer: animated film grain, tüm sitede sabit */}
-        <div className="grain-overlay" aria-hidden="true" />
-        <ScrollProgress />
-        {children}
-        <Toaster richColors position="top-center" />
-        <Analytics />
-        <SpeedInsights />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange={false}
+        >
+          {/* Atmosfer: animated film grain, tüm sitede sabit */}
+          <div className="grain-overlay" aria-hidden="true" />
+          <ScrollProgress />
+          {children}
+          <Toaster richColors position="top-center" />
+          <Analytics />
+          <SpeedInsights />
+        </ThemeProvider>
       </body>
       {/* Google Analytics 4 — sadece NEXT_PUBLIC_GA_ID tanımlıysa yüklenir */}
       {GA_ID ? <GoogleAnalytics gaId={GA_ID} /> : null}

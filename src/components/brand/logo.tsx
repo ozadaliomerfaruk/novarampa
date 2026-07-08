@@ -19,8 +19,8 @@ export function Logo({
   asLink = true,
   size = "default",
   inverted = false,
-  /** withSymbol backward-compat — logo zaten sembol+wordmark birlikte. */
-  withSymbol: _withSymbol = false,
+  /** Temaya göre otomatik: dark modda beyaz (invert), light modda orijinal. */
+  autoInvert = false,
   src: srcOverride,
   alt: altOverride,
 }: {
@@ -28,6 +28,7 @@ export function Logo({
   asLink?: boolean;
   size?: "default" | "small" | "large";
   inverted?: boolean;
+  autoInvert?: boolean;
   withSymbol?: boolean;
   /** Sanity'den gelen logo URL'i. Boş bırakılırsa default SVG kullanılır. */
   src?: string | null;
@@ -54,7 +55,8 @@ export function Logo({
         className={cn(
           heights[size],
           "w-auto select-none",
-          inverted && "brightness-0 invert"
+          inverted && "brightness-0 invert",
+          autoInvert && "dark:brightness-0 dark:invert"
         )}
         unoptimized
       />

@@ -35,7 +35,15 @@ export function Hero({ title, subtitle, ctaLabel, videoUrl }: HeroProps = {}) {
   const heading = title?.trim() || "NOVARAMPA";
   const tagline =
     subtitle?.trim() || "Geçmişin Gücüyle, Yükünüzü Hafifletiyoruz...";
-  const cta = ctaLabel ?? "Hemen Teklif Al";
+  const cta = ctaLabel ?? "Teklif Al";
+  // TODO(video): Eren'in yeni hero videosu geldiğinde entegre et.
+  // İstenen kadrajlar: rampa üzerinde ilerleyen yakın kadraj kamera hareketi,
+  // slowmotion rampaya tırmanan forklift, yakın çekim kaynak yapan işçiler +
+  // kaynak ışıltısı, slowmotion çekiç darbeleri.
+  // Entegrasyon: yeni .mp4 dosyasını `public/videos/hero-bg.mp4` olarak değiştir
+  // (mevcut dosyanın üzerine yaz) VEYA Sanity → Site Ayarları → heroVideoUrl'e
+  // barındırılan video URL'sini gir (bu prop `videoUrl` olarak buraya gelir).
+  // Öneri: 1080p, ~8-15 sn loop, H.264, sessiz, < 6 MB (mobil performans).
   const videoSrc = videoUrl ?? "/videos/hero-bg.mp4";
 
   return (
@@ -70,21 +78,21 @@ export function Hero({ title, subtitle, ctaLabel, videoUrl }: HeroProps = {}) {
         variants={containerVariants}
         initial="hidden"
         animate="show"
-        className="container-wide relative z-10 text-center flex flex-col items-center pt-28 md:pt-36 pb-16"
+        className="container-wide relative z-10 text-center flex flex-col items-center pt-36 md:pt-44 pb-16"
       >
-        {/* H1 — wordmark, centered, white */}
+        {/* H1 — wordmark, centered, white (Space Grotesk, modern + büyük) */}
         <motion.h1
           variants={itemVariants}
-          className="text-[clamp(2.75rem,7vw,5.5rem)] font-heading font-bold leading-[1.02] max-w-5xl text-white"
-          style={{ letterSpacing: "0.02em" }}
+          className="text-[clamp(3.25rem,8.5vw,7rem)] font-display font-bold leading-[0.98] max-w-6xl text-white"
+          style={{ letterSpacing: "-0.01em" }}
         >
           {heading}
         </motion.h1>
 
-        {/* Slogan */}
+        {/* Slogan — italik, bir tık büyük */}
         <motion.p
           variants={itemVariants}
-          className="mt-6 max-w-2xl text-lg sm:text-2xl text-white/85 leading-relaxed"
+          className="mt-6 max-w-2xl text-xl sm:text-[1.7rem] italic text-white/85 leading-relaxed"
         >
           {tagline}
         </motion.p>
@@ -98,7 +106,7 @@ export function Hero({ title, subtitle, ctaLabel, videoUrl }: HeroProps = {}) {
             <LinkButton
               href="/teklif-al"
               size="lg"
-              className="h-13 px-7 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold shadow-[0_8px_30px_-8px_var(--brand-orange)] hover:shadow-[0_16px_44px_-10px_var(--brand-orange)] transition-all group"
+              className="h-13 px-7 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold transition-all group"
             >
               {cta}
               <ArrowRight className="ml-1 transition-transform group-hover:translate-x-1" />
@@ -113,7 +121,7 @@ export function Hero({ title, subtitle, ctaLabel, videoUrl }: HeroProps = {}) {
             className="h-13 px-7 text-base border-white/25 bg-white/[0.04] backdrop-blur-md text-white hover:bg-white/[0.12] hover:border-white/40"
           >
             <MessageCircle className="mr-1" />
-            WhatsApp&apos;tan Yaz
+            WhatsApp
           </ExternalLinkButton>
         </motion.div>
       </motion.div>

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Menu, Phone, Mail, Cog } from "lucide-react";
 
 import { Logo } from "@/components/brand/logo";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { LinkButton } from "@/components/ui/link-button";
 import { Magnetic } from "@/components/ui/magnetic";
@@ -44,13 +45,13 @@ export function HeaderClient({
   },
   navbarPages = [],
   logoUrl,
-  workingHours: hoursProp,
 }: {
   contact?: MergedContact;
   navbarPages?: NavbarPage[];
   logoUrl?: string;
   workingHours?: WorkingHoursRow[];
 } = {}) {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -61,48 +62,61 @@ export function HeaderClient({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Çalışma saatleri (Sanity > fallback site-config)
-  const workingHoursList: WorkingHoursRow[] =
-    hoursProp && hoursProp.length > 0
-      ? hoursProp
-      : company.workingHours.map((h) => ({ day: h.day, hours: h.hours }));
+  // Header koyu hero videosunun üzerinde mi? (yalnız anasayfa, scroll edilmemiş)
+  // Evetse beyaz stil; değilse temaya göre uyum sağlayan (foreground) stil.
+  const onDark = pathname === "/" && !scrolled;
 
   return (
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-background/85 backdrop-blur-md border-b border-white/10 shadow-sm"
+          ? "bg-background/85 backdrop-blur-md border-b border-border shadow-sm"
           : "bg-transparent"
       )}
     >
-      {/* ─── ÜST HAIRLINE BAR — telefon + email (şeffaf, video üzerine) ─── */}
-      <div className="hidden md:block border-b border-white/10">
-        <div className="container-wide flex h-9 items-center justify-between text-xs text-white/60">
-          <div className="flex items-center gap-5">
+      {/* ─── ÜST HAIRLINE BAR — telefon + email ─── */}
+      <div
+        className={cn(
+          "hidden md:block border-b",
+          onDark ? "border-white/10" : "border-border"
+        )}
+      >
+        <div
+          className={cn(
+            "mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-10 flex h-10 items-center justify-between text-sm",
+            onDark ? "text-white/70" : "text-muted-foreground"
+          )}
+        >
+          <div className="flex items-center gap-6">
             <a
               href={`tel:${contact.phone}`}
-              className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
+              className={cn(
+                "inline-flex items-center gap-1.5 transition-colors",
+                onDark ? "hover:text-white" : "hover:text-foreground"
+              )}
             >
-              <Phone size={12} />
+              <Phone size={14} />
               <span className="tabular-nums">{contact.phoneDisplay}</span>
             </a>
             <a
               href={`mailto:${contact.email}`}
-              className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
+              className={cn(
+                "inline-flex items-center gap-1.5 transition-colors",
+                onDark ? "hover:text-white" : "hover:text-foreground"
+              )}
             >
-              <Mail size={12} />
+              <Mail size={14} />
               <span>{contact.email}</span>
             </a>
           </div>
           <div className="flex items-center gap-5">
-            <span className="font-mono uppercase tracking-widest text-[10px]">
-              {workingHoursList[0]?.hours ?? "09:00 – 18:00"} ·{" "}
-              {workingHoursList[0]?.day?.split(/[–-]/)[0]?.trim() ?? "Hafta İçi"}
-            </span>
             <Link
               href="/iletisim"
-              className="hover:text-white transition-colors uppercase tracking-wider text-[10px] font-medium"
+              className={cn(
+                "transition-colors uppercase tracking-wider text-xs font-medium",
+                onDark ? "hover:text-white" : "hover:text-foreground"
+              )}
             >
               Bize Ulaşın →
             </Link>
@@ -111,12 +125,22 @@ export function HeaderClient({
       </div>
 
       {/* ─── ANA NAV ROW ─── */}
-      <div className="container-wide flex h-20 md:h-24 items-center justify-between gap-3">
-        <Logo size="default" withSymbol inverted src={logoUrl} />
+      <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-10 flex h-24 md:h-28 items-center justify-between gap-3">
+        <Logo
+          size="large"
+          withSymbol
+          src={logoUrl}
+          {...(onDark ? { inverted: true } : { autoInvert: true })}
+        />
 
         <nav className="hidden lg:flex items-center gap-1">
           {navItems.map((item) => (
-            <NavLink key={item.href} href={item.href} label={item.label} />
+            <NavLink
+              key={item.href}
+              href={item.href}
+              label={item.label}
+              onDark={onDark}
+            />
           ))}
 
           {/* ─── Eren'in Sanity'de oluşturduğu özel sayfalar (navbar'da göster=açık) ─── */}
@@ -125,30 +149,39 @@ export function HeaderClient({
               key={p._id}
               href={`/${p.slug}`}
               label={p.navbarLabel?.trim() || p.title}
+              onDark={onDark}
             />
           ))}
         </nav>
 
-        {/* ─── İKİ CTA ─── */}
+        {/* ─── CTA + TEMA BUTONU ─── */}
         <div className="flex items-center gap-2">
           <LinkButton
             href="/yedek-parca"
             size="default"
             variant="outline"
-            className="hidden md:inline-flex lg:hidden xl:inline-flex border-white/20 text-white bg-transparent hover:border-[var(--brand-orange)]/60 hover:bg-[var(--brand-orange)]/10 hover:text-white font-semibold"
+            className={cn(
+              "hidden md:inline-flex lg:hidden xl:inline-flex h-11 px-4 text-[0.95rem] bg-transparent font-semibold hover:border-[var(--brand-orange)]/60 hover:bg-[var(--brand-orange)]/10",
+              onDark
+                ? "border-white/20 text-white hover:text-white"
+                : "border-border text-foreground hover:text-foreground"
+            )}
           >
-            <Cog size={14} className="mr-1.5" />
+            <Cog size={15} className="mr-1.5" />
             Yedek Parça
           </LinkButton>
           <Magnetic strength={0.2}>
             <LinkButton
               href="/teklif-al"
               size="default"
-              className="hidden md:inline-flex bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold shadow-[0_0_0_0_var(--brand-orange)] hover:shadow-[0_8px_24px_-6px_var(--brand-orange)] transition-all"
+              className="hidden md:inline-flex h-11 px-5 text-[0.95rem] bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold shadow-[0_0_0_0_var(--brand-orange)] hover:shadow-[0_8px_24px_-6px_var(--brand-orange)] transition-all"
             >
               Teklif Al
             </LinkButton>
           </Magnetic>
+
+          {/* Koyu/açık tema geçişi */}
+          <ThemeToggle onDark={onDark} />
 
           <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
             <SheetTrigger
@@ -156,7 +189,12 @@ export function HeaderClient({
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="lg:hidden text-white hover:text-white hover:bg-white/10"
+                  className={cn(
+                    "lg:hidden",
+                    onDark
+                      ? "text-white hover:text-white hover:bg-white/10"
+                      : "text-foreground hover:text-foreground hover:bg-muted"
+                  )}
                   aria-label="Menüyü aç"
                 >
                   <Menu />
@@ -172,7 +210,7 @@ export function HeaderClient({
                   <Logo
                     size="default"
                     withSymbol
-                    inverted
+                    autoInvert
                     asLink={false}
                     src={logoUrl}
                   />
@@ -192,22 +230,34 @@ export function HeaderClient({
 }
 
 // ─── NavLink: düz link + hover'da soldan kayan alt çizgi ───
-function NavLink({ href, label }: { href: string; label: string }) {
+function NavLink({
+  href,
+  label,
+  onDark = false,
+}: {
+  href: string;
+  label: string;
+  onDark?: boolean;
+}) {
   const pathname = usePathname();
   const isActive =
     href === "/"
       ? pathname === "/"
       : pathname === href || pathname?.startsWith(`${href}/`);
+  const activeText = onDark ? "text-white" : "text-foreground";
+  const idleText = onDark
+    ? "text-white/75 hover:text-white"
+    : "text-foreground/70 hover:text-foreground";
   return (
     <Link
       href={href}
       className={cn(
-        "relative px-2.5 py-2 text-sm font-medium transition-colors",
-        "after:absolute after:left-2.5 after:right-2.5 after:bottom-0.5 after:h-[2px]",
+        "relative px-3 py-2 text-base font-medium transition-colors",
+        "after:absolute after:left-3 after:right-3 after:bottom-0.5 after:h-[2px]",
         "after:bg-[var(--brand-orange)] after:origin-left after:transition-transform after:duration-300",
         isActive
-          ? "text-white after:scale-x-100"
-          : "text-white/75 hover:text-white after:scale-x-0 hover:after:scale-x-100"
+          ? cn(activeText, "after:scale-x-100")
+          : cn(idleText, "after:scale-x-0 hover:after:scale-x-100")
       )}
     >
       {label}

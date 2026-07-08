@@ -103,7 +103,7 @@ const corporateLinks = [
 ];
 
 export async function Footer() {
-  const { contact, socials, locations, workingHours, logoUrl, companyName, tagline } =
+  const { contact, socials, locations, workingHours, logoUrl, companyName } =
     await getSiteData();
 
   // Sadece dolu olan sosyal medya linklerini topla
@@ -174,10 +174,7 @@ export async function Footer() {
       <div className="border-t border-white/10">
         <div className="container-wide py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-10">
           <div className="lg:col-span-4">
-            <Logo size="default" asLink={false} withSymbol inverted src={logoUrl} />
-            <p className="mt-4 text-sm text-white/65 leading-relaxed max-w-xs">
-              {tagline}
-            </p>
+            <Logo size="large" asLink={false} withSymbol inverted src={logoUrl} />
             <div className="mt-6 flex flex-wrap gap-2">
               {company.certifications.map((c) => (
                 <span

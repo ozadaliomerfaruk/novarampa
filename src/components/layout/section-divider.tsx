@@ -13,22 +13,16 @@ type Props = {
 
 export function SectionDivider({
   variant = "diagonal",
-  label,
   className,
 }: Props) {
   if (variant === "measure") {
+    // Belirgin ayraç çizgisi — etiketsiz, ortada turuncu vurgu.
     return (
-      <div className={`relative py-12 ${className ?? ""}`} aria-hidden="true">
-        <div className="container-wide flex items-center gap-4">
-          {/* sol tick + line */}
-          <div className="flex items-center gap-2 shrink-0">
-            <span className="h-3 w-px bg-white/30" />
-            <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-muted-foreground">
-              {label ?? "—"}
-            </span>
+      <div className={`relative py-10 ${className ?? ""}`} aria-hidden="true">
+        <div className="container-wide">
+          <div className="relative h-0.5 w-full rounded-full bg-gradient-to-r from-transparent via-[var(--brand-orange)]/70 to-transparent">
+            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-2 w-16 rounded-full bg-[var(--brand-orange)]" />
           </div>
-          <span className="flex-1 h-px bg-gradient-to-r from-white/15 via-[var(--brand-orange)]/40 to-white/15" />
-          <span className="h-3 w-px bg-white/30 shrink-0" />
         </div>
       </div>
     );

@@ -22,11 +22,8 @@ export function ReferencesStrip({ sanityReferences }: Props = {}) {
     <section className="py-20 border-y border-border bg-[var(--brand-charcoal)]/40">
       <div className="container-wide">
         <div className="text-center mb-10">
-          <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
-            Birlikte İş Yaptığımız Markalardan
-          </div>
-          <h2 className="mt-3 text-2xl sm:text-3xl font-heading font-semibold">
-            Türkiye'nin yükünü taşıyan firmalar bizi tercih ediyor.
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight">
+            Referanslarımız
           </h2>
         </div>
 

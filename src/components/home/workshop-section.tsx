@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
 
 import { urlFor } from "@/sanity/lib/image";
 import type { WorkshopPhoto } from "@/sanity/lib/types";
@@ -73,33 +71,7 @@ export function WorkshopSection({
   return (
     <section className="relative py-24 sm:py-32">
       <div className="container-wide">
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
-          <div className="max-w-2xl">
-            <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
-              Atölyeden
-            </div>
-            <h2 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-heading font-bold tracking-tight leading-[1.05]">
-              Demirin sesi,
-              <br />
-              hidroliğin nefesi.
-            </h2>
-            <p className="mt-5 text-muted-foreground max-w-xl">
-              Çorlu atölyemizde üretim, Sultanbeyli ofisimizden koordinasyon,
-              sahada kurulum — her aşamasını biz yapıyoruz. Aşağıda kısa bir
-              kesit.
-            </p>
-          </div>
-          <Link
-            href="/hakkimizda"
-            className="group inline-flex items-center gap-1 text-sm font-medium text-foreground hover:text-[var(--brand-orange)] transition-colors"
-          >
-            Hakkımızda
-            <ArrowUpRight
-              size={16}
-              className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            />
-          </Link>
-        </div>
+        {/* Atölyeden — sadece fotoğraflar (Eren: başlık/açıklama yok) */}
 
         {/* Editorial grid: 2x2 with asymmetric spans on lg */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3 md:gap-4">
@@ -112,13 +84,26 @@ export function WorkshopSection({
                 : "lg:col-span-5";
             const aspectCls = t.span === "tall" ? "lg:aspect-[4/5]" : "aspect-[4/3]";
 
+            // Scroll-reveal: tek/çift karolar yanlardan, son karo aşağıdan,
+            // yumuşak ease ile içeri kayar.
+            const fromSide = i % 2 === 0 ? -64 : 64;
+            const initial = reduce
+              ? false
+              : t.span === "tall"
+              ? { opacity: 0, y: 64 }
+              : { opacity: 0, x: fromSide };
+
             return (
               <motion.figure
                 key={t.src}
-                initial={reduce ? false : { opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.6, delay: i * 0.08 }}
+                initial={initial}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 0.75,
+                  delay: i * 0.1,
+                  ease: [0.22, 1, 0.36, 1] as const,
+                }}
                 className={`${spanCls} group relative overflow-hidden rounded-2xl border border-border bg-card`}
               >
                 <div className={`relative ${aspectCls} overflow-hidden`}>

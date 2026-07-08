@@ -3,7 +3,6 @@ import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/home/hero";
 import { ProductGrid } from "@/components/home/product-grid";
 import { WorkshopSection } from "@/components/home/workshop-section";
-import { BrandTimeline } from "@/components/home/brand-timeline";
 import { ReferencesStrip } from "@/components/home/references-strip";
 import { WhyUs } from "@/components/home/why-us";
 import { CtaSection } from "@/components/home/cta-section";
@@ -71,12 +70,11 @@ export default async function HomePage() {
           videoUrl={settings?.heroVideoUrl}
         />
         <ProductGrid sanityProducts={products} />
-        <SectionDivider variant="measure" label="01 — ATÖLYE / SAHA" />
+        <SectionDivider variant="measure" />
         <WorkshopSection photos={settings?.workshopPhotos} />
-        <ReferencesStrip sanityReferences={sanityRefs} />
-        <BrandTimeline />
-        <SectionDivider variant="measure" label="02 — NEDEN NOVA" />
+        <SectionDivider variant="measure" />
         <WhyUs />
+        <ReferencesStrip sanityReferences={sanityRefs} />
         <HomeFaqs faqs={settings?.homeFaqs} />
         <CtaSection />
       </main>

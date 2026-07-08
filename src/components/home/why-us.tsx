@@ -35,11 +35,11 @@ export function WhyUs() {
   return (
     <section className="py-24">
       <div className="container-wide">
-        <div className="max-w-2xl mb-12">
+        <div className="max-w-3xl mx-auto text-center mb-12">
           <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
             Neden Nova Rampa
           </div>
-          <h2 className="mt-3 text-4xl sm:text-5xl font-heading font-bold tracking-tight">
+          <h2 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight">
             Yirmi yılın getirdiği güven, yeni neslin getirdiği netlik.
           </h2>
         </div>

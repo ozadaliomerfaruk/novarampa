@@ -17,28 +17,27 @@ export function HomeFaqs({ faqs }: { faqs?: HomeFaqItem[] | null }) {
       aria-labelledby="anasayfa-sss-baslik"
       className="container-wide py-20 md:py-28"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-        {/* Sol kolon: başlık + tagline */}
-        <div className="lg:col-span-4">
+      <div className="flex flex-col items-center">
+        {/* Başlık — ortalı (Eren isteği) */}
+        <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
             SSS
           </div>
           <h2
             id="anasayfa-sss-baslik"
-            className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-heading font-bold tracking-tight leading-[1.1]"
+            className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight leading-[1.1]"
           >
-            Aklındaki ilk sorular,
-            <br />
+            Aklındaki ilk sorular,{" "}
             <span className="text-gradient-orange">net cevaplar.</span>
           </h2>
-          <p className="mt-5 text-base text-muted-foreground leading-relaxed max-w-md">
+          <p className="mt-5 text-base text-muted-foreground leading-relaxed max-w-md mx-auto">
             Müşterilerimizin en çok sorduğu sorular. Aradığını bulamazsan
             tek tıkla iletişime geçebilirsin.
           </p>
         </div>
 
-        {/* Sağ kolon: accordion */}
-        <div className="lg:col-span-8">
+        {/* Accordion — tam genişlik, ortalı */}
+        <div className="w-full max-w-3xl mx-auto">
           <div className="divide-y divide-border border-y border-border">
             {faqs.map((faq) => (
               <details key={faq.question} className="group py-5 sm:py-6">

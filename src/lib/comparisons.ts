@@ -63,21 +63,6 @@ export const comparisons: ComparisonPair[] = [
     verdict:
       "Renovasyon = dikey, yeni proje = menteşeli. Dikey rampa fiyat olarak %15-25 daha yüksektir ama montaj maliyeti düşürür.",
   },
-  {
-    slug: "makasli-vs-mentereli",
-    productASlug: "makasli-platform",
-    productBSlug: "mentereli-yukleme-rampasi",
-    title: "Makaslı Platform vs Menteşeli Rampa",
-    shortTitle: "Makaslı vs Menteşeli",
-    intro:
-      "Makaslı platform dikey yük taşımak için hidrolik makas mekanizmalı sabit bir asansördür. Menteşeli rampa ise eğimli yük geçişi sağlar.",
-    whenA:
-      "Yüksek seviye farkı (1m+) olan noktalar, katlar arası yük taşıma, küçük alanda büyük seviye geçişi.",
-    whenB:
-      "Standart araç yükleme yüksekliği (~115 cm). TIR/kamyon yanaşması, geleneksel depo operasyonu.",
-    verdict:
-      "Yük geçişi seviye değiştirmiyorsa menteşeli, dikey hareket gerekiyorsa makaslı. Makaslı kapasite 500 kg-5 ton arası, menteşelide 6-12 ton standart.",
-  },
 ];
 
 export function getComparisonBySlug(slug: string): ComparisonPair | undefined {

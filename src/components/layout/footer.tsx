@@ -13,13 +13,23 @@ import {
 
 import { Logo } from "@/components/brand/logo";
 import { company } from "@/lib/site-config";
-import { productCategories } from "@/lib/products";
+import { getProducts } from "@/lib/catalog";
 import { getSiteData } from "@/lib/site-data";
 
 // ─── Brand ikonları (lucide-react brand logoları yok, inline SVG) ───
 function IgIcon(p: SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <svg
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...p}
+    >
       <rect width="20" height="20" x="2" y="2" rx="5" />
       <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
       <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
@@ -28,7 +38,17 @@ function IgIcon(p: SVGProps<SVGSVGElement>) {
 }
 function LiIcon(p: SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <svg
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...p}
+    >
       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
       <rect width="4" height="12" x="2" y="9" />
       <circle cx="4" cy="4" r="2" />
@@ -37,7 +57,17 @@ function LiIcon(p: SVGProps<SVGSVGElement>) {
 }
 function YtIcon(p: SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <svg
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...p}
+    >
       <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
       <path d="m10 15 5-3-5-3z" />
     </svg>
@@ -45,14 +75,34 @@ function YtIcon(p: SVGProps<SVGSVGElement>) {
 }
 function FbIcon(p: SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <svg
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...p}
+    >
       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
     </svg>
   );
 }
 function XIcon(p: SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <svg
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...p}
+    >
       <path d="M18 4l-12 16" />
       <path d="M6 4l12 16" />
     </svg>
@@ -60,7 +110,17 @@ function XIcon(p: SVGProps<SVGSVGElement>) {
 }
 function TtIcon(p: SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <svg
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...p}
+    >
       <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
     </svg>
   );
@@ -71,25 +131,22 @@ const footerCtas = [
   {
     href: "/teklif-al",
     icon: MessageCircle,
-    eyebrow: "01",
     title: "Teklif Al",
-    description:
-      "Projeniz için ihtiyacınıza özel teklifi 24 saat içinde alın.",
+    description: "Projeniz için ihtiyacınıza özel teklif alın.",
     accent: true,
   },
   {
     href: "/servis",
     icon: Wrench,
-    eyebrow: "02",
     title: "Servis Talep",
-    description: "Mevcut rampanız için bakım, onarım, saha keşfi.",
+    description: "Mevcut rampanız için bakım veya onarım teklifi alın.",
   },
   {
     href: "/yedek-parca",
     icon: Cog,
-    eyebrow: "03",
     title: "Yedek Parça",
-    description: "Hidrolik, mekanik, conta — orijinal stok ve hızlı sevkiyat.",
+    description:
+      "Tüm Novarampa ürünleri ve diğer uyumlu modeller için yedek parça desteği alın.",
   },
 ];
 
@@ -103,17 +160,59 @@ const corporateLinks = [
 ];
 
 export async function Footer() {
+  const products = await getProducts();
   const { contact, socials, locations, workingHours, logoUrl, companyName } =
     await getSiteData();
 
   // Sadece dolu olan sosyal medya linklerini topla
-  const socialEntries: { key: string; href: string; label: string; Icon: SocialIcon }[] = [];
-  if (socials.instagram) socialEntries.push({ key: "ig", href: socials.instagram, label: "Instagram", Icon: IgIcon });
-  if (socials.linkedin) socialEntries.push({ key: "li", href: socials.linkedin, label: "LinkedIn", Icon: LiIcon });
-  if (socials.youtube) socialEntries.push({ key: "yt", href: socials.youtube, label: "YouTube", Icon: YtIcon });
-  if (socials.facebook) socialEntries.push({ key: "fb", href: socials.facebook, label: "Facebook", Icon: FbIcon });
-  if (socials.twitter) socialEntries.push({ key: "tw", href: socials.twitter, label: "X (Twitter)", Icon: XIcon });
-  if (socials.tiktok) socialEntries.push({ key: "tt", href: socials.tiktok, label: "TikTok", Icon: TtIcon });
+  const socialEntries: {
+    key: string;
+    href: string;
+    label: string;
+    Icon: SocialIcon;
+  }[] = [];
+  if (socials.instagram)
+    socialEntries.push({
+      key: "ig",
+      href: socials.instagram,
+      label: "Instagram",
+      Icon: IgIcon,
+    });
+  if (socials.linkedin)
+    socialEntries.push({
+      key: "li",
+      href: socials.linkedin,
+      label: "LinkedIn",
+      Icon: LiIcon,
+    });
+  if (socials.youtube)
+    socialEntries.push({
+      key: "yt",
+      href: socials.youtube,
+      label: "YouTube",
+      Icon: YtIcon,
+    });
+  if (socials.facebook)
+    socialEntries.push({
+      key: "fb",
+      href: socials.facebook,
+      label: "Facebook",
+      Icon: FbIcon,
+    });
+  if (socials.twitter)
+    socialEntries.push({
+      key: "tw",
+      href: socials.twitter,
+      label: "X (Twitter)",
+      Icon: XIcon,
+    });
+  if (socials.tiktok)
+    socialEntries.push({
+      key: "tt",
+      href: socials.tiktok,
+      label: "TikTok",
+      Icon: TtIcon,
+    });
 
   return (
     <footer className="surface-dark relative overflow-hidden">
@@ -135,16 +234,9 @@ export async function Footer() {
                   : "bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] hover:border-white/20"
               }`}
             >
-              <div className="flex items-center justify-between">
-                <span
-                  className={`text-[10px] font-mono uppercase tracking-[0.25em] ${
-                    cta.accent ? "text-white/80" : "text-white/50"
-                  }`}
-                >
-                  {cta.eyebrow}
-                </span>
+              <div className="flex items-center justify-end">
                 <cta.icon
-                  size={20}
+                  size={28}
                   className={cta.accent ? "text-white/80" : "text-white/60"}
                 />
               </div>
@@ -174,7 +266,13 @@ export async function Footer() {
       <div className="border-t border-white/10">
         <div className="container-wide py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-10">
           <div className="lg:col-span-4">
-            <Logo size="large" asLink={false} withSymbol inverted src={logoUrl} />
+            <Logo
+              size="large"
+              asLink={false}
+              withSymbol
+              inverted
+              src={logoUrl}
+            />
             <div className="mt-6 flex flex-wrap gap-2">
               {company.certifications.map((c) => (
                 <span
@@ -188,14 +286,12 @@ export async function Footer() {
           </div>
 
           <div className="lg:col-span-3">
-            <h4 className="text-sm font-semibold mb-4 text-white">
-              Ürünler
-            </h4>
+            <h4 className="text-sm font-semibold mb-4 text-white">Ürünler</h4>
             <ul className="space-y-2.5 text-sm">
-              {productCategories.map((p) => (
-                <li key={p.slug}>
+              {products.map((p) => (
+                <li key={p._id}>
                   <Link
-                    href={`/urunler/${p.slug}`}
+                    href={`/urunler/${p.slug.current}`}
                     className="text-white/60 hover:text-[var(--brand-orange)] transition-colors"
                   >
                     {p.shortName}

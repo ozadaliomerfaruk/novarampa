@@ -100,7 +100,10 @@ export const customerSegments: CustomerSegment[] = [
       "Antrepo, e-ticaret deposu, kargo merkezi sahipleri. Soğuk hava deposu yükleme körüğü ve depo rampa sistemleri arıyor.",
     share: 35,
     keywords: ["depo rampası", "lojistik rampa", "antrepo rampası"],
-    recommendedProducts: ["teleskopik-yukleme-rampasi", "mentereli-yukleme-rampasi"],
+    recommendedProducts: [
+      "teleskopik-yukleme-rampasi",
+      "mentereli-yukleme-rampasi",
+    ],
   },
   {
     slug: "fabrika-sanayi",
@@ -109,7 +112,10 @@ export const customerSegments: CustomerSegment[] = [
       "Otomotiv yan sanayi, gıda, kimya, plastik, metal işleme fabrikaları. CE belgeli, EN 1398 uyumlu rampa arıyor.",
     share: 25,
     keywords: ["fabrika rampası", "CE belgeli rampa", "EN 1398 rampa"],
-    recommendedProducts: ["mentereli-yukleme-rampasi", "teleskopik-yukleme-rampasi"],
+    recommendedProducts: [
+      "mentereli-yukleme-rampasi",
+      "teleskopik-yukleme-rampasi",
+    ],
   },
   {
     slug: "muteahhit-proje",
@@ -136,7 +142,7 @@ export const customerSegments: CustomerSegment[] = [
       "Market arka kapısında küçük rampa ihtiyacı. Fiyat hassasiyeti yüksek.",
     share: 5,
     keywords: ["market rampası", "perakende rampa"],
-    recommendedProducts: ["seyyar-mobil-rampa", "makasli-platform"],
+    recommendedProducts: ["seyyar-mobil-rampa"],
   },
   {
     slug: "kucuk-isletme",
@@ -145,6 +151,6 @@ export const customerSegments: CustomerSegment[] = [
       "Küçük çaplı seyyar veya kompakt rampa arayan işletmeler. Hızlı teslim odaklı.",
     share: 5,
     keywords: ["seyyar rampa", "küçük rampa"],
-    recommendedProducts: ["seyyar-mobil-rampa", "makasli-platform"],
+    recommendedProducts: ["seyyar-mobil-rampa"],
   },
 ];

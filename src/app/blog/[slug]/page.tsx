@@ -16,11 +16,11 @@ import {
 } from "@/components/seo/structured-data";
 import { siteConfig } from "@/lib/site-config";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import {
-  blogPostBySlugQuery,
-  blogPostSlugsQuery,
-} from "@/sanity/lib/queries";
-import type { BlogPost, SanityImage as SanityImageType } from "@/sanity/lib/types";
+import { blogPostBySlugQuery, blogPostSlugsQuery } from "@/sanity/lib/queries";
+import type {
+  BlogPost,
+  SanityImage as SanityImageType,
+} from "@/sanity/lib/types";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -30,7 +30,7 @@ export async function generateStaticParams() {
   const slugs = await sanityFetch<{ slug: string }[]>(
     blogPostSlugsQuery,
     {},
-    { revalidate: 60 }
+    { revalidate: 60 },
   );
   return (slugs ?? []).map((s) => ({ slug: s.slug }));
 }
@@ -41,7 +41,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return { title: "Yazı Bulunamadı" };
 
   const title = post.seo?.title ?? post.title;
-  const description = post.seo?.description ?? post.excerpt ?? siteConfig.description;
+  const description =
+    post.seo?.description ?? post.excerpt ?? siteConfig.description;
 
   return {
     title,
@@ -78,7 +79,9 @@ const portableComponents: PortableTextComponents = {
       const cls = tones[value.tone ?? "info"] ?? tones.info;
       return (
         <aside className={`my-6 p-5 rounded-xl border ${cls}`}>
-          <p className="text-sm leading-relaxed text-foreground/85">{value.text}</p>
+          <p className="text-sm leading-relaxed text-foreground/85">
+            {value.text}
+          </p>
         </aside>
       );
     },
@@ -95,7 +98,9 @@ const portableComponents: PortableTextComponents = {
       </h3>
     ),
     normal: ({ children }) => (
-      <p className="my-4 text-lg leading-relaxed text-foreground/85">{children}</p>
+      <p className="my-4 text-lg leading-relaxed text-foreground/85">
+        {children}
+      </p>
     ),
     blockquote: ({ children }) => (
       <blockquote className="my-6 pl-5 border-l-2 border-[var(--brand-orange)] text-foreground/80 italic">
@@ -104,7 +109,13 @@ const portableComponents: PortableTextComponents = {
     ),
   },
   marks: {
-    link: ({ children, value }: { children?: React.ReactNode; value?: { href?: string } }) => (
+    link: ({
+      children,
+      value,
+    }: {
+      children?: React.ReactNode;
+      value?: { href?: string };
+    }) => (
       <a
         href={value?.href}
         target="_blank"
@@ -114,14 +125,20 @@ const portableComponents: PortableTextComponents = {
         {children}
       </a>
     ),
-    strong: ({ children }) => <strong className="text-foreground">{children}</strong>,
+    strong: ({ children }) => (
+      <strong className="text-foreground">{children}</strong>
+    ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="my-4 space-y-2 list-disc list-inside text-foreground/85">{children}</ul>
+      <ul className="my-4 space-y-2 list-disc list-inside text-foreground/85">
+        {children}
+      </ul>
     ),
     number: ({ children }) => (
-      <ol className="my-4 space-y-2 list-decimal list-inside text-foreground/85">{children}</ol>
+      <ol className="my-4 space-y-2 list-decimal list-inside text-foreground/85">
+        {children}
+      </ol>
     ),
   },
 };
@@ -159,7 +176,9 @@ export default async function BlogPostPage({ params }: Props) {
       )}
       <Header />
       <main className="flex-1">
-        <Breadcrumb items={[{ label: "Blog", href: "/blog" }, { label: post.title }]} />
+        <Breadcrumb
+          items={[{ label: "Blog", href: "/blog" }, { label: post.title }]}
+        />
 
         <article className="container-wide pt-8 pb-20 max-w-4xl">
           <header className="mb-10">
@@ -187,9 +206,7 @@ export default async function BlogPostPage({ params }: Props) {
                 </>
               )}
             </div>
-            <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-heading font-bold tracking-tight leading-[1.05]">
-              {post.title}
-            </h1>
+            <h1 className="mt-4 page-title text-center">{post.title}</h1>
             {post.excerpt && (
               <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
                 {post.excerpt}
@@ -242,15 +259,13 @@ export default async function BlogPostPage({ params }: Props) {
               </h2>
               {post.totalTime && (
                 <div className="mt-3 text-sm text-muted-foreground">
-                  ⏱ Toplam süre: <strong className="text-foreground">{post.totalTime}</strong>
+                  ⏱ Toplam süre:{" "}
+                  <strong className="text-foreground">{post.totalTime}</strong>
                 </div>
               )}
               <ol className="mt-8 space-y-6">
                 {post.howToSteps.map((step, i) => (
-                  <li
-                    key={step.name}
-                    className="relative pl-14 pr-2 py-2"
-                  >
+                  <li key={step.name} className="relative pl-14 pr-2 py-2">
                     <div className="absolute left-0 top-2 inline-flex items-center justify-center size-10 rounded-full bg-[var(--brand-orange)] text-white text-base font-heading font-bold">
                       {i + 1}
                     </div>

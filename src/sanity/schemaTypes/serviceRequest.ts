@@ -61,6 +61,31 @@ export const serviceRequestType = defineType({
       title: "Şehir",
       type: "string",
     }),
+    defineField({ name: "district", title: "İlçe", type: "string" }),
+    defineField({
+      name: "brand",
+      title: "Ürün Markası",
+      type: "string",
+      options: {
+        list: [
+          { title: "Novarampa", value: "novarampa" },
+          { title: "Farklı marka", value: "other" },
+          { title: "Bilmiyorum", value: "unknown" },
+        ],
+      },
+    }),
+    defineField({
+      name: "serialNumber",
+      title: "Ürün Seri No",
+      type: "string",
+      hidden: ({ document }) => document?.brand !== "novarampa",
+    }),
+    defineField({
+      name: "brandName",
+      title: "Diğer Marka",
+      type: "string",
+      hidden: ({ document }) => document?.brand !== "other",
+    }),
     defineField({
       name: "productType",
       title: "Rampa Tipi",

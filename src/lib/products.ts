@@ -17,7 +17,7 @@ export type ProductCategory = {
 // ─── Ürün kataloğu ──────────────────────────────────────────────────
 // Sıra Eren'in anasayfa isteğine göre:
 // 1 Seyyar/Mobil · 2 Dik · 3 Menteşeli · 4 Teleskopik · 5 Gömme · 6 Konteynere Geçiş
-// (Makaslı Platform katalogda korunur ama anasayfa listesinde gösterilmez.)
+// Katalogdaki ürünler tüm liste ve form seçeneklerinin varsayılan kaynağıdır.
 export const productCategories: ProductCategory[] = [
   {
     slug: "seyyar-mobil-rampa",
@@ -38,7 +38,11 @@ export const productCategories: ProductCategory[] = [
       "Tırmanma kısmındaki tırtıklı ve galvanizli ızgaralar ve düz kısımdaki gözyaşı desenli sac; yağmurlu havada dahi forkliftin kaymasını engelleyerek güvenle ve hız kaybetmeden çalışmanıza olanak sağlar.",
       "100-160 cm arası istenilen seviyede yükseklik ayarı yapılarak her türlü nakliye aracında kullanılabilir.",
     ],
-    bestFor: ["Açık alan sevkiyat", "Geçici proje", "Hızlı kurulum gerektiren işler"],
+    bestFor: [
+      "Açık alan sevkiyat",
+      "Geçici proje",
+      "Hızlı kurulum gerektiren işler",
+    ],
     technicalSpecs: [
       {
         label: "Ebatlar",
@@ -87,7 +91,11 @@ export const productCategories: ProductCategory[] = [
       "Farklı tonajlarda ve ölçülerde imal edilebilir.",
       "Yükleme ve boşaltma sırasında rampa kendini otomatik olarak araç kasasının değişen yüksekliğine göre ayarlar.",
     ],
-    bestFor: ["İnşaatı tamamlanmış depo", "Yüksek bina kotu", "Renovasyon projeleri"],
+    bestFor: [
+      "İnşaatı tamamlanmış depo",
+      "Yüksek bina kotu",
+      "Renovasyon projeleri",
+    ],
     technicalSpecs: [
       {
         label: "Ebatlar",
@@ -143,7 +151,8 @@ export const productCategories: ProductCategory[] = [
       },
       {
         label: "Maksimum kaldırma / indirme mesafesi",
-        value: "Zemin seviyesinden -30 cm / +40 cm aralığında hareket kabiliyeti.",
+        value:
+          "Zemin seviyesinden -30 cm / +40 cm aralığında hareket kabiliyeti.",
       },
       {
         label: "Rampa Zemin Malzemesi",
@@ -151,7 +160,8 @@ export const productCategories: ProductCategory[] = [
       },
       {
         label: "Dil Malzemesi",
-        value: "Antipatinaj özellikli 12-13 mm gözyaşı desenli sac, 40 cm uzunluk.",
+        value:
+          "Antipatinaj özellikli 12-13 mm gözyaşı desenli sac, 40 cm uzunluk.",
       },
       {
         label: "Ek Donanım",
@@ -182,7 +192,11 @@ export const productCategories: ProductCategory[] = [
       "Nakliye aracının yanaşma esnasında rampaya ve betona zarar vermemesi için beton çukurunun sağına ve soluna çarpma takozları monte edilir.",
       "Körüklerle birlikte kullanıldığında ısı kaybının önlenmesinde ve hijyenin sağlanmasında önemli rol oynar.",
     ],
-    bestFor: ["Konteyner yükleme", "Soğuk hava deposu", "Çoklu araç yüksekliği"],
+    bestFor: [
+      "Konteyner yükleme",
+      "Soğuk hava deposu",
+      "Çoklu araç yüksekliği",
+    ],
     technicalSpecs: [
       {
         label: "Ebatlar",
@@ -231,7 +245,11 @@ export const productCategories: ProductCategory[] = [
       "Yüksek mukavemetli ST52 çelikten imal edilir; tonaj aşımı olmadığı sürece deforme olmaz.",
       "Beton zemin içinde çukur açılır, rampa bu çukura yerleştirilir ve altındaki 2 piston yardımıyla kaldırılır; ön taraftaki menteşeli dil araca oturtulur ve yük dorseye aktarılır. Pistonlar yaylanma hareketi yaparak rampanın araçla senkronize, sarsıntısız yükleme yapmasını sağlar.",
     ],
-    bestFor: ["Sabit yükleme noktası", "Çift kullanımlı alanlar", "Özel tasarım depo"],
+    bestFor: [
+      "Sabit yükleme noktası",
+      "Çift kullanımlı alanlar",
+      "Özel tasarım depo",
+    ],
     technicalSpecs: [
       {
         label: "Ebatlar",
@@ -277,33 +295,18 @@ export const productCategories: ProductCategory[] = [
       "Hızlı yerleştirme",
       "Çelik konstrüksiyon",
     ],
-    bestFor: ["Liman ve antrepo", "Konteyner yükleme/boşaltma", "Lojistik merkezi"],
+    bestFor: [
+      "Liman ve antrepo",
+      "Konteyner yükleme/boşaltma",
+      "Lojistik merkezi",
+    ],
     icon: "Container",
     order: 6,
-  },
-  {
-    slug: "makasli-platform",
-    name: "Makaslı Platform",
-    shortName: "Makaslı Platform",
-    tagline: "Dikey yük taşımanın güvenli ve sessiz yolu.",
-    description:
-      "Hidrolik makas mekanizmalı dikey yükleme platformu. Büyük seviye farklarında rampa alternatifi olarak kullanılır.",
-    capacities: ["500 kg", "1.000 kg", "2.000 kg", "5.000 kg"],
-    dimensions: "Özel ölçü üretim",
-    features: [
-      "500 kg – 5.000 kg aralığında üretim",
-      "Hidrolik kontrol",
-      "Sessiz çalışma",
-      "Acil stop ve güvenlik kilitleri",
-    ],
-    bestFor: ["Katlar arası yük taşıma", "Sevkiyat platformları", "Servis bölgeleri"],
-    icon: "ChevronsUp",
-    order: 7,
   },
 ];
 
 // ─── Anasayfada gösterilecek ürünler ────────────────────────────────
-// Eren'in verdiği tam sıra; Makaslı Platform anasayfada gösterilmez.
+// Eren'in verdiği tam sıra.
 const HOME_PRODUCT_SLUGS = [
   "seyyar-mobil-rampa",
   "dik-yukleme-rampasi",
@@ -313,8 +316,8 @@ const HOME_PRODUCT_SLUGS = [
   "konteyner-gecis-rampasi",
 ] as const;
 
-export const homeProducts: ProductCategory[] = HOME_PRODUCT_SLUGS.map(
-  (slug) => productCategories.find((p) => p.slug === slug)!
+export const homeProducts: ProductCategory[] = HOME_PRODUCT_SLUGS.map((slug) =>
+  productCategories.find((p) => p.slug === slug)!,
 ).filter(Boolean);
 
 export const capacityNote =

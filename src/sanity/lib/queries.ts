@@ -9,7 +9,7 @@ export const settingsQuery = groq`*[_type == "settings"][0]{
   "logoUrl": logo.asset->url,
   companyName,
   tagline,
-  "featuredProducts": featuredProducts[]->{
+  "featuredProducts": (featuredProducts[]->)[coalesce(visible, true) && _id != "product-makasli-platform" && defined(slug.current)] {
     _id,
     name,
     "slug": slug,
@@ -29,7 +29,7 @@ export const settingsQuery = groq`*[_type == "settings"][0]{
   announcement
 }`;
 
-export const allProductsQuery = groq`*[_type == "product"] | order(orderRank asc) {
+export const allProductsQuery = groq`*[_type == "product" && coalesce(visible, true) && _id != "product-makasli-platform" && slug.current != "makasli-platform"] | order(orderRank asc) {
   _id,
   name,
   slug,
@@ -41,7 +41,7 @@ export const allProductsQuery = groq`*[_type == "product"] | order(orderRank asc
   mainImage
 }`;
 
-export const productBySlugQuery = groq`*[_type == "product" && slug.current == $slug][0]{
+export const productBySlugQuery = groq`*[_type == "product" && coalesce(visible, true) && _id != "product-makasli-platform" && slug.current != "makasli-platform" && (slug.current == $slug || _id == "product-" + $slug)][0]{
   _id,
   name,
   slug,
@@ -59,7 +59,7 @@ export const productBySlugQuery = groq`*[_type == "product" && slug.current == $
   faqs
 }`;
 
-export const productSlugsQuery = groq`*[_type == "product" && defined(slug.current)]{ "slug": slug.current }`;
+export const productSlugsQuery = groq`*[_type == "product" && coalesce(visible, true) && _id != "product-makasli-platform" && slug.current != "makasli-platform" && defined(slug.current)]{ "slug": slug.current }`;
 
 export const allBlogPostsQuery = groq`*[_type == "blogPost" && defined(publishedAt) && publishedAt < now()] | order(publishedAt desc) {
   _id,
@@ -107,14 +107,14 @@ export const featuredReferencesQuery = groq`*[_type == "referenceCompany" && fea
   sector
 }`;
 
-export const sparePartsQuery = groq`*[_type == "sparePart"] | order(orderRank asc, name asc) {
+export const sparePartsQuery = groq`*[_type == "sparePart" && !(_id in ["sparePart-elik-halat", "sparePart-lastik-flap", "sparePart-kap-contas", "sparePart-arpma-tamponu", "sparePart-k-e-koruyucu"])] | order(orderRank asc, name asc) {
   _id,
   name,
   slug,
   description,
   image,
   available,
-  "compatibleWith": compatibleWith[]->{ _id, name, slug }
+  "compatibleWith": (compatibleWith[]->)[coalesce(visible, true) && _id != "product-makasli-platform" && defined(slug.current)]{ _id, name, slug }
 }`;
 
 // ─── Özel Sayfalar (Eren CMS) ───

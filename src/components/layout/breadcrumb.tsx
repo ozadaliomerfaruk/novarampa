@@ -7,7 +7,7 @@ export function Breadcrumb({ items }: { items: Item[] }) {
   return (
     <nav
       aria-label="Breadcrumb"
-      className="container-wide pt-28 md:pt-32 pb-2 text-sm"
+      className="container-wide pt-28 md:pt-44 pb-2 text-sm"
     >
       <ol className="flex items-center gap-1.5 flex-wrap text-muted-foreground">
         <li>

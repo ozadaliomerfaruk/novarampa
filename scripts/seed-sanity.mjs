@@ -5,7 +5,7 @@
  * Çalıştırma: node scripts/seed-sanity.mjs
  * Gereksinim: .env.local içinde SANITY_API_WRITE_TOKEN
  *
- * Güvenli: aynı _id'li belgeyi tekrar yazmak için createOrReplace kullanır.
+ * Güvenli: mevcut kayıtları korur; yalnız eksik başlangıç belgelerini oluşturur.
  * Yani script'i 2. kez çalıştırırsanız duplicate oluşmaz, üzerine yazar.
  */
 import "dotenv/config";
@@ -110,24 +110,6 @@ const products = [
     orderRank: 4,
   },
   {
-    slug: "makasli-platform",
-    name: "Makaslı Platform",
-    shortName: "Makaslı Platform",
-    tagline: "Dikey yük taşımanın güvenli ve sessiz yolu.",
-    shortDescription:
-      "Hidrolik makas mekanizmalı dikey yükleme platformu. Büyük seviye farklarında rampa alternatifi olarak kullanılır.",
-    capacities: ["500 kg", "1.000 kg", "2.000 kg", "5.000 kg"],
-    dimensions: "Özel ölçü üretim",
-    features: [
-      "500 kg – 5.000 kg aralığında üretim",
-      "Hidrolik kontrol",
-      "Sessiz çalışma",
-      "Acil stop ve güvenlik kilitleri",
-    ],
-    bestFor: ["Katlar arası yük taşıma", "Sevkiyat platformları", "Servis bölgeleri"],
-    orderRank: 5,
-  },
-  {
     slug: "gomme-rampa",
     name: "Gömme Rampa",
     shortName: "Gömme Rampa",
@@ -142,7 +124,11 @@ const products = [
       "Özel mimari projeler için",
       "Tam özelleştirilebilir",
     ],
-    bestFor: ["Mimari projeler", "Çift kullanımlı alanlar", "Özel tasarım depo"],
+    bestFor: [
+      "Mimari projeler",
+      "Çift kullanımlı alanlar",
+      "Özel tasarım depo",
+    ],
     orderRank: 6,
   },
   {
@@ -160,7 +146,11 @@ const products = [
       "Hızlı yerleştirme",
       "Çelik konstrüksiyon",
     ],
-    bestFor: ["Liman ve antrepo", "Konteyner yükleme/boşaltma", "Lojistik merkezi"],
+    bestFor: [
+      "Liman ve antrepo",
+      "Konteyner yükleme/boşaltma",
+      "Lojistik merkezi",
+    ],
     orderRank: 7,
   },
 ];
@@ -168,7 +158,11 @@ const products = [
 // ─── REFERENCES (Eren'in raporda paylaştığı firmalar) ──────────────
 const referenceCompanies = [
   { name: "Arçelik", featured: true, sector: "Beyaz Eşya" },
-  { name: "Şişecam (Cam Elyaf Sanayii A.Ş.)", featured: true, sector: "Cam ve Kimya" },
+  {
+    name: "Şişecam (Cam Elyaf Sanayii A.Ş.)",
+    featured: true,
+    sector: "Cam ve Kimya",
+  },
   { name: "Hayat Kimya", featured: true, sector: "Kimya" },
   { name: "Roketsan", featured: true, sector: "Savunma" },
   { name: "Eczacıbaşı", featured: true, sector: "Sağlık ve Tüketim" },
@@ -236,25 +230,71 @@ const referenceCompanies = [
 // ─── SPARE PARTS ───────────────────────────────────────────────────
 const spareParts = [
   // Hidrolik Sistem
-  { name: "Hidrolik Silindir", category: "Hidrolik Sistem", description: "Standart hidrolik rampa silindiri. Tüm modeller için stoğumuzda mevcut." },
-  { name: "Hidrolik Motor", category: "Hidrolik Sistem", description: "Hidrolik güç ünitesi motoru. Sessiz çalışma, uzun ömür." },
-  { name: "Hidrolik Hortum", category: "Hidrolik Sistem", description: "Yüksek basınca dayanıklı hidrolik bağlantı hortumu. Çeşitli uzunluk seçenekleri." },
-  { name: "Yağ Contası", category: "Hidrolik Sistem", description: "Hidrolik sistem sızdırmazlık contası. Periyodik bakım kapsamında değiştirilir." },
+  {
+    name: "Hidrolik Silindir",
+    category: "Hidrolik Sistem",
+    description:
+      "Standart hidrolik rampa silindiri. Tüm modeller için stoğumuzda mevcut.",
+  },
+  {
+    name: "Hidrolik Motor",
+    category: "Hidrolik Sistem",
+    description: "Hidrolik güç ünitesi motoru. Sessiz çalışma, uzun ömür.",
+  },
+  {
+    name: "Hidrolik Hortum",
+    category: "Hidrolik Sistem",
+    description:
+      "Yüksek basınca dayanıklı hidrolik bağlantı hortumu. Çeşitli uzunluk seçenekleri.",
+  },
+  {
+    name: "Yağ Contası",
+    category: "Hidrolik Sistem",
+    description:
+      "Hidrolik sistem sızdırmazlık contası. Periyodik bakım kapsamında değiştirilir.",
+  },
   // Elektrik Sistem
-  { name: "Kontrol Kutusu", category: "Elektrik Sistem", description: "Rampa kumanda paneli. Elektronik kontrol ve güvenlik devreleri ile." },
-  { name: "Buton Paneli", category: "Elektrik Sistem", description: "Operatör butonları. Yukarı/aşağı/acil stop. Su geçirmez muhafaza." },
-  { name: "Limit Anahtarı", category: "Elektrik Sistem", description: "Otomatik durdurma anahtarı. Güvenlik için kritik bileşen." },
-  { name: "Kablo Seti", category: "Elektrik Sistem", description: "Komple elektrik kablo bağlantı seti. Etiketli, kolay montajlı." },
+  {
+    name: "Kontrol Kutusu",
+    category: "Elektrik Sistem",
+    description:
+      "Rampa kumanda paneli. Elektronik kontrol ve güvenlik devreleri ile.",
+  },
+  {
+    name: "Buton Paneli",
+    category: "Elektrik Sistem",
+    description:
+      "Operatör butonları. Yukarı/aşağı/acil stop. Su geçirmez muhafaza.",
+  },
+  {
+    name: "Limit Anahtarı",
+    category: "Elektrik Sistem",
+    description: "Otomatik durdurma anahtarı. Güvenlik için kritik bileşen.",
+  },
+  {
+    name: "Kablo Seti",
+    category: "Elektrik Sistem",
+    description:
+      "Komple elektrik kablo bağlantı seti. Etiketli, kolay montajlı.",
+  },
   // Mekanik Aksam
-  { name: "Menteşe Pimleri", category: "Mekanik Aksam", description: "Sertleştirilmiş çelik menteşe pinleri. Ağır yük dayanımı." },
-  { name: "Dil Mekanizması", category: "Mekanik Aksam", description: "Menteşeli/teleskopik dil grupları. Galvaniz ve çelik versiyonları mevcut." },
-  { name: "Yay Sistemi", category: "Mekanik Aksam", description: "Dil hareketini destekleyen yay grubu. Standart ve özel tonajlı versiyonlar." },
-  { name: "Çelik Halat", category: "Mekanik Aksam", description: "Yedek güvenlik halatı. Sertifikalı, yük kapasitesi etiketli." },
-  // Tampon & Conta
-  { name: "Lastik Flap", category: "Tampon & Conta", description: "Ön/yan kapak lastiği. Soğuk hava deposu sızdırmazlığı için." },
-  { name: "Kapı Contası", category: "Tampon & Conta", description: "Yükleme kapısı çevre contası. Yalıtım ve toz tutmaya karşı." },
-  { name: "Çarpma Tamponu", category: "Tampon & Conta", description: "Tır/kamyon çarpmasını absorbe eden kauçuk tampon. 250-450 mm seçenekleri." },
-  { name: "Köşe Koruyucu", category: "Tampon & Conta", description: "Kapı çevresi köşe koruma profilleri. Aşınmaya karşı." },
+  {
+    name: "Menteşe Pimleri",
+    category: "Mekanik Aksam",
+    description: "Sertleştirilmiş çelik menteşe pinleri. Ağır yük dayanımı.",
+  },
+  {
+    name: "Dil Mekanizması",
+    category: "Mekanik Aksam",
+    description:
+      "Menteşeli/teleskopik dil grupları. Galvaniz ve çelik versiyonları mevcut.",
+  },
+  {
+    name: "Yay Sistemi",
+    category: "Mekanik Aksam",
+    description:
+      "Dil hareketini destekleyen yay grubu. Standart ve özel tonajlı versiyonlar.",
+  },
 ];
 
 // ─── SETTINGS DEFAULTS ─────────────────────────────────────────────
@@ -269,7 +309,8 @@ const settings = {
       _key: "m1",
       year: 2003,
       title: "Dinamik Mühendislik kuruldu",
-      description: "Yükleme rampası sektörüne giriş; ilk fabrika ve depo projeleri.",
+      description:
+        "Yükleme rampası sektörüne giriş; ilk fabrika ve depo projeleri.",
     },
     {
       _key: "m2",
@@ -281,13 +322,14 @@ const settings = {
       _key: "m3",
       year: 2018,
       title: "Soğuk hava ve özel imalat",
-      description: "Teleskopik, dikey ve makaslı platform üretiminin başlangıcı.",
+      description: "Teleskopik ve dikey rampa üretiminin başlangıcı.",
     },
     {
       _key: "m4",
       year: 2022,
       title: "Nova Rampa markası doğdu",
-      description: "Yeni nesil vizyon, modern tasarım, dijital servis süreçleri.",
+      description:
+        "Yeni nesil vizyon, modern tasarım, dijital servis süreçleri.",
     },
     {
       _key: "m5",
@@ -427,7 +469,7 @@ async function seed() {
       bestFor: p.bestFor,
       orderRank: p.orderRank,
     };
-    await client.createOrReplace(doc);
+    await client.createIfNotExists(doc);
     productCount++;
     process.stdout.write(`  ${productCount}/${products.length} `);
   }
@@ -449,7 +491,7 @@ async function seed() {
       sector: r.sector,
       featured: !!r.featured,
     };
-    await client.createOrReplace(doc);
+    await client.createIfNotExists(doc);
     refCount++;
   }
   console.log(`✅ ${refCount} referans yüklendi\n`);
@@ -472,14 +514,14 @@ async function seed() {
       available: true,
       orderRank: partCount + 1,
     };
-    await client.createOrReplace(doc);
+    await client.createIfNotExists(doc);
     partCount++;
   }
   console.log(`✅ ${partCount} yedek parça yüklendi\n`);
 
   // 4) Site Settings
   console.log("⚙️ Site Ayarları güncelleniyor...");
-  await client.createOrReplace(settings);
+  await client.createIfNotExists(settings);
   console.log("✅ Site Settings yüklendi\n");
 
   console.log("🎉 Sanity seed tamamlandı!");

@@ -68,91 +68,97 @@
 
 /* ───── LIGHT (varsayılan :root) — açık zemin, koyu yazı ───── */
 :root {
-  --brand-cream:      oklch(0.97 0.008 90);     /* sıcak açık kağıt */
-  --brand-paper:      oklch(0.955 0.006 255);   /* section / placeholder yüzeyi */
-  --brand-charcoal:   oklch(0.93  0.006 255);   /* kart / görsel placeholder */
-  --brand-black:      oklch(0.1   0     0);
-  --brand-ink:        oklch(0.205 0.034 255);   /* KOYU KALIR — video overlay */
-  --brand-navy:       oklch(0.205 0.034 255);   /* KOYU KALIR — kurumsal navy */
-  --brand-navy-dark:  oklch(0.17  0.028 255);   /* KOYU KALIR — footer */
-  --brand-steel:      oklch(0.45  0.04  255);   /* açık zeminde okunur orta navy */
-  --brand-orange:     oklch(0.72  0.205 47);    /* #F97316 (KORUNDU) */
-  --brand-orange-hover: oklch(0.66 0.21  42);
-  --brand-orange-soft:  oklch(0.72 0.205 47 / 0.12);
+  --brand-cream: oklch(0.97 0.008 90); /* sıcak açık kağıt */
+  --brand-paper: oklch(0.955 0.006 255); /* section / placeholder yüzeyi */
+  --brand-charcoal: oklch(0.93 0.006 255); /* kart / görsel placeholder */
+  --brand-black: oklch(0.1 0 0);
+  --brand-ink: oklch(0.205 0.034 255); /* KOYU KALIR — video overlay */
+  --brand-navy: oklch(0.205 0.034 255); /* KOYU KALIR — kurumsal navy */
+  --brand-navy-dark: oklch(0.17 0.028 255); /* KOYU KALIR — footer */
+  --brand-steel: oklch(0.45 0.04 255); /* açık zeminde okunur orta navy */
+  --brand-orange: oklch(0.72 0.205 47); /* #F97316 (KORUNDU) */
+  --brand-orange-hover: oklch(0.66 0.21 42);
+  --brand-orange-soft: oklch(0.72 0.205 47 / 0.12);
 
-  --background:      oklch(0.985 0.002 255);    /* açık, hafif soğuk beyaz */
-  --foreground:      oklch(0.22  0.02  262);    /* koyu navy-siyah yazı */
-  --card:            oklch(1 0 0);
+  --background: oklch(0.985 0.002 255); /* açık, hafif soğuk beyaz */
+  --foreground: oklch(0.22 0.02 262); /* koyu navy-siyah yazı */
+  --card: oklch(1 0 0);
   --card-foreground: oklch(0.22 0.02 262);
-  --popover:         oklch(1 0 0);
+  --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.22 0.02 262);
-  --primary:         oklch(0.72 0.205 47);
+  --primary: oklch(0.72 0.205 47);
   --primary-foreground: oklch(1 0 0);
-  --secondary:       oklch(0.95 0.004 255);
+  --secondary: oklch(0.95 0.004 255);
   --secondary-foreground: oklch(0.22 0.02 262);
-  --muted:           oklch(0.955 0.004 255);
-  --muted-foreground: oklch(0.47 0.02 262);     /* orta gri — açık zeminde okunur */
-  --accent:          oklch(0.72 0.205 47 / 0.12);
+  --muted: oklch(0.955 0.004 255);
+  --muted-foreground: oklch(0.47 0.02 262); /* orta gri — açık zeminde okunur */
+  --accent: oklch(0.72 0.205 47 / 0.12);
   --accent-foreground: oklch(0.28 0.03 262);
-  --destructive:     oklch(0.58 0.22 27);
-  --border:          oklch(0.22 0.02 262 / 0.14);
-  --input:           oklch(0.22 0.02 262 / 0.20);
-  --ring:            oklch(0.72 0.205 47 / 0.45);
-  --radius:          0.625rem;
+  --destructive: oklch(0.58 0.22 27);
+  --border: oklch(0.22 0.02 262 / 0.14);
+  --input: oklch(0.22 0.02 262 / 0.2);
+  --ring: oklch(0.72 0.205 47 / 0.45);
+  --radius: 0.625rem;
 
-  --sidebar:                  oklch(0.98 0.003 255);
-  --sidebar-foreground:       oklch(0.22 0.02 262);
-  --sidebar-primary:          oklch(0.72 0.205 47);
+  --sidebar: oklch(0.98 0.003 255);
+  --sidebar-foreground: oklch(0.22 0.02 262);
+  --sidebar-primary: oklch(0.72 0.205 47);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent:           oklch(0.95 0.004 255);
+  --sidebar-accent: oklch(0.95 0.004 255);
   --sidebar-accent-foreground: oklch(0.22 0.02 262);
-  --sidebar-border:           oklch(0.22 0.02 262 / 0.12);
-  --sidebar-ring:             oklch(0.72 0.205 47 / 0.45);
+  --sidebar-border: oklch(0.22 0.02 262 / 0.12);
+  --sidebar-ring: oklch(0.72 0.205 47 / 0.45);
 
   color-scheme: light;
 }
 
 /* ───── DARK (.dark) — Eren'in varsayılanı: siyah fon + beyaz yazı ───── */
 .dark {
-  --brand-cream:      oklch(0.13 0.005 255);    /* near-black yüzey */
-  --brand-paper:      oklch(0.165 0.008 255);   /* bir ton açık section yüzeyi */
-  --brand-charcoal:   oklch(0.19  0.01  255);   /* kart/görsel placeholder yüzeyi */
-  --brand-black:      oklch(0.1   0     0);
-  --brand-ink:        oklch(0.205 0.034 255);   /* #142235 - video overlay için koyu navy */
-  --brand-navy:       oklch(0.205 0.034 255);   /* #142235 - kurumsal navy */
-  --brand-navy-dark:  oklch(0.17  0.028 255);   /* footer için biraz daha koyu navy */
-  --brand-steel:      oklch(0.68  0.04  255);   /* açık navy — koyu zeminde okunur */
-  --brand-orange:     oklch(0.72  0.205 47);    /* #F97316 - Eren'in turuncusu */
-  --brand-orange-hover: oklch(0.66 0.21  42);   /* #E55C12 - hover, daha koyu */
-  --brand-orange-soft:  oklch(0.72 0.205 47 / 0.12);
+  --brand-cream: oklch(0.13 0.005 255); /* near-black yüzey */
+  --brand-paper: oklch(0.165 0.008 255); /* bir ton açık section yüzeyi */
+  --brand-charcoal: oklch(0.19 0.01 255); /* kart/görsel placeholder yüzeyi */
+  --brand-black: oklch(0.1 0 0);
+  --brand-ink: oklch(
+    0.205 0.034 255
+  ); /* #142235 - video overlay için koyu navy */
+  --brand-navy: oklch(0.205 0.034 255); /* #142235 - kurumsal navy */
+  --brand-navy-dark: oklch(
+    0.17 0.028 255
+  ); /* footer için biraz daha koyu navy */
+  --brand-steel: oklch(0.68 0.04 255); /* açık navy — koyu zeminde okunur */
+  --brand-orange: oklch(0.72 0.205 47); /* #F97316 - Eren'in turuncusu */
+  --brand-orange-hover: oklch(0.66 0.21 42); /* #E55C12 - hover, daha koyu */
+  --brand-orange-soft: oklch(0.72 0.205 47 / 0.12);
 
-  --background:      oklch(0.13 0.005 255);     /* siyah (hafif soğuk) */
-  --foreground:      oklch(0.98 0 0);           /* beyaz */
-  --card:            oklch(0.175 0.008 255);
+  --background: oklch(0.13 0.005 255); /* siyah (hafif soğuk) */
+  --foreground: oklch(0.98 0 0); /* beyaz */
+  --card: oklch(0.175 0.008 255);
   --card-foreground: oklch(0.98 0 0);
-  --popover:         oklch(0.165 0.008 255);
+  --popover: oklch(0.165 0.008 255);
   --popover-foreground: oklch(0.98 0 0);
-  --primary:         oklch(0.72 0.205 47);      /* orange */
+  --primary: oklch(0.72 0.205 47); /* orange */
   --primary-foreground: oklch(1 0 0);
-  --secondary:       oklch(0.21 0.01 255);
+  --secondary: oklch(0.21 0.01 255);
   --secondary-foreground: oklch(0.98 0 0);
-  --muted:           oklch(0.21 0.01 255);
-  --muted-foreground: oklch(0.72 0.012 255);    /* açık gri — koyu zeminde okunur */
-  --accent:          oklch(0.72 0.205 47 / 0.12);
+  --muted: oklch(0.21 0.01 255);
+  --muted-foreground: oklch(
+    0.72 0.012 255
+  ); /* açık gri — koyu zeminde okunur */
+  --accent: oklch(0.72 0.205 47 / 0.12);
   --accent-foreground: oklch(0.98 0 0);
-  --destructive:     oklch(0.65 0.21 27);
-  --border:          oklch(1 0 0 / 0.12);
-  --input:           oklch(1 0 0 / 0.16);
-  --ring:            oklch(0.72 0.205 47 / 0.45);
+  --destructive: oklch(0.65 0.21 27);
+  --border: oklch(1 0 0 / 0.12);
+  --input: oklch(1 0 0 / 0.16);
+  --ring: oklch(0.72 0.205 47 / 0.45);
 
-  --sidebar:                  oklch(0.16 0.008 255);
-  --sidebar-foreground:       oklch(0.98 0 0);
-  --sidebar-primary:          oklch(0.72 0.205 47);
+  --sidebar: oklch(0.16 0.008 255);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.72 0.205 47);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent:           oklch(0.21 0.01 255);
+  --sidebar-accent: oklch(0.21 0.01 255);
   --sidebar-accent-foreground: oklch(0.98 0 0);
-  --sidebar-border:           oklch(1 0 0 / 0.12);
-  --sidebar-ring:             oklch(0.72 0.205 47 / 0.45);
+  --sidebar-border: oklch(1 0 0 / 0.12);
+  --sidebar-ring: oklch(0.72 0.205 47 / 0.45);
 
   color-scheme: dark;
 }
@@ -167,8 +173,11 @@
   *,
   ::before,
   ::after {
-    transition: background-color 0.3s ease, border-color 0.3s ease,
-      color 0.25s ease, fill 0.25s ease;
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease,
+      color 0.25s ease,
+      fill 0.25s ease;
   }
   html {
     @apply font-sans;
@@ -176,10 +185,13 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
     letter-spacing: 0;
   }
-  button:not(:disabled), [role="button"]:not(:disabled) {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
     cursor: pointer;
   }
   ::selection {
@@ -200,7 +212,12 @@
   ::-webkit-scrollbar-thumb:hover {
     background: var(--brand-orange);
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading tracking-tight;
     letter-spacing: -0.025em;
     color: var(--foreground);
@@ -221,11 +238,22 @@
 }
 
 @keyframes grain-shift {
-  0%, 100% { transform: translate(0, 0); }
-  20% { transform: translate(-3%, 2%); }
-  40% { transform: translate(2%, -3%); }
-  60% { transform: translate(-2%, -1%); }
-  80% { transform: translate(3%, 3%); }
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-3%, 2%);
+  }
+  40% {
+    transform: translate(2%, -3%);
+  }
+  60% {
+    transform: translate(-2%, -1%);
+  }
+  80% {
+    transform: translate(3%, 3%);
+  }
 }
 
 .blueprint-lines {
@@ -236,8 +264,16 @@
     linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 90%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 90%);
+  mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 40%,
+    black 30%,
+    transparent 90%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 40%,
+    black 30%,
+    transparent 90%
+  );
 }
 
 /* Yardımcılar */
@@ -269,7 +305,10 @@
     background: var(--brand-navy-dark);
     color: oklch(0.94 0.008 240);
   }
-  .surface-dark h1, .surface-dark h2, .surface-dark h3, .surface-dark h4 {
+  .surface-dark h1,
+  .surface-dark h2,
+  .surface-dark h3,
+  .surface-dark h4 {
     color: white;
   }
 }
@@ -304,8 +343,57 @@
   color: var(--brand-orange);
   text-underline-offset: 2px;
 }
-.legal-prose a:hover { text-decoration: underline; }
+.legal-prose a:hover {
+  text-decoration: underline;
+}
 .legal-prose hr {
   @apply my-8;
   border-color: var(--border);
+}
+
+/* Shared headings for Eren's section and page layouts. */
+.section-title {
+  font-family: var(--font-heading), sans-serif;
+  font-size: clamp(2.5rem, 4.7vw, 4.75rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.page-title {
+  font-family: var(--font-heading), sans-serif;
+  font-size: clamp(2.75rem, 5.5vw, 5.25rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.field-control {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--input);
+  border-radius: 0.55rem;
+  background: var(--background);
+  color: var(--foreground);
+  font: inherit;
+  font-size: 0.95rem;
+}
+.field-control:focus-visible {
+  outline: 2px solid var(--brand-orange);
+  outline-offset: 3px;
+}
+.field-control[aria-invalid="true"] {
+  border-color: var(--destructive);
+}
+.field-control:disabled {
+  opacity: 0.55;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .grain-overlay {
+    animation: none;
+  }
 }

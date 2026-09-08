@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Menu, Phone, Mail, Cog } from "lucide-react";
 
 import { Logo } from "@/components/brand/logo";
+import { SiteSearch } from "@/components/layout/site-search";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { LinkButton } from "@/components/ui/link-button";
@@ -72,20 +73,22 @@ export function HeaderClient({
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
           ? "bg-background/85 backdrop-blur-md border-b border-border shadow-sm"
-          : "bg-transparent"
+          : onDark
+            ? "bg-transparent"
+            : "bg-background/95 border-b border-border",
       )}
     >
       {/* ─── ÜST HAIRLINE BAR — telefon + email ─── */}
       <div
         className={cn(
           "hidden md:block border-b",
-          onDark ? "border-white/10" : "border-border"
+          onDark ? "border-white/10" : "border-border",
         )}
       >
         <div
           className={cn(
             "mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-10 flex h-10 items-center justify-between text-sm",
-            onDark ? "text-white/70" : "text-muted-foreground"
+            onDark ? "text-white/70" : "text-muted-foreground",
           )}
         >
           <div className="flex items-center gap-6">
@@ -93,7 +96,7 @@ export function HeaderClient({
               href={`tel:${contact.phone}`}
               className={cn(
                 "inline-flex items-center gap-1.5 transition-colors",
-                onDark ? "hover:text-white" : "hover:text-foreground"
+                onDark ? "hover:text-white" : "hover:text-foreground",
               )}
             >
               <Phone size={14} />
@@ -103,7 +106,7 @@ export function HeaderClient({
               href={`mailto:${contact.email}`}
               className={cn(
                 "inline-flex items-center gap-1.5 transition-colors",
-                onDark ? "hover:text-white" : "hover:text-foreground"
+                onDark ? "hover:text-white" : "hover:text-foreground",
               )}
             >
               <Mail size={14} />
@@ -111,11 +114,12 @@ export function HeaderClient({
             </a>
           </div>
           <div className="flex items-center gap-5">
+            <SiteSearch />
             <Link
               href="/iletisim"
               className={cn(
                 "transition-colors uppercase tracking-wider text-xs font-medium",
-                onDark ? "hover:text-white" : "hover:text-foreground"
+                onDark ? "hover:text-white" : "hover:text-foreground",
               )}
             >
               Bize Ulaşın →
@@ -133,7 +137,10 @@ export function HeaderClient({
           {...(onDark ? { inverted: true } : { autoInvert: true })}
         />
 
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav
+          aria-label="Ana menü"
+          className="hidden xl:flex items-center gap-0 -translate-y-5"
+        >
           {navItems.map((item) => (
             <NavLink
               key={item.href}
@@ -155,16 +162,19 @@ export function HeaderClient({
         </nav>
 
         {/* ─── CTA + TEMA BUTONU ─── */}
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2 md:-translate-y-5">
+          <div className={cn("md:hidden", onDark && "text-white")}>
+            <SiteSearch iconOnly />
+          </div>
           <LinkButton
             href="/yedek-parca"
             size="default"
             variant="outline"
             className={cn(
-              "hidden md:inline-flex lg:hidden xl:inline-flex h-11 px-4 text-[0.95rem] bg-transparent font-semibold hover:border-[var(--brand-orange)]/60 hover:bg-[var(--brand-orange)]/10",
+              "hidden md:inline-flex h-11 px-4 text-[0.95rem] bg-transparent font-semibold hover:border-[var(--brand-orange)]/60 hover:bg-[var(--brand-orange)]/10",
               onDark
                 ? "border-white/20 text-white hover:text-white"
-                : "border-border text-foreground hover:text-foreground"
+                : "border-border text-foreground hover:text-foreground",
             )}
           >
             <Cog size={15} className="mr-1.5" />
@@ -190,10 +200,10 @@ export function HeaderClient({
                   variant="ghost"
                   size="icon"
                   className={cn(
-                    "lg:hidden",
+                    "xl:hidden",
                     onDark
                       ? "text-white hover:text-white hover:bg-white/10"
-                      : "text-foreground hover:text-foreground hover:bg-muted"
+                      : "text-foreground hover:text-foreground hover:bg-muted",
                   )}
                   aria-label="Menüyü aç"
                 >
@@ -201,10 +211,7 @@ export function HeaderClient({
                 </Button>
               }
             />
-            <SheetContent
-              side="left"
-              className="bg-background overflow-y-auto"
-            >
+            <SheetContent side="left" className="bg-background overflow-y-auto">
               <SheetHeader>
                 <SheetTitle>
                   <Logo
@@ -252,12 +259,12 @@ function NavLink({
     <Link
       href={href}
       className={cn(
-        "relative px-3 py-2 text-base font-medium transition-colors",
+        "relative px-2 2xl:px-3 py-2 text-sm 2xl:text-base font-medium transition-colors",
         "after:absolute after:left-3 after:right-3 after:bottom-0.5 after:h-[2px]",
         "after:bg-[var(--brand-orange)] after:origin-left after:transition-transform after:duration-300",
         isActive
           ? cn(activeText, "after:scale-x-100")
-          : cn(idleText, "after:scale-x-0 hover:after:scale-x-100")
+          : cn(idleText, "after:scale-x-0 hover:after:scale-x-100"),
       )}
     >
       {label}

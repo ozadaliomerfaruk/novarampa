@@ -12,7 +12,10 @@ type Props = {
 export function ReferencesStrip({ sanityReferences }: Props = {}) {
   const useSanity = (sanityReferences?.length ?? 0) > 0;
   const items = useSanity
-    ? [...(sanityReferences as ReferenceCompany[]), ...(sanityReferences as ReferenceCompany[])]
+    ? [
+        ...(sanityReferences as ReferenceCompany[]),
+        ...(sanityReferences as ReferenceCompany[]),
+      ]
     : (() => {
         const list = referenceCompanies.filter((c) => c.featured).slice(0, 12);
         return [...list, ...list];
@@ -22,9 +25,7 @@ export function ReferencesStrip({ sanityReferences }: Props = {}) {
     <section className="py-20 border-y border-border bg-[var(--brand-charcoal)]/40">
       <div className="container-wide">
         <div className="text-center mb-10">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight">
-            Referanslarımız
-          </h2>
+          <h2 className="section-title">Referanslarımız</h2>
         </div>
 
         <div className="relative overflow-hidden">
@@ -37,7 +38,10 @@ export function ReferencesStrip({ sanityReferences }: Props = {}) {
           >
             {items.map((c, i) =>
               useSanity ? (
-                <SanityRefLogo key={`${(c as ReferenceCompany)._id}-${i}`} c={c as ReferenceCompany} />
+                <SanityRefLogo
+                  key={`${(c as ReferenceCompany)._id}-${i}`}
+                  c={c as ReferenceCompany}
+                />
               ) : (
                 <div
                   key={`${(c as { name: string }).name}-${i}`}
@@ -45,7 +49,7 @@ export function ReferencesStrip({ sanityReferences }: Props = {}) {
                 >
                   {(c as { name: string }).name.replace(/\(.*\)/, "").trim()}
                 </div>
-              )
+              ),
             )}
           </motion.div>
         </div>

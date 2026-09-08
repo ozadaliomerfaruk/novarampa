@@ -24,13 +24,11 @@ export function LegalLayout({
         <Breadcrumb items={[{ label: breadcrumbLabel }]} />
 
         <article className="container-wide pt-8 pb-20 max-w-3xl">
-          <header className="mb-10 pb-8 border-b border-border">
+          <header className="mb-10 pb-8 border-b border-border text-center">
             <div className="text-xs font-mono text-muted-foreground uppercase tracking-widest">
               Son güncelleme · {updatedAt}
             </div>
-            <h1 className="mt-3 text-4xl sm:text-5xl font-heading font-bold tracking-tight">
-              {title}
-            </h1>
+            <h1 className="mt-3 page-title">{title}</h1>
             {subtitle && (
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
                 {subtitle}

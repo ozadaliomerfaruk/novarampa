@@ -42,7 +42,6 @@ export function OrganizationJsonLd({
       "Hidrolik rampa",
       "Teleskopik rampa",
       "Mobil rampa",
-      "Makaslı platform",
       "Konteyner geçiş rampası",
       "Soğuk hava deposu rampası",
       "CE belgeli endüstriyel ekipman",
@@ -69,7 +68,6 @@ export function OrganizationJsonLd({
   return (
     <script
       type="application/ld+json"
-      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
@@ -128,7 +126,6 @@ export function LocalBusinessJsonLd() {
   return (
     <script
       type="application/ld+json"
-      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
@@ -149,7 +146,6 @@ export function WebSiteJsonLd() {
   return (
     <script
       type="application/ld+json"
-      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
@@ -171,7 +167,6 @@ export function BreadcrumbJsonLd({ items }: { items: BreadcrumbItem[] }) {
   return (
     <script
       type="application/ld+json"
-      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
@@ -195,7 +190,11 @@ export function ProductJsonLd({
     description,
     image: image || `${siteConfig.url}/og-image.jpg`,
     brand: { "@type": "Brand", name: company.name },
-    manufacturer: { "@type": "Organization", name: company.name, url: siteConfig.url },
+    manufacturer: {
+      "@type": "Organization",
+      name: company.name,
+      url: siteConfig.url,
+    },
     url: `${siteConfig.url}/urunler/${slug}`,
     countryOfOrigin: "TR",
     offers: {
@@ -214,13 +213,16 @@ export function ProductJsonLd({
   return (
     <script
       type="application/ld+json"
-      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
 }
 
-export function FaqJsonLd({ faqs }: { faqs: { question: string; answer: string }[] }) {
+export function FaqJsonLd({
+  faqs,
+}: {
+  faqs: { question: string; answer: string }[];
+}) {
   if (!faqs?.length) return null;
   const data = {
     "@context": "https://schema.org",
@@ -234,7 +236,6 @@ export function FaqJsonLd({ faqs }: { faqs: { question: string; answer: string }
   return (
     <script
       type="application/ld+json"
-      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
@@ -299,7 +300,6 @@ export function BlogPostingJsonLd({
   return (
     <script
       type="application/ld+json"
-      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
@@ -318,12 +318,13 @@ export function ServiceMasterJsonLd() {
     provider: { "@id": `${siteConfig.url}/#organization` },
     areaServed: { "@type": "Country", name: "Türkiye" },
     description:
-      "Hidrolik, teleskopik, dikey, mobil yükleme rampası ve makaslı platform imalatı. " +
+      "Hidrolik, teleskopik, dikey, mobil yükleme rampası imalatı. " +
       "Fabrika, depo, lojistik merkez ve soğuk hava deposu girişleri için anahtar teslim " +
       "üretim, montaj ve teslim sonrası servis. CE & TSE belgeli, EN 1398 uyumlu.",
     audience: {
       "@type": "BusinessAudience",
-      audienceType: "Endüstriyel işletme sahibi, fabrika satın alma yetkilisi, lojistik müdürü",
+      audienceType:
+        "Endüstriyel işletme sahibi, fabrika satın alma yetkilisi, lojistik müdürü",
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
@@ -342,7 +343,6 @@ export function ServiceMasterJsonLd() {
   return (
     <script
       type="application/ld+json"
-      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
@@ -384,7 +384,6 @@ export function HowToJsonLd({
   return (
     <script
       type="application/ld+json"
-      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
@@ -443,7 +442,6 @@ export function ComparisonJsonLd({
   return (
     <script
       type="application/ld+json"
-      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );

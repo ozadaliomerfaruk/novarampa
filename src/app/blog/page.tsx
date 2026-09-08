@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Clock } from "lucide-react";
 
+import { PageIntro } from "@/components/layout/page-intro";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Breadcrumb } from "@/components/layout/breadcrumb";
@@ -36,7 +37,7 @@ export default async function BlogPage() {
   const posts = await sanityFetch<BlogPostSummary[]>(
     allBlogPostsQuery,
     {},
-    { revalidate: 60 }
+    { revalidate: 60 },
   );
 
   const hasPosts = (posts?.length ?? 0) > 0;
@@ -53,22 +54,10 @@ export default async function BlogPage() {
       <main className="flex-1">
         <Breadcrumb items={[{ label: "Blog" }]} />
 
-        <section className="container-wide py-12">
-          <div className="max-w-3xl">
-            <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
-              Blog
-            </div>
-            <h1 className="mt-3 text-5xl sm:text-6xl font-heading font-bold tracking-tight">
-              Sahanın diliyle,
-              <br />
-              <span className="text-gradient-orange">rampa rehberi.</span>
-            </h1>
-            <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              Yükleme rampası seçimi, tonaj hesabı, bakım — sektörde 20 yıllık
-              tecrübemizden damıttığımız pratik bilgiler.
-            </p>
-          </div>
-        </section>
+        <PageIntro
+          title="İşinizi kolaylaştıracak rampa rehberi"
+          description="Rampa seçiminde işinizi kolaylaştıracak 7 temel soruyu cevaplandırıyoruz."
+        />
 
         {hasPosts ? (
           <section className="container-wide pb-20">

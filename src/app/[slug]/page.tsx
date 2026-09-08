@@ -10,10 +10,7 @@ import { SanityImage } from "@/components/sanity/sanity-image";
 import { BreadcrumbJsonLd } from "@/components/seo/structured-data";
 import { siteConfig } from "@/lib/site-config";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import {
-  allPublishedPagesQuery,
-  pageBySlugQuery,
-} from "@/sanity/lib/queries";
+import { allPublishedPagesQuery, pageBySlugQuery } from "@/sanity/lib/queries";
 import type {
   CustomPage,
   SanityImage as SanityImageType,
@@ -36,7 +33,7 @@ export async function generateStaticParams() {
   const pages = await sanityFetch<{ slug: string }[]>(
     allPublishedPagesQuery,
     {},
-    { revalidate: 60 }
+    { revalidate: 60 },
   );
   return (pages ?? []).map((p) => ({ slug: p.slug }));
 }
@@ -90,6 +87,11 @@ const portableComponents: PortableTextComponents = {
     },
   },
   block: {
+    h1: ({ children }) => (
+      <h2 className="mt-10 mb-3 text-2xl sm:text-3xl font-heading font-bold tracking-tight">
+        {children}
+      </h2>
+    ),
     h2: ({ children }) => (
       <h2 className="mt-10 mb-3 text-2xl sm:text-3xl font-heading font-bold tracking-tight">
         {children}
@@ -137,7 +139,9 @@ const portableComponents: PortableTextComponents = {
       <a
         href={value?.href}
         target={value?.href?.startsWith("http") ? "_blank" : undefined}
-        rel={value?.href?.startsWith("http") ? "noopener noreferrer" : undefined}
+        rel={
+          value?.href?.startsWith("http") ? "noopener noreferrer" : undefined
+        }
         className="text-[var(--brand-orange)] hover:underline"
       >
         {children}
@@ -169,7 +173,7 @@ export default async function CustomPageRoute({ params }: Props) {
         {/* HERO — varsa görselli, yoksa sade başlık */}
         {page.heroImage ? (
           <section className="container-wide pt-8 pb-4">
-            <div className="relative aspect-[21/9] rounded-2xl overflow-hidden border border-border">
+            <div className="relative min-h-[360px] sm:aspect-[21/9] rounded-2xl overflow-hidden border border-border">
               <SanityImage
                 image={page.heroImage}
                 fill
@@ -178,12 +182,12 @@ export default async function CustomPageRoute({ params }: Props) {
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--brand-ink)]/80 via-[var(--brand-ink)]/20 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 sm:bottom-10 sm:left-10 max-w-3xl">
-                <h1 className="text-3xl sm:text-5xl font-heading font-bold tracking-tight leading-[1.05] text-white">
+              <div className="absolute inset-x-6 bottom-6 sm:bottom-10 mx-auto max-w-5xl text-center">
+                <h1 className="page-title text-center text-white">
                   {page.title}
                 </h1>
                 {page.excerpt && (
-                  <p className="mt-3 text-base sm:text-lg text-white/85 max-w-2xl leading-relaxed">
+                  <p className="mt-3 text-base sm:text-lg text-white/85 max-w-2xl mx-auto leading-relaxed">
                     {page.excerpt}
                   </p>
                 )}
@@ -192,10 +196,8 @@ export default async function CustomPageRoute({ params }: Props) {
           </section>
         ) : (
           <section className="container-wide py-12">
-            <div className="max-w-3xl">
-              <h1 className="text-4xl sm:text-5xl font-heading font-bold tracking-tight leading-[1.05]">
-                {page.title}
-              </h1>
+            <div className="mx-auto max-w-5xl text-center">
+              <h1 className="page-title">{page.title}</h1>
               {page.excerpt && (
                 <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
                   {page.excerpt}
@@ -209,10 +211,7 @@ export default async function CustomPageRoute({ params }: Props) {
         <article className="container-wide py-8 pb-20">
           <div className="max-w-3xl mx-auto">
             {page.body && page.body.length > 0 ? (
-              <PortableText
-                value={page.body}
-                components={portableComponents}
-              />
+              <PortableText value={page.body} components={portableComponents} />
             ) : (
               <p className="text-muted-foreground italic">
                 Bu sayfanın içeriği henüz eklenmedi.

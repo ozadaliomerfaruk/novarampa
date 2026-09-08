@@ -1,201 +1,326 @@
-﻿"use client";
-
+"use client";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import Link from "next/link";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowRight, Loader2 } from "lucide-react";
-import { toast } from "sonner";
-
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
 import {
   serviceRequestSchema,
   type ServiceRequestInput,
 } from "@/lib/form-schemas";
-import { productCategories } from "@/lib/products";
-import { serviceCities } from "@/lib/services";
+import locations from "@/lib/turkey-locations.json";
+import { FormField } from "./form-field";
 
-export function ServiceForm() {
+type Option = { name: string };
+export function ServiceForm({
+  kind = "service",
+  products,
+  parts = [],
+  defaultPart = "",
+}: {
+  kind?: "service" | "sparePart";
+  products: Option[];
+  parts?: Option[];
+  defaultPart?: string;
+}) {
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const {
     register,
     handleSubmit,
+    control,
     setValue,
-    watch,
-    reset,
     formState: { errors, isSubmitting },
   } = useForm<ServiceRequestInput>({
     resolver: zodResolver(serviceRequestSchema),
+    shouldUnregister: true,
+    defaultValues: {
+      requestKind: kind,
+      city: "",
+      district: "",
+      sparePart: defaultPart,
+    },
   });
-
+  const city = useWatch({ control, name: "city" });
+  const brand = useWatch({ control, name: "brand" });
+  const districts = locations.find((p) => p.name === city)?.districts ?? [];
+  const isPart = kind === "sparePart";
+  const field = (name: keyof ServiceRequestInput) => ({
+    id: "support-" + name,
+    className: "field-control",
+    "aria-invalid": !!errors[name],
+    "aria-describedby": errors[name] ? "support-" + name + "-error" : undefined,
+    ...register(name),
+  });
   async function onSubmit(data: ServiceRequestInput) {
+    setSubmitError("");
     try {
-      const res = await fetch("/api/service", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error("Form gönderilemedi");
+      const response = await fetch(
+        isPart ? "/api/spare-part" : "/api/service",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        },
+      );
+      if (!response.ok) throw new Error("Gönderilemedi");
       setSubmitted(true);
-      reset();
-      toast.success("Servis talebiniz alındı, ekibimiz iletişime geçecek.");
     } catch {
-      toast.error("Bir aksaklık oldu. WhatsApp'tan da ulaşabilirsiniz.");
+      setSubmitError(
+        "Talebiniz gönderilemedi. Lütfen tekrar deneyin veya iletişim sayfasından bize ulaşın.",
+      );
     }
   }
-
-  if (submitted) {
+  if (submitted)
     return (
-      <div className="p-10 rounded-2xl border border-[var(--brand-orange)]/30 bg-[var(--brand-orange)]/5 text-center">
-        <div className="text-5xl mb-4">🛠️</div>
-        <h3 className="text-2xl font-heading font-semibold">
-          Servis talebiniz alındı.
-        </h3>
-        <p className="mt-2 text-muted-foreground">
-          Ekibimiz tercih ettiğiniz tarih ve konuma göre dönüş yapacak.
+      <div
+        role="status"
+        className="rounded-2xl border border-brand-orange/30 bg-brand-orange/5 p-8 text-center"
+      >
+        <CheckCircle2 className="mx-auto mb-4 text-brand-orange" size={40} />
+        <h2 className="text-2xl font-heading font-semibold">
+          {isPart
+            ? "Yedek parça talebiniz alındı."
+            : "Servis talebiniz alındı."}
+        </h2>
+        <p className="mt-3 text-muted-foreground">
+          Ekibimiz en kısa zamanda sizinle iletişime geçecek.
         </p>
       </div>
     );
-  }
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-7" noValidate>
+      <input type="hidden" {...register("requestKind")} value={kind} />
       <input
         type="text"
         {...register("website")}
-        className="hidden"
+        hidden
         autoComplete="off"
         tabIndex={-1}
         aria-hidden="true"
       />
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Field label="Ad Soyad *" error={errors.fullName?.message}>
-          <Input {...register("fullName")} placeholder="Adınız Soyadınız" />
-        </Field>
-        <Field label="Firma" error={errors.companyName?.message}>
-          <Input {...register("companyName")} placeholder="Firma adınız" />
-        </Field>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Field label="Telefon *" error={errors.phone?.message}>
-          <Input
-            {...register("phone")}
+      <div className="grid gap-5 sm:grid-cols-2">
+        <FormField
+          id="support-fullName"
+          label="Ad Soyad *"
+          error={errors.fullName?.message}
+        >
+          <input
+            {...field("fullName")}
+            autoComplete="name"
+            required
+            placeholder="Adınız Soyadınız"
+          />
+        </FormField>
+        <FormField
+          id="support-companyName"
+          label="Firma"
+          error={errors.companyName?.message}
+        >
+          <input
+            {...field("companyName")}
+            autoComplete="organization"
+            placeholder="Firma adınız"
+          />
+        </FormField>
+        <FormField
+          id="support-phone"
+          label="Telefon *"
+          error={errors.phone?.message}
+        >
+          <input
+            {...field("phone")}
             type="tel"
+            autoComplete="tel"
+            required
             placeholder="0 5XX XXX XX XX"
           />
-        </Field>
-        <Field label="E-posta" error={errors.email?.message}>
-          <Input {...register("email")} type="email" placeholder="ornek@firma.com" />
-        </Field>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Field label="Şehir / Konum" error={errors.city?.message}>
-          <Select
-            onValueChange={(v) => setValue("city", v ?? "")}
-            value={watch("city") ?? ""}
+        </FormField>
+        <FormField
+          id="support-email"
+          label="E-posta"
+          error={errors.email?.message}
+        >
+          <input
+            {...field("email")}
+            type="email"
+            autoComplete="email"
+            placeholder="ornek@firma.com"
+          />
+        </FormField>
+        <FormField id="support-city" label="İl *" error={errors.city?.message}>
+          <select
+            {...field("city")}
+            required
+            onChange={(e) => {
+              void register("city").onChange(e);
+              setValue("district", "", { shouldValidate: false });
+            }}
           >
-            <SelectTrigger>
-              <SelectValue placeholder="Şehir seçin" />
-            </SelectTrigger>
-            <SelectContent>
-              {serviceCities.map((c) => (
-                <SelectItem key={c.slug} value={c.name}>
-                  {c.name}
-                </SelectItem>
-              ))}
-              <SelectItem value="diger">Diğer</SelectItem>
-            </SelectContent>
-          </Select>
-        </Field>
-        <Field label="Rampa Tipi" error={errors.productType?.message}>
-          <Select
-            onValueChange={(v) => setValue("productType", v ?? "")}
-            value={watch("productType") ?? ""}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Ürününüz" />
-            </SelectTrigger>
-            <SelectContent>
-              {productCategories.map((p) => (
-                <SelectItem key={p.slug} value={p.name}>
-                  {p.shortName}
-                </SelectItem>
-              ))}
-              <SelectItem value="bilmiyorum">Bilmiyorum</SelectItem>
-            </SelectContent>
-          </Select>
-        </Field>
+            <option value="">İl seçin</option>
+            {locations.map((p) => (
+              <option key={p.name}>{p.name}</option>
+            ))}
+          </select>
+        </FormField>
+        <FormField
+          id="support-district"
+          label="İlçe *"
+          error={errors.district?.message}
+        >
+          <select {...field("district")} required disabled={!city}>
+            <option value="">{city ? "İlçe seçin" : "Önce il seçin"}</option>
+            {districts.map((d) => (
+              <option key={d}>{d}</option>
+            ))}
+          </select>
+        </FormField>
       </div>
-
-      <Field
-        label="Arıza Tanımı *"
+      <fieldset
+        aria-describedby={errors.brand ? "support-brand-error" : undefined}
+      >
+        <legend className="mb-3 text-sm font-medium">
+          Ürün markası Novarampa mı? *
+        </legend>
+        <div className="grid gap-3 sm:grid-cols-3">
+          {[
+            { value: "novarampa", label: "Evet, Novarampa ürünü" },
+            { value: "other", label: "Hayır, farklı marka" },
+            { value: "unknown", label: "Bilmiyorum." },
+          ].map((option) => (
+            <label
+              key={option.value}
+              className="flex cursor-pointer items-center gap-3 rounded-xl border border-border p-4 text-sm transition-colors has-checked:border-brand-orange has-checked:bg-brand-orange/5 has-focus-visible:outline-2 has-focus-visible:outline-brand-orange"
+            >
+              <input
+                type="radio"
+                {...register("brand")}
+                value={option.value}
+                className="size-4 accent-[var(--brand-orange)]"
+                required
+              />
+              {option.label}
+            </label>
+          ))}
+        </div>
+        {errors.brand && (
+          <p
+            id="support-brand-error"
+            className="mt-2 text-sm text-destructive"
+            role="alert"
+          >
+            {errors.brand.message}
+          </p>
+        )}
+      </fieldset>
+      {brand === "novarampa" && (
+        <FormField
+          id="support-serialNumber"
+          label="Ürün Seri No"
+          error={errors.serialNumber?.message}
+        >
+          <input
+            {...field("serialNumber")}
+            placeholder="Ürün üzerindeki etikette bulunur (isteğe bağlı)"
+          />
+        </FormField>
+      )}
+      {brand === "other" && (
+        <FormField
+          id="support-brandName"
+          label="Hangi marka olduğunu belirtiniz *"
+          error={errors.brandName?.message}
+        >
+          <input {...field("brandName")} required placeholder="Marka adı" />
+        </FormField>
+      )}
+      <div className={isPart ? "grid gap-5 sm:grid-cols-2" : ""}>
+        <FormField
+          id="support-productType"
+          label="Rampa Tipi"
+          error={errors.productType?.message}
+        >
+          <select {...field("productType")}>
+            <option value="">Rampa tipi seçin</option>
+            {products.map((p) => (
+              <option key={p.name}>{p.name}</option>
+            ))}
+            <option>Bilmiyorum</option>
+            <option>Diğer</option>
+          </select>
+        </FormField>
+        {isPart && (
+          <FormField
+            id="support-sparePart"
+            label="Talep Edilen Yedek Parça *"
+            error={errors.sparePart?.message}
+          >
+            <select {...field("sparePart")} required>
+              <option value="">Yedek parça seçin</option>
+              {parts.map((p) => (
+                <option key={p.name}>{p.name}</option>
+              ))}
+              <option value="Diğer / Bilmiyorum">Diğer / Bilmiyorum</option>
+            </select>
+          </FormField>
+        )}
+      </div>
+      <FormField
+        id="support-issueDescription"
+        label={isPart ? "Talep Açıklaması *" : "Arıza Tanımı *"}
         error={errors.issueDescription?.message}
       >
-        <Textarea
-          {...register("issueDescription")}
-          rows={6}
-          placeholder="Yaşadığınız sorunu mümkün olduğunca detaylı anlatın. Örn: 'Hidrolik silindir kaçırıyor, dil tam kapanmıyor...'"
+        <textarea
+          {...field("issueDescription")}
+          rows={5}
+          required
+          placeholder={
+            isPart
+              ? "İhtiyacınız olan parçayı, adedini ve varsa ilgili detayları yazın."
+              : "Yaşadığınız sorunu açıklayın."
+          }
         />
-      </Field>
-
-      <Field label="Tercih Edilen Tarih" error={errors.preferredDate?.message}>
-        <Input {...register("preferredDate")} type="date" />
-      </Field>
-
-      <p className="text-xs text-muted-foreground">
-        Not: Fotoğraf eklemek isterseniz lütfen WhatsApp&apos;tan
-        gönderin. (Foto yükleme yakında eklenecek.)
-      </p>
-
-      <div className="flex justify-end">
-        <Button
-          type="submit"
-          disabled={isSubmitting}
-          className="h-12 px-8 bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold"
+      </FormField>
+      {!isPart && (
+        <FormField
+          id="support-preferredDate"
+          label="Tercih Edilen Tarih"
+          error={errors.preferredDate?.message}
         >
-          {isSubmitting ? (
-            <>
-              <Loader2 className="mr-1 animate-spin" />
-              Gönderiliyor…
-            </>
-          ) : (
-            <>
-              Servis Talebimi Gönder
-              <ArrowRight className="ml-1" />
-            </>
-          )}
-        </Button>
-      </div>
+          <input {...field("preferredDate")} type="date" />
+        </FormField>
+      )}
+      <p className="text-xs leading-relaxed text-muted-foreground">
+        Bilgileriniz talebinize dönüş yapmak için kullanılır.{" "}
+        <Link href="/kvkk" className="underline underline-offset-4">
+          KVKK Aydınlatma Metni
+        </Link>
+      </p>
+      {submitError && (
+        <p
+          role="alert"
+          className="rounded-xl border border-destructive/30 p-4 text-sm text-destructive"
+        >
+          {submitError}
+        </p>
+      )}
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="flex min-h-12 w-full items-center justify-center gap-3 rounded-xl bg-brand-orange px-6 py-3 font-semibold text-white transition-colors hover:bg-[var(--brand-orange-hover)] disabled:opacity-60"
+      >
+        {isSubmitting ? (
+          <>
+            <Loader2 className="animate-spin" size={20} />
+            Gönderiliyor…
+          </>
+        ) : (
+          <>
+            {isPart ? "Yedek Parça Talebimi Gönder" : "Servis Talebimi Gönder"}
+            <ArrowRight size={20} />
+          </>
+        )}
+      </button>
     </form>
-  );
-}
-
-function Field({
-  label,
-  error,
-  children,
-}: {
-  label: string;
-  error?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="space-y-2">
-      <Label className="text-sm font-medium">{label}</Label>
-      {children}
-      {error && <p className="text-xs text-destructive">{error}</p>}
-    </div>
   );
 }

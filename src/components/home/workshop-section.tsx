@@ -58,7 +58,9 @@ export function WorkshopSection({
       ? photos.map((p, i) => ({
           src: p.asset?.url
             ? p.asset.url
-            : urlFor(p as unknown as { _ref?: string }).width(1200).url(),
+            : urlFor(p as unknown as { _ref?: string })
+                .width(1200)
+                .url(),
           alt: p.alt ?? "Atölye fotoğrafı",
           caption: `0${i + 1} — ${p.caption ?? "Saha"}`,
           label: p.caption ?? "Atölyeden",
@@ -66,12 +68,11 @@ export function WorkshopSection({
         }))
       : null;
   const items = sanityTiles ?? tiles;
-  const usingDefaults = sanityTiles === null;
 
   return (
-    <section className="relative py-24 sm:py-32">
+    <section className="relative overflow-hidden py-24 sm:py-32">
       <div className="container-wide">
-        {/* Atölyeden — sadece fotoğraflar (Eren: başlık/açıklama yok) */}
+        <h2 className="section-title text-center mb-12">Atölye</h2>
 
         {/* Editorial grid: 2x2 with asymmetric spans on lg */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3 md:gap-4">
@@ -80,9 +81,9 @@ export function WorkshopSection({
               t.span === "wide"
                 ? "lg:col-span-7"
                 : t.span === "tall"
-                ? "lg:col-span-7 lg:row-span-2"
-                : "lg:col-span-5";
-            const aspectCls = t.span === "tall" ? "lg:aspect-[4/5]" : "aspect-[4/3]";
+                  ? "lg:col-span-7"
+                  : "lg:col-span-5";
+            const aspectCls = "aspect-[4/3] lg:aspect-auto lg:h-[360px]";
 
             // Scroll-reveal: tek/çift karolar yanlardan, son karo aşağıdan,
             // yumuşak ease ile içeri kayar.
@@ -90,8 +91,8 @@ export function WorkshopSection({
             const initial = reduce
               ? false
               : t.span === "tall"
-              ? { opacity: 0, y: 64 }
-              : { opacity: 0, x: fromSide };
+                ? { opacity: 0, y: 64 }
+                : { opacity: 0, x: fromSide };
 
             return (
               <motion.figure
@@ -114,17 +115,6 @@ export function WorkshopSection({
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
                     className="object-cover transition-transform duration-1000 group-hover:scale-[1.05]"
                   />
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--brand-navy-dark)]/85 via-[var(--brand-navy-dark)]/0 to-transparent" />
-                  {/* Caption */}
-                  <figcaption className="absolute inset-x-0 bottom-0 p-6 text-white">
-                    <div className="text-xs font-mono uppercase tracking-[0.22em] text-white/70">
-                      {t.caption}
-                    </div>
-                    <div className="mt-1 text-lg sm:text-xl font-heading font-semibold">
-                      {t.label}
-                    </div>
-                  </figcaption>
                   {/* Hover edge glow */}
                   <div className="absolute inset-0 ring-0 ring-[var(--brand-orange)] group-hover:ring-2 transition-all duration-500 rounded-2xl pointer-events-none" />
                 </div>
@@ -132,13 +122,6 @@ export function WorkshopSection({
             );
           })}
         </div>
-
-        {usingDefaults && (
-          <p className="mt-8 text-xs text-muted-foreground italic max-w-2xl">
-            ℹ️ Yukarıdaki görseller geçici olarak stok foto kullanmaktadır.
-            Sanity → Site Ayarları → Atölye Fotoğrafları üzerinden değiştirilebilir.
-          </p>
-        )}
       </div>
     </section>
   );

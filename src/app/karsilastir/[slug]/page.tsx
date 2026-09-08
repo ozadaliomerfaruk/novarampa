@@ -50,7 +50,11 @@ export default async function ComparisonDetailPage({ params }: Props) {
       b: b.capacities.join(", "),
     },
     { label: "Standart ölçü", a: a.dimensions, b: b.dimensions },
-    { label: "Tipik kullanım", a: a.bestFor.join(" · "), b: b.bestFor.join(" · ") },
+    {
+      label: "Tipik kullanım",
+      a: a.bestFor.join(" · "),
+      b: b.bestFor.join(" · "),
+    },
   ];
 
   return (
@@ -59,7 +63,10 @@ export default async function ComparisonDetailPage({ params }: Props) {
         items={[
           { name: "Ana sayfa", url: siteConfig.url },
           { name: "Karşılaştırma", url: `${siteConfig.url}/karsilastir` },
-          { name: cmp.shortTitle, url: `${siteConfig.url}/karsilastir/${cmp.slug}` },
+          {
+            name: cmp.shortTitle,
+            url: `${siteConfig.url}/karsilastir/${cmp.slug}`,
+          },
         ]}
       />
       <ComparisonJsonLd
@@ -86,14 +93,12 @@ export default async function ComparisonDetailPage({ params }: Props) {
 
         {/* Hero */}
         <section className="container-wide pt-8 pb-12">
-          <div className="max-w-4xl">
+          <div className="mx-auto max-w-5xl text-center">
             <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
               {cmp.shortTitle}
             </div>
-            <h1 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-heading font-bold tracking-tight leading-[1.05]">
-              {cmp.title}
-            </h1>
-            <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-3xl">
+            <h1 className="mt-3 page-title">{cmp.title}</h1>
+            <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
               {cmp.intro}
             </p>
           </div>

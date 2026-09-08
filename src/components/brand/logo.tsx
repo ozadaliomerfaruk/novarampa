@@ -37,7 +37,7 @@ export function Logo({
   const heights = {
     small: "h-10",
     default: "h-14 md:h-16",
-    large: "h-20 md:h-24",
+    large: "h-14 sm:h-20 md:h-24 xl:h-20 2xl:h-24",
   } as const;
 
   // Sanity'den URL varsa onu kullan, yoksa default SVG.
@@ -56,7 +56,7 @@ export function Logo({
           heights[size],
           "w-auto select-none",
           inverted && "brightness-0 invert",
-          autoInvert && "dark:brightness-0 dark:invert"
+          autoInvert && "dark:brightness-0 dark:invert",
         )}
         unoptimized
       />

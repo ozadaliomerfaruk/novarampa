@@ -21,6 +21,8 @@ const RESERVED_SLUGS = [
   "blog",
   "servis",
   "yedek-parca",
+  "yedek-parca-talep",
+  "arama",
   "teklif-al",
   "referanslar",
   "studio",
@@ -71,7 +73,7 @@ export const pageType = defineType({
           const id = document?._id?.replace(/^drafts\./, "");
           const existing = await client.fetch(
             `*[_type=="page" && slug.current==$slug && !(_id in [$id, "drafts." + $id])][0]._id`,
-            { slug, id }
+            { slug, id },
           );
           return !existing;
         },
@@ -200,7 +202,8 @@ export const pageType = defineType({
         {
           name: "title",
           title: "SEO Başlık",
-          description: "Boş bırakılırsa sayfa başlığı kullanılır. Maks 60 karakter.",
+          description:
+            "Boş bırakılırsa sayfa başlığı kullanılır. Maks 60 karakter.",
           type: "string",
         },
         {

@@ -13,7 +13,7 @@ import { comparisons } from "@/lib/comparisons";
 export const metadata: Metadata = {
   title: "Ürün Karşılaştırma — Hangi Yükleme Rampası Size Uygun?",
   description:
-    "Menteşeli, teleskopik, dikey, mobil, makaslı: ürün karşılaştırmaları ile sahanız için doğru çözümü bulun. Kullanım senaryosu, kapasite ve fiyat değerlendirmesi.",
+    "Menteşeli, teleskopik, dikey, mobil: ürün karşılaştırmaları ile sahanız için doğru çözümü bulun. Kullanım senaryosu, kapasite ve fiyat değerlendirmesi.",
   alternates: { canonical: `${siteConfig.url}/karsilastir` },
 };
 
@@ -31,11 +31,11 @@ export default function KarsilastirPage() {
         <Breadcrumb items={[{ label: "Karşılaştırma" }]} />
 
         <section className="container-wide py-12">
-          <div className="max-w-3xl">
+          <div className="mx-auto max-w-5xl text-center">
             <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
               Karşılaştırma
             </div>
-            <h1 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-heading font-bold tracking-tight leading-[1.05]">
+            <h1 className="mt-3 page-title">
               Hangi rampa
               <br />
               <span className="text-gradient-orange">size uygun?</span>

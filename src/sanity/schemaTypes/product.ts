@@ -19,6 +19,13 @@ export const productType = defineType({
   ],
   fields: [
     defineField({
+      name: "visible",
+      title: "Sitede göster",
+      type: "boolean",
+      initialValue: true,
+      description: "Kapalı ürünler katalog, arama ve formlarda gösterilmez.",
+    }),
+    defineField({
       name: "name",
       title: "Ürün Adı (Tam)",
       description:
@@ -53,7 +60,6 @@ export const productType = defineType({
         "Ürün kartında, başlığın altındaki kısa cümle. Örn: 'Sektörün en yaygın, en güvenilir tipi.'",
       type: "string",
       group: "general",
-      validation: (r) => r.max(150),
     }),
     defineField({
       name: "shortDescription",

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { Award, Clock, Truck, Wrench } from "lucide-react";
+import { Award, Clock, Wrench } from "lucide-react";
 
 const items = [
   {
@@ -14,19 +14,13 @@ const items = [
     icon: Clock,
     title: "İki Yıl Garanti",
     description:
-      "İmalat hatalarına karşı tam kapsam. Garanti süresi boyunca yedek parça desteği.",
-  },
-  {
-    icon: Truck,
-    title: "Türkiye Geneli Sevkiyat",
-    description:
-      "Marmara öncelikli, ancak ürünlerimiz Türkiye'nin her noktasına ulaşır.",
+      "Tüm Novarampa ürünleri imalat hatalarına karşı 2 yıl garanti altındadır.",
   },
   {
     icon: Wrench,
     title: "Yedek Parça ve Servis",
     description:
-      "Saha ekipleri ve yedek parça stoğu ile uzun ömürlü kullanım garantisi.",
+      "Saha ekipleri ve yedek parça stoğu ile uzun ömürlü kullanım sunar.",
   },
 ];
 
@@ -36,15 +30,10 @@ export function WhyUs() {
     <section className="py-24">
       <div className="container-wide">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
-            Neden Nova Rampa
-          </div>
-          <h2 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight">
-            Yirmi yılın getirdiği güven, yeni neslin getirdiği netlik.
-          </h2>
+          <h2 className="section-title">Neden Novarampa</h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {items.map((item, i) => (
             <motion.div
               key={item.title}

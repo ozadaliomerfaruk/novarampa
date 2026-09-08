@@ -1,3 +1,4 @@
+import { resolveHomeFaqs } from "@/lib/home-faqs";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/home/hero";
@@ -35,7 +36,11 @@ export default async function HomePage() {
   const [settings, sanityProducts, sanityRefs] = await Promise.all([
     sanityFetch<SiteSettings>(settingsQuery, {}, { revalidate: 30 }),
     sanityFetch<ProductSummary[]>(allProductsQuery, {}, { revalidate: 30 }),
-    sanityFetch<ReferenceCompany[]>(featuredReferencesQuery, {}, { revalidate: 60 }),
+    sanityFetch<ReferenceCompany[]>(
+      featuredReferencesQuery,
+      {},
+      { revalidate: 60 },
+    ),
   ]);
 
   // Featured products varsa onları, yoksa tüm ürünleri göster
@@ -44,13 +49,14 @@ export default async function HomePage() {
       ? settings?.featuredProducts
       : sanityProducts;
 
+  const faqs = resolveHomeFaqs(settings?.homeFaqs);
   return (
     <>
       <OrganizationJsonLd
         socials={
           settings?.socials
             ? (Object.values(settings.socials).filter(
-                (v) => typeof v === "string" && v.trim().length > 0
+                (v) => typeof v === "string" && v.trim().length > 0,
               ) as string[])
             : undefined
         }
@@ -58,9 +64,7 @@ export default async function HomePage() {
       <LocalBusinessJsonLd />
       <WebSiteJsonLd />
       <ServiceMasterJsonLd />
-      {settings?.homeFaqs && settings.homeFaqs.length > 0 && (
-        <FaqJsonLd faqs={settings.homeFaqs} />
-      )}
+      <FaqJsonLd faqs={faqs} />
       <Header />
       <main className="flex-1">
         <Hero
@@ -75,7 +79,7 @@ export default async function HomePage() {
         <SectionDivider variant="measure" />
         <WhyUs />
         <ReferencesStrip sanityReferences={sanityRefs} />
-        <HomeFaqs faqs={settings?.homeFaqs} />
+        <HomeFaqs faqs={faqs} />
         <CtaSection />
       </main>
       <Footer />

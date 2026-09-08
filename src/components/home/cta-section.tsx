@@ -17,18 +17,19 @@ export function CtaSection() {
           whileInView={{ y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-[var(--brand-navy)] to-[var(--brand-navy-dark)] p-12 sm:p-16 text-center"
+          className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-[var(--brand-navy)] to-[var(--brand-navy-dark)] p-6 sm:p-12 text-center"
         >
           <div className="absolute inset-0 grid-bg opacity-20" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--brand-orange)] rounded-full opacity-[0.18] blur-[120px]" />
 
           <div className="relative">
-            <h2 className="text-3xl sm:text-5xl font-heading font-bold tracking-tight max-w-2xl mx-auto text-white">
+            <h2 className="text-2xl sm:text-3xl font-heading font-bold tracking-tight max-w-2xl mx-auto text-white">
               Projeniz için doğru rampayı birlikte seçelim.
             </h2>
             <p className="mt-4 text-white/70 max-w-xl mx-auto">
-              Birkaç dakikalık form, ihtiyacınıza özel teklif. Soracaklarınızı
-              WhatsApp&apos;tan da iletebilirsiniz.
+              birkaç dakikanızı ayırarak teklif formunu doldurun ve ihtiyacınıza
+              özel teklif alın. Detaylar için formu doldurduktan sonra
+              WhatsApp&apos;tan iletişime geçebilirsiniz.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
               <Magnetic strength={0.22}>

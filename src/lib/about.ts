@@ -1,0 +1,6 @@
+export const aboutParagraphs = [
+  "NOVARAMPA, 2003 yılından bu yana elde edilen mesleki birikim ve ustalığın üzerine inşa edilmiş yeni nesil bir vizyonun adıdır.",
+  "NOVARAMPA’nın temelleri yıllar evvel Dinamik Mühendislik çatısı altında atıldı. Sahada kazanılan tecrübe, her montajda  verilen emek, atölyenin sesi, demirin kokusu, bu mesleği bizim için sadece bir iş olmaktan çıkarıp bir tutkuya dönüştürdü ve anladık ki bu sadece devam ettirilecek bir iş değil, daha ileri taşınması gereken bir yolculuktu.",
+  "İşte NOVARAMPA tam olarak bu noktada doğdu. “NOVA” yeniliği temsil eder, “RAMPA” ise yolun başladığı yeri, köklerimizi ve yıllardır değişmeyen işimizi… İkinci kuşak bir devamlılığın ötesinde; sürekli gelişen, kendini yenileyen ve sektöre değer katan bir marka olmak gayesiyle bu yolcuğu daha ileri taşımaya gayret ediyoruz.",
+  "Misyonumuz, bu köklü birikimi ihtiyaç duyulan her yere ulaştırmak, geçmişin deneyimini geleceğin ihtiyaçlarıyla buluşturmak ve her projede daha sağlam, daha verimli, ve sürdürülebilir çözümler üretmektir. Müşterilerimize sadece bir ürün sağlamayı değil, uzun vadeli çözümlerle katkıda bulunmayı hedefliyoruz. Bizim için her teslimat, sizinle büyüyen bir ortaklık demek.",
+] as const;

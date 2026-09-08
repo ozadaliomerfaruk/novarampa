@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortableText } from "@portabletext/react";
-import { ArrowRight, Check, ChevronRight, Info, MessageCircle, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  ChevronRight,
+  Info,
+  MessageCircle,
+} from "lucide-react";
 
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -15,11 +21,7 @@ import {
   ProductJsonLd,
   FaqJsonLd,
 } from "@/components/seo/structured-data";
-import {
-  productCategories,
-  getProductBySlug,
-  capacityNote,
-} from "@/lib/products";
+import { productCategories, getProductBySlug } from "@/lib/products";
 import { company, siteConfig } from "@/lib/site-config";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
@@ -40,7 +42,7 @@ export async function generateStaticParams() {
   const sanitySlugs = await sanityFetch<{ slug: string }[]>(
     productSlugsQuery,
     {},
-    { revalidate: 60 }
+    { revalidate: 60 },
   );
   const sanityList = (sanitySlugs ?? []).map((s) => ({ slug: s.slug }));
   const staticList = productCategories.map((p) => ({ slug: p.slug }));
@@ -135,21 +137,26 @@ export default async function ProductDetailPage({ params }: Props) {
       };
 
   // İlgili ürünler — Sanity'den varsa orayı kullan, yoksa statik
-  const relatedItems = (related && related.length > 0
-    ? related
-        .filter((r) => (r.slug?.current ?? "") !== slug)
-        .slice(0, 3)
-        .map((r) => ({
-          slug: r.slug?.current ?? "",
-          shortName: r.shortName ?? r.name,
-          tagline: r.tagline ?? r.shortDescription ?? "",
-          order: 0,
-        }))
-    : productCategories
-        .filter((p) => p.slug !== slug)
-        .slice(0, 3)
-        .map((p) => ({ slug: p.slug, shortName: p.shortName, tagline: p.tagline, order: p.order }))
-  );
+  const relatedItems =
+    related && related.length > 0
+      ? related
+          .filter((r) => (r.slug?.current ?? "") !== slug)
+          .slice(0, 3)
+          .map((r) => ({
+            slug: r.slug?.current ?? "",
+            shortName: r.shortName ?? r.name,
+            tagline: r.tagline ?? r.shortDescription ?? "",
+            order: 0,
+          }))
+      : productCategories
+          .filter((p) => p.slug !== slug)
+          .slice(0, 3)
+          .map((p) => ({
+            slug: p.slug,
+            shortName: p.shortName,
+            tagline: p.tagline,
+            order: p.order,
+          }));
 
   return (
     <>
@@ -182,16 +189,9 @@ export default async function ProductDetailPage({ params }: Props) {
 
         {/* Hero */}
         <section className="container-wide pt-8 pb-16">
+          <h1 className="page-title mb-12 text-center">{product.name}</h1>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             <div className="lg:col-span-7">
-              {product.order > 0 && (
-                <div className="text-xs font-mono text-muted-foreground uppercase tracking-widest">
-                  Ürün 0{product.order}
-                </div>
-              )}
-              <h1 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-heading font-bold tracking-tight leading-[1.05]">
-                {product.name}
-              </h1>
               {product.tagline && (
                 <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-2xl">
                   {product.tagline}
@@ -224,6 +224,24 @@ export default async function ProductDetailPage({ params }: Props) {
                   WhatsApp&apos;tan sor
                 </ExternalLinkButton>
               </div>
+              {product.features.length > 0 && (
+                <div className="mt-8">
+                  <h2 className="text-xl font-heading font-semibold">
+                    Öne çıkan özellikler
+                  </h2>
+                  <ul className="mt-5 space-y-3">
+                    {product.features.map((f) => (
+                      <li key={f} className="flex items-start gap-3">
+                        <Check
+                          size={19}
+                          className="mt-1 shrink-0 text-brand-orange"
+                        />
+                        <span className="leading-relaxed">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
 
             <div className="lg:col-span-5">
@@ -243,75 +261,9 @@ export default async function ProductDetailPage({ params }: Props) {
                     <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/40 font-mono text-xs uppercase tracking-widest">
                       Görsel — yakında
                     </div>
-                    <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
-                      <div className="text-xs text-muted-foreground">
-                        <div className="font-mono">{product.shortName.toUpperCase()}</div>
-                        {product.dimensions && (
-                          <div className="mt-1 text-foreground/60">{product.dimensions}</div>
-                        )}
-                      </div>
-                      <ShieldCheck size={20} className="text-[var(--brand-orange)]" />
-                    </div>
                   </>
                 )}
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Teknik kartlar */}
-        <section className="container-wide pb-16">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            {product.capacities.length > 0 && (
-              <div className="rounded-2xl border border-border bg-card p-6">
-                <div className="text-xs font-medium text-[var(--brand-orange)] uppercase tracking-widest">
-                  Kapasite (Taşıma)
-                </div>
-                <div className="mt-4 space-y-2">
-                  {product.capacities.map((c) => (
-                    <div key={c} className="flex items-center gap-2 text-foreground">
-                      <ChevronRight size={14} className="text-[var(--brand-orange)]" />
-                      <span className="font-mono">{c}</span>
-                    </div>
-                  ))}
-                </div>
-                <p className="mt-4 text-xs text-muted-foreground italic">
-                  {capacityNote}
-                </p>
-              </div>
-            )}
-
-            {product.dimensions && (
-              <div className="rounded-2xl border border-border bg-card p-6">
-                <div className="text-xs font-medium text-[var(--brand-orange)] uppercase tracking-widest">
-                  Standart Ölçü
-                </div>
-                <div className="mt-4 text-foreground font-mono text-sm leading-relaxed">
-                  {product.dimensions}
-                </div>
-                <p className="mt-4 text-xs text-muted-foreground">
-                  Özel ölçü üretim için iletişime geçin.
-                </p>
-              </div>
-            )}
-
-            <div className="rounded-2xl border border-border bg-card p-6">
-              <div className="text-xs font-medium text-[var(--brand-orange)] uppercase tracking-widest">
-                Sertifikalar
-              </div>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {company.certifications.map((c) => (
-                  <span
-                    key={c}
-                    className="text-xs font-medium px-2 py-1 rounded border border-border bg-background/60"
-                  >
-                    {c}
-                  </span>
-                ))}
-              </div>
-              <p className="mt-4 text-xs text-muted-foreground">
-                {company.warrantyYears} yıl garanti. {company.warrantyNote}
-              </p>
             </div>
           </div>
         </section>
@@ -322,56 +274,6 @@ export default async function ProductDetailPage({ params }: Props) {
             <article className="prose prose-invert max-w-3xl">
               <PortableText value={product.body} />
             </article>
-          </section>
-        )}
-
-        {/* Özellikler & Sektörler */}
-        {(product.features.length > 0 || product.bestFor.length > 0) && (
-          <section className="container-wide pb-20">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {product.features.length > 0 && (
-                <div>
-                  <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
-                    Öne Çıkan Özellikler
-                  </div>
-                  <h2 className="mt-3 text-3xl font-heading font-bold tracking-tight">
-                    Sahanın istediği şekilde.
-                  </h2>
-                  <ul className="mt-8 space-y-4">
-                    {product.features.map((f) => (
-                      <li key={f} className="flex items-start gap-3">
-                        <div className="mt-0.5 inline-flex items-center justify-center size-6 rounded-full bg-[var(--brand-orange)]/15 text-[var(--brand-orange)] shrink-0">
-                          <Check size={14} />
-                        </div>
-                        <span className="text-foreground/90 leading-relaxed">
-                          {f}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {product.bestFor.length > 0 && (
-                <div>
-                  <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
-                    Uygun Sektörler
-                  </div>
-                  <h2 className="mt-3 text-3xl font-heading font-bold tracking-tight">
-                    Kimler tercih ediyor?
-                  </h2>
-                  <ul className="mt-8 space-y-3">
-                    {product.bestFor.map((b) => (
-                      <li
-                        key={b}
-                        className="p-4 rounded-xl border border-border bg-card text-sm text-foreground/90"
-                      >
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
           </section>
         )}
 
@@ -416,10 +318,7 @@ export default async function ProductDetailPage({ params }: Props) {
               </h2>
               <div className="mt-8 divide-y divide-border border-y border-border">
                 {product.faqs.map((faq) => (
-                  <details
-                    key={faq.question}
-                    className="group py-5"
-                  >
+                  <details key={faq.question} className="group py-5">
                     <summary className="flex items-start justify-between gap-4 cursor-pointer list-none">
                       <h3 className="text-base sm:text-lg font-heading font-semibold leading-snug">
                         {faq.question}
@@ -438,6 +337,16 @@ export default async function ProductDetailPage({ params }: Props) {
             </div>
           </section>
         )}
+
+        <section className="container-wide pb-16">
+          <div className="mx-auto flex max-w-3xl items-start gap-3 rounded-2xl border border-brand-orange/30 bg-brand-orange/5 p-6">
+            <Info size={20} className="mt-1 shrink-0 text-brand-orange" />
+            <p className="text-sm sm:text-base leading-relaxed text-foreground/80">
+              Araç tipi, forklift özellikleri, kot farkı vs. gibi faktörler
+              rampa tasarımında belirleyici rol oynar.
+            </p>
+          </div>
+        </section>
 
         {/* İlgili ürünler */}
         <section className="container-wide pb-20">
@@ -467,20 +376,6 @@ export default async function ProductDetailPage({ params }: Props) {
                 </p>
               </Link>
             ))}
-          </div>
-        </section>
-
-        {/* Tüm ürünlerde ortak bilgi notu */}
-        <section className="container-wide pb-16">
-          <div className="flex items-start gap-3 rounded-2xl border border-[var(--brand-orange)]/30 bg-[var(--brand-orange)]/5 p-5 sm:p-6 max-w-3xl">
-            <Info
-              size={20}
-              className="mt-0.5 shrink-0 text-[var(--brand-orange)]"
-            />
-            <p className="text-sm sm:text-base text-foreground/80 leading-relaxed">
-              Araç tipi, forklift özellikleri, kot farkı vs. gibi faktörler rampa
-              tasarımında belirleyici rol oynar.
-            </p>
           </div>
         </section>
 

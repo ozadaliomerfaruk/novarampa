@@ -6,6 +6,7 @@ import { referenceType } from "./reference";
 import { sparePartType } from "./sparePart";
 import { pageType } from "./page";
 import { serviceRequestType } from "./serviceRequest";
+import { sparePartRequestType } from "./sparePartRequest";
 import { quoteRequestType } from "./quoteRequest";
 import { settingsType } from "./settings";
 
@@ -18,6 +19,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     sparePartType,
     pageType,
     serviceRequestType,
+    sparePartRequestType,
     quoteRequestType,
   ],
 };

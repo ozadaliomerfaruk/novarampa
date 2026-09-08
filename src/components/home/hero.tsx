@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import { HeroVideo } from "./hero-video";
 import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle, ChevronDown } from "lucide-react";
 
@@ -36,57 +38,43 @@ export function Hero({ title, subtitle, ctaLabel, videoUrl }: HeroProps = {}) {
   const tagline =
     subtitle?.trim() || "Geçmişin Gücüyle, Yükünüzü Hafifletiyoruz...";
   const cta = ctaLabel ?? "Teklif Al";
-  // TODO(video): Eren'in yeni hero videosu geldiğinde entegre et.
-  // İstenen kadrajlar: rampa üzerinde ilerleyen yakın kadraj kamera hareketi,
-  // slowmotion rampaya tırmanan forklift, yakın çekim kaynak yapan işçiler +
-  // kaynak ışıltısı, slowmotion çekiç darbeleri.
-  // Entegrasyon: yeni .mp4 dosyasını `public/videos/hero-bg.mp4` olarak değiştir
-  // (mevcut dosyanın üzerine yaz) VEYA Sanity → Site Ayarları → heroVideoUrl'e
-  // barındırılan video URL'sini gir (bu prop `videoUrl` olarak buraya gelir).
-  // Öneri: 1080p, ~8-15 sn loop, H.264, sessiz, < 6 MB (mobil performans).
-  const videoSrc = videoUrl ?? "/videos/hero-bg.mp4";
+  const videoSrc = videoUrl?.trim() || "/videos/hero-workshop-loop.mp4";
 
   return (
-    <section className="relative min-h-[88svh] flex items-center justify-center overflow-hidden">
-      {/* ─── Background video (full-bleed, autoplay, muted, looped) ─── */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[var(--brand-ink)]"
-      >
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="w-full h-full object-cover"
-          key={videoSrc}
-        >
-          <source src={videoSrc} type="video/mp4" />
-        </video>
-
-        {/* Dark gradient overlay — content readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--brand-ink)]/85 via-[var(--brand-ink)]/55 to-[var(--brand-ink)]/85" />
-        {/* Subtle radial highlight at center to draw focus to copy */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_rgba(20,34,53,0.4)_70%)]" />
-        {/* Soft orange glow accent */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[var(--brand-orange)] rounded-full opacity-[0.08] blur-[160px] pointer-events-none" />
-      </div>
+    <section className="relative isolate min-h-[100svh] flex items-center justify-center overflow-hidden">
+      <HeroVideo src={videoSrc} />
 
       {/* ─── Centered content ─── */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="show"
-        className="container-wide relative z-10 text-center flex flex-col items-center pt-36 md:pt-44 pb-16"
+        className="container-wide relative z-10 text-center flex flex-col items-center pt-32 md:pt-44 pb-24"
       >
-        {/* H1 — wordmark, centered, white (Space Grotesk, modern + büyük) */}
+        {/* Baskerville Old Face Bold: outlines keep the exact wordmark on every device. */}
         <motion.h1
           variants={itemVariants}
-          className="text-[clamp(3.25rem,8.5vw,7rem)] font-display font-bold leading-[0.98] max-w-6xl text-white"
-          style={{ letterSpacing: "-0.01em" }}
+          className="w-full max-w-5xl text-[clamp(2.5rem,8.5vw,7rem)] font-bold leading-[0.98] text-white"
+          style={{
+            fontFamily: '"Baskerville Old Face", Baskerville, Georgia, serif',
+          }}
         >
-          {heading}
+          {heading.toLocaleUpperCase("tr-TR") === "NOVARAMPA" ? (
+            <>
+              <span className="sr-only">NOVARAMPA</span>
+              <Image
+                src="/brand/novarampa-baskerville.svg"
+                width={1193}
+                height={134}
+                alt=""
+                priority
+                unoptimized
+                className="h-auto w-full"
+              />
+            </>
+          ) : (
+            heading
+          )}
         </motion.h1>
 
         {/* Slogan — italik, bir tık büyük */}

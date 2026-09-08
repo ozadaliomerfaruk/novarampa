@@ -45,9 +45,9 @@ export const structure: StructureResolver = (S) =>
                     .id("settings")
                     .schemaType("settings")
                     .documentId("siteSettings")
-                    .title("Site Ayarları")
+                    .title("Site Ayarları"),
                 ),
-            ])
+            ]),
         ),
 
       S.divider(),
@@ -59,7 +59,7 @@ export const structure: StructureResolver = (S) =>
         .child(
           S.documentTypeList("product")
             .title("Ürünler")
-            .defaultOrdering([{ field: "orderRank", direction: "asc" }])
+            .defaultOrdering([{ field: "orderRank", direction: "asc" }]),
         ),
       S.listItem()
         .title("🔧 Yedek Parçalar")
@@ -67,13 +67,15 @@ export const structure: StructureResolver = (S) =>
         .child(
           S.documentTypeList("sparePart")
             .title("Yedek Parçalar")
-            .defaultOrdering([{ field: "orderRank", direction: "asc" }])
+            .defaultOrdering([{ field: "orderRank", direction: "asc" }]),
         ),
       S.listItem()
         .title("⭐ Referanslar / Projeler")
         .icon(StarIcon)
         .child(
-          S.documentTypeList("referenceCompany").title("Referanslar / Projeler")
+          S.documentTypeList("referenceCompany").title(
+            "Referanslar / Projeler",
+          ),
         ),
 
       S.divider(),
@@ -85,9 +87,7 @@ export const structure: StructureResolver = (S) =>
         .child(
           S.documentTypeList("blogPost")
             .title("Blog Yazıları")
-            .defaultOrdering([
-              { field: "publishedAt", direction: "desc" },
-            ])
+            .defaultOrdering([{ field: "publishedAt", direction: "desc" }]),
         ),
       S.listItem()
         .title("📄 Özel Sayfalar")
@@ -105,7 +105,7 @@ export const structure: StructureResolver = (S) =>
                     .defaultOrdering([
                       { field: "status", direction: "asc" },
                       { field: "navbarOrder", direction: "asc" },
-                    ])
+                    ]),
                 ),
               S.listItem()
                 .title("🟢 Yayında Olanlar")
@@ -116,7 +116,7 @@ export const structure: StructureResolver = (S) =>
                     .filter('_type == "page" && status == "published"')
                     .defaultOrdering([
                       { field: "navbarOrder", direction: "asc" },
-                    ])
+                    ]),
                 ),
               S.listItem()
                 .title("🟡 Taslaklar")
@@ -124,7 +124,7 @@ export const structure: StructureResolver = (S) =>
                 .child(
                   S.documentList()
                     .title("Taslak Sayfalar")
-                    .filter('_type == "page" && status == "draft"')
+                    .filter('_type == "page" && status == "draft"'),
                 ),
               S.listItem()
                 .title("⚫ Arşivli")
@@ -132,9 +132,9 @@ export const structure: StructureResolver = (S) =>
                 .child(
                   S.documentList()
                     .title("Arşivli Sayfalar")
-                    .filter('_type == "page" && status == "archived"')
+                    .filter('_type == "page" && status == "archived"'),
                 ),
-            ])
+            ]),
         ),
 
       S.divider(),
@@ -146,9 +146,7 @@ export const structure: StructureResolver = (S) =>
         .child(
           S.documentTypeList("quoteRequest")
             .title("Teklif Talepleri")
-            .defaultOrdering([
-              { field: "submittedAt", direction: "desc" },
-            ])
+            .defaultOrdering([{ field: "submittedAt", direction: "desc" }]),
         ),
       S.listItem()
         .title("🛠️ Servis Talepleri")
@@ -156,13 +154,20 @@ export const structure: StructureResolver = (S) =>
         .child(
           S.documentTypeList("serviceRequest")
             .title("Servis Talepleri")
-            .defaultOrdering([
-              { field: "submittedAt", direction: "desc" },
-            ])
+            .defaultOrdering([{ field: "submittedAt", direction: "desc" }]),
         ),
 
       S.divider(),
 
+      S.listItem()
+        .title("⚙️ Yedek Parça Talepleri")
+        .icon(WrenchIcon)
+        .child(
+          S.documentTypeList("sparePartRequest")
+            .title("Yedek Parça Talepleri")
+            .defaultOrdering([{ field: "submittedAt", direction: "desc" }]),
+        ),
+      S.divider(),
       // ─── 5) Yardım ───
       S.listItem()
         .title("❓ Nereden Başlamalıyım?")
@@ -170,6 +175,6 @@ export const structure: StructureResolver = (S) =>
         .child(
           S.component(HelpComponent)
             .id("help-guide")
-            .title("Eren için Hızlı Rehber")
+            .title("Eren için Hızlı Rehber"),
         ),
     ]);

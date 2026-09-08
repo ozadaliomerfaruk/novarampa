@@ -4,7 +4,7 @@ export const siteConfig = {
   url: "https://novarampa.com",
   title: "Nova Rampa | Yükleme Rampası İmalatı — Marmara ve Türkiye Geneli",
   description:
-    "Hidrolik yükleme rampası, teleskopik rampa, mobil rampa ve makaslı platform imalatı. CE & TSE belgeli, EN 1398 uyumlu. Marmara bölgesi ve Türkiye geneline imalat ve sevkiyat.",
+    "Hidrolik yükleme rampası, teleskopik rampa, mobil rampa imalatı. CE & TSE belgeli, EN 1398 uyumlu. Marmara bölgesi ve Türkiye geneline imalat ve sevkiyat.",
   keywords: [
     "yükleme rampası",
     "yükleme rampası imalatı",
@@ -13,7 +13,6 @@ export const siteConfig = {
     "mobil rampa",
     "seyyar rampa",
     "dikey yükleme rampası",
-    "makaslı platform",
     "gömme rampa",
     "konteyner geçiş rampası",
     "CE belgeli rampa",
@@ -83,7 +82,7 @@ her projede daha sağlam, daha verimli ve sürdürülebilir çözümler üretmek
       district: "İstanbul",
       country: "Türkiye",
       lat: 40.969,
-      lng: 29.270,
+      lng: 29.27,
     },
   ],
 

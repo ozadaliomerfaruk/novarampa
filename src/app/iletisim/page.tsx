@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from "next";
-import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
+import { PageIntro } from "@/components/layout/page-intro";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Breadcrumb } from "@/components/layout/breadcrumb";
@@ -31,20 +32,10 @@ export default function IletisimPage() {
       <main className="flex-1">
         <Breadcrumb items={[{ label: "İletişim" }]} />
 
-        <section className="container-wide py-12">
-          <div className="max-w-3xl">
-            <div className="text-sm font-medium text-[var(--brand-orange)] uppercase tracking-widest">
-              İletişim
-            </div>
-            <h1 className="mt-3 text-5xl sm:text-6xl font-heading font-bold tracking-tight">
-              Bir telefon kadar yakın.
-            </h1>
-            <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              Projenizi anlatın, ihtiyacınıza özel çözümü birlikte planlayalım.
-              WhatsApp, e-posta veya teklif formundan ulaşabilirsiniz.
-            </p>
-          </div>
-        </section>
+        <PageIntro
+          title="İletişim"
+          description="ihtiyacınıza uygun rampa modelini birlikte seçelim. WhatsApp, e-posta veya teklif formundan ulaşabilirsiniz"
+        />
 
         <section className="container-wide pb-20">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -98,7 +89,7 @@ export default function IletisimPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {company.locations.map((loc) => {
               const mapsQuery = encodeURIComponent(
-                `${loc.addressLine1}, ${loc.city} ${loc.district}`
+                `${loc.addressLine1}, ${loc.city} ${loc.district}`,
               );
               return (
                 <div
@@ -137,41 +128,12 @@ export default function IletisimPage() {
         </section>
 
         <section className="container-wide pb-20">
-          <div className="rounded-2xl border border-border bg-card p-8">
-            <div className="flex items-start gap-4">
-              <Clock className="text-[var(--brand-orange)] shrink-0 mt-1" />
-              <div>
-                <div className="text-xs font-medium text-muted-foreground uppercase tracking-widest">
-                  Çalışma Saatleri
-                </div>
-                <h3 className="mt-2 text-2xl font-heading font-semibold">
-                  Bizden bir cevap ne zaman beklemelisiniz?
-                </h3>
-                <dl className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-                  {company.workingHours.map((h) => (
-                    <div
-                      key={h.day}
-                      className="p-4 rounded-lg border border-border bg-background/40"
-                    >
-                      <dt className="text-muted-foreground">{h.day}</dt>
-                      <dd className="mt-1 text-foreground font-medium font-mono">
-                        {h.hours}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="container-wide pb-20">
-          <div className="rounded-3xl border border-[var(--brand-orange)]/30 bg-gradient-to-br from-[var(--brand-orange)]/10 to-transparent p-12 text-center">
+          <div className="rounded-3xl border border-[var(--brand-orange)]/30 bg-gradient-to-br from-[var(--brand-orange)]/10 to-transparent p-6 sm:p-12 text-center">
             <h2 className="text-3xl sm:text-4xl font-heading font-bold tracking-tight">
               Detaylı bilgi almak ister misiniz?
             </h2>
             <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
-              Online teklif formunu doldurun, ekibimiz aynı gün size dönsün.
+              Online teklif formunu doldurun.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-center">
               <LinkButton

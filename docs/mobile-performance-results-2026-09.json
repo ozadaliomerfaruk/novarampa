@@ -1,0 +1,326 @@
+{
+  "date": "2026-09-09",
+  "baselineCommit": "4357d3d",
+  "optimizedCommit": "61523b0",
+  "url": "https://novarampa.vercel.app",
+  "tool": "Lighthouse 13.4.1",
+  "method": "3 cold-browser runs per route and revision, mobile simulated throttling; medians and individual runs. Browser cache reset; CDN cache may be warm. Local CPU/network variation is visible in the raw runs.",
+  "summary": [
+    {
+      "name": "home",
+      "beforeLcp": 2713.0445,
+      "afterLcp": 3525.841,
+      "beforeScore": 79,
+      "afterScore": 90,
+      "beforeFontBytes": 258780,
+      "afterFontBytes": 83392,
+      "beforeRange": [
+        5736,
+        2713,
+        2678
+      ],
+      "afterRange": [
+        1949,
+        3550,
+        3526
+      ],
+      "afterAccessibility": [
+        100,
+        100,
+        100
+      ],
+      "afterSeo": [
+        100,
+        100,
+        100
+      ],
+      "afterCLS": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "blog",
+      "beforeLcp": 4968.623,
+      "afterLcp": 1888.605,
+      "beforeScore": 79,
+      "afterScore": 93,
+      "beforeFontBytes": 328712,
+      "afterFontBytes": 83422,
+      "beforeRange": [
+        4969,
+        2932,
+        4973
+      ],
+      "afterRange": [
+        1696,
+        1889,
+        3105
+      ],
+      "afterAccessibility": [
+        100,
+        100,
+        100
+      ],
+      "afterSeo": [
+        100,
+        100,
+        100
+      ],
+      "afterCLS": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "before": [
+    {
+      "stage": "before",
+      "name": "home",
+      "run": 1,
+      "performance": 74,
+      "accessibility": 100,
+      "seo": 100,
+      "lcp": 5736.4490000000005,
+      "fcp": 1311.449,
+      "tbt": 39,
+      "cls": 0,
+      "bytes": 3986533,
+      "fontBytes": 258780,
+      "warnings": []
+    },
+    {
+      "stage": "before",
+      "name": "blog",
+      "run": 1,
+      "performance": 78,
+      "accessibility": 100,
+      "seo": 100,
+      "lcp": 4968.623,
+      "fcp": 1518.623,
+      "tbt": 38,
+      "cls": 0,
+      "bytes": 755673,
+      "fontBytes": 328835,
+      "warnings": []
+    },
+    {
+      "stage": "before",
+      "name": "home",
+      "run": 2,
+      "performance": 96,
+      "accessibility": 100,
+      "seo": 100,
+      "lcp": 2713.0445,
+      "fcp": 1438.0445,
+      "tbt": 18.5,
+      "cls": 0,
+      "bytes": 3986549,
+      "fontBytes": 258806,
+      "warnings": []
+    },
+    {
+      "stage": "before",
+      "name": "blog",
+      "run": 2,
+      "performance": 95,
+      "accessibility": 100,
+      "seo": 100,
+      "lcp": 2932.109,
+      "fcp": 1074.109,
+      "tbt": 39,
+      "cls": 0.00006920644317104678,
+      "bytes": 755789,
+      "fontBytes": 328712,
+      "warnings": []
+    },
+    {
+      "stage": "before",
+      "name": "home",
+      "run": 3,
+      "performance": 79,
+      "accessibility": 100,
+      "seo": 100,
+      "lcp": 2678.026,
+      "fcp": 1328.0259999999998,
+      "tbt": 686,
+      "cls": 0,
+      "bytes": 3986553,
+      "fontBytes": 258671,
+      "warnings": []
+    },
+    {
+      "stage": "before",
+      "name": "blog",
+      "run": 3,
+      "performance": 79,
+      "accessibility": 100,
+      "seo": 100,
+      "lcp": 4972.987,
+      "fcp": 1522.987,
+      "tbt": 30,
+      "cls": 0,
+      "bytes": 755668,
+      "fontBytes": 328698,
+      "warnings": []
+    }
+  ],
+  "after": [
+    {
+      "stage": "final",
+      "name": "home",
+      "run": 1,
+      "performance": 99,
+      "accessibility": 100,
+      "seo": 100,
+      "lcp": 1948.539,
+      "fcp": 1387.539,
+      "tbt": 46.5,
+      "cls": 0,
+      "bytes": 3433495,
+      "fontBytes": 83392,
+      "warnings": []
+    },
+    {
+      "stage": "final",
+      "name": "blog",
+      "run": 1,
+      "performance": 86,
+      "accessibility": 100,
+      "seo": 100,
+      "lcp": 1695.625,
+      "fcp": 1177.625,
+      "tbt": 533,
+      "cls": 0,
+      "bytes": 508921,
+      "fontBytes": 83422,
+      "warnings": []
+    },
+    {
+      "stage": "final",
+      "name": "home",
+      "run": 2,
+      "performance": 90,
+      "accessibility": 100,
+      "seo": 100,
+      "lcp": 3550.0475,
+      "fcp": 1450.0475000000001,
+      "tbt": 34,
+      "cls": 0,
+      "bytes": 3699590,
+      "fontBytes": 83392,
+      "warnings": []
+    },
+    {
+      "stage": "final",
+      "name": "blog",
+      "run": 2,
+      "performance": 99,
+      "accessibility": 100,
+      "seo": 100,
+      "lcp": 1888.605,
+      "fcp": 1136.605,
+      "tbt": 19.5,
+      "cls": 0,
+      "bytes": 508694,
+      "fontBytes": 83437,
+      "warnings": []
+    },
+    {
+      "stage": "final",
+      "name": "home",
+      "run": 3,
+      "performance": 90,
+      "accessibility": 100,
+      "seo": 100,
+      "lcp": 3525.841,
+      "fcp": 1500.841,
+      "tbt": 42,
+      "cls": 0,
+      "bytes": 3699542,
+      "fontBytes": 83404,
+      "warnings": []
+    },
+    {
+      "stage": "final",
+      "name": "blog",
+      "run": 3,
+      "performance": 93,
+      "accessibility": 100,
+      "seo": 100,
+      "lcp": 3105.161,
+      "fcp": 1305.161,
+      "tbt": 39,
+      "cls": 0,
+      "bytes": 508689,
+      "fontBytes": 83369,
+      "warnings": []
+    }
+  ],
+  "directThrottling": {
+    "method": "Direct Chrome CDP throttling; cold browser cache, fresh context each run; latency 150 ms, downstream 209715 bytes/s, upstream 86400 bytes/s, CPU slowdown 4, viewport 412x823, DPR 1.75. LCP observed until 3 seconds after load. This is lab data, not field data, and is a different method from Lighthouse simulate.",
+    "commit": "61523b0",
+    "url": "https://novarampa.vercel.app",
+    "results": [
+      {
+        "name": "home",
+        "run": 1,
+        "lcp": 2020,
+        "cls": 0,
+        "fonts": "loaded",
+        "video": "https://cdn.sanity.io/files/6bn1d24t/production/abc304ddbdf760b426da3d20eb8527462e023c01.mp4",
+        "overflow": false
+      },
+      {
+        "name": "blog",
+        "run": 1,
+        "lcp": 2088,
+        "cls": 0,
+        "fonts": "loaded",
+        "overflow": false
+      },
+      {
+        "name": "home",
+        "run": 2,
+        "lcp": 2084,
+        "cls": 0,
+        "fonts": "loaded",
+        "video": "https://cdn.sanity.io/files/6bn1d24t/production/abc304ddbdf760b426da3d20eb8527462e023c01.mp4",
+        "overflow": false
+      },
+      {
+        "name": "blog",
+        "run": 2,
+        "lcp": 2068,
+        "cls": 0,
+        "fonts": "loaded",
+        "overflow": false
+      },
+      {
+        "name": "home",
+        "run": 3,
+        "lcp": 1964,
+        "cls": 0,
+        "fonts": "loaded",
+        "video": "https://cdn.sanity.io/files/6bn1d24t/production/abc304ddbdf760b426da3d20eb8527462e023c01.mp4",
+        "overflow": false
+      },
+      {
+        "name": "blog",
+        "run": 3,
+        "lcp": 2180,
+        "cls": 0,
+        "fonts": "loaded",
+        "overflow": false
+      }
+    ]
+  },
+  "limitations": [
+    "Lighthouse simulate home LCP median increased from 2713ms to 3526ms despite lower font payload and improved overall performance score. Do not claim a universal home LCP improvement from that method.",
+    "Direct throttling is a different lab method and has no matching baseline: immutable deployment URLs require Vercel login. It is not a before/after comparison or field data.",
+    "A 2.5s LCP target was met in all six direct-throttling samples, but not consistently in Lighthouse simulate. Search Console/CrUX field monitoring remains pending.",
+    "Some Lighthouse Chrome profile cleanup attempts returned Windows EPERM after valid reports were produced. Reports contain no runtimeError or runWarnings."
+  ]
+}

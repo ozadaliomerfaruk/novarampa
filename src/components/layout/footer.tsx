@@ -230,14 +230,16 @@ export async function Footer() {
               href={cta.href}
               className={`group relative overflow-hidden rounded-2xl p-7 transition-all duration-500 ${
                 cta.accent
-                  ? "bg-[var(--brand-orange)] text-white border border-[var(--brand-orange-hover)]/40 hover:bg-[var(--brand-orange-hover)] shadow-[0_0_0_0_var(--brand-orange)] hover:shadow-[0_20px_50px_-15px_rgba(249,115,22,0.55)]"
+                  ? "bg-[var(--brand-orange)] text-primary-foreground border border-[var(--brand-orange-hover)]/40 hover:bg-[var(--brand-orange-hover)] shadow-[0_0_0_0_var(--brand-orange)] hover:shadow-[0_20px_50px_-15px_rgba(249,115,22,0.55)]"
                   : "bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] hover:border-white/20"
               }`}
             >
               <div className="flex items-center justify-end">
                 <cta.icon
                   size={28}
-                  className={cta.accent ? "text-white/80" : "text-white/60"}
+                  className={
+                    cta.accent ? "text-primary-foreground" : "text-white/60"
+                  }
                 />
               </div>
               <div className="mt-10 text-2xl sm:text-3xl font-heading font-bold leading-tight">
@@ -245,7 +247,7 @@ export async function Footer() {
               </div>
               <p
                 className={`mt-2 text-sm leading-relaxed ${
-                  cta.accent ? "text-white/85" : "text-white/60"
+                  cta.accent ? "text-primary-foreground" : "text-white/60"
                 }`}
               >
                 {cta.description}
@@ -286,7 +288,7 @@ export async function Footer() {
           </div>
 
           <div className="lg:col-span-3">
-            <h4 className="text-sm font-semibold mb-4 text-white">Ürünler</h4>
+            <h2 className="text-sm font-semibold mb-4 text-white">Ürünler</h2>
             <ul className="space-y-2.5 text-sm">
               {products.map((p) => (
                 <li key={p._id}>
@@ -302,7 +304,7 @@ export async function Footer() {
           </div>
 
           <div className="lg:col-span-2">
-            <h4 className="text-sm font-semibold mb-4 text-white">Kurumsal</h4>
+            <h2 className="text-sm font-semibold mb-4 text-white">Kurumsal</h2>
             <ul className="space-y-2.5 text-sm">
               {corporateLinks.map((l) => (
                 <li key={l.href}>
@@ -318,7 +320,7 @@ export async function Footer() {
           </div>
 
           <div className="lg:col-span-3">
-            <h4 className="text-sm font-semibold mb-4 text-white">İletişim</h4>
+            <h2 className="text-sm font-semibold mb-4 text-white">İletişim</h2>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2 text-white/60">
                 <Phone size={14} className="mt-1 shrink-0" />

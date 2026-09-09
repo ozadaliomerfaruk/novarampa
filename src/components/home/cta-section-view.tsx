@@ -41,7 +41,7 @@ export function CtaSectionView({
                 <LinkButton
                   href="/teklif-al"
                   size="lg"
-                  className="h-14 px-8 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold group shadow-[0_0_0_0_var(--brand-orange)] hover:shadow-[0_12px_36px_-8px_var(--brand-orange)] transition-all"
+                  className="h-14 px-8 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-primary-foreground font-semibold group shadow-[0_0_0_0_var(--brand-orange)] hover:shadow-[0_12px_36px_-8px_var(--brand-orange)] transition-all"
                 >
                   {copy.buttonLabel}
                   <ArrowRight className="ml-1 transition-transform group-hover:translate-x-1" />

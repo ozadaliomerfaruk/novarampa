@@ -5,10 +5,32 @@ const nextConfig: NextConfig = {
   // SEO kaybı olmadan en yakın içeriğe yönlensin.
   async redirects() {
     return [
+      // Old WordPress URLs observed in the sitemap; ready for the domain migration.
+      { source: "/home", destination: "/", permanent: true },
+      { source: "/about", destination: "/hakkimizda", permanent: true },
+      { source: "/about-2", destination: "/hakkimizda", permanent: true },
+      { source: "/contact", destination: "/iletisim", permanent: true },
+      { source: "/contact-2", destination: "/iletisim", permanent: true },
+      { source: "/services", destination: "/urunler", permanent: true },
+      { source: "/services-2", destination: "/urunler", permanent: true },
+      { source: "/portfolio", destination: "/referanslar", permanent: true },
+      {
+        source: "/sitemap_index.xml",
+        destination: "/sitemap.xml",
+        permanent: true,
+      },
       { source: "/cozumler", destination: "/urunler", permanent: true },
       { source: "/cozumler/:path*", destination: "/urunler", permanent: true },
-      { source: "/hizmet-bolgeleri", destination: "/iletisim", permanent: true },
-      { source: "/hizmet-bolgeleri/:path*", destination: "/iletisim", permanent: true },
+      {
+        source: "/hizmet-bolgeleri",
+        destination: "/iletisim",
+        permanent: true,
+      },
+      {
+        source: "/hizmet-bolgeleri/:path*",
+        destination: "/iletisim",
+        permanent: true,
+      },
     ];
   },
   images: {

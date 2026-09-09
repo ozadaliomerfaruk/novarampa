@@ -142,7 +142,7 @@ export const blogPostType = defineType({
       name: "howToSteps",
       title: "Rehber Adımları (HowTo — opsiyonel)",
       description:
-        "Bu yazı bir 'nasıl yapılır' rehberi ise adımları buraya yaz. Google ve AI motorları bu yazıyı 'rehber yazı' olarak işaretler, arama sonuçlarında numaralı liste olarak gösterir. Boş bırakırsan normal yazı olarak kalır.",
+        "Adımlar yazının sonunda görünür ve HowTo verisine eklenir. Google HowTo zengin sonuçlarını desteklemez; özel arama görünümü garantisi yoktur.",
       type: "array",
       group: "content",
       of: [
@@ -195,7 +195,8 @@ export const blogPostType = defineType({
         {
           name: "title",
           title: "SEO Başlık",
-          description: "Boş bırakılırsa yazı başlığı kullanılır. Maks 60 karakter.",
+          description:
+            "Boş bırakılırsa yazı başlığı kullanılır. Maks 60 karakter.",
           type: "string",
         },
         {

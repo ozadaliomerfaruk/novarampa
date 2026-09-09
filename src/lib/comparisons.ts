@@ -25,13 +25,13 @@ export const comparisons: ComparisonPair[] = [
     title: "Menteşeli vs Teleskopik Yükleme Rampası",
     shortTitle: "Menteşeli vs Teleskopik",
     intro:
-      "İki rampa da hidrolik mekanizmayla çalışır ve beton çukura monte edilir. Aralarındaki temel fark dil mekanizmasında: menteşeli rampa sabit, teleskopik rampa uzayıp kısalabilen dile sahip.",
+      "İki rampa da hidrolik mekanizmayla çalışır ve beton çukura monte edilir. Aralarındaki temel fark dil mekanizmasında: menteşeli rampanın dili dönerek açılır, teleskopik rampanın dili ileri–geri uzanır.",
     whenA:
       "Standart kamyon ve TIR yükleme noktaları için. Maliyet hassasiyeti yüksek projelerde, ortalama yük yüksekliği değişken olmayan tesislerde tercih edilir.",
     whenB:
       "Konteyner yüklemesi, farklı araç yüksekliklerinin sık kullanıldığı tesisler, soğuk hava deposu projeleri. Uzayan dil mekanizması esneklik sağlar.",
     verdict:
-      "Genel kural: araç çeşitliliği yoksa menteşeli, varsa teleskopik. Soğuk hava deposunda teleskopik neredeyse zorunludur.",
+      "Araç çeşitliliği, dilin temas mesafesi ve kapı düzeni birlikte değerlendirilmelidir. Soğuk hava deposunda yalıtım ve körük dahil bütün yükleme noktası için çözüm seçilir.",
   },
   {
     slug: "mentereli-vs-mobil",
@@ -46,7 +46,7 @@ export const comparisons: ComparisonPair[] = [
     whenB:
       "Geçici şantiyeler, kiralık alanlar, çukur açtırılamayan zeminler, açık alan sevkiyat. Hızlı kurulum gerektiren projeler.",
     verdict:
-      "Kalıcı operasyon = menteşeli, geçici veya çukursuz = mobil. Mobil rampa kapasite limiti 20 ton, menteşelide standart 12 ton ama özel imalat ile yukarı çıkılabilir.",
+      "Sabit peron ile araç arasında geçiş ve zemin seviyesinden yükleme farklı ihtiyaçlardır. Kapasite, geçecek ekipman ve yüke göre; model ise saha ve montaj koşullarına göre belirlenir.",
   },
   {
     slug: "dikey-vs-mentereli",
@@ -61,7 +61,7 @@ export const comparisons: ComparisonPair[] = [
     whenB:
       "Yeni inşaat, müteahhitlik projeleri. Beton çukur baştan planlandığında en ekonomik çözüm.",
     verdict:
-      "Renovasyon = dikey, yeni proje = menteşeli. Dikey rampa fiyat olarak %15-25 daha yüksektir ama montaj maliyeti düşürür.",
+      "Mevcut yapının ve yeni inşaatın gereksinimleri farklıdır. Ürün ve saha işlerinin toplam kapsamını karşılaştırın; fiyat farkı proje ölçüleri ve montaj koşullarıyla netleşir.",
   },
 ];
 

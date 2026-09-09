@@ -14,6 +14,7 @@ import {
   BlogPostingJsonLd,
   HowToJsonLd,
 } from "@/components/seo/structured-data";
+import { urlFor } from "@/sanity/lib/image";
 import { siteConfig } from "@/lib/site-config";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { blogPostBySlugQuery, blogPostSlugsQuery } from "@/sanity/lib/queries";
@@ -44,6 +45,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description =
     post.seo?.description ?? post.excerpt ?? siteConfig.description;
 
+  const image = post.mainImage?.asset
+    ? urlFor(post.mainImage).width(1200).height(630).fit("crop").url()
+    : `${siteConfig.url}/blog/${slug}/opengraph-image`;
+
   return {
     title,
     description,
@@ -52,8 +57,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       type: "article",
+      url: `${siteConfig.url}/blog/${slug}`,
+      locale: "tr_TR",
+      modifiedTime: post._updatedAt ?? post.publishedAt,
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: post.mainImage?.alt ?? post.title,
+        },
+      ],
       publishedTime: post.publishedAt,
       authors: post.author ? [post.author] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
     },
   };
 }
@@ -118,9 +140,13 @@ const portableComponents: PortableTextComponents = {
     }) => (
       <a
         href={value?.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-[var(--brand-orange)] underline underline-offset-2 hover:text-[var(--brand-orange-hover)]"
+        target={value?.href?.startsWith("https://") ? "_blank" : undefined}
+        rel={
+          value?.href?.startsWith("https://")
+            ? "noopener noreferrer"
+            : undefined
+        }
+        className="text-foreground font-medium underline decoration-[var(--brand-orange)] underline-offset-4 hover:decoration-2"
       >
         {children}
       </a>
@@ -162,6 +188,12 @@ export default async function BlogPostPage({ params }: Props) {
         description={post.excerpt ?? post.title}
         slug={slug}
         publishedAt={post.publishedAt}
+        updatedAt={post._updatedAt}
+        imageUrl={
+          post.mainImage?.asset
+            ? urlFor(post.mainImage).width(1200).url()
+            : undefined
+        }
         author={post.author}
         readTimeMinutes={post.readTime}
         tags={post.tags}
@@ -182,7 +214,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         <article className="container-wide pt-8 pb-20 max-w-4xl">
           <header className="mb-10">
-            <div className="flex items-center gap-3 text-xs font-mono text-muted-foreground uppercase tracking-widest">
+            <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-muted-foreground uppercase tracking-widest">
               <time dateTime={post.publishedAt}>
                 {new Date(post.publishedAt).toLocaleDateString("tr-TR", {
                   year: "numeric",

@@ -61,7 +61,7 @@ export const productBySlugQuery = groq`*[_type == "product" && coalesce(visible,
 
 export const productSlugsQuery = groq`*[_type == "product" && coalesce(visible, true) && _id != "product-makasli-platform" && slug.current != "makasli-platform" && defined(slug.current)]{ "slug": slug.current }`;
 
-export const allBlogPostsQuery = groq`*[_type == "blogPost" && defined(publishedAt) && publishedAt < now()] | order(publishedAt desc) {
+export const allBlogPostsQuery = groq`*[_type == "blogPost" && defined(slug.current) && defined(publishedAt) && dateTime(publishedAt) <= dateTime(now())] | order(publishedAt desc) {
   _id,
   title,
   slug,
@@ -73,7 +73,7 @@ export const allBlogPostsQuery = groq`*[_type == "blogPost" && defined(published
   tags
 }`;
 
-export const blogPostBySlugQuery = groq`*[_type == "blogPost" && slug.current == $slug][0]{
+export const blogPostBySlugQuery = groq`*[_type == "blogPost" && defined(slug.current) && defined(publishedAt) && dateTime(publishedAt) <= dateTime(now()) && slug.current == $slug][0]{
   _id,
   title,
   slug,
@@ -81,6 +81,7 @@ export const blogPostBySlugQuery = groq`*[_type == "blogPost" && slug.current ==
   body,
   mainImage,
   publishedAt,
+  _updatedAt,
   author,
   readTime,
   tags,
@@ -89,7 +90,7 @@ export const blogPostBySlugQuery = groq`*[_type == "blogPost" && slug.current ==
   seo
 }`;
 
-export const blogPostSlugsQuery = groq`*[_type == "blogPost" && defined(slug.current)]{ "slug": slug.current, publishedAt }`;
+export const blogPostSlugsQuery = groq`*[_type == "blogPost" && defined(slug.current) && defined(publishedAt) && dateTime(publishedAt) <= dateTime(now())]{ "slug": slug.current, publishedAt, _updatedAt }`;
 
 export const allReferencesQuery = groq`*[_type == "referenceCompany"] | order(featured desc, name asc) {
   _id,
@@ -127,6 +128,7 @@ export const sparePartsQuery = groq`*[_type == "sparePart" && !(_id in ["sparePa
 // Sadece yayında (published) olanlar site'de görünür.
 export const allPublishedPagesQuery = groq`*[_type == "page" && status == "published"] | order(navbarOrder asc, _createdAt desc) {
   _id,
+  _updatedAt,
   title,
   "slug": slug.current,
   excerpt,

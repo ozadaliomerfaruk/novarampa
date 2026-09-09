@@ -123,6 +123,7 @@ export type BlogPostSummary = {
 };
 
 export type BlogPost = BlogPostSummary & {
+  _updatedAt?: string;
   body?: PortableTextBlock[];
   howToSteps?: HowToStep[];
   totalTime?: string;

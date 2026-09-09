@@ -47,7 +47,7 @@ export function Hero({ title, subtitle, ctaLabel, videoUrl }: HeroProps = {}) {
       {/* ─── Centered content ─── */}
       <motion.div
         variants={containerVariants}
-        initial="hidden"
+        initial={false}
         animate="show"
         className="container-wide relative z-10 text-center flex flex-col items-center pt-32 md:pt-44 pb-24"
       >
@@ -94,7 +94,7 @@ export function Hero({ title, subtitle, ctaLabel, videoUrl }: HeroProps = {}) {
             <LinkButton
               href="/teklif-al"
               size="lg"
-              className="h-13 px-7 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold transition-all group"
+              className="h-13 px-7 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-primary-foreground font-semibold transition-all group"
             >
               {cta}
               <ArrowRight className="ml-1 transition-transform group-hover:translate-x-1" />

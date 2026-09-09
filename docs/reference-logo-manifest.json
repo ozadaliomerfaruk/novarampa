@@ -1,0 +1,453 @@
+[
+  {
+    "id": "reference-ar-elik",
+    "name": "Arçelik",
+    "file": "/references/ar-elik.png",
+    "background": "light",
+    "sourceUrl": "https://www.arcelikglobal.com/media/oswlax15/arcelik_marka_logo.png",
+    "sha256": "7aa8950241fd3252f6db5ae0f0a1cdd161c808c6490bcba1df4905b76eb264a2"
+  },
+  {
+    "id": "reference-eczac-ba",
+    "name": "Eczacıbaşı",
+    "file": "/references/eczac-ba.png",
+    "background": "light",
+    "sourceUrl": "https://www.eczacibasi.com.tr/assets/eczacibasi-logo-2023.png",
+    "sha256": "cbf62994bf4b709039d48b059cddfe1f765d6cde9afe6d85fdff4326d8c74606"
+  },
+  {
+    "id": "reference-mars-lojistik",
+    "name": "Mars Lojistik",
+    "file": "/references/mars-lojistik.png",
+    "background": "light",
+    "sourceUrl": "https://marslogistics.com/content/images/web/logo/MARS_LOGISTICS_LOGO.png",
+    "sha256": "5fe1fbe0cc3a9645f0378f7e87fdb534e0e48f4e4db296ba13e5fc231aab861b"
+  },
+  {
+    "id": "reference-roketsan",
+    "name": "Roketsan",
+    "file": "/references/roketsan.png",
+    "background": "light",
+    "sourceUrl": "https://www.roketsan.com.tr/uploads/images/large/1627296818_logo.svg?1627296818",
+    "sha256": "60edcf047c99b908d0b9146a124a416f3502146e3c7844e31242b7e69f732ef5"
+  },
+  {
+    "id": "reference-thy",
+    "name": "THY",
+    "file": "/references/thy.png",
+    "background": "dark",
+    "sourceUrl": "https://investor.turkishairlines.com/templates/default/assets/img/footer/thy_footer_logo.png",
+    "sha256": "7bbaf806dc97c70e73821d1a55c5ced6894ff26fd027cfbc90ec879ebaaccaf9"
+  },
+  {
+    "id": "reference-toyota-tsusho",
+    "name": "Toyota Tsusho",
+    "file": "/references/toyota-tsusho.png",
+    "background": "light",
+    "sourceUrl": "https://www.toyota-tsusho.com/english/app-files/img/cmn_logo01.svg",
+    "sha256": "04d355d24afa4957d0da564789c787bfe9c947d668ff5ffbba86757c558fe85c"
+  },
+  {
+    "id": "reference-i-ecam-cam-elyaf-sanayii-a",
+    "name": "Şişecam (Cam Elyaf Sanayii A.Ş.)",
+    "file": "/references/i-ecam-cam-elyaf-sanayii-a.png",
+    "background": "light",
+    "sourceUrl": "https://www.sisecam.com/_catalogs/masterpage/assets/images/logos/logo.svg?v=1",
+    "sha256": "3a26fadabd05a5b1ff8ace6896ededd5ffa5b7a015ad57d7a3ec600ade262097"
+  },
+  {
+    "id": "reference-abc-deterjan",
+    "name": "ABC Deterjan",
+    "file": "/references/abc-deterjan.png",
+    "background": "light",
+    "sourceUrl": "https://www.abcdeterjan.com.tr/wp-content/uploads/logo.png",
+    "sha256": "594dbaa0a1e0e40db2a159303512a487e515fb3d61bf693a1364ce899a8ad169"
+  },
+  {
+    "id": "reference-abs-al",
+    "name": "ABS Alçı",
+    "file": "/references/abs-al.png",
+    "background": "light",
+    "sourceUrl": "https://www.absalci.com.tr/uploads/logo.png",
+    "sha256": "84b324534175c614ac97bd253187d12621ab1a14caf17b3ac6d569cd62e75c36"
+  },
+  {
+    "id": "reference-adopen",
+    "name": "Adopen",
+    "file": "/references/adopen.png",
+    "background": "light",
+    "sourceUrl": "https://www.adopen.com.tr/wp-content/uploads/2024/02/adopen-logo.png",
+    "sha256": "4a1435e1b2217280850e192287c189c68317460edeec8a4816446aaa9be45902"
+  },
+  {
+    "id": "reference-aksa-akrilik",
+    "name": "Aksa Akrilik",
+    "file": "/references/aksa-akrilik.png",
+    "background": "light",
+    "sourceUrl": "https://asset.aksa.com/media-data/others/2025/10/15/aksa-yeni-logo-jxcl124w.svg",
+    "sha256": "e2cd7c94326275686db23c22bfc31553e76f8329a6c245658778210aa04bb459"
+  },
+  {
+    "id": "reference-arkas-lojistik",
+    "name": "Arkas Lojistik",
+    "file": "/references/arkas-lojistik.png",
+    "background": "dark",
+    "sourceUrl": "https://www.arkaslojistik.com/assets/logo_white.png",
+    "sha256": "4ae054b0e31bf0186912e2959139c8807590bef701fc23159a4537aeb43c0314"
+  },
+  {
+    "id": "reference-asa-al-minyum",
+    "name": "Asaş Alüminyum",
+    "file": "/references/asa-al-minyum.png",
+    "background": "light",
+    "sourceUrl": "https://www.asastr.com/sites/1/content/img/logo.svg",
+    "sha256": "e668a05d6af2386d0dda9d8c4285c843e00cfa44c029d3f84e13fa8555e4aadd"
+  },
+  {
+    "id": "reference-cronimet",
+    "name": "Cronimet",
+    "file": "/references/cronimet.png",
+    "background": "dark",
+    "sourceUrl": "https://www.cronimet.de/en/assets/templates/cronimet/images/navigation/navi_logo.png",
+    "sha256": "341f8196abcbdac5af9be0cca59754b960e19ee4deeea56a3e6bbf29f2402474"
+  },
+  {
+    "id": "reference-deva-holding-a",
+    "name": "Deva Holding",
+    "file": "/references/deva-holding-a.png",
+    "background": "light",
+    "sourceUrl": "https://www.deva.com.tr/",
+    "sha256": "66557c8dd785eca4e4eaea6d0f44ea435668be4f10790fba99f60c4a68c2a926"
+  },
+  {
+    "id": "reference-docotton-group",
+    "name": "Docotton Group",
+    "file": "/references/docotton-group.png",
+    "background": "light",
+    "sourceUrl": "https://www.docotton.com/uploadFiles/stores/docotton-group-1001-1712748709.png",
+    "sha256": "a00dff5eb71e4efcb254d5aad57bf11d03e1bada7a6270b9e0fe2ed061de025d"
+  },
+  {
+    "id": "reference-eae",
+    "name": "EAE",
+    "file": "/references/eae.png",
+    "background": "light",
+    "sourceUrl": "https://www.eae.com.tr/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Feae-elektrik-logo.c571e196.webp&w=828&q=75",
+    "sha256": "32451668fbda6f3818134bc87449b5427b5eb5eec2e42a6687f98e7752e6b59b"
+  },
+  {
+    "id": "reference-ege-kimya",
+    "name": "Ege Kimya",
+    "file": "/references/ege-kimya.png",
+    "background": "light",
+    "sourceUrl": "https://www.egekimya.com/wp-content/uploads/2026/05/ege-logo.png",
+    "sha256": "c106ce9628c36d8acfd621d14d0793aa12dd41c262496a4f8ced114ff5e78f76"
+  },
+  {
+    "id": "reference-enpay",
+    "name": "Enpay",
+    "file": "/references/enpay.png",
+    "background": "light",
+    "sourceUrl": "https://www.enpay.com/assets/images/logo.png",
+    "sha256": "01738576eaa6a5bdaf3f54f269d2f9df1ff5a98671cddac2eda890154f1f635f"
+  },
+  {
+    "id": "reference-f-rat-plastik",
+    "name": "Fırat Plastik",
+    "file": "/references/f-rat-plastik.png",
+    "background": "light",
+    "sourceUrl": "https://www.firat.com/cmsfiles/Galleries/451/logo_firat.png",
+    "sha256": "80fbc0c7f5b5c7afdfb7a746e358048f32fb104981844d3bbf1e0d88e546cdc4"
+  },
+  {
+    "id": "reference-hsa-enerji",
+    "name": "HSA Enerji",
+    "file": "/references/hsa-enerji.png",
+    "background": "light",
+    "sourceUrl": "https://dcms.hsaenerji.com/storage/media/wRtvmkoNknzEqxS80pjoM8GBk6UP1eEPfcwI1ljb.png",
+    "sha256": "ac484f14ee66a5ffa2522a72c77629073b19ccccfadb9e3512eb6623283a8c2b"
+  },
+  {
+    "id": "reference-has-elik-kablo",
+    "name": "Hasçelik Kablo",
+    "file": "/references/has-elik-kablo.png",
+    "background": "light",
+    "sourceUrl": "https://www.hascelikkablo.com.tr/depo/logo-hasc.png",
+    "sha256": "263dd398c6285d5b7f88828b743d7aeef5e3a493c576c45a3d5c27217d6fb4c7"
+  },
+  {
+    "id": "reference-kalekim",
+    "name": "Kalekim",
+    "file": "/references/kalekim.png",
+    "background": "light",
+    "sourceUrl": "https://www.kalekim.com/",
+    "sha256": "d471dd58db15a8e49bde94a9f91965ae59f6f2bbaa192e0bda4be785d90b600b"
+  },
+  {
+    "id": "reference-kartonsan",
+    "name": "Kartonsan",
+    "file": "/references/kartonsan.png",
+    "background": "light",
+    "sourceUrl": "https://www.kartonsan.com.tr/images/logo.svg",
+    "sha256": "b8e366d00c6298ad26ae6aca0f4c20ce58e4a6cf3f71a7d40a8614dff28b93aa"
+  },
+  {
+    "id": "reference-kervan",
+    "name": "Kervan",
+    "file": "/references/kervan.png",
+    "background": "light",
+    "sourceUrl": "https://kervangida.com/images/logoOpenGraph.png",
+    "sha256": "49baedf4b84dbf12e978bc1784681f54a95ad4fcaa98cb8ab0b3099be83eaa23"
+  },
+  {
+    "id": "reference-kronospan",
+    "name": "Kronospan",
+    "file": "/references/kronospan.png",
+    "background": "light",
+    "sourceUrl": "https://prowly-prod.s3.eu-west-1.amazonaws.com/uploads/3508/assets/281279/original-d57f8be695de50c36848d1d0a9e59a70.jpg",
+    "sha256": "802a283a3b66b4afe43879c673fd0e1e1853fe9d444d8a1b7d04090884c31196"
+  },
+  {
+    "id": "reference-k-rm-z-g-l-kozmetik",
+    "name": "Kırmızıgül Kozmetik",
+    "file": "/references/k-rm-z-g-l-kozmetik.png",
+    "background": "dark",
+    "sourceUrl": "https://www.kirmizigulkozmetik.com/wp-content/uploads/2023/10/kirmizigul-beyaz-logo.png",
+    "sha256": "a043fd0124a4d9dd3a555671ca7318cf6e89f360f0e2b4eb1b8b8a449e0ed62f"
+  },
+  {
+    "id": "reference-makbul",
+    "name": "Makbul",
+    "file": "/references/makbul.png",
+    "background": "light",
+    "sourceUrl": "https://www.makbul.com/assets/img/logo.png",
+    "sha256": "cbb3db1dd86ea4d726ac4bb830937f39b7b84f96dd2041e1216fdf9b2e8be621"
+  },
+  {
+    "id": "reference-mondi",
+    "name": "Mondi",
+    "file": "/references/mondi.png",
+    "background": "light",
+    "sourceUrl": "https://www.mondigroup.com/ui/gfx/icons/logo.svg",
+    "sha256": "78bd1b01c537d9916d09cedb38e3b9df640a7bdf571e533d3f7f3096cd685b75"
+  },
+  {
+    "id": "reference-ode-yal-t-m",
+    "name": "ODE Yalıtım",
+    "file": "/references/ode-yal-t-m.png",
+    "background": "light",
+    "sourceUrl": "https://ode.com.tr/project/_resources/images/logo.svg",
+    "sha256": "11a6eb48f28240b75deaddb0113e168746bf01dae8ff6e37dc7008a16cbca932"
+  },
+  {
+    "id": "reference-parex",
+    "name": "Parex",
+    "file": "/references/parex.png",
+    "background": "light",
+    "sourceUrl": "https://dynamicmedia.sika.com/adobe/assets/urn:aaid:aem:70dea728-1414-4d84-98f9-e25869439bd6/as/us-PAREX-Logo-Black-01211694.png?width=320&height=76",
+    "sha256": "1b99ccbfbbf94bdcd8c51b0dca79ec2d11f497ea47d72ce0fa7d6b5fa960e309"
+  },
+  {
+    "id": "reference-patiswiss",
+    "name": "Patiswiss",
+    "file": "/references/patiswiss.png",
+    "background": "light",
+    "sourceUrl": "https://www.patiswiss.com.tr/cdn/shop/files/ps.png?v=1764318164",
+    "sha256": "825fdd31d1df4c58ca71b9ec13e3c86dfe36998b69ed587b945b1ec17823eda2"
+  },
+  {
+    "id": "reference-polinas",
+    "name": "Polinas",
+    "file": "/references/polinas.png",
+    "background": "light",
+    "sourceUrl": "https://www.polinas.com/Templates/Default/assets/images/logo.png",
+    "sha256": "75f43b831bc491f98433a00a97b131405164587be69b9ec891ed4105068d944a"
+  },
+  {
+    "id": "reference-poliport-kimya",
+    "name": "Poliport Kimya",
+    "file": "/references/poliport-kimya.png",
+    "background": "dark",
+    "sourceUrl": "https://www.poliport.com/images/bckg/logo.png",
+    "sha256": "f8bf26a9685c59f330d81c1e39f12a6c17efb7dbf64f409686c9b75fe8ade3a3"
+  },
+  {
+    "id": "reference-qua-granite",
+    "name": "QUA Granit",
+    "file": "/references/qua-granite.png",
+    "background": "light",
+    "sourceUrl": "https://www.qua.com.tr/uploads/logo-color.png",
+    "sha256": "dbadfc9bf628ea5c625a0ef1013c98c05c58801c153fcce8390e154761f13af4"
+  },
+  {
+    "id": "reference-rebul-kozmetik",
+    "name": "Rebul Kozmetik",
+    "file": "/references/rebul-kozmetik.png",
+    "background": "light",
+    "sourceUrl": "https://static.ticimax.cloud/73999/Uploads/HeaderTasarim/Header2/9099201f-5a9e-41c0-9b26-132def4d233a.jpg",
+    "sha256": "ffa8861b020eb431c097a379d9a84c4b35df0a068f33c12141cec26d588334bc"
+  },
+  {
+    "id": "reference-reis-makina",
+    "name": "Reis Makina",
+    "file": "/references/reis-makina.png",
+    "background": "light",
+    "sourceUrl": "https://marsellonline.com//images/Reis/reismakina-01.png",
+    "sha256": "531d28fe4a0a9cfc86d2102aab04f5ebc3f10979c4a2944562a49c390c3e52a2"
+  },
+  {
+    "id": "reference-sarten-ambalaj",
+    "name": "Sarten Ambalaj",
+    "file": "/references/sarten-ambalaj.png",
+    "background": "light",
+    "sourceUrl": "https://www.sarten.com.tr/wp-content/uploads/2024/01/SARTEN-LOGO-500-.png",
+    "sha256": "7f7e8a690ddba3fc4a26879c0335626d4a0634802b6c88e164e435380798f306"
+  },
+  {
+    "id": "reference-silkcoat",
+    "name": "Silkcoat",
+    "file": "/references/silkcoat.png",
+    "background": "light",
+    "sourceUrl": "https://silkcoat.com/_next/image/?url=%2Flogo%2Flogo_base.png&w=2048&q=90&dpl=dpl_4mnD63TG9x9fRpymybQVTMEfLm6E",
+    "sha256": "a9333d943740f70b086e8380b71a9ba86abbfa2b608d53b9f7efa80d5360ad12"
+  },
+  {
+    "id": "reference-sistem-al-minyum",
+    "name": "Sistem Alüminyum",
+    "file": "/references/sistem-al-minyum.png",
+    "background": "light",
+    "sourceUrl": "https://www.sistemal.com/wp-content/uploads/2022/03/sistem-aluminyum-renkli-logo.png",
+    "sha256": "31b5100a6affeb2f87d99059f45c42c290fdda556526b5128007382989fa2128"
+  },
+  {
+    "id": "reference-s-rma",
+    "name": "Sörmaş",
+    "file": "/references/s-rma.png",
+    "background": "light",
+    "sourceUrl": "https://www.gifa.de/vis-content/event-GMTN2019.metec/exh-GMTN2019.2579950/METEC-2019-SORPA-DIS-TICARET-A.S.-Exhibitor-GMTN2019.2579950-QjebtDhjRzKJdJe8aBI2Cg.pdf",
+    "sha256": "00d7df0541ba28c14ec6f6e48aeda1bda75c172a805dbe59edb195c1d9b4ec76",
+    "note": "Firmanın fuar broşürünün ilk sayfasındaki özgün gömülü logo; PDF görseli yeniden çizilmedi."
+  },
+  {
+    "id": "reference-targid-tar-m",
+    "name": "Targid Tarım",
+    "file": "/references/targid-tar-m.png",
+    "background": "light",
+    "sourceUrl": "https://targid.com/wp-content/uploads/2016/08/Targid-logo-web.png",
+    "sha256": "6e2cd34dd3fb35a8f47593abb3e4e74b59e41f2b3e7bfc34f1e5e157bd723f41"
+  },
+  {
+    "id": "reference-tar-m-kredi",
+    "name": "Tarım Kredi",
+    "file": "/references/tar-m-kredi.png",
+    "background": "light",
+    "sourceUrl": "https://tarimkredi.org.tr/assets/front/images/logo.png",
+    "sha256": "f63bebb34820979fa26e993841da03e5e59302db285f737de6009fd972b70e61"
+  },
+  {
+    "id": "reference-tat-g-da",
+    "name": "Tat Gıda",
+    "file": "/references/tat-g-da.png",
+    "background": "light",
+    "sourceUrl": "https://tatgida.azureedge.net/wp-prod/wp-content/uploads/2023/09/tat-logo@3x.png",
+    "sha256": "179a870db2d55d59efdd622e2635090efe6b669c2763b2b17473e9cf1b2a4867"
+  },
+  {
+    "id": "reference-tedi",
+    "name": "Tedi",
+    "file": "/references/tedi.png",
+    "background": "light",
+    "sourceUrl": "https://www.tedi.com.tr/idea/fz/62/themes/selftpl_6a43c2d25819a/assets/uploads/logo.png?revision=8.4.3.2-2-1788872256",
+    "sha256": "b9448bd9674aa998ad924e7444cd4f07b71481c55044e32d34d95221305a58bf"
+  },
+  {
+    "id": "reference-teka",
+    "name": "Teka",
+    "file": "/references/teka.png",
+    "background": "light",
+    "sourceUrl": "https://www.teka.com/tr-tr/wp-content/themes/teka/img/teka-new-logo.svg",
+    "sha256": "b7be8b9b743cf5622820316224bc2cc00c8654a868c42f800afc992be4c773d7"
+  },
+  {
+    "id": "reference-tos-elik",
+    "name": "Tosçelik",
+    "file": "/references/tos-elik.png",
+    "background": "light",
+    "sourceUrl": "https://c.toscelik.com.tr/images/641068toscelikpng",
+    "sha256": "1a914b9b4e8a2b05668f6407fd7d882d5c2c437c970bd1fa5b6d1a0221aaa253"
+  },
+  {
+    "id": "reference-vatan-kablo",
+    "name": "Vatan Kablo",
+    "file": "/references/vatan-kablo.png",
+    "background": "light",
+    "sourceUrl": "https://vatan.com.tr/assets/images/vatan/logo.png",
+    "sha256": "abbd16ce0ec8ef3bc1e7d29dc51f096ac13e3e0b274b964b7e63d6e0cbbe6e97"
+  },
+  {
+    "id": "reference-vatan-plastik",
+    "name": "Vatan Plastik",
+    "file": "/references/vatan-plastik.png",
+    "background": "light",
+    "sourceUrl": "https://www.vatanplastik.com/wp-content/uploads/2020/01/vatan_logo-1.png",
+    "sha256": "6628cd31016b5c34f7820dabf1e578e4780b8463046211ef3dca89c0f9b37c3e"
+  },
+  {
+    "id": "reference-yata",
+    "name": "Yataş",
+    "file": "/references/yata.png",
+    "background": "light",
+    "sourceUrl": "https://p1-assets-yatas.sm.mncdn.com/assets/img/yatas/logo.webp",
+    "sha256": "301902e1f448cb786c6b60f77028efc4c47f8cae36ae584fbf5f8ba4a4bd344d"
+  },
+  {
+    "id": "reference-y-rpa",
+    "name": "Yörpaş",
+    "file": "/references/y-rpa.png",
+    "background": "dark",
+    "sourceUrl": "https://gateway.komagene.com.tr/site/StaticFiles/YuklenenLogolar/32/Logo-Kmgn.png",
+    "sha256": "d134eea6a4f431e7a238e3924a5186f481c1a255e738dbefed936d988fa84723",
+    "note": "Komagene marka logosu; Yörpaş bağlantısı resmi Hakkımızda sayfasında doğrulandı.",
+    "identitySource": "https://www.komagene.com/hakkimizda/"
+  },
+  {
+    "id": "reference-obanp-nar",
+    "name": "Çobanpınar",
+    "file": "/references/obanp-nar.png",
+    "background": "light",
+    "sourceUrl": "https://www.cobanpinar.com.tr/cobanpinar/images/logolar/logo.gif",
+    "sha256": "95b449a10b7bc8808e07bcecda1401f75c69bd418eb35f85a2fe733340ae8717"
+  },
+  {
+    "id": "reference-zdilek",
+    "name": "Özdilek",
+    "file": "/references/zdilek.png",
+    "background": "light",
+    "sourceUrl": "https://www.ozdilek.com.tr/tr/images/logo/logo.svg",
+    "sha256": "a26dd9b717bb51198c672575d79c17462953096a17af3f733208e14cb1971ed4"
+  },
+  {
+    "id": "reference-zismak",
+    "name": "Özismak",
+    "file": "/references/zismak.png",
+    "background": "light",
+    "sourceUrl": "https://www.ozismak.com/wp-content/themes/proweb/images/logo.png",
+    "sha256": "e2e453110b46bf1fa37aeacbf7cf00758373e33bb7b4b22ebe82cc7e1669baeb"
+  },
+  {
+    "id": "reference-inka",
+    "name": "İnka",
+    "file": "/references/inka.png",
+    "background": "dark",
+    "sourceUrl": "https://inkafixing.com/wp-content/uploads/2025/01/inka-beyaz@2x.png",
+    "sha256": "8f56a5408c5452c5c899eefba27760c963b5ee691b3695eb2079463f66dc6e0a"
+  },
+  {
+    "id": "reference-iskefe-holding",
+    "name": "İskefe Holding",
+    "file": "/references/iskefe-holding.png",
+    "background": "light",
+    "sourceUrl": "https://www.iskefeholding.com.tr/",
+    "sha256": "e1bacd4fb95838a99e387f732f642e5ad1340a5beeb9cff9eb5d162768a9d6d0"
+  }
+]

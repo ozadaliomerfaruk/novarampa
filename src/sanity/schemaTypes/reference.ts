@@ -35,10 +35,26 @@ export const referenceType = defineType({
       name: "logo",
       title: "Logo",
       description:
-        "Firmanın logosu. Tercihen şeffaf PNG. Anasayfada gri tonlu gösterilir, üzerine gelince renklenir.",
+        "Firmanın özgün logosu. Tercihen şeffaf PNG. Referanslar sayfasında ve anasayfa bandında gösterilir.",
       type: "image",
       group: "basic",
       options: { hotspot: false },
+    }),
+    defineField({
+      name: "logoBackground",
+      title: "Logo Zemini",
+      description:
+        "Beyaz veya açık renkli logolar için koyu zemin seçin. Bu zemin her iki temada da korunur.",
+      type: "string",
+      group: "basic",
+      options: {
+        list: [
+          { title: "Açık", value: "light" },
+          { title: "Koyu", value: "dark" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "light",
     }),
     defineField({
       name: "featured",

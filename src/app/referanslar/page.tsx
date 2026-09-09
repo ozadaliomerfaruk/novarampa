@@ -5,7 +5,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Breadcrumb } from "@/components/layout/breadcrumb";
 import { CtaSection } from "@/components/home/cta-section";
-import { SanityImage } from "@/components/sanity/sanity-image";
+import { ReferenceLogo } from "@/components/references/reference-logo";
 import { BreadcrumbJsonLd } from "@/components/seo/structured-data";
 import { referenceCompanies, totalProjectsApprox } from "@/lib/references";
 import { siteConfig } from "@/lib/site-config";
@@ -64,23 +64,23 @@ export default async function ReferanslarPage() {
               return (
                 <div
                   key={isSanity ? (c as ReferenceCompany)._id : `${name}-${i}`}
-                  className="p-6 rounded-2xl border border-border bg-card hover:border-[var(--brand-orange)]/30 transition-colors text-center"
+                  className="p-3 sm:p-4 rounded-2xl border border-border bg-card hover:border-[var(--brand-orange)]/50 transition-colors text-center"
                 >
-                  {logo ? (
-                    <div className="relative h-16 mb-3">
-                      <SanityImage
-                        image={logo}
-                        fill
-                        sizes="160px"
-                        className="object-contain"
-                      />
-                    </div>
-                  ) : null}
-                  <div className="text-base font-heading font-semibold">
+                  <ReferenceLogo
+                    company={{
+                      name,
+                      logo,
+                      logoBackground: isSanity
+                        ? (c as ReferenceCompany).logoBackground
+                        : undefined,
+                    }}
+                    className="mb-5"
+                  />
+                  <div className="px-1 text-sm sm:text-base font-heading font-semibold">
                     {name.replace(/\(.*\)/, "").trim()}
                   </div>
                   {sector && (
-                    <div className="mt-2 text-xs text-muted-foreground">
+                    <div className="mt-2 mb-2 text-xs text-muted-foreground">
                       {sector}
                     </div>
                   )}

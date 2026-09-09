@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { referenceCompanies } from "@/lib/references";
-import { SanityImage } from "@/components/sanity/sanity-image";
+import { ReferenceLogo } from "@/components/references/reference-logo";
 import type { ReferenceCompany } from "@/sanity/lib/types";
 
 type Props = {
@@ -59,17 +59,8 @@ export function ReferencesStrip({ sanityReferences }: Props = {}) {
 }
 
 function SanityRefLogo({ c }: { c: ReferenceCompany }) {
-  if (c.logo) {
-    return (
-      <div className="relative h-12 w-32 shrink-0">
-        <SanityImage
-          image={c.logo}
-          fill
-          sizes="160px"
-          className="object-contain opacity-60 hover:opacity-100 transition-opacity"
-        />
-      </div>
-    );
+  if (c.logo?.asset) {
+    return <ReferenceLogo company={c} compact />;
   }
   return (
     <div className="text-lg sm:text-xl font-heading font-medium text-foreground/50 hover:text-foreground/90 transition-colors shrink-0">

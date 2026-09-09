@@ -95,6 +95,7 @@ export const allReferencesQuery = groq`*[_type == "referenceCompany"] | order(fe
   _id,
   name,
   logo,
+  logoBackground,
   sector,
   featured,
   caseStudy
@@ -104,6 +105,7 @@ export const featuredReferencesQuery = groq`*[_type == "referenceCompany" && fea
   _id,
   name,
   logo,
+  logoBackground,
   sector
 }`;
 

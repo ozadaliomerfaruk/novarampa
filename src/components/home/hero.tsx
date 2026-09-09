@@ -1,30 +1,10 @@
-"use client";
-
 import Image from "next/image";
 import { HeroVideo } from "./hero-video";
-import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle, ChevronDown } from "lucide-react";
 
 import { LinkButton, ExternalLinkButton } from "@/components/ui/link-button";
 import { Magnetic } from "@/components/ui/magnetic";
 import { company } from "@/lib/site-config";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.09, delayChildren: 0.15 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] as const },
-  },
-};
 
 type HeroProps = {
   title?: string | null;
@@ -45,15 +25,9 @@ export function Hero({ title, subtitle, ctaLabel, videoUrl }: HeroProps = {}) {
       <HeroVideo key={videoSrc} src={videoSrc} />
 
       {/* ─── Centered content ─── */}
-      <motion.div
-        variants={containerVariants}
-        initial={false}
-        animate="show"
-        className="container-wide relative z-10 text-center flex flex-col items-center pt-32 md:pt-44 pb-24"
-      >
+      <div className="container-wide relative z-10 text-center flex flex-col items-center pt-32 md:pt-44 pb-24">
         {/* Baskerville Old Face Bold: outlines keep the exact wordmark on every device. */}
-        <motion.h1
-          variants={itemVariants}
+        <h1
           className="w-full max-w-5xl text-[clamp(2.5rem,8.5vw,7rem)] font-bold leading-[0.98] text-white"
           style={{
             fontFamily: '"Baskerville Old Face", Baskerville, Georgia, serif',
@@ -75,21 +49,15 @@ export function Hero({ title, subtitle, ctaLabel, videoUrl }: HeroProps = {}) {
           ) : (
             heading
           )}
-        </motion.h1>
+        </h1>
 
         {/* Slogan — italik, bir tık büyük */}
-        <motion.p
-          variants={itemVariants}
-          className="mt-6 max-w-2xl text-xl sm:text-[1.7rem] italic text-white/85 leading-relaxed"
-        >
+        <p className="mt-6 max-w-2xl text-xl sm:text-[1.7rem] italic text-white/85 leading-relaxed">
           {tagline}
-        </motion.p>
+        </p>
 
         {/* CTAs */}
-        <motion.div
-          variants={itemVariants}
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3"
-        >
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
           <Magnetic strength={0.22}>
             <LinkButton
               href="/teklif-al"
@@ -111,23 +79,15 @@ export function Hero({ title, subtitle, ctaLabel, videoUrl }: HeroProps = {}) {
             <MessageCircle className="mr-1" />
             WhatsApp
           </ExternalLinkButton>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       {/* ─── Scroll cue (sadece ok) ─── */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.6 }}
-        className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-white/70 z-10"
-      >
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.8 }}
-        >
+      <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-white/70 z-10">
+        <div className="motion-safe:animate-bounce">
           <ChevronDown size={20} />
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 }

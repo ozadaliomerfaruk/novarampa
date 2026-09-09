@@ -396,3 +396,10 @@
     animation: none;
   }
 }
+
+/* Avoid a full-screen animated SVG filter on smaller devices. */
+@media (max-width: 767px) {
+  .grain-overlay {
+    display: none;
+  }
+}

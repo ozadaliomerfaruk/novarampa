@@ -1,4 +1,6 @@
-﻿import type { Metadata } from "next";
+import { getSiteData } from "@/lib/site-data";
+import { getSiteCopy } from "@/lib/site-copy-server";
+import type { Metadata } from "next";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import { PageIntro } from "@/components/layout/page-intro";
@@ -18,7 +20,9 @@ export const metadata: Metadata = {
   alternates: { canonical: `${siteConfig.url}/iletisim` },
 };
 
-export default function IletisimPage() {
+export default async function IletisimPage() {
+  const copy = await getSiteCopy();
+  const { contact, locations } = await getSiteData();
   return (
     <>
       <LocalBusinessJsonLd />
@@ -33,14 +37,14 @@ export default function IletisimPage() {
         <Breadcrumb items={[{ label: "İletişim" }]} />
 
         <PageIntro
-          title="İletişim"
-          description="ihtiyacınıza uygun rampa modelini birlikte seçelim. WhatsApp, e-posta veya teklif formundan ulaşabilirsiniz"
+          title={copy.contactPage.title}
+          description={copy.contactPage.description}
         />
 
         <section className="container-wide pb-20">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <a
-              href={`tel:${company.contact.phone}`}
+              href={`tel:${contact.phone}`}
               className="group p-8 rounded-2xl border border-border bg-card hover:border-[var(--brand-orange)]/40 transition-colors"
             >
               <Phone className="text-[var(--brand-orange)]" />
@@ -48,12 +52,12 @@ export default function IletisimPage() {
                 Telefon
               </div>
               <div className="mt-2 text-2xl font-heading font-semibold group-hover:text-[var(--brand-orange)] transition-colors">
-                {company.contact.phoneDisplay}
+                {contact.phoneDisplay}
               </div>
             </a>
 
             <a
-              href={`mailto:${company.contact.email}`}
+              href={`mailto:${contact.email}`}
               className="group p-8 rounded-2xl border border-border bg-card hover:border-[var(--brand-orange)]/40 transition-colors"
             >
               <Mail className="text-[var(--brand-orange)]" />
@@ -61,12 +65,12 @@ export default function IletisimPage() {
                 E-posta
               </div>
               <div className="mt-2 text-2xl font-heading font-semibold group-hover:text-[var(--brand-orange)] transition-colors break-all">
-                {company.contact.email}
+                {contact.email}
               </div>
             </a>
 
             <a
-              href={company.contact.whatsappLink}
+              href={contact.whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
               className="group p-8 rounded-2xl border border-border bg-card hover:border-[var(--brand-orange)]/40 transition-colors"
@@ -84,10 +88,10 @@ export default function IletisimPage() {
 
         <section className="container-wide pb-20">
           <h2 className="text-3xl font-heading font-bold tracking-tight mb-8">
-            Lokasyonlar
+            {copy.contactPage.locationsTitle}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {company.locations.map((loc) => {
+            {locations.map((loc) => {
               const mapsQuery = encodeURIComponent(
                 `${loc.addressLine1}, ${loc.city} ${loc.district}`,
               );
@@ -112,7 +116,10 @@ export default function IletisimPage() {
                         {loc.addressLine1}
                       </p>
                       <a
-                        href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
+                        href={
+                          loc.googleMapsUrl ||
+                          `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`
+                        }
                         target="_blank"
                         rel="noopener noreferrer"
                         className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--brand-orange)] hover:text-[var(--brand-orange-hover)]"
@@ -130,10 +137,10 @@ export default function IletisimPage() {
         <section className="container-wide pb-20">
           <div className="rounded-3xl border border-[var(--brand-orange)]/30 bg-gradient-to-br from-[var(--brand-orange)]/10 to-transparent p-6 sm:p-12 text-center">
             <h2 className="text-3xl sm:text-4xl font-heading font-bold tracking-tight">
-              Detaylı bilgi almak ister misiniz?
+              {copy.contactPage.ctaTitle}
             </h2>
             <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
-              Online teklif formunu doldurun.
+              {copy.contactPage.ctaDescription}
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-center">
               <LinkButton
@@ -141,10 +148,10 @@ export default function IletisimPage() {
                 size="lg"
                 className="h-14 px-8 text-base bg-[var(--brand-orange)] hover:bg-[var(--brand-orange-hover)] text-white font-semibold"
               >
-                Teklif Formu
+                {copy.contactPage.ctaLabel}
               </LinkButton>
               <ExternalLinkButton
-                href={company.contact.whatsappLink}
+                href={contact.whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="outline"

@@ -1,3 +1,4 @@
+import { getSiteCopy } from "@/lib/site-copy-server";
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 };
 export const revalidate = 30;
 export default async function UrunlerPage() {
+  const copy = await getSiteCopy();
   const products = await getProducts();
   return (
     <>
@@ -23,8 +25,8 @@ export default async function UrunlerPage() {
         <Breadcrumb items={[{ label: "Ürünler" }]} />
         <PageIntro
           eyebrow="Ürünler"
-          title="Her yüke bir çözüm..."
-          description="Yükünüz ağır, biliyoruz. Gelin pratik rampa çözümlerimizden ihtiyacınıza yönelik olanı belirleyelim ve yükünüzü birlikte hafifletelim. Bizim için her teslimat, sizinle büyüyen bir ortaklık demek"
+          title={copy.productsPage.title}
+          description={copy.productsPage.description}
         />
         <section className="container-wide pb-16">
           <ProductCards products={products} />

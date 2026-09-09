@@ -251,7 +251,11 @@ export default async function ProductDetailPage({ params }: Props) {
                     image={product.mainImage}
                     fill
                     sizes="(max-width: 1024px) 100vw, 40vw"
-                    className="object-cover"
+                    className={
+                      product.mainImage.fit === "contain"
+                        ? "object-contain"
+                        : "object-cover"
+                    }
                     priority
                   />
                 ) : (

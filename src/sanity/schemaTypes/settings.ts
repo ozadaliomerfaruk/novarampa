@@ -29,8 +29,7 @@ export const settingsType = defineType({
     defineField({
       name: "heroTitle",
       title: "Anasayfa Başlık (H1)",
-      description:
-        "Site açıldığında en büyük yazı. Örn: 'NOVARAMPA'",
+      description: "Site açıldığında en büyük yazı. Örn: 'NOVARAMPA'",
       type: "string",
       group: "hero",
       validation: (r) => r.max(120),
@@ -70,7 +69,7 @@ export const settingsType = defineType({
       name: "workshopPhotos",
       title: "Atölye Fotoğrafları (4 adet)",
       description:
-        "Anasayfada 'Atölye / Saha' bölümünde gözüken 4 fotoğraf. Üretim sahnesi, kaynak, montaj, teslim gibi konular. Tam 4 tane olmalı, ilk fotoğraf büyük gözükür.",
+        "Anasayfadaki Atölye bölümünün dört fotoğrafı. Başlığı Sayfa Metinleri bölümünden düzenleyebilirsiniz; fotoğraf üzerindeki yazılar gösterilmez.",
       type: "array",
       group: "workshop",
       of: [
@@ -90,7 +89,7 @@ export const settingsType = defineType({
               name: "caption",
               title: "Sahne Başlığı",
               description:
-                "Fotoğrafın üzerinde gözüken mini başlık. Örn: 'Kaynak Atölyesi'",
+                "Eski içerik notu. Fotoğraf üzerinde gösterilmez; erişilebilir açıklama için Alt Metin alanını kullanın.",
               type: "string",
             },
           ],
@@ -304,8 +303,7 @@ export const settingsType = defineType({
               description:
                 "Adresi Google Maps'te aç, 'Paylaş' → 'Bağlantıyı kopyala' yapıştır. Yer üstüne tıklanınca haritada açılır.",
               type: "url",
-              validation: (r) =>
-                r.uri({ scheme: ["http", "https"] }).warning(),
+              validation: (r) => r.uri({ scheme: ["http", "https"] }).warning(),
             },
           ],
           preview: {
@@ -339,7 +337,7 @@ export const settingsType = defineType({
       name: "workingHours",
       title: "Çalışma Saatleri",
       description:
-        "Footer ve İletişim sayfasında listelenir. Her satır bir gün/aralık. Örn: 'Pazartesi – Cuma' → '09:00 – 18:00'",
+        "Footer içinde listelenir. Her satır bir gün/aralık. Örn: 'Pazartesi – Cuma' → '09:00 – 18:00'",
       type: "array",
       group: "hours",
       of: [
@@ -383,11 +381,9 @@ export const settingsType = defineType({
         {
           name: "instagram",
           title: "Instagram URL",
-          description:
-            "Tam adres yazın. Örn: https://instagram.com/novarampa",
+          description: "Tam adres yazın. Örn: https://instagram.com/novarampa",
           type: "url",
-          validation: (r) =>
-            r.uri({ scheme: ["http", "https"] }).warning(),
+          validation: (r) => r.uri({ scheme: ["http", "https"] }).warning(),
         },
         {
           name: "linkedin",
@@ -400,16 +396,14 @@ export const settingsType = defineType({
         {
           name: "youtube",
           title: "YouTube URL",
-          description:
-            "Kanal adresi. Örn: https://youtube.com/@novarampa",
+          description: "Kanal adresi. Örn: https://youtube.com/@novarampa",
           type: "url",
           validation: (r) => r.uri({ scheme: ["http", "https"] }).warning(),
         },
         {
           name: "facebook",
           title: "Facebook URL",
-          description:
-            "Sayfa adresi. Örn: https://facebook.com/novarampa",
+          description: "Sayfa adresi. Örn: https://facebook.com/novarampa",
           type: "url",
           validation: (r) => r.uri({ scheme: ["http", "https"] }).warning(),
         },
@@ -435,7 +429,7 @@ export const settingsType = defineType({
       name: "homeFaqs",
       title: "Anasayfa SSS (Sıkça Sorulan Sorular)",
       description:
-        "Anasayfada listelenen genel sorular ve cevapları. Hem ziyaretçi için, hem Google'da 'Sıkça sorulan sorular' rich snippet'i için, hem de ChatGPT/Claude gibi AI motorlarının site'ye soru cevaplarken kullanması için. 8-12 soru önerilir.",
+        "Anasayfada gösterilen genel sorular ve cevaplar. SSS bölüm başlığı ve açıklaması Sayfa Metinleri içindeki Ana sayfa sekmesindedir.",
       type: "array",
       group: "faqs",
       of: [

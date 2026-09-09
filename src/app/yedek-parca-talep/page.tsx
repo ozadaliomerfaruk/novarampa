@@ -1,3 +1,4 @@
+import { getSiteCopy } from "@/lib/site-copy-server";
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -16,6 +17,7 @@ export default async function SparePartRequestPage({
 }: {
   searchParams: Promise<{ parca?: string }>;
 }) {
+  const copy = await getSiteCopy();
   const [products, parts, params] = await Promise.all([
     getProducts(),
     getSpareParts(),
@@ -35,8 +37,8 @@ export default async function SparePartRequestPage({
           ]}
         />
         <PageIntro
-          title="Yedek Parça Talep Formu"
-          description="İhtiyacınız olan parçayı seçin, ekibimiz sizinle iletişime geçsin."
+          title={copy.spareRequestPage.title}
+          description={copy.spareRequestPage.description}
         />
         <section className="container-wide pb-20">
           <div className="mx-auto max-w-3xl rounded-2xl border border-border bg-card p-6 sm:p-10">

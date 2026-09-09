@@ -38,6 +38,16 @@ export const structure: StructureResolver = (S) =>
             .title("Anasayfa İçeriği")
             .items([
               S.listItem()
+                .title("Sayfa Metinleri")
+                .icon(DocumentTextIcon)
+                .child(
+                  S.editor()
+                    .id("siteCopy")
+                    .schemaType("siteCopy")
+                    .documentId("siteCopy")
+                    .title("Sayfa Metinleri"),
+                ),
+              S.listItem()
                 .title("Site Ayarları")
                 .icon(CogIcon)
                 .child(

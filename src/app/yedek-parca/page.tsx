@@ -1,3 +1,4 @@
+import { getSiteCopy } from "@/lib/site-copy-server";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
 };
 export const revalidate = 30;
 export default async function SparePartsPage() {
+  const copy = await getSiteCopy();
   const parts = await getSpareParts();
   return (
     <>
@@ -24,8 +26,8 @@ export default async function SparePartsPage() {
         <Breadcrumb items={[{ label: "Yedek Parça" }]} />
         <PageIntro
           eyebrow="Yedek Parça"
-          title="Rampanız susmasın, üretiminiz durmasın."
-          description="Tüm Novarampa ürünleri ve diğer uyumlu modeller için yedek parça desteği alın."
+          title={copy.sparePartsPage.title}
+          description={copy.sparePartsPage.description}
         />
         <section className="container-wide pb-12" aria-label="Yedek parçalar">
           <div className="grid items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -97,16 +99,16 @@ export default async function SparePartsPage() {
         <section className="container-wide pb-20">
           <div className="rounded-3xl border border-brand-orange/30 bg-brand-orange/5 p-6 text-center sm:p-12">
             <h2 className="font-heading text-2xl font-bold sm:text-3xl">
-              Yedek parça ihtiyacınızı bildirin.
+              {copy.sparePartsPage.ctaTitle}
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-              Parça adını veya modelinizi seçin, talebinizi bize iletin.
+              {copy.sparePartsPage.ctaDescription}
             </p>
             <Link
               href="/yedek-parca-talep"
               className="mt-7 inline-flex min-h-14 items-center justify-center gap-3 rounded-xl bg-brand-orange px-7 font-semibold text-white hover:bg-[var(--brand-orange-hover)]"
             >
-              Parça Talep Formu
+              {copy.sparePartsPage.ctaLabel}
               <ArrowRight size={20} />
             </Link>
           </div>

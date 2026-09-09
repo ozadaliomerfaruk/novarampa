@@ -1,3 +1,4 @@
+import { getSiteCopy } from "@/lib/site-copy-server";
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/servis" },
 };
 export default async function ServicePage() {
+  const copy = await getSiteCopy();
   const products = await getProducts();
   return (
     <>
@@ -20,13 +22,13 @@ export default async function ServicePage() {
         <Breadcrumb items={[{ label: "Servis" }]} />
         <PageIntro
           eyebrow="Servis"
-          title="rampanız susmasın, üretiminiz durmasın."
-          description="Servis talepleriniz için formu doldurmanız yeterli. Ekibimiz en kısa zamanda dönüş sağlayacaktır."
+          title={copy.servicePage.title}
+          description={copy.servicePage.description}
         />
         <section className="container-wide pb-20">
           <div className="mx-auto max-w-3xl rounded-2xl border border-border bg-card p-6 sm:p-10">
             <h2 className="mb-8 font-heading text-2xl font-bold sm:text-3xl">
-              Servis Talep Formu
+              {copy.servicePage.formTitle}
             </h2>
             <ServiceForm products={products} />
           </div>

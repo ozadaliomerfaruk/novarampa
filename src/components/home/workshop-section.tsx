@@ -47,8 +47,10 @@ const tiles: Tile[] = [
 
 export function WorkshopSection({
   photos,
+  title,
 }: {
   photos?: WorkshopPhoto[] | null;
+  title: string;
 }) {
   const reduce = useReducedMotion();
 
@@ -72,7 +74,7 @@ export function WorkshopSection({
   return (
     <section className="relative overflow-hidden py-24 sm:py-32">
       <div className="container-wide">
-        <h2 className="section-title text-center mb-12">Atölye</h2>
+        <h2 className="section-title text-center mb-12">{title}</h2>
 
         {/* Editorial grid: 2x2 with asymmetric spans on lg */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3 md:gap-4">

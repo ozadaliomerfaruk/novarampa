@@ -147,6 +147,22 @@ export const productType = defineType({
       options: { hotspot: true },
       fields: [
         {
+          name: "fit",
+          title: "Görsel Yerleşimi",
+          type: "string",
+          description:
+            "Tamamını göster seçeneği ürünün uçlarının kesilmesini önler.",
+          initialValue: "cover",
+          options: {
+            list: [
+              { title: "Alanı doldur", value: "cover" },
+              { title: "Tamamını göster", value: "contain" },
+            ],
+            layout: "radio",
+          },
+        },
+
+        {
           name: "alt",
           title: "Alt Metin (görme engelliler için)",
           description: "Fotoğrafta ne olduğunu kısa anlatın.",

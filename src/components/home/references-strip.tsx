@@ -7,9 +7,10 @@ import type { ReferenceCompany } from "@/sanity/lib/types";
 
 type Props = {
   sanityReferences?: ReferenceCompany[] | null;
+  title: string;
 };
 
-export function ReferencesStrip({ sanityReferences }: Props = {}) {
+export function ReferencesStrip({ sanityReferences, title }: Props) {
   const useSanity = (sanityReferences?.length ?? 0) > 0;
   const items = useSanity
     ? [
@@ -25,7 +26,7 @@ export function ReferencesStrip({ sanityReferences }: Props = {}) {
     <section className="py-20 border-y border-border bg-[var(--brand-charcoal)]/40">
       <div className="container-wide">
         <div className="text-center mb-10">
-          <h2 className="section-title">Referanslarımız</h2>
+          <h2 className="section-title">{title}</h2>
         </div>
 
         <div className="relative overflow-hidden rounded-2xl bg-white">

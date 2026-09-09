@@ -1,3 +1,4 @@
+import { getSiteCopy } from "@/lib/site-copy-server";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Clock } from "lucide-react";
@@ -34,6 +35,7 @@ const upcomingTopics = [
 ];
 
 export default async function BlogPage() {
+  const copy = await getSiteCopy();
   const posts = await sanityFetch<BlogPostSummary[]>(
     allBlogPostsQuery,
     {},
@@ -55,8 +57,8 @@ export default async function BlogPage() {
         <Breadcrumb items={[{ label: "Blog" }]} />
 
         <PageIntro
-          title="İşinizi kolaylaştıracak rampa rehberi"
-          description="Rampa seçiminde işinizi kolaylaştıracak 7 temel soruyu cevaplandırıyoruz."
+          title={copy.blogPage.title}
+          description={copy.blogPage.description}
         />
 
         {hasPosts ? (

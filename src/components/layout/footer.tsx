@@ -1,3 +1,4 @@
+import { getSiteCopy } from "@/lib/site-copy-server";
 import Link from "next/link";
 import type { SVGProps } from "react";
 import {
@@ -127,29 +128,6 @@ function TtIcon(p: SVGProps<SVGSVGElement>) {
 }
 type SocialIcon = (p: SVGProps<SVGSVGElement>) => React.ReactElement;
 
-const footerCtas = [
-  {
-    href: "/teklif-al",
-    icon: MessageCircle,
-    title: "Teklif Al",
-    description: "Projeniz için ihtiyacınıza özel teklif alın.",
-    accent: true,
-  },
-  {
-    href: "/servis",
-    icon: Wrench,
-    title: "Servis Talep",
-    description: "Mevcut rampanız için bakım veya onarım teklifi alın.",
-  },
-  {
-    href: "/yedek-parca",
-    icon: Cog,
-    title: "Yedek Parça",
-    description:
-      "Tüm Novarampa ürünleri ve diğer uyumlu modeller için yedek parça desteği alın.",
-  },
-];
-
 // Kurumsal sütun — Çözümler/Bölgeler kaldırıldı, sade sayfa linkleri
 const corporateLinks = [
   { label: "Hakkımızda", href: "/hakkimizda" },
@@ -160,6 +138,28 @@ const corporateLinks = [
 ];
 
 export async function Footer() {
+  const copy = await getSiteCopy();
+  const footerCtas = [
+    {
+      href: "/teklif-al",
+      icon: MessageCircle,
+      title: copy.footer.quoteTitle,
+      description: copy.footer.quoteDescription,
+      accent: true,
+    },
+    {
+      href: "/servis",
+      icon: Wrench,
+      title: copy.footer.serviceTitle,
+      description: copy.footer.serviceDescription,
+    },
+    {
+      href: "/yedek-parca",
+      icon: Cog,
+      title: copy.footer.partsTitle,
+      description: copy.footer.partsDescription,
+    },
+  ];
   const products = await getProducts();
   const { contact, socials, locations, workingHours, logoUrl, companyName } =
     await getSiteData();

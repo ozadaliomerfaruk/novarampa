@@ -1,3 +1,4 @@
+import { getSiteData } from "@/lib/site-data";
 import { company, siteConfig } from "@/lib/site-config";
 import { productCategories } from "@/lib/products";
 
@@ -73,31 +74,33 @@ export function OrganizationJsonLd({
   );
 }
 
-export function LocalBusinessJsonLd() {
+export async function LocalBusinessJsonLd() {
+  const { locations, contact, companyName } = await getSiteData();
   const data = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": `${siteConfig.url}/#organization`,
-    name: company.name,
+    name: companyName,
     image: `${siteConfig.url}/opengraph-image`,
     url: siteConfig.url,
-    telephone: company.contact.phone,
-    email: company.contact.email,
+    telephone: contact.phone,
+    email: contact.email,
     priceRange: "$$",
-    address: company.locations.map((loc) => ({
+    address: locations.map((loc) => ({
       "@type": "PostalAddress",
       streetAddress: loc.addressLine1,
       addressLocality: loc.city,
       addressRegion: loc.district,
       addressCountry: "TR",
     })),
-    geo: company.locations[0]
-      ? {
-          "@type": "GeoCoordinates",
-          latitude: company.locations[0].lat,
-          longitude: company.locations[0].lng,
-        }
-      : undefined,
+    geo:
+      locations[0]?.addressLine1 === company.locations[0]?.addressLine1
+        ? {
+            "@type": "GeoCoordinates",
+            latitude: company.locations[0].lat,
+            longitude: company.locations[0].lng,
+          }
+        : undefined,
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",

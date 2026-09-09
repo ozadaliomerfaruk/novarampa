@@ -1,3 +1,4 @@
+import type { SiteCopy } from "@/lib/site-copy";
 import { ChevronDown } from "lucide-react";
 import type { HomeFaqItem } from "@/sanity/lib/types";
 
@@ -9,7 +10,13 @@ import type { HomeFaqItem } from "@/sanity/lib/types";
  *
  * Ana sayfa boş CMS listesini yerel sorularla tamamlayarak bu bileşene verir.
  */
-export function HomeFaqs({ faqs }: { faqs?: HomeFaqItem[] | null }) {
+export function HomeFaqs({
+  faqs,
+  copy,
+}: {
+  faqs?: HomeFaqItem[] | null;
+  copy: SiteCopy["home"];
+}) {
   if (!faqs || faqs.length === 0) return null;
 
   return (
@@ -22,11 +29,10 @@ export function HomeFaqs({ faqs }: { faqs?: HomeFaqItem[] | null }) {
         {/* Başlık — ortalı (Eren isteği) */}
         <div className="text-center max-w-2xl mx-auto mb-12">
           <h2 id="anasayfa-sss-baslik" className="section-title">
-            SSS
+            {copy.faqTitle}
           </h2>
           <p className="mt-5 text-base text-muted-foreground leading-relaxed max-w-md mx-auto">
-            Müşterilerimizin en çok sorduğu sorular. Aradığını bulamazsan tek
-            tıkla iletişime geçebilirsin.
+            {copy.faqDescription}
           </p>
         </div>
 

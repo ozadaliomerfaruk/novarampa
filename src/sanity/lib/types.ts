@@ -9,6 +9,7 @@ export type SanityImage = {
     _type: "reference";
   };
   alt?: string;
+  fit?: "cover" | "contain";
   hotspot?: { x: number; y: number };
   crop?: { top: number; right: number; bottom: number; left: number };
 };

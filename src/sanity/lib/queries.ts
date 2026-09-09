@@ -1,6 +1,6 @@
 import { groq } from "next-sanity";
 
-export const settingsQuery = groq`*[_type == "settings"][0]{
+export const settingsQuery = groq`*[_type == "settings" && _id == "siteSettings"][0]{
   heroTitle,
   heroSubtitle,
   heroCtaLabel,

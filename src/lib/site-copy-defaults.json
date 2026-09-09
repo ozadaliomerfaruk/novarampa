@@ -1,0 +1,77 @@
+{
+  "about": {
+    "title": "Geçmişin gücüyle, yükünüzü hafifletiyoruz.",
+    "body": "NOVARAMPA, 2003 yılından bu yana elde edilen mesleki birikim ve ustalığın üzerine inşa edilmiş yeni nesil bir vizyonun adıdır.\n\nNOVARAMPA’nın temelleri yıllar evvel Dinamik Mühendislik çatısı altında atıldı. Sahada kazanılan tecrübe, her montajda  verilen emek, atölyenin sesi, demirin kokusu, bu mesleği bizim için sadece bir iş olmaktan çıkarıp bir tutkuya dönüştürdü ve anladık ki bu sadece devam ettirilecek bir iş değil, daha ileri taşınması gereken bir yolculuktu.\n\nİşte NOVARAMPA tam olarak bu noktada doğdu. “NOVA” yeniliği temsil eder, “RAMPA” ise yolun başladığı yeri, köklerimizi ve yıllardır değişmeyen işimizi… İkinci kuşak bir devamlılığın ötesinde; sürekli gelişen, kendini yenileyen ve sektöre değer katan bir marka olmak gayesiyle bu yolcuğu daha ileri taşımaya gayret ediyoruz.\n\nMisyonumuz, bu köklü birikimi ihtiyaç duyulan her yere ulaştırmak, geçmişin deneyimini geleceğin ihtiyaçlarıyla buluşturmak ve her projede daha sağlam, daha verimli, ve sürdürülebilir çözümler üretmektir. Müşterilerimize sadece bir ürün sağlamayı değil, uzun vadeli çözümlerle katkıda bulunmayı hedefliyoruz. Bizim için her teslimat, sizinle büyüyen bir ortaklık demek."
+  },
+  "home": {
+    "productsTitle": "Ürünlerimiz",
+    "productsDescription": "Her yüke bir çözüm",
+    "productsLink": "Tüm ürünleri gör",
+    "workshopTitle": "Atölye",
+    "whyTitle": "Neden Novarampa",
+    "qualityTitle": "CE, TSE ve EN 1398 Uyumlu",
+    "qualityDescription": "Her ürün, uluslararası güvenlik standartlarına göre üretilir ve test edilir.",
+    "warrantyTitle": "İki Yıl Garanti",
+    "warrantyDescription": "Tüm Novarampa ürünleri imalat hatalarına karşı 2 yıl garanti altındadır.",
+    "supportTitle": "Yedek Parça ve Servis",
+    "supportDescription": "Saha ekipleri ve yedek parça stoğu ile uzun ömürlü kullanım sunar.",
+    "referencesTitle": "Referanslarımız",
+    "faqTitle": "SSS",
+    "faqDescription": "Müşterilerimizin en çok sorduğu sorular. Aradığını bulamazsan tek tıkla iletişime geçebilirsin."
+  },
+  "productsPage": {
+    "title": "Her yüke bir çözüm...",
+    "description": "Yükünüz ağır, biliyoruz. Gelin pratik rampa çözümlerimizden ihtiyacınıza yönelik olanı belirleyelim ve yükünüzü birlikte hafifletelim. Bizim için her teslimat, sizinle büyüyen bir ortaklık demek"
+  },
+  "referencesPage": {
+    "title": "Türkiye'nin yükünü taşıyan firmalar, bizi tercih ediyor."
+  },
+  "servicePage": {
+    "title": "rampanız susmasın, üretiminiz durmasın.",
+    "description": "Servis talepleriniz için formu doldurmanız yeterli. Ekibimiz en kısa zamanda dönüş sağlayacaktır.",
+    "formTitle": "Servis Talep Formu"
+  },
+  "blogPage": {
+    "title": "İşinizi kolaylaştıracak rampa rehberi",
+    "description": "Rampa seçiminde işinizi kolaylaştıracak 7 temel soruyu cevaplandırıyoruz."
+  },
+  "contactPage": {
+    "title": "İletişim",
+    "description": "ihtiyacınıza uygun rampa modelini birlikte seçelim. WhatsApp, e-posta veya teklif formundan ulaşabilirsiniz",
+    "locationsTitle": "Lokasyonlar",
+    "ctaTitle": "Detaylı bilgi almak ister misiniz?",
+    "ctaDescription": "Online teklif formunu doldurun.",
+    "ctaLabel": "Teklif Formu"
+  },
+  "quotePage": {
+    "title": "Projenize uygun rampayı birlikte seçelim",
+    "description": "aşağıdaki formu doldurunuz",
+    "formEyebrow": "Teklif Formu",
+    "formTitle": "Bilgilerinizi paylaşın",
+    "formDescription": "* işaretli alanlar zorunludur. Diğerlerini sonra konuşabiliriz."
+  },
+  "sparePartsPage": {
+    "title": "Rampanız susmasın, üretiminiz durmasın.",
+    "description": "Tüm Novarampa ürünleri ve diğer uyumlu modeller için yedek parça desteği alın.",
+    "ctaTitle": "Yedek parça ihtiyacınızı bildirin.",
+    "ctaDescription": "Parça adını veya modelinizi seçin, talebinizi bize iletin.",
+    "ctaLabel": "Parça Talep Formu"
+  },
+  "spareRequestPage": {
+    "title": "Yedek Parça Talep Formu",
+    "description": "İhtiyacınız olan parçayı seçin, ekibimiz sizinle iletişime geçsin."
+  },
+  "sharedCta": {
+    "title": "Projeniz için doğru rampayı birlikte seçelim.",
+    "description": "birkaç dakikanızı ayırarak teklif formunu doldurun ve ihtiyacınıza özel teklif alın. Detaylar için formu doldurduktan sonra WhatsApp'tan iletişime geçebilirsiniz.",
+    "buttonLabel": "Teklif Al"
+  },
+  "footer": {
+    "quoteTitle": "Teklif Al",
+    "quoteDescription": "Projeniz için ihtiyacınıza özel teklif alın.",
+    "serviceTitle": "Servis Talep",
+    "serviceDescription": "Mevcut rampanız için bakım veya onarım teklifi alın.",
+    "partsTitle": "Yedek Parça",
+    "partsDescription": "Tüm Novarampa ürünleri ve diğer uyumlu modeller için yedek parça desteği alın."
+  }
+}

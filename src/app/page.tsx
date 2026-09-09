@@ -1,3 +1,4 @@
+import { getSiteCopy } from "@/lib/site-copy-server";
 import { resolveHomeFaqs } from "@/lib/home-faqs";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -33,7 +34,7 @@ export const revalidate = 30;
 
 export default async function HomePage() {
   // Sanity'den verileri paralel çek
-  const [settings, sanityProducts, sanityRefs] = await Promise.all([
+  const [settings, sanityProducts, sanityRefs, copy] = await Promise.all([
     sanityFetch<SiteSettings>(settingsQuery, {}, { revalidate: 30 }),
     sanityFetch<ProductSummary[]>(allProductsQuery, {}, { revalidate: 30 }),
     sanityFetch<ReferenceCompany[]>(
@@ -41,6 +42,7 @@ export default async function HomePage() {
       {},
       { revalidate: 60 },
     ),
+    getSiteCopy(),
   ]);
 
   // Featured products varsa onları, yoksa tüm ürünleri göster
@@ -73,13 +75,19 @@ export default async function HomePage() {
           ctaLabel={settings?.heroCtaLabel}
           videoUrl={settings?.heroVideoUrl}
         />
-        <ProductGrid sanityProducts={products} />
+        <ProductGrid sanityProducts={products} copy={copy.home} />
         <SectionDivider variant="measure" />
-        <WorkshopSection photos={settings?.workshopPhotos} />
+        <WorkshopSection
+          photos={settings?.workshopPhotos}
+          title={copy.home.workshopTitle}
+        />
         <SectionDivider variant="measure" />
-        <WhyUs />
-        <ReferencesStrip sanityReferences={sanityRefs} />
-        <HomeFaqs faqs={faqs} />
+        <WhyUs copy={copy.home} />
+        <ReferencesStrip
+          sanityReferences={sanityRefs}
+          title={copy.home.referencesTitle}
+        />
+        <HomeFaqs faqs={faqs} copy={copy.home} />
         <CtaSection />
       </main>
       <Footer />

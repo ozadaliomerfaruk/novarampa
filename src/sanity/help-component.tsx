@@ -41,22 +41,26 @@ export function HelpComponent() {
           }}
         >
           Bu panelden sitenin tüm içeriklerini değiştirebilirsin. Bilgisayar
-          bilgisi gerekmez — formları doldur, sağ üstte &quot;Publish&quot; tuşuna bas, 30
-          saniye içinde site güncellenir.
+          bilgisi gerekmez — formları doldur, sağ üstte &quot;Publish&quot;
+          tuşuna bas, 30 saniye içinde site güncellenir.
         </p>
       </div>
 
       {/* GÜNLÜK İŞLER */}
-      <Section badge="Günlük" badgeColor="#F97316" title="En sık yapacağın 3 iş">
+      <Section
+        badge="Günlük"
+        badgeColor="#F97316"
+        title="En sık yapacağın 3 iş"
+      >
         <Step
           n="1"
           title="📨 Gelen Talepleri kontrol et"
-          detail="Sol menüde 'Teklif Talepleri' ve 'Servis Talepleri' — yeni gelenler 🆕 etiketli. Durumlarını güncelle (📞 Aranıyor → 📨 Teklif gönderildi → ✅ Kazanıldı). Sağ alanda dahili notlar tutabilirsin."
+          detail="Sol menüde 'Teklif Talepleri', 'Servis Talepleri' ve 'Yedek Parça Talepleri' — yeni gelenler 🆕 etiketli. Durumlarını güncelle (📞 Aranıyor → 📨 Teklif gönderildi → ✅ Kazanıldı). Sağ alanda dahili notlar tutabilirsin."
         />
         <Step
           n="2"
           title="⭐ Referans / Proje ekle"
-          detail="Yeni bir kurulum tamamladığında: 'Referanslar' → 'Create new' → firma adı, sektör, logo yükle. Önemli projeler için 'Proje Hikayesi' bölümünü doldur (fotoğraflarla birlikte)."
+          detail="Yeni bir kurulum tamamladığında: 'Referanslar' → 'Create new' → firma adı, sektör, logo yükle. Logo Boyutu (%) ile logonun görünür büyüklüğünü ayarlayabilirsin. Özgün renkli ve açık zemine uygun logo kullan."
         />
         <Step
           n="3"
@@ -70,7 +74,12 @@ export function HelpComponent() {
         <Step
           n="•"
           title="🏠 Anasayfa İçeriği → Site Ayarları"
-          detail="Hero başlığı, alt başlık (slogan), buton yazısı. Atölye fotoları. İletişim bilgileri, çalışma saatleri ve SSS soruları."
+          detail="Hero başlığı, slogan, arka plan videosu, atölye fotoğrafları, adresler ve SSS soruları burada. Metin değişikliklerinden sonra Yayınla düğmesine bas."
+        />
+        <Step
+          n="•"
+          title="📝 Anasayfa İçeriği → Sayfa Metinleri"
+          detail="Hakkımızda metni, ana sayfa bölüm başlıkları, Neden Novarampa kutucukları, sayfa açıklamaları ve footer üstü teklif kutucukları. İlgili sekmeyi açıp metni düzenle; Hakkımızda paragrafları arasına bir boş satır bırak."
         />
         <Step
           n="•"
@@ -99,7 +108,7 @@ export function HelpComponent() {
         />
         <Tip
           emoji="⏱️"
-          text="Değişiklikler 30 saniye sonra canlıya yansır. Hemen göremezsen sayfayı yenile (Ctrl+R)."
+          text="Yayınlanan değişikliklerin görünmesi önbellek nedeniyle yaklaşık bir dakika sürebilir. Hemen göremezsen sayfayı yenile (Ctrl+R)."
         />
         <Tip
           emoji="🔒"
@@ -111,7 +120,7 @@ export function HelpComponent() {
       <Section title="Sol menü neye yarıyor?">
         <MenuRow
           label="🏠 Anasayfa İçeriği"
-          detail="Hero başlığı, atölye fotoları, iletişim ve SSS — site genelinde değişen tek belge"
+          detail="Site Ayarları: video, fotoğraf, adres ve SSS. Sayfa Metinleri: başlıklar, açıklamalar, Hakkımızda ve teklif kutucukları"
         />
         <MenuRow
           label="📦 Ürünler"
@@ -123,14 +132,14 @@ export function HelpComponent() {
         />
         <MenuRow
           label="⭐ Referanslar"
-          detail="Tamamlanan projeler. Logo + firma adı + sektör. İsteğe bağlı detaylı hikaye"
+          detail="Referans firmalar. Logo, firma adı, sektör ve logo boyutu"
         />
         <MenuRow
           label="✍️ Blog Yazıları"
           detail="/blog sayfası ve SEO için önemli yazılar"
         />
         <MenuRow
-          label="📨 Teklif / 🛠️ Servis Talepleri"
+          label="📨 Teklif / 🛠️ Servis / ⚙️ Yedek Parça Talepleri"
           detail="Site formlarından gelen müşteri talepleri. Durum takibi burada"
         />
       </Section>

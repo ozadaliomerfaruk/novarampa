@@ -1,36 +1,33 @@
 "use client";
+import type { SiteCopy } from "@/lib/site-copy";
 
 import { motion, useReducedMotion } from "framer-motion";
 import { Award, Clock, Wrench } from "lucide-react";
 
-const items = [
-  {
-    icon: Award,
-    title: "CE, TSE ve EN 1398 Uyumlu",
-    description:
-      "Her ürün, uluslararası güvenlik standartlarına göre üretilir ve test edilir.",
-  },
-  {
-    icon: Clock,
-    title: "İki Yıl Garanti",
-    description:
-      "Tüm Novarampa ürünleri imalat hatalarına karşı 2 yıl garanti altındadır.",
-  },
-  {
-    icon: Wrench,
-    title: "Yedek Parça ve Servis",
-    description:
-      "Saha ekipleri ve yedek parça stoğu ile uzun ömürlü kullanım sunar.",
-  },
-];
-
-export function WhyUs() {
+export function WhyUs({ copy }: { copy: SiteCopy["home"] }) {
+  const items = [
+    {
+      icon: Award,
+      title: copy.qualityTitle,
+      description: copy.qualityDescription,
+    },
+    {
+      icon: Clock,
+      title: copy.warrantyTitle,
+      description: copy.warrantyDescription,
+    },
+    {
+      icon: Wrench,
+      title: copy.supportTitle,
+      description: copy.supportDescription,
+    },
+  ];
   const reduce = useReducedMotion();
   return (
     <section className="py-24">
       <div className="container-wide">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="section-title">Neden Novarampa</h2>
+          <h2 className="section-title">{copy.whyTitle}</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

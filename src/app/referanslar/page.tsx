@@ -1,3 +1,4 @@
+import { getSiteCopy } from "@/lib/site-copy-server";
 import type { Metadata } from "next";
 
 import { PageIntro } from "@/components/layout/page-intro";
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default async function ReferanslarPage() {
+  const copy = await getSiteCopy();
   const sanity = await sanityFetch<ReferenceCompany[]>(
     allReferencesQuery,
     {},
@@ -44,10 +46,7 @@ export default async function ReferanslarPage() {
       <main className="flex-1">
         <Breadcrumb items={[{ label: "Referanslar" }]} />
 
-        <PageIntro
-          eyebrow="Referanslar"
-          title="Türkiye'nin yükünü taşıyan firmalar, bizi tercih ediyor."
-        />
+        <PageIntro eyebrow="Referanslar" title={copy.referencesPage.title} />
 
         <section className="container-wide pb-20">
           <ul

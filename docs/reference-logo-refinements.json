@@ -1,0 +1,207 @@
+[
+  {
+    "id": "reference-arkas-lojistik",
+    "name": "Arkas Lojistik",
+    "sourceUrl": "https://cdncms.arkaslojistik.com.tr/PublicFiles/images/header_logo.png",
+    "file": "/references/arkas-lojistik-light.png",
+    "sha256": "d522a12101f30527f2dd8934efb5ddf21bb4338e117871a9e37dd11d4da44216",
+    "expectedLogo": "image-dc1b6f6ba506ae603a83827df4085371b5e8e407-640x131-png",
+    "logoBackground": "light"
+  },
+  {
+    "id": "reference-g-n-z-tekstil",
+    "name": "Günöz Tekstil",
+    "sourceUrl": "https://gunoziplik.com/uploads/2024/05/group-2205.svg",
+    "file": "/references/g-n-z-tekstil-light.png",
+    "sha256": "21289cad077727b1e133634b6adc50cbcfc8e0a2a595d32e936d54bcd28667b4",
+    "expectedLogo": "image-cabb8788151cbfd5a7dfbd649e098c2e17fd81e6-1600x1600-png",
+    "logoBackground": "light"
+  },
+  {
+    "id": "reference-k-rm-z-g-l-kozmetik",
+    "name": "Kırmızıgül Kozmetik",
+    "sourceUrl": "https://www.kirmizigulkozmetik.com/wp-content/uploads/2023/10/kirmizigul-siyah-logo.png",
+    "file": "/references/k-rm-z-g-l-kozmetik-light.png",
+    "sha256": "115aaf03bef452dd01cf9d40cb1d6458597db01431feaec4f5997bef035aa6cf",
+    "expectedLogo": "image-3c3675bbb694a88ea60f715d427ae2112005c06b-640x170-png",
+    "logoBackground": "light"
+  },
+  {
+    "id": "reference-y-rpa",
+    "name": "Yörpaş",
+    "sourceUrl": "https://www.komagene.com/wp-content/uploads/2025/02/w-logo-2.png",
+    "file": "/references/y-rpa-light.png",
+    "sha256": "0ae9324917a0bdce43063bb415e1c6aa4e9084316bfdda6a282cf745a461fbd4",
+    "expectedLogo": "image-0722ab237af510b09e8efe01f208f2f8cdf5100b-292x74-png",
+    "logoBackground": "light"
+  },
+  {
+    "id": "reference-thy",
+    "name": "THY",
+    "sourceUrl": "https://cdn.turkishairlines.com/m/1645697219cc58fa/original/CIFT-SATIR-DIKEY-TIRE-zip.zip",
+    "file": "/references/thy-light.png",
+    "sha256": "548fd72e68de330a1047217f247510a57b845dc25a34891e9c9c494f00b9b30d",
+    "expectedLogo": "image-bfeacc25900cfa7bffbd9d05fa73ac3d17c71908-408x64-png",
+    "logoBackground": "light",
+    "logoScale": 112
+  },
+  {
+    "id": "reference-poliport-kimya",
+    "name": "Poliport Kimya",
+    "sourceUrl": "https://www.polisanholding.com/Content/SayfaIcerik/Logo_Poliport_d219b.png",
+    "file": "/references/poliport-kimya-light.png",
+    "sha256": "d898f1e9aabc4f2080e5b81510c1022aeee9ee0ad2cd73bb07e3db23b63c4e28",
+    "expectedLogo": "image-8ab27226e68248d8d406b1b6209c0424b53a606d-158x30-png",
+    "logoBackground": "light"
+  },
+  {
+    "id": "reference-cronimet",
+    "name": "Cronimet",
+    "sourceUrl": "https://www.cronimet.de/en/assets/templates/cronimet/images/download/infos_broschueren/40%20years%20CRONIMET__EN_final_medium.pdf",
+    "file": "/references/cronimet-light.png",
+    "sha256": "6638bba027004564b0e6bb117ed05a3b142a70941cf4a65be00b5f66abbd913d",
+    "expectedLogo": "image-1a5bcecb4c5f3ba374c1328c209a3c703ac6fd1c-216x43-png",
+    "logoBackground": "light"
+  },
+  {
+    "id": "reference-inka",
+    "name": "İnka",
+    "sourceUrl": "https://inkafixing.com/wp-content/uploads/2025/03/DOP-INK-0057-IKPV-.-INKA-PVC-CLAMP.pdf",
+    "file": "/references/inka-light.png",
+    "sha256": "d4b2cdc44fd46aa556446210331b73d420aceeab28bdcd67afc2fbb9d6e85fb0",
+    "expectedLogo": "image-800a0da6136cfd2f05d4966b96e081f1f6cc098a-325x120-png",
+    "logoBackground": "light"
+  },
+  {
+    "id": "reference-hayat-kimya",
+    "name": "Hayat Kimya",
+    "expectedLogo": "image-c562eebaa1993d27adaf5e0b8b5aaef28dafa3a4-2481x1219-png",
+    "crop": {
+      "_type": "sanity.imageCrop",
+      "left": 0.09713825070536074,
+      "top": 0.30680885972108285,
+      "right": 0.1414752116082225,
+      "bottom": 0.29614438063986875
+    }
+  },
+  {
+    "id": "reference-c-steinweg-levant",
+    "name": "C Steinweg Levant",
+    "expectedLogo": "image-535ea1a6712113287679511a1f3059a4b0b2c246-302x340-png",
+    "crop": {
+      "_type": "sanity.imageCrop",
+      "left": 0.18543046357615894,
+      "top": 0.15294117647058825,
+      "right": 0.18211920529801323,
+      "bottom": 0.13823529411764707
+    }
+  },
+  {
+    "id": "reference-chryso-kat-katk-malz",
+    "name": "Chryso Kat. Katkı Malzemeleri",
+    "expectedLogo": "image-c9e2f5bf8d8ea59e4159cfabd3690fd5160e8d8d-320x320-png",
+    "crop": {
+      "_type": "sanity.imageCrop",
+      "left": 0.0375,
+      "top": 0.153125,
+      "right": 0.0375,
+      "bottom": 0.15625
+    }
+  },
+  {
+    "id": "reference-horoz-lojistik",
+    "name": "Horoz Lojistik",
+    "expectedLogo": "image-390d4ee4aa865554b36312437677717e98d08cfb-185x185-png",
+    "crop": {
+      "_type": "sanity.imageCrop",
+      "left": 0.016216216216216217,
+      "top": 0.372972972972973,
+      "right": 0.016216216216216217,
+      "bottom": 0.3783783783783784
+    }
+  },
+  {
+    "id": "reference-ar-elik",
+    "name": "Arçelik",
+    "expectedLogo": "image-b1b23da07373c2591c419ceac3c43ef431901f4b-640x158-png",
+    "logoScale": 92
+  },
+  {
+    "id": "reference-abc-deterjan",
+    "name": "ABC Deterjan",
+    "expectedLogo": "image-6135bd7c01e9af8c2471d3a4848b0ee44c34809b-121x106-png",
+    "logoScale": 86
+  },
+  {
+    "id": "reference-abs-al",
+    "name": "ABS Alçı",
+    "expectedLogo": "image-1ca2db526a3766dab9364dce21ae7629b9295507-93x83-png",
+    "logoScale": 90
+  },
+  {
+    "id": "reference-adopen",
+    "name": "Adopen",
+    "expectedLogo": "image-6205d50de9c474d511e81c654d8dbf1a17fd2641-640x104-png",
+    "logoScale": 92
+  },
+  {
+    "id": "reference-ege-kimya",
+    "name": "Ege Kimya",
+    "expectedLogo": "image-76e693be0d930784a5fc945e897748db4f8b932d-154x84-png",
+    "logoScale": 92
+  },
+  {
+    "id": "reference-rebul-kozmetik",
+    "name": "Rebul Kozmetik",
+    "expectedLogo": "image-eb26e324f03546c7b16c835f7bb80b7a78e9d3f6-108x60-png",
+    "logoScale": 88
+  },
+  {
+    "id": "reference-s-rma",
+    "name": "Sörmaş",
+    "expectedLogo": "image-43d48adb47ad9ab651939ad026658d6f667227a7-150x126-png",
+    "logoScale": 85
+  },
+  {
+    "id": "reference-teka",
+    "name": "Teka",
+    "expectedLogo": "image-c5b01a5dc78274a3ba737c945ba76f3ad3d1ed96-240x240-png",
+    "logoScale": 88
+  },
+  {
+    "id": "reference-makbul",
+    "name": "Makbul",
+    "expectedLogo": "image-566443acb237b559b1d18bf7361bb84f33e7d025-124x89-png",
+    "logoScale": 90
+  },
+  {
+    "id": "reference-hsa-enerji",
+    "name": "HSA Enerji",
+    "expectedLogo": "image-17f61253aacee6cdfacec175c18df8dbf54dcf8d-175x80-png",
+    "logoScale": 94
+  },
+  {
+    "id": "reference-ode-yal-t-m",
+    "name": "ODE Yalıtım",
+    "expectedLogo": "image-4b18fcd6ad72772e74ffa3ed95d6843b8d1ef0a4-342x177-png",
+    "logoScale": 90
+  },
+  {
+    "id": "reference-kervan",
+    "name": "Kervan",
+    "expectedLogo": "image-c4f168cd1c772226b46a201c32b5d5829000736e-640x235-png",
+    "logoScale": 90
+  },
+  {
+    "id": "reference-tos-elik",
+    "name": "Tosçelik",
+    "expectedLogo": "image-a2233c08976615bbbfb40c429b06ba227540405c-459x156-png",
+    "logoScale": 90
+  },
+  {
+    "id": "reference-toyota-tsusho",
+    "name": "Toyota Tsusho",
+    "expectedLogo": "image-c93a24e0d8d9a0ae2bb61f1f8b7f99322af37d50-640x32-png",
+    "logoScale": 112
+  }
+]

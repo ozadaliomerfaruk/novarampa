@@ -50,7 +50,10 @@ export default async function ReferanslarPage() {
         />
 
         <section className="container-wide pb-20">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+          <ul
+            aria-label="Referans firmalarımız"
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 overflow-hidden rounded-2xl border border-[#e6eaee] bg-white"
+          >
             {featured.map((c, i) => {
               const isSanity = hasSanity;
               const name = isSanity
@@ -62,32 +65,38 @@ export default async function ReferanslarPage() {
               const logo = isSanity ? (c as ReferenceCompany).logo : undefined;
 
               return (
-                <div
+                <li
                   key={isSanity ? (c as ReferenceCompany)._id : `${name}-${i}`}
-                  className="p-3 sm:p-4 rounded-2xl border border-border bg-card hover:border-[var(--brand-orange)]/50 transition-colors text-center"
+                  className="flex flex-col items-center px-3 py-6 sm:px-5 sm:py-8 text-center shadow-[1px_0_0_#e6eaee,0_1px_0_#e6eaee]"
                 >
                   <ReferenceLogo
                     company={{
                       name,
                       logo,
+                      logoDimensions: isSanity
+                        ? (c as ReferenceCompany).logoDimensions
+                        : undefined,
+                      logoScale: isSanity
+                        ? (c as ReferenceCompany).logoScale
+                        : undefined,
                       logoBackground: isSanity
                         ? (c as ReferenceCompany).logoBackground
                         : undefined,
                     }}
-                    className="mb-5"
+                    className="mb-4"
                   />
-                  <div className="px-1 text-sm sm:text-base font-heading font-semibold">
+                  <div className="mt-auto text-[13px] sm:text-sm font-heading font-medium text-[#17212b]">
                     {name.replace(/\(.*\)/, "").trim()}
                   </div>
                   {sector && (
-                    <div className="mt-2 mb-2 text-xs text-muted-foreground">
+                    <div className="mt-1.5 text-[11px] sm:text-xs leading-relaxed text-[#68737d]">
                       {sector}
                     </div>
                   )}
-                </div>
+                </li>
               );
             })}
-          </div>
+          </ul>
         </section>
 
         <CtaSection />

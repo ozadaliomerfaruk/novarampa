@@ -135,6 +135,8 @@ export type ReferenceCompany = {
   sector?: string;
   logo?: SanityImage;
   logoBackground?: "light" | "dark";
+  logoDimensions?: { width: number; height: number };
+  logoScale?: number;
   featured?: boolean;
   caseStudy?: {
     title?: string;

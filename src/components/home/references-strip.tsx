@@ -28,11 +28,11 @@ export function ReferencesStrip({ sanityReferences }: Props = {}) {
           <h2 className="section-title">Referanslarımız</h2>
         </div>
 
-        <div className="relative overflow-hidden">
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10" />
+        <div className="relative overflow-hidden rounded-2xl bg-white">
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10" />
           <motion.div
-            className="flex items-center gap-12 whitespace-nowrap py-4"
+            className="flex items-center gap-8 whitespace-nowrap py-3"
             animate={{ x: ["0%", "-50%"] }}
             transition={{ duration: 40, ease: "linear", repeat: Infinity }}
           >
@@ -45,7 +45,7 @@ export function ReferencesStrip({ sanityReferences }: Props = {}) {
               ) : (
                 <div
                   key={`${(c as { name: string }).name}-${i}`}
-                  className="text-lg sm:text-xl font-heading font-medium text-foreground/50 hover:text-foreground/90 transition-colors"
+                  className="text-lg sm:text-xl font-heading font-medium text-[#17212b]/70 hover:text-[#17212b] transition-colors"
                 >
                   {(c as { name: string }).name.replace(/\(.*\)/, "").trim()}
                 </div>
@@ -63,7 +63,7 @@ function SanityRefLogo({ c }: { c: ReferenceCompany }) {
     return <ReferenceLogo company={c} compact />;
   }
   return (
-    <div className="text-lg sm:text-xl font-heading font-medium text-foreground/50 hover:text-foreground/90 transition-colors shrink-0">
+    <div className="text-lg sm:text-xl font-heading font-medium text-[#17212b]/70 hover:text-[#17212b] transition-colors shrink-0">
       {c.name.replace(/\(.*\)/, "").trim()}
     </div>
   );

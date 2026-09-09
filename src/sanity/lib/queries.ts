@@ -96,6 +96,8 @@ export const allReferencesQuery = groq`*[_type == "referenceCompany"] | order(fe
   name,
   logo,
   logoBackground,
+  logoScale,
+  "logoDimensions": logo.asset->metadata.dimensions,
   sector,
   featured,
   caseStudy
@@ -106,6 +108,8 @@ export const featuredReferencesQuery = groq`*[_type == "referenceCompany" && fea
   name,
   logo,
   logoBackground,
+  logoScale,
+  "logoDimensions": logo.asset->metadata.dimensions,
   sector
 }`;
 

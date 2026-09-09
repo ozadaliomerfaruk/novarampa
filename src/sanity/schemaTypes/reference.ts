@@ -57,6 +57,16 @@ export const referenceType = defineType({
       initialValue: "light",
     }),
     defineField({
+      name: "logoScale",
+      title: "Logo Boyutu (%)",
+      description:
+        "Görünür logo boyutunu dengelemek için kullanılır. 100 standarttır; dar veya küçük görünen logoları büyütebilirsiniz.",
+      type: "number",
+      group: "basic",
+      initialValue: 100,
+      validation: (r) => r.min(60).max(140),
+    }),
+    defineField({
       name: "featured",
       title: "Öne Çıkar",
       description:

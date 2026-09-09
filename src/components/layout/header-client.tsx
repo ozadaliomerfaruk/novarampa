@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, Phone, Mail, Cog } from "lucide-react";
+import { Menu, Phone, Mail, Cog, ArrowRight } from "lucide-react";
 
 import { Logo } from "@/components/brand/logo";
 import { SiteSearch } from "@/components/layout/site-search";
@@ -122,7 +122,12 @@ export function HeaderClient({
                 onDark ? "hover:text-white" : "hover:text-foreground",
               )}
             >
-              Bize Ulaşın →
+              Bize Ulaşın{" "}
+              <ArrowRight
+                size={12}
+                className="inline-block ml-1"
+                aria-hidden="true"
+              />
             </Link>
           </div>
         </div>

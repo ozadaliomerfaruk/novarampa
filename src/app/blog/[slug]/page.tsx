@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Clock } from "lucide-react";
+import { Clock, ArrowLeft } from "lucide-react";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 
 import { Header } from "@/components/layout/header";
@@ -263,9 +263,9 @@ export default async function BlogPostPage({ params }: Props) {
               <SanityImage
                 image={post.mainImage}
                 fill
-                sizes="(max-width: 1024px) 100vw, 900px"
+                sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1024px) calc(100vw - 48px), (max-width: 1280px) calc(100vw - 64px), 1216px"
                 className="object-cover"
-                priority
+                loading="eager"
               />
             </div>
           )}
@@ -291,7 +291,12 @@ export default async function BlogPostPage({ params }: Props) {
               </h2>
               {post.totalTime && (
                 <div className="mt-3 text-sm text-muted-foreground">
-                  ⏱ Toplam süre:{" "}
+                  <Clock
+                    size={14}
+                    className="inline-block mr-1"
+                    aria-hidden="true"
+                  />{" "}
+                  Toplam süre:{" "}
                   <strong className="text-foreground">{post.totalTime}</strong>
                 </div>
               )}
@@ -318,7 +323,12 @@ export default async function BlogPostPage({ params }: Props) {
               href="/blog"
               className="text-sm font-medium text-foreground/80 hover:text-[var(--brand-orange)] transition-colors"
             >
-              ← Tüm yazılara dön
+              <ArrowLeft
+                size={16}
+                className="inline-block mr-1"
+                aria-hidden="true"
+              />{" "}
+              Tüm yazılara dön
             </Link>
           </div>
         </article>

@@ -1,0 +1,50 @@
+[
+  {
+    "family": "Open Sans",
+    "range": "400..700",
+    "file": "open-sans-latin-tr.woff2",
+    "folder": "opensans",
+    "bytes": 52800,
+    "sha256": "c43f308ea95cea99d961b3cedc45b3bc5f3fd0731c4e5b28ccee97678e152eae",
+    "source": "https://fonts.googleapis.com/css2?family=Open+Sans%3Awght%40400..700&display=swap&text=+%21%22%23%24%25%26%27%28%29*%2B%2C-.%2F0123456789%3A%3B%3C%3D%3E%3F%40ABCDEFGHIJKLMNOPQRSTUVWXYZ%5B%5C%5D%5E_%60abcdefghijklmnopqrstuvwxyz%7B%7C%7D%7E%C2%A0%C2%A1%C2%A2%C2%A3%C2%A4%C2%A5%C2%A6%C2%A7%C2%A8%C2%A9%C2%AA%C2%AB%C2%AC%C2%AD%C2%AE%C2%AF%C2%B0%C2%B1%C2%B2%C2%B3%C2%B4%C2%B5%C2%B6%C2%B7%C2%B8%C2%B9%C2%BA%C2%BB%C2%BC%C2%BD%C2%BE%C2%BF%C3%80%C3%81%C3%82%C3%83%C3%84%C3%85%C3%86%C3%87%C3%88%C3%89%C3%8A%C3%8B%C3%8C%C3%8D%C3%8E%C3%8F%C3%90%C3%91%C3%92%C3%93%C3%94%C3%95%C3%96%C3%97%C3%98%C3%99%C3%9A%C3%9B%C3%9C%C3%9D%C3%9E%C3%9F%C3%A0%C3%A1%C3%A2%C3%A3%C3%A4%C3%A5%C3%A6%C3%A7%C3%A8%C3%A9%C3%AA%C3%AB%C3%AC%C3%AD%C3%AE%C3%AF%C3%B0%C3%B1%C3%B2%C3%B3%C3%B4%C3%B5%C3%B6%C3%B7%C3%B8%C3%B9%C3%BA%C3%BB%C3%BC%C3%BD%C3%BE%C3%BF%C4%9E%C4%9F%C4%B0%C4%B1%C5%9E%C5%9F%C5%92%C5%93%C5%B8%C6%92%E2%80%93%E2%80%94%E2%80%98%E2%80%99%E2%80%9A%E2%80%9C%E2%80%9D%E2%80%9E%E2%80%A0%E2%80%A1%E2%80%A2%E2%80%A6%E2%80%B0%E2%82%AC%E2%82%BA%E2%84%A2%E2%88%92%E2%89%A4%E2%89%A5",
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/opensans/OFL.txt",
+    "optimizedBytes": 20792,
+    "optimizedSha256": "07e1368bb88b26f00ad5c5f74f5d9373410107551b4d107930797c8747ee914f",
+    "weightRange": [
+      400,
+      700
+    ]
+  },
+  {
+    "family": "Work Sans",
+    "range": "400..900",
+    "file": "work-sans-latin-tr.woff2",
+    "folder": "worksans",
+    "bytes": 52812,
+    "sha256": "6855205e1172d38c4a56bc81820dfe9e51fc127cd32d85976afd545051bf5e33",
+    "source": "https://fonts.googleapis.com/css2?family=Work+Sans%3Awght%40400..900&display=swap&text=+%21%22%23%24%25%26%27%28%29*%2B%2C-.%2F0123456789%3A%3B%3C%3D%3E%3F%40ABCDEFGHIJKLMNOPQRSTUVWXYZ%5B%5C%5D%5E_%60abcdefghijklmnopqrstuvwxyz%7B%7C%7D%7E%C2%A0%C2%A1%C2%A2%C2%A3%C2%A4%C2%A5%C2%A6%C2%A7%C2%A8%C2%A9%C2%AA%C2%AB%C2%AC%C2%AD%C2%AE%C2%AF%C2%B0%C2%B1%C2%B2%C2%B3%C2%B4%C2%B5%C2%B6%C2%B7%C2%B8%C2%B9%C2%BA%C2%BB%C2%BC%C2%BD%C2%BE%C2%BF%C3%80%C3%81%C3%82%C3%83%C3%84%C3%85%C3%86%C3%87%C3%88%C3%89%C3%8A%C3%8B%C3%8C%C3%8D%C3%8E%C3%8F%C3%90%C3%91%C3%92%C3%93%C3%94%C3%95%C3%96%C3%97%C3%98%C3%99%C3%9A%C3%9B%C3%9C%C3%9D%C3%9E%C3%9F%C3%A0%C3%A1%C3%A2%C3%A3%C3%A4%C3%A5%C3%A6%C3%A7%C3%A8%C3%A9%C3%AA%C3%AB%C3%AC%C3%AD%C3%AE%C3%AF%C3%B0%C3%B1%C3%B2%C3%B3%C3%B4%C3%B5%C3%B6%C3%B7%C3%B8%C3%B9%C3%BA%C3%BB%C3%BC%C3%BD%C3%BE%C3%BF%C4%9E%C4%9F%C4%B0%C4%B1%C5%9E%C5%9F%C5%92%C5%93%C5%B8%C6%92%E2%80%93%E2%80%94%E2%80%98%E2%80%99%E2%80%9A%E2%80%9C%E2%80%9D%E2%80%9E%E2%80%A0%E2%80%A1%E2%80%A2%E2%80%A6%E2%80%B0%E2%82%AC%E2%82%BA%E2%84%A2%E2%88%92%E2%89%A4%E2%89%A5",
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/worksans/OFL.txt",
+    "optimizedBytes": 32824,
+    "optimizedSha256": "4775ebfa91fd4f23cd1fa52cfe7ac3d93fa5f86983491d11b657abb4d781e42a",
+    "weightRange": [
+      400,
+      900
+    ]
+  },
+  {
+    "family": "JetBrains Mono",
+    "range": "100..800",
+    "file": "jetbrains-mono-latin-tr.woff2",
+    "folder": "jetbrainsmono",
+    "bytes": 42500,
+    "sha256": "ca96ef2fb7f121e3e28b44f5d96773e6843ea3edc50adf64fa592ebab5f9f3e3",
+    "source": "https://fonts.googleapis.com/css2?family=JetBrains+Mono%3Awght%40100..800&display=swap&text=+%21%22%23%24%25%26%27%28%29*%2B%2C-.%2F0123456789%3A%3B%3C%3D%3E%3F%40ABCDEFGHIJKLMNOPQRSTUVWXYZ%5B%5C%5D%5E_%60abcdefghijklmnopqrstuvwxyz%7B%7C%7D%7E%C2%A0%C2%A1%C2%A2%C2%A3%C2%A4%C2%A5%C2%A6%C2%A7%C2%A8%C2%A9%C2%AA%C2%AB%C2%AC%C2%AD%C2%AE%C2%AF%C2%B0%C2%B1%C2%B2%C2%B3%C2%B4%C2%B5%C2%B6%C2%B7%C2%B8%C2%B9%C2%BA%C2%BB%C2%BC%C2%BD%C2%BE%C2%BF%C3%80%C3%81%C3%82%C3%83%C3%84%C3%85%C3%86%C3%87%C3%88%C3%89%C3%8A%C3%8B%C3%8C%C3%8D%C3%8E%C3%8F%C3%90%C3%91%C3%92%C3%93%C3%94%C3%95%C3%96%C3%97%C3%98%C3%99%C3%9A%C3%9B%C3%9C%C3%9D%C3%9E%C3%9F%C3%A0%C3%A1%C3%A2%C3%A3%C3%A4%C3%A5%C3%A6%C3%A7%C3%A8%C3%A9%C3%AA%C3%AB%C3%AC%C3%AD%C3%AE%C3%AF%C3%B0%C3%B1%C3%B2%C3%B3%C3%B4%C3%B5%C3%B6%C3%B7%C3%B8%C3%B9%C3%BA%C3%BB%C3%BC%C3%BD%C3%BE%C3%BF%C4%9E%C4%9F%C4%B0%C4%B1%C5%9E%C5%9F%C5%92%C5%93%C5%B8%C6%92%E2%80%93%E2%80%94%E2%80%98%E2%80%99%E2%80%9A%E2%80%9C%E2%80%9D%E2%80%9E%E2%80%A0%E2%80%A1%E2%80%A2%E2%80%A6%E2%80%B0%E2%82%AC%E2%82%BA%E2%84%A2%E2%88%92%E2%89%A4%E2%89%A5",
+    "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/jetbrainsmono/OFL.txt",
+    "optimizedBytes": 29016,
+    "optimizedSha256": "320989692fefebab032ab8b7544632ed9415989a01438733e2102b3ced667f45",
+    "weightRange": [
+      400,
+      700
+    ]
+  }
+]

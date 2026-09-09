@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Open_Sans, Work_Sans, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -15,34 +15,28 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 // Body — Open Sans (RonI/Lift-O-Flex DNA'sı; humanist, okunaklı)
-const fontSans = Open_Sans({
+const fontSans = localFont({
+  src: "./fonts/open-sans-latin-tr.woff2",
+  weight: "400 700",
   variable: "--font-sans",
-  subsets: ["latin", "latin-ext"],
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
+  display: "optional",
 });
 
 // Display — Work Sans (RonI DNA; geometric ama warm, kurumsal modern)
-const fontHeading = Work_Sans({
+const fontHeading = localFont({
+  src: "./fonts/work-sans-latin-tr.woff2",
+  weight: "400 900",
   variable: "--font-heading",
-  subsets: ["latin", "latin-ext"],
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "optional",
 });
 
 // Mono — teknik annotation için
-const fontMono = JetBrains_Mono({
+const fontMono = localFont({
+  src: "./fonts/jetbrains-mono-latin-tr.woff2",
+  weight: "400 700",
   variable: "--font-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-// Display — Space Grotesk (modern geometrik; hero "NOVARAMPA" wordmark için)
-const fontDisplay = Space_Grotesk({
-  variable: "--font-display",
-  subsets: ["latin", "latin-ext"],
-  display: "swap",
-  weight: ["500", "600", "700"],
+  display: "optional",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -97,9 +91,7 @@ export const metadata: Metadata = {
   },
   // Google Search Console doğrulama — env'de NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
   // varsa <meta name="google-site-verification"> otomatik basılır.
-  ...(GSC_VERIFICATION
-    ? { verification: { google: GSC_VERIFICATION } }
-    : {}),
+  ...(GSC_VERIFICATION ? { verification: { google: GSC_VERIFICATION } } : {}),
 };
 
 export const viewport: Viewport = {
@@ -121,7 +113,7 @@ export default function RootLayout({
   return (
     <html
       lang="tr"
-      className={`${fontSans.variable} ${fontHeading.variable} ${fontMono.variable} ${fontDisplay.variable} h-full antialiased`}
+      className={`${fontSans.variable} ${fontHeading.variable} ${fontMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background text-foreground relative">

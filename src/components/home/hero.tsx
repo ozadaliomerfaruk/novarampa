@@ -42,7 +42,7 @@ export function Hero({ title, subtitle, ctaLabel, videoUrl }: HeroProps = {}) {
 
   return (
     <section className="relative isolate min-h-[100svh] flex items-center justify-center overflow-hidden">
-      <HeroVideo src={videoSrc} />
+      <HeroVideo key={videoSrc} src={videoSrc} />
 
       {/* ─── Centered content ─── */}
       <motion.div
@@ -67,7 +67,7 @@ export function Hero({ title, subtitle, ctaLabel, videoUrl }: HeroProps = {}) {
                 width={1193}
                 height={134}
                 alt=""
-                priority
+                preload
                 unoptimized
                 className="h-auto w-full"
               />

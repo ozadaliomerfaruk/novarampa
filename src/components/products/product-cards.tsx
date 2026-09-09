@@ -22,7 +22,7 @@ export function ProductCards({
               <SanityImage
                 image={p.mainImage}
                 fill
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="(max-width: 640px) calc(100vw - 36px), (max-width: 768px) calc(100vw - 52px), (max-width: 1024px) calc(50vw - 40px), (max-width: 1280px) calc(50vw - 48px), 592px"
                 className={
                   p.mainImage.fit === "contain"
                     ? "object-contain"

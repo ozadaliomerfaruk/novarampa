@@ -11,6 +11,7 @@ type Props = {
   className?: string;
   sizes?: string;
   priority?: boolean;
+  loading?: "eager" | "lazy";
   fill?: boolean;
   quality?: number;
 };
@@ -23,6 +24,7 @@ export function SanityImage({
   className,
   sizes,
   priority,
+  loading,
   fill,
   quality = 85,
 }: Props) {
@@ -38,7 +40,8 @@ export function SanityImage({
         fill
         sizes={sizes ?? "(max-width: 768px) 100vw, 50vw"}
         className={cn("object-cover", className)}
-        priority={priority}
+        preload={priority}
+        loading={loading}
       />
     );
   }
@@ -48,13 +51,19 @@ export function SanityImage({
 
   return (
     <Image
-      src={urlFor(image).width(w).height(h).quality(quality).auto("format").url()}
+      src={urlFor(image)
+        .width(w)
+        .height(h)
+        .quality(quality)
+        .auto("format")
+        .url()}
       alt={altText}
       width={w}
       height={h}
       sizes={sizes}
       className={className}
-      priority={priority}
+      preload={priority}
+      loading={loading}
     />
   );
 }
